@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "validate": "npm-run-all --parallel test lint",
+    "precommit": "npm run validate",
+    "prepush": "npm run validate"
   },
   "dependencies": {
     "@types/node": "18.11.9",
@@ -18,5 +20,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.3"
+  },
+  "devDependencies": {
+    "husky": "^8.0.2"
   }
 }
