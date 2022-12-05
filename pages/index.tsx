@@ -45,7 +45,7 @@ export default function Home() {
       fetch(`${url}/dividends?ticker=${tiker}&apiKey=${process.env.NEXT_PUBLIC_POLYGON_IO_API_KEY}`)
         .then(res => res.json())
         .then(({ results }) => setBuiedYearlyDivs(results[0].cash_amount * results[0].frequency));
-        
+
     }
   }, [transactions])
 
