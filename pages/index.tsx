@@ -1,8 +1,55 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
+import { formatDateToDMY } from '@core/helpers';
+import { getExanteTransactionsList } from 'src/core/helpers/csv';
+
+const ACCOUNT_DIV_TAX = 0.15;
 
 export default function Home() {
+  const [transactions, setTransactions] = useState<any>();
+  const [totalInvestedAmount, setTotalInvestedAmount] = useState<any>();
+  const [buiedYearlyDivs, setBuiedYearlyDivs] = useState<number>(0);
+
+  const handleCsvReportUpload = (e: any) => {
+    const input = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e: any) {
+      const transactionsList = getExanteTransactionsList(e.target.result)
+      setTransactions(transactionsList)
+    };
+
+    reader.readAsText(input);
+  }
+
+  transactions && console.log(transactions, process.env.POLYGON_IO_API_KEY);
+
+  useEffect(() => {
+    if (transactions) {
+      console.log(parseFloat(transactions.find((transaction: any) => transaction.ISIN === "FUNDING/WITHDRAWAL").Price));
+
+      const invested = transactions
+        .filter((transaction: any) => transaction.ISIN === "FUNDING/WITHDRAWAL")
+        .reduce((previousValue: any, currentValue: any) => previousValue + parseFloat(currentValue.Price), 0)
+
+      setTotalInvestedAmount(invested)
+    }
+  }, [transactions])
+
+  useEffect(() => {
+    if (transactions) {
+      const url = "https://api.polygon.io/v3/reference";
+      const tiker = transactions[0]["Symbol ID"].split('.')[0];
+
+      fetch(`${url}/dividends?ticker=${tiker}&apiKey=${process.env.NEXT_PUBLIC_POLYGON_IO_API_KEY}`)
+        .then(res => res.json())
+        .then(({ results }) => setBuiedYearlyDivs(results[0].cash_amount * results[0].frequency));
+        
+    }
+  }, [transactions])
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,60 +59,28 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
+        <input
+          type="file"
+          placeholder="Upload Exante CSV report"
+          // value={csvReport}
+          onChange={handleCsvReportUpload}
+        />
+        {transactions && <>
+          <p>
+            <b>Invested: </b> <span>${totalInvestedAmount}</span>
+          </p>
+          <p>
+            <b>Transactions: </b> <span>{transactions.length}</span>
+          </p>
+          <p>
+            <b>Last transaction: </b> <span>{transactions[0].Side.toUpperCase()} - {transactions[0]["Symbol ID"]} - {transactions[0].Quantity} - ${transactions[0].Price} - {formatDateToDMY(new Date(transactions[0].Time))}</span>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              Passive income earned: <small style={{ color: "green" }}>+ ${buiedYearlyDivs - (buiedYearlyDivs * ACCOUNT_DIV_TAX)}</small> a year
             </p>
-          </a>
-        </div>
-      </main>
+          </p>
+        </>}
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </main>
     </div>
   )
 }
