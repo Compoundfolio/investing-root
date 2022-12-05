@@ -5,7 +5,7 @@ const getExanteTransactionsList = (str: string) => {
 		.slice(0, str.indexOf("\n"))
 		.replaceAll(`"\t"`, ",")
 		.replaceAll(`\"`, "")
-		.split(",");
+		.split(",")
 
 	const rows = str
 		.slice(str.indexOf("\n") + 1)
