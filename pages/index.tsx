@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { formatDateToDMY } from '@core/helpers';
 import { getExanteTransactionsList } from 'src/core/helpers/csv';
+import { NumbersBar } from '@container-components';
 
 const ACCOUNT_DIV_TAX = 0.15;
 
@@ -59,6 +60,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        {transactions && (
+          <NumbersBar />
+        )}
         <input
           type="file"
           placeholder="Upload Exante CSV report"
