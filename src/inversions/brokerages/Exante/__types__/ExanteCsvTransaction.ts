@@ -1,12 +1,15 @@
+import { SymbolId } from "../helpers"
+import ExanteSide from "./ExanteSide"
+
 type ExanteCsvTransaction = {
   "Time"?: string,
   "Account ID"?: string,
-  "Side"?: string,
-  "Symbol ID"?: string,
+  "Side"?: ExanteSide,
+  "Symbol ID"?: SymbolId, 
   "ISIN"?: string,
   "Type"?: string,
   "Price"?: string,
-  "Currency"?: string,
+  "Currency"?: "USD" | "EUR" | string,
   "Quantity"?: string,
   "Commission"?: string,
   "Commission Currency"?: string,
@@ -16,7 +19,7 @@ type ExanteCsvTransaction = {
   "Order pos"?: string,
   "Value Date"?: string,
   "Unique Transaction Identifier (UTI)"?: string,
-  "Trade type"?: string
+  "Trade type"?: "TRADE" | string
 }
 
 export default ExanteCsvTransaction

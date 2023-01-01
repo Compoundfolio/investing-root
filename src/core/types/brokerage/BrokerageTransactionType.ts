@@ -5,6 +5,7 @@ enum BrokerageTransactionType {
   TAX = "TAX",
   DEPOSIT = "DEPOSIT",
   WITHDRAWAL = "WITHDRAWAL",
+  TRADE = "TRADE" // TODO: Split it to BUY & SELL?
 }
 
 export default BrokerageTransactionType

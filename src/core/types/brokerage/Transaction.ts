@@ -1,5 +1,5 @@
 
-import { OrderAssetType, StockExchange, Ticker } from "../assets"
+import { Exchange, OrderOperation, Ticker } from "../assets"
 import { Currency } from "../currencies"
 import { StringDate } from "../dates"
 import { ID } from "../ids"
@@ -7,15 +7,15 @@ import BrokerageTransactionType from "./BrokerageTransactionType"
 
 type Transaction = {
   id: ID
-  type: BrokerageTransactionType
+  type?: BrokerageTransactionType
   time: StringDate
   currency: Currency
-  orderAssetType?: OrderAssetType
-  orderAmount?: number
   ticker: Ticker
-  stockExchange: StockExchange
-  commission: number
-  orderPrice: number
+  stockExchange: Exchange
+  orderAmount: number | null
+  commission: number | null
+  orderPrice: number | null // TODO: Type
+  operation?: OrderOperation
 }
 
 export default Transaction
