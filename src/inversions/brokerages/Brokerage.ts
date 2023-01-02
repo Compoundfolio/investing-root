@@ -1,22 +1,18 @@
 import ExanteBrokerage from './Exante/ExanteBrokerage';
 import IBrokerage from './IBrokerage';
+import ISideBrokerage from './ISideBrokerage';
 
 export default class Brokerage implements IBrokerage {
-  public brokerage: IBrokerage;
+  public brokerage: ISideBrokerage;
 
-  constructor(brokerage: IBrokerage) {
+  constructor(brokerage: ISideBrokerage) {
     this.brokerage = brokerage;
   }
 
-  getAssetsAmount() {
-    return this.brokerage.getAssetsAmount()
-  }
-
   getAllTransactions() {
-    return this.brokerage.getAllTransactions()
+    return this.brokerage.transactions
   };
 }
 
 const brokerage = new Brokerage(new ExanteBrokerage([])) 
-brokerage.getAssetsAmount()
 brokerage.getAllTransactions()

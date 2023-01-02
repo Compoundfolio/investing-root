@@ -1,20 +1,12 @@
-import IBrokerage from '../IBrokerage';
+import { Transaction } from 'src/core/types';
 import { ExanteCsvData } from './__types__';
 import { formatExanteCsvTransactions } from './helpers';
+import ISideBrokerage from '../ISideBrokerage';
 
-export default class ExanteBrokerage implements IBrokerage {
-  csvData: ExanteCsvData
+export default class ExanteBrokerage implements ISideBrokerage {  
+  transactions: Transaction[]
 
   constructor(csvData: ExanteCsvData) {
-    this.csvData = csvData
+    this.transactions = formatExanteCsvTransactions(csvData);
   }
-
-  getAssetsAmount() {
-    return this.csvData.length
-  }
-
-  getAllTransactions() {
-    const transactions = formatExanteCsvTransactions(this.csvData);
-    return transactions
-  };
 }
