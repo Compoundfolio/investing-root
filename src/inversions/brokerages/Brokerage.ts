@@ -13,6 +13,3 @@ export default class Brokerage implements IBrokerage {
     return this.brokerage.transactions
   };
 }
-
-const brokerage = new Brokerage(new ExanteBrokerage([])) 
-brokerage.getAllTransactions()

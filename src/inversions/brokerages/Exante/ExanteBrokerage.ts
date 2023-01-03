@@ -10,3 +10,4 @@ export default class ExanteBrokerage implements ISideBrokerage {
     this.transactions = formatExanteCsvTransactions(csvData);
   }
 }
+

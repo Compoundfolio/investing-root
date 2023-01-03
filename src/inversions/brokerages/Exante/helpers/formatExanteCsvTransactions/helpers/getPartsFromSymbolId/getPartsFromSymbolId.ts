@@ -2,7 +2,9 @@ import { Ticker, Exchange } from "src/core/types"
 import { SymbolId, SymbolIdParts } from "./__types__"
 
 const splitSymbolId = (symbolId: SymbolId, part: SymbolIdParts): Ticker | Exchange | "" => {
-  return (symbolId?.split(".")[part].toUpperCase() ?? "") as Ticker | Exchange
+  console.log(symbolId, part);
+  
+  return (symbolId ? symbolId?.split(".")?.[part]?.toUpperCase() : "") as Ticker | Exchange
 }
 
 /**
