@@ -6,8 +6,9 @@ import { getExanteTransactionsList } from 'src/core/helpers/csv';
 import { NumbersBar } from '@container-components';
 import Image from 'next/image';
 import ExanteBrokerage from '../src/inversions/brokerages/Exante/ExanteBrokerage';
-import ISideBrokerage from '../src/inversions/brokerages/ISideBrokerage';
+import ISideBrokerage from '../src/inversions/brokerages/AbstractSideBrokerage';
 import Brokerage from 'src/inversions/brokerages/Brokerage';
+import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploadPage';
 
 const ACCOUNT_DIV_TAX = 0.15;
 
@@ -80,6 +81,7 @@ export default function Home() {
         {transactions && (
           <NumbersBar />
         )}
+        <BrokerageReportUploadPage />
         <button
           onClick={() => setBrokerageClass("EXANTE")}
         >

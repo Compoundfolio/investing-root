@@ -1,15 +1,15 @@
 import { memo } from "react"
+import { BrokeragesSelectionZone } from "./components"
 
 const BrokerageReportUploadPage = () => {
   return (
     <>
       {/* UserGreetingsModal (low proir TODO) */} 
 
+      <BrokeragesSelectionZone />
       {/** BrokeragesSelectionZone
        * -[] BrokerageSelectionTower[X1]
-       * -- AppLogo[withTitle] (z-indexed on modal appear)
-       * -- HelpLegend
-       * --[] .map => BrokerageSelectionBrick (z-indexed on modal appear [selected ones])
+       
        * --- FrameWithBrokerageIcon
        * --- BrokerageTitle
       */}

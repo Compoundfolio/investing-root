@@ -1,6 +1,6 @@
 import ExanteBrokerage from './Exante/ExanteBrokerage';
 import IBrokerage from './IBrokerage';
-import ISideBrokerage from './ISideBrokerage';
+import ISideBrokerage from './AbstractSideBrokerage';
 
 export default class Brokerage implements IBrokerage {
   public brokerage: ISideBrokerage;
