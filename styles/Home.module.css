@@ -1,15 +1,18 @@
 .container {
-  padding: 0 2rem;
+  background: linear-gradient(107.28deg, #183A68 13.31%, #C4C4C4 97.18%);
+  background-blend-mode: multiply;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  width: 100vw;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(75.27deg, rgba(15, 111, 114, 0.106) 75.87%, rgba(0, 0, 0, 0) 95.64%), #0E1317;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .footer {
@@ -116,13 +119,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
