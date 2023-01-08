@@ -77,7 +77,7 @@ export default function Home() {
         />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         {transactions && (
           <NumbersBar />
         )}

@@ -8,10 +8,11 @@ import {
 
 export default memo(function SelectableBrokerage({
   Brokerage,
+  setBrokerageClass,
 }: ISelectableBrokerage) {
   return (
     <SelectableBrokerageButton
-      // TODO: onClick={() => setBrokerageClass(Brokerage)}
+      onClick={() => setBrokerageClass(Brokerage)}
     >
       <StyledImage
         width={64}

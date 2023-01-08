@@ -1,7 +1,9 @@
-import { memo } from "react"
+import { memo, useState } from "react"
 import { BrokeragesSelectionZone } from "./components"
 
 const BrokerageReportUploadPage = () => {
+  const [ BrokerageClass, setBrokerageClass ] = useState()
+
   return (
     <>
       {/* UserGreetingsModal (low proir TODO) */} 

@@ -3,7 +3,9 @@ import { SUPPORTED_BROKERAGES, SupportedBrokerage } from '../../consts'
 import { SelectableBrokerage } from './components'
 import { AppLogo } from 'src/core/components/icons'
 
-export default memo(function BrokeragesSelectionZone() {
+export default memo(function BrokeragesSelectionZone({
+  setBrokerageClass,
+}: IBrokeragesSelectionZone) {
   return (
     <div>
       <AppLogo withTitle />
@@ -11,12 +13,10 @@ export default memo(function BrokeragesSelectionZone() {
         <SelectableBrokerage 
           key={Brokerage.brandName}
           Brokerage={Brokerage} 
+          setBrokerageClass={setBrokerageClass}
         />
       ))}
-      {/* * -- AppLogo[withTitle] (z-indexed on modal appear) */}
-      {/* * -- HelpLegend */}
-
-      {/* * --[] .map => BrokerageSelectionBrick (z-indexed on modal appear [selected ones]) */}
+      {/* * TODO: HelpLegend */}
     </div>
   )
 })
