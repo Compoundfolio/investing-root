@@ -8,11 +8,13 @@ import {
 
 export default memo(function SelectableBrokerage({
   Brokerage,
-  setBrokerageClass,
+  isSelected,
+  handleUpdateSelectedBrokerages,
 }: ISelectableBrokerage) {
+  // TODO: Remove via Shift + left click??
   return (
     <SelectableBrokerageButton
-      onClick={() => setBrokerageClass(Brokerage)}
+      onClick={() => handleUpdateSelectedBrokerages({ Brokerage })}
     >
       <StyledImage
         width={64}

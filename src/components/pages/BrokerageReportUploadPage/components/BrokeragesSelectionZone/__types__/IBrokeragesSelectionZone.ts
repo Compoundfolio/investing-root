@@ -1,5 +1,7 @@
+import { SupportedBrokerage } from "../../../consts"
+
 interface IBrokeragesSelectionZone {
-  setBrokerageClass: 
+  setBrokerageClass: SupportedBrokerage
 }
 
 export default IBrokeragesSelectionZone
