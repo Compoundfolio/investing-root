@@ -11,14 +11,15 @@ export default memo(function SelectableBrokerage({
   isSelected,
   handleUpdateSelectedBrokerages,
 }: ISelectableBrokerage) {
-  // TODO: Remove via Shift + left click??
   return (
     <SelectableBrokerageButton
-      onClick={() => handleUpdateSelectedBrokerages({ Brokerage })}
+      onClick={() => handleUpdateSelectedBrokerages({ Brokerage, isDelete: isSelected })}
+      isSelected={isSelected}
     >
       <StyledImage
         width={64}
         height={64}
+        isSelected={isSelected}
         alt={Brokerage.brandName}
         src={Brokerage.logoPath}
       />
