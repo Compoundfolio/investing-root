@@ -1,7 +1,5 @@
-import { memo, useState } from "react"
+import { memo } from "react"
 import { BrokeragesSelectionZone } from "./components"
-import { useRecoilState } from "recoil"
-import { selectedBrokeragesState } from "./stores"
 
 const BrokerageReportUploadPage = () => {
 
