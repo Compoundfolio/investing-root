@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">
-    Compoundfolio <br>
-    <h3 align="center">Dividend tracker for large investment portfolios</h3>
+    Compoundfolio - Dividends <br>
+    <h3 align="center">Dividend tracker for large investment portfolios</h3><br>
   </h1>
   <img width="750" height="750" src="https://user-images.githubusercontent.com/30416868/198287647-8dfaa6e5-1471-4478-b536-6705738e512f.png" alt="Preview">
   </br>
