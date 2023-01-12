@@ -8,11 +8,13 @@ export const SelectableBrokerageButton = styled.button
   flexDirection: "column",
   justifyContent: "center",
   background: "#111F28",
-  boxShadow: `8px 8px 8px 5px ${isSelected ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.25)"}`,
+  // boxShadow: `8px 8px 8px 5px ${isSelected ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.25)"}`,
+  boxShadow: isSelected ? `0px 0px 5px #05CD99`: `8px 8px 8px 5px rgba(0, 0, 0, 0.25)`,
   width: "162px",
   height: "156px",
   borderRadius: "8px",
-  border: `1px solid ${isSelected ? colors.white : colors.green}`,
+  // border: `1px solid ${isSelected ? colors.white : colors.green}`,
+  border: `1px solid ${colors.green}`,
   color: isSelected ? colors.white :"#4C596B",
 
   "&:hover": {
@@ -28,8 +30,8 @@ export const SelectableBrokerageButton = styled.button
 // TODO: Default
 export const StyledImage = styled(Image)
 (({ isSelected }: Pick<ISelectableBrokerage, "isSelected">) => isSelected ? {
-  border: `1px solid ${colors.white}`,
-  borderRadius: 16,
+  // border: `1px solid ${colors.white}`,
+  // borderRadius: 16,
   opacity: 1,
   transform: "scale(1)",
 } : {

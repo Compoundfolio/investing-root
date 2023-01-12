@@ -79,7 +79,7 @@ export default function Home() {
         />
       </Head>
 
-      <main>
+      <>
         {transactions && (
           <NumbersBar />
         )}
@@ -116,7 +116,7 @@ export default function Home() {
           </p>
         </>} */}
 
-      </main>
+      </>
     </div>
   )
 }
