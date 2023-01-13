@@ -1,5 +1,6 @@
 import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
+import { BackgroundFogBlur } from './styled';
 
 const ModalBlur = ({
   isOpen = false,
@@ -13,9 +14,9 @@ const ModalBlur = ({
           <div
             className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className="relative w-auto max-w-3xl mx-auto my-6">
+            <div className="relative w-full mx-auto my-6 max-w-7xl">
               {/*content*/}
-              <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
                   <h3 className="text-3xl font-semibold">
@@ -59,7 +60,7 @@ const ModalBlur = ({
               </div>
             </div>
           </div>
-          <div className="fixed inset-0 z-40 bg-black opacity-75"></div>
+          <BackgroundFogBlur className="fixed inset-0 z-40"></BackgroundFogBlur>
         </>
       )}
     </>
