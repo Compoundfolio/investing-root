@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { BrokeragesSelectionZone } from "./components"
+import { BrokeragesSelectionZone, ReportsUploadArea } from "./components"
 import { useSelectedBrokeragesStore } from "./stores"
 import { useOpen } from "src/core/hooks"
 import ModalBlur from 'src/core/components/blocks/ModalBlur';
@@ -17,17 +17,19 @@ const BrokerageReportUploadPage = () => {
     selectedBrokerages.length && setIsReportsUploadModalOpen(true)
   }, [selectedBrokerages.length])
 
+  // TODO: handleReportsUpload
+  const handleReportsUpload = () => {}
+
   return (
     <>
-      {/* UserGreetingsModal (low proir TODO) */} 
-
+      {/* UserGreetingsModal (low prior TODO) */} 
       <BrokeragesSelectionZone  />
       <ModalBlur
         isOpen={isReportsUploadModalOpen}
         handleOpenChange={handleReportsCsvUploadModalOpen}
+        onSave={handleReportsUpload}
       >
-        {/* <ReportsUploadArea /> */}
-        <div>ReportsUploadArea</div>
+        <ReportsUploadArea />
       </ModalBlur>
       {/** BrokeragesSelectionZone
        * -[] BrokerageSelectionTower[X1]
