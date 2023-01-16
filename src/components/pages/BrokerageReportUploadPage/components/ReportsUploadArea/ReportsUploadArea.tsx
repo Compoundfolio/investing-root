@@ -1,12 +1,12 @@
 import { memo } from 'react'
 import { SSectionContainer } from './styled'
-import { SelectedBrokeragesSwitchingList } from './components'
+import { ReportFileUploadArea, SelectedBrokeragesSwitchingList } from './components'
 
 const ReportsUploadArea = () => {
   return (
     <SSectionContainer>
       <SelectedBrokeragesSwitchingList />
-      {/* <ReportFileUploadArea /> */}
+      <ReportFileUploadArea />
       {/* <NavigationAside /> */}
     </SSectionContainer>
   )
