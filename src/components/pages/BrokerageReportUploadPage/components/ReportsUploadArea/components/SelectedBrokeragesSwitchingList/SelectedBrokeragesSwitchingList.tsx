@@ -2,15 +2,20 @@ import { memo, useState, useCallback } from 'react';
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage/consts'
 import { useSelectedBrokeragesStore } from 'src/components/pages/BrokerageReportUploadPage/stores'
 import { SelectableBrokerage } from '../../../BrokeragesSelectionZone/components'
+import { IHandleUpdateSelectedBrokerages } from '../../../BrokeragesSelectionZone/components/SelectableBrokerage/__types__';
 
 const SelectedBrokeragesSwitchingList = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
 
-  const [selectedBrokerage, setSelectedBrokerage] = useState<SupportedBrokerage>(selectedBrokerages[0])
+  const [
+    selectedBrokerageName, 
+    setSelectedBrokerageName
+  ] = useState<string>(selectedBrokerages[0].brandName)
 
-  // TODO: Reuse part of ISelectableBrokerage
-  const handleChangeSelectedBrokerage = useCallback(({ Brokerage }: any) => {
-    setSelectedBrokerage(Brokerage)
+  const handleChangeSelectedBrokerage = useCallback(({ 
+    Brokerage
+  }: IHandleUpdateSelectedBrokerages) => {
+    setSelectedBrokerageName(Brokerage.brandName)
   }, [])
 
   return (
@@ -19,7 +24,7 @@ const SelectedBrokeragesSwitchingList = () => {
         <SelectableBrokerage
           key={Brokerage.brandName}
           Brokerage={Brokerage}
-          isSelected={selectedBrokerage.brandName === Brokerage.brandName}
+          isSelected={selectedBrokerageName === Brokerage.brandName}
           handleUpdateSelectedBrokerages={handleChangeSelectedBrokerage}
         />
       ))}
