@@ -1,22 +1,15 @@
-import { memo, useState, useCallback } from 'react';
+import { memo } from 'react';
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage/consts'
 import { useSelectedBrokeragesStore } from 'src/components/pages/BrokerageReportUploadPage/stores'
 import { SelectableBrokerage } from '../../../BrokeragesSelectionZone/components'
-import { IHandleUpdateSelectedBrokerages } from '../../../BrokeragesSelectionZone/components/SelectableBrokerage/__types__';
+import { ISelectedBrokeragesSwitchingList } from './__types__';
 
-const SelectedBrokeragesSwitchingList = () => {
+const SelectedBrokeragesSwitchingList = ({
+  selectedBrokerageName,
+  handleChangeSelectedBrokerage,
+}: ISelectedBrokeragesSwitchingList) => {
+
   const { selectedBrokerages } = useSelectedBrokeragesStore()
-
-  const [
-    selectedBrokerageName, 
-    setSelectedBrokerageName
-  ] = useState<string>(selectedBrokerages[0].brandName)
-
-  const handleChangeSelectedBrokerage = useCallback(({ 
-    Brokerage
-  }: IHandleUpdateSelectedBrokerages) => {
-    setSelectedBrokerageName(Brokerage.brandName)
-  }, [])
 
   return (
     <aside>

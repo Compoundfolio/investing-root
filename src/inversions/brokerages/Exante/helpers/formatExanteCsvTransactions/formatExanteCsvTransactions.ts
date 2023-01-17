@@ -2,10 +2,12 @@ import { Currency, Transaction } from "src/core/types"
 import {v4 as uuidv4} from 'uuid';
 import { ExanteCsvData } from "../../__types__";
 import { getOperation, getPartsFromSymbolId, getTime, getTransactionType } from "./helpers";
-import { parseNumber } from "@core";
+import { getExanteTransactionsList, parseNumber } from "@core";
 
-const formatExanteCsvTransactions = (csvData: ExanteCsvData): Transaction[] => {
+const formatExanteCsvTransactions = (reportUnParsedData: string): Transaction[] => {
   let compaundfolioTransactions: Transaction[] = []
+
+  const csvData = getExanteTransactionsList(reportUnParsedData)
 
   for (const exanteTransaction of csvData) {
     compaundfolioTransactions.push({
