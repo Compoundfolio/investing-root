@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@container-components": [ "src/components" ],
+      "@srcComponents": [ "src/components" ],
       "@core": [ "src/core" ],
       "@core/helpers": [ "src/core/helpers" ],
       "@core/components": [ "src/core/components" ],
