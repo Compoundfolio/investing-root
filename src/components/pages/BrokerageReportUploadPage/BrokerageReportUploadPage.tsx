@@ -17,8 +17,11 @@ const BrokerageReportUploadPage = () => {
     selectedBrokerages.length && setIsReportsUploadModalOpen(true)
   }, [selectedBrokerages.length])
 
-  // TODO: handleReportsUpload
-  const handleReportsUpload = () => {}
+  const handleReportsUpload = () => {
+    // Save selected brokerages classes entity list to the storage
+    // Save selected report data to the storage
+    // Save selected report data to the storage
+  }
 
   return (
     <>
@@ -28,6 +31,7 @@ const BrokerageReportUploadPage = () => {
         isOpen={isReportsUploadModalOpen}
         handleOpenChange={handleReportsCsvUploadModalOpen}
         onSave={handleReportsUpload}
+        // saveButtonTitle=""
       >
         <ReportsUploadArea />
       </ModalBlur>
