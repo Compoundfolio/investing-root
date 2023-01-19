@@ -1,6 +1,5 @@
 import Head from 'next/head'
 // import { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
 // import { formatDateToDMY } from '@core/helpers';
 // import { getExanteTransactionsList } from 'src/core/helpers/csv';
 // import { NumbersBar } from '@container-components';
@@ -65,12 +64,12 @@ export default function Home() {
 
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Setup Brokerages</title>
         <meta name="description" content="TODO" />
       </Head>
       <BrokerageReportUploadPage />
-    </div>
+    </>
   )
 }

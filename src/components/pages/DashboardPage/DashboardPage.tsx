@@ -1,20 +1,34 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import NumbersBar from 'src/components/NumbersBar'
+import { DashboardColumn, DashboardContainer } from './styled'
+import { PageTitle } from '@core'
+import { useSelectedBrokeragesStore } from '../BrokerageReportUploadPage/stores'
 
 const DashboardPage = () => {
+  const { selectedBrokerages } = useSelectedBrokeragesStore()
+
+  const brokeragesIconLinks = useMemo(() => {
+    return selectedBrokerages.map(Brokerage => Brokerage.logoPath)
+  }, [selectedBrokerages])
+  
   return (
-    <div>
-      <div>
-        {/* <PageTitle /> */}
+    <DashboardContainer>
+      <DashboardColumn>
+        <PageTitle 
+          title="Portfolio"
+          // TODO: Remove hardcoded portfolioName
+          portfolioName="Dividend Growth F.I.R.E till 35th"
+          brokeragesIconLinks={brokeragesIconLinks}
+        />
         {/* <Pie /> */}
         {/* <DivStats /> */}
-      </div>
-      <div>
+      </DashboardColumn>
+      <DashboardColumn>
         {/* <DivStats /> */}
         {/* <PortfolioGrowthStats /> */}
-      </div>
+      </DashboardColumn>
       <NumbersBar />
-    </div>
+    </DashboardContainer>
   )
 }
 
