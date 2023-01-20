@@ -3,7 +3,7 @@ import NumbersBar from 'src/components/NumbersBar'
 import { DashboardColumn, DashboardContainer } from './styled'
 import { PageTitle } from '@core'
 import { useSelectedBrokeragesStore } from '../BrokerageReportUploadPage/stores'
-import { PortfolioAssetsPieChart } from './components'
+import { PortfolioAssetsList, PortfolioAssetsPieChart } from './components'
 
 const DashboardPage = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
@@ -22,11 +22,10 @@ const DashboardPage = () => {
           brokeragesIconLinks={brokeragesIconLinks}
         />
         <PortfolioAssetsPieChart />
-        <PortfolioAssetsPieChart />
         {/* <DivStats /> */}
       </DashboardColumn>
       <DashboardColumn>
-        {/* <DivStats /> */}
+        <PortfolioAssetsList />
         {/* <PortfolioGrowthStats /> */}
       </DashboardColumn>
       <NumbersBar />

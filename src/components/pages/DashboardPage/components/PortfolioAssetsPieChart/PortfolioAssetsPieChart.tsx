@@ -50,20 +50,21 @@ const PortfolioAssetsPieChart = () => {
         padAngle={3}
         cornerRadius={10}
         activeOuterRadiusOffset={8}
-        // arcLinkLabelsSkipAngle={10}
-        // arcLinkLabelsTextColor="#333333"
-        // arcLinkLabelsThickness={2}
-        // arcLinkLabelsColor={{ from: 'color' }}
-        // arcLabelsSkipAngle={10}
-        // arcLabelsTextColor={{
-        //     from: 'color',
-        //     modifiers: [
-        //         [
-        //             'darker',
-        //             2
-        //         ]
-        //     ]
-        // }}
+        arcLinkLabel={"f"}
+        arcLinkLabelsSkipAngle={10}
+        arcLinkLabelsTextColor="#333333"
+        arcLinkLabelsThickness={0}
+        arcLinkLabelsColor={{ from: 'color' }}
+        arcLabelsSkipAngle={10}
+        arcLabelsTextColor={{
+            from: 'color',
+            modifiers: [
+                [
+                    'darker',
+                    2
+                ]
+            ]
+        }}
         defs={[
             {
                 id: 'dots',
