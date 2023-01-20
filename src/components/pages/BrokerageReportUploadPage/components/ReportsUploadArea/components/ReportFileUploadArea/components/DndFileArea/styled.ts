@@ -28,6 +28,6 @@ export const StyledDndTitle = styled.p({
 
 export const StyledDndTitleSub = styled.span({
   fontSize: 20,
-  color: colors.emeraldGreen,
+  color: colors.darkLightGreen,
   textDecoration: "underline",
 })

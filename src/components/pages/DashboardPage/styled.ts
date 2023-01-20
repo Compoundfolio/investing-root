@@ -8,6 +8,7 @@ export const DashboardContainer = styled.div({
 
 export const DashboardColumn = styled.section({
   width: "100%",
+  height: "100%",
   display: "flex",
   flexDirection: "column",
   gap: 64,

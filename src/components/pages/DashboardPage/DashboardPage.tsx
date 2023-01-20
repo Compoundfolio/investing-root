@@ -3,6 +3,7 @@ import NumbersBar from 'src/components/NumbersBar'
 import { DashboardColumn, DashboardContainer } from './styled'
 import { PageTitle } from '@core'
 import { useSelectedBrokeragesStore } from '../BrokerageReportUploadPage/stores'
+import { PortfolioAssetsPieChart } from './components'
 
 const DashboardPage = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
@@ -20,7 +21,8 @@ const DashboardPage = () => {
           portfolioName="Dividend Growth F.I.R.E till 35th"
           brokeragesIconLinks={brokeragesIconLinks}
         />
-        {/* <Pie /> */}
+        <PortfolioAssetsPieChart />
+        <PortfolioAssetsPieChart />
         {/* <DivStats /> */}
       </DashboardColumn>
       <DashboardColumn>
