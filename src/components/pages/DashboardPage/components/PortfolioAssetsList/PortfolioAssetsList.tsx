@@ -1,8 +1,9 @@
 import { memo } from 'react'
+import ReactVirtualizedTable from 'src/core/components/tables/Table/Table'
 
 const PortfolioAssetsList = () => {
   return (
-    <div>PortfolioAssetsList</div>
+    <div><ReactVirtualizedTable /></div>
   )
 }
 
