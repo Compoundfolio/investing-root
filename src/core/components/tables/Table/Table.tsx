@@ -6,10 +6,12 @@ import Paper from '@mui/material/Paper';
 import {
   AutoSizer,
   Column,
-  Table,
+  Table as VTable,
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
+import { ITable, Row } from './__types__';
+import { Header } from './components';
 
 const classes = {
   flexContainer: 'ReactVirtualizedDemo-flexContainer',
@@ -20,157 +22,95 @@ const classes = {
 };
 
 const styles = ({ theme }: { theme: Theme }) =>
-  ({
-    // temporary right-to-left patch, waiting for
-    // https://github.com/bvaughn/react-virtualized/issues/454
-    '& .ReactVirtualized__Table__headerRow': {
-      ...(theme.direction === 'rtl' && {
-        paddingLeft: '0 !important',
-      }),
-      ...(theme.direction !== 'rtl' && {
-        paddingRight: undefined,
-      }),
+({
+  // temporary right-to-left patch, waiting for
+  // https://github.com/bvaughn/react-virtualized/issues/454
+  '& .ReactVirtualized__Table__headerRow': {
+    ...(theme.direction === 'rtl' && {
+      paddingLeft: '0 !important',
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingRight: undefined,
+    }),
+  },
+  [`& .${classes.flexContainer}`]: {
+    display: 'flex',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+  },
+  [`& .${classes.tableRow}`]: {
+    cursor: 'pointer',
+  },
+  [`& .${classes.tableRowHover}`]: {
+    '&:hover': {
+      backgroundColor: theme.palette.grey[200],
     },
-    [`& .${classes.flexContainer}`]: {
-      display: 'flex',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-    },
-    [`& .${classes.tableRow}`]: {
-      cursor: 'pointer',
-    },
-    [`& .${classes.tableRowHover}`]: {
-      '&:hover': {
-        backgroundColor: theme.palette.grey[200],
-      },
-    },
-    [`& .${classes.tableCell}`]: {
-      flex: 1,
-    },
-    [`& .${classes.noClick}`]: {
-      cursor: 'initial',
-    },
-  } as const);
+  },
+  [`& .${classes.tableCell}`]: {
+    flex: 1,
+  },
+  [`& .${classes.noClick}`]: {
+    cursor: 'initial',
+  },
+} as const);
 
-interface ColumnData {
-  dataKey: string;
-  label: string;
-  numeric?: boolean;
-  width: number;
-}
-
-interface Row {
-  index: number;
-}
-
-interface MuiVirtualizedTableProps {
-  columns: readonly ColumnData[];
-  headerHeight?: number;
-  onRowClick?: () => void;
-  rowCount: number;
-  rowGetter: (row: Row) => Data;
-  rowHeight?: number;
-}
-
-class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
-  static defaultProps = {
-    headerHeight: 48,
-    rowHeight: 48,
-  };
-
-  getRowClassName = ({ index }: Row) => {
-    const { onRowClick } = this.props;
-
+const Table = ({ 
+  columns, 
+  rowHeight = 48, 
+  headerHeight = 48, 
+  ...tableProps
+}: ITable) => {
+  const getRowClassName = ({ index }: Row) => {
     return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null,
+      [classes.tableRowHover]: index !== -1 && tableProps?.onRowClick != null,
     });
   };
 
-  cellRenderer: TableCellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, rowHeight, onRowClick } = this.props;
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
-        })}
-        variant="body"
-        style={{ height: rowHeight }}
-        align={
-          (columnIndex != null && columns[columnIndex].numeric) || false
-            ? 'right'
-            : 'left'
-        }
-      >
-        {cellData}
-      </TableCell>
-    );
-  };
-
-  headerRenderer = ({
-    label,
-    columnIndex,
-  }: TableHeaderProps & { columnIndex: number }) => {
-    const { headerHeight, columns } = this.props;
-
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
-        variant="head"
-        style={{ height: headerHeight }}
-        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
-      >
-        {/* @ts-ignore */}
-        <span>{label}</span>
-      </TableCell>
-    );
-  };
-
-  render() {
-    const { columns, rowHeight, headerHeight, ...tableProps } = this.props;
-    return (
-      // @ts-ignore
-      <AutoSizer>
-        {({ height, width }) => (
-          // @ts-ignore
-          <Table
-            height={height}
-            width={width}
-            rowHeight={rowHeight!}
-            gridStyle={{
-              direction: 'inherit',
-            }}
-            headerHeight={headerHeight!}
-            {...tableProps}
-            rowClassName={this.getRowClassName}
-          >
-            {columns.map(({ dataKey, ...other }, index) => {
-              return (
-                // @ts-ignore
-                <Column
-                  key={dataKey}
-                  headerRenderer={(headerProps) =>
-                    this.headerRenderer({
-                      ...headerProps,
-                      columnIndex: index,
-                    })
-                  }
-                  className={classes.flexContainer}
-                  cellRenderer={this.cellRenderer}
-                  dataKey={dataKey}
-                  {...other}
-                />
-              );
-            })}
-          </Table>
-        )}
-      </AutoSizer>
-    );
-  }
+  return (
+    // @ts-ignore
+    <AutoSizer>
+      {({ height, width }) => (
+        // @ts-ignore
+        <VTable
+          height={height}
+          width={width}
+          rowHeight={rowHeight!}
+          gridStyle={{
+            direction: 'inherit',
+          }}
+          headerHeight={headerHeight}
+          // headerHeight={headerHeight!}
+          {...tableProps}
+          rowClassName={getRowClassName}
+        >
+          {columns.map(({ dataKey, ...other }, index) => {
+            return (
+              // @ts-ignore
+              <Column
+                key={dataKey}
+                headerRenderer={(headerProps) =>
+                  <Header 
+                    label={headerProps.label}
+                    columnIndex={index} 
+                    dataKey={headerProps.dataKey}  
+                    headerHeight={headerHeight}
+                    columns={columns}          
+                  />
+                }
+                className={classes.flexContainer}
+                cellRenderer={this.cellRenderer}
+                dataKey={dataKey}
+                {...other}
+              />
+            );
+          })}
+        </VTable>
+      )}
+    </AutoSizer>
+  );
 }
 
-const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
+const VirtualizedTable = styled(Table)(styles);
 
 // ---
 
@@ -211,6 +151,8 @@ for (let i = 0; i < 200; i += 1) {
 }
 
 export default function ReactVirtualizedTable() {
+
+
   return (
     <Paper style={{ height: 400, width: '100%' }}>
       <VirtualizedTable
