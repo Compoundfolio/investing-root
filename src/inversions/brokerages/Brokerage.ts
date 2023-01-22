@@ -1,4 +1,3 @@
-import ExanteBrokerage from './Exante/ExanteBrokerage';
 import IBrokerage from './IBrokerage';
 import ISideBrokerage from './AbstractSideBrokerage';
 

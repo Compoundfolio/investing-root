@@ -1,7 +1,7 @@
 import { Transaction } from "src/core/types";
-import ISideBrokerage from "./AbstractSideBrokerage";
+import AbstractSideBrokerage from "./AbstractSideBrokerage";
 
 export default interface IBrokerage {
-  brokerage: ISideBrokerage
+  brokerage: AbstractSideBrokerage
   getAllTransactions: () => Transaction[]
 }
