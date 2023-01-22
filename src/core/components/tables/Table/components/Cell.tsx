@@ -1,11 +1,25 @@
 import { memo } from 'react'
 import clsx from 'clsx';
 import { TableCell } from '@mui/material';
-import type { TableCellRenderer } from 'react-virtualized';
+import { TableHeaderProps } from 'react-virtualized';
+import { ColumnData } from '../__types__';
+import { classes } from '../styled';
 
-const Cell = ({ cellData, columnIndex }) => {
-// const Cell: TableCellRenderer = ({ cellData, columnIndex }) => {
-  const { columns, rowHeight, onRowClick } = props;
+type CellProps = TableHeaderProps & {
+  columnIndex: number
+  rowHeight: number
+  columns: readonly ColumnData[]
+  cellData: any
+  onRowClick?: () => void
+} 
+
+const Cell = ({ 
+  cellData, 
+  columnIndex, 
+  columns, 
+  rowHeight, 
+  onRowClick 
+}: CellProps) => {
   return (
     <TableCell
       component="div"
@@ -24,6 +38,5 @@ const Cell = ({ cellData, columnIndex }) => {
     </TableCell>
   );
 };
-}
 
 export default memo(Cell)
