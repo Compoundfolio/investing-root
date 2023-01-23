@@ -14,7 +14,7 @@ const AppLogo = ({
     // {/* TODO: Kill style */}
     <div style={{ zIndex: HIGHEST_PRIORITY_Z_INDEX_VALUE }} className="flex items-center gap-2.5">
       <svg width={width} height={width} viewBox={`0 0 ${width} ${width}`} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_555_27713)">
+        <g clipPath="url(#clip0_555_27713)">
           <rect width={width} height={width} rx="8" fill="url(#paint0_angular_555_27713)" />
           <rect width={width} height={width} rx="8" fill="#000040" fill-opacity="0.3" />
           <g filter="url(#filter0_d_555_27713)">
