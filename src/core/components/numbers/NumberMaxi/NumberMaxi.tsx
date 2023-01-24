@@ -1,5 +1,12 @@
 import React, { memo } from 'react'
 import { INumberMaxi } from './types'
+import { 
+  StyledChangeValue,
+  StyledContainer, 
+  StyledCurrencySign, 
+  StyledH5,
+  StyledNumber,
+} from './styled'
 
 const NumberMaxi = ({
   title,
@@ -8,11 +15,14 @@ const NumberMaxi = ({
   gainNumber,
 }: INumberMaxi) => {
   return (
-    <div>
-      <h5>{title}</h5>
-      <p>{curency && curency} {numbers}</p>
-      <span>{gainNumber}</span>
-    </div>
+    <StyledContainer>
+      <StyledH5>{title}</StyledH5>
+      <StyledCurrencySign>
+        {curency && curency} 
+        <StyledNumber>{numbers}</StyledNumber>
+      </StyledCurrencySign>
+      <StyledChangeValue>{gainNumber}</StyledChangeValue>
+    </StyledContainer>
   )
 }
 
