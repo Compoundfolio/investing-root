@@ -7,6 +7,7 @@ import {
   StyledH5,
   StyledNumber,
 } from './styled'
+import ColorizedNumber from '../ColorizedNumber'
 
 const NumberMaxi = ({
   title,
@@ -17,11 +18,18 @@ const NumberMaxi = ({
   return (
     <StyledContainer>
       <StyledH5>{title}</StyledH5>
-      <StyledCurrencySign>
-        {curency && curency} 
+      <div className='relative py-5'>
+        <StyledCurrencySign>
+          {curency && curency} 
+        </StyledCurrencySign>
         <StyledNumber>{numbers}</StyledNumber>
-      </StyledCurrencySign>
-      <StyledChangeValue>{gainNumber}</StyledChangeValue>
+        <StyledChangeValue>
+          <ColorizedNumber 
+            number={numbers}
+            isPercentage
+          />
+        </StyledChangeValue>
+      </div>
     </StyledContainer>
   )
 }

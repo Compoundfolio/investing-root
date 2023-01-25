@@ -12,9 +12,12 @@ const ColorizedNumber = ({
   const numberSymbol = number > 0 ? "+ " : "- "
   
   return (
-    <div className='flex items-center gap-1'>
+    <div className='flex items-center gap-1.5'>
       {number && <NumberMoveIcon isPositiveMove={number > 0}/>}
-      <StyledNumber number={number}>{!isPercentage && numberSymbol}{currency}{number}{isPercentage && "%"}</StyledNumber>
+      {/* TODO: Refactor */}
+      <StyledNumber number={number}>
+        {!isPercentage && numberSymbol}{!isPercentage && currency}{number}{isPercentage && "%"}
+      </StyledNumber>
     </div>
   )
 }

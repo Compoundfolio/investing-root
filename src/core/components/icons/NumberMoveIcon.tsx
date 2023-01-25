@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const StyledSvg = styled.svg
 (({ isPositiveMove }: INumberMoveIcon) => ({
-  transform: isPositiveMove ? "none" : "rotate(180)"
+  transform: isPositiveMove ? "none" : "rotate(180)",
 }))
 
 type INumberMoveIcon = {
@@ -15,12 +15,12 @@ const NumberMoveIcon = ({
   isPositiveMove,
 }: INumberMoveIcon) => {
   return (
-    <StyledSvg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg" isPositiveMove={isPositiveMove}>
+    <StyledSvg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg" isPositiveMove={isPositiveMove}>
       <g filter="url(#filter0_d_543_29722)">
         <path d="M10.2974 0L16.2974 8H4.29736L10.2974 0Z" fill={isPositiveMove ? colors.darkGreen : colors.pinkSoft} />
       </g>
       <defs>
-        <filter id="filter0_d_543_29722" x="0.297363" y="0" width="20" height="16" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
+        <filter id="filter0_d_543_29722" x="0.297363" y="0" width="16" height="8" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
           <feFlood flood-opacity="0" result="BackgroundImageFix" />
           <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
           <feOffset dy="4" />

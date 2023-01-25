@@ -25,7 +25,7 @@ const DashboardPage = () => {
         {/* <DivStats /> */}
       </DashboardColumn>
       <DashboardColumn>
-        <PortfolioAssetsList />
+        {/* <PortfolioAssetsList /> */}
         {/* <PortfolioGrowthStats /> */}
       </DashboardColumn>
       <NumbersBar />

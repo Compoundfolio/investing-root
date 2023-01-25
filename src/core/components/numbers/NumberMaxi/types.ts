@@ -1,6 +1,6 @@
 export interface INumberMaxi {
   title: string
-  numbers: number | string
+  numbers: number
   curency?: string
   gainNumber?: string
 }
