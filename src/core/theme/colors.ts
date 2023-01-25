@@ -8,6 +8,7 @@ const colors = {
   darkGreen: "#0F6F72",
   gold: "#FFD390",
   grayD9: "#D9D9D9",
+  pinkSoft: "#CF6679",
 } as const
 
 export default colors
