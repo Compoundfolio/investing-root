@@ -8,6 +8,10 @@ export default class Brokerage implements IBrokerage {
     this.brokerage = brokerage;
   }
 
+  getAssets() {
+    return this.brokerage.assets
+  }
+
   getAllTransactions() {
     return this.brokerage.transactions
   };

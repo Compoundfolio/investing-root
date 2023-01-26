@@ -4,9 +4,13 @@ import { DashboardColumn, DashboardContainer } from './styled'
 import { PageTitle } from '@core'
 import { useSelectedBrokeragesStore } from '../BrokerageReportUploadPage/stores'
 import { PortfolioAssetsList, PortfolioAssetsPieChart } from './components'
+import Brokerage from 'src/inversions/brokerages/Brokerage';
 
 const DashboardPage = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
+// TODO: Refactor
+  // const f = new Brokerage(new selectedBrokerages[0])
+
 
   const brokeragesIconLinks = useMemo(() => {
     return selectedBrokerages.map(Brokerage => Brokerage.logoPath)
@@ -21,7 +25,9 @@ const DashboardPage = () => {
           portfolioName="Dividend Growth F.I.R.E till 35th"
           brokeragesIconLinks={brokeragesIconLinks}
         />
-        <PortfolioAssetsPieChart />
+        <PortfolioAssetsPieChart 
+          // assets={}
+        />
         {/* <DivStats /> */}
       </DashboardColumn>
       <DashboardColumn>

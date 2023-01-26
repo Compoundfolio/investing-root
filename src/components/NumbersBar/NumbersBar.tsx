@@ -41,11 +41,11 @@ const NumbersBar = () => {
         <StatsGroup>
           <NumberMini 
             title="Beta"
-            numbers="2.9%"
+            numbers="1.23"
           />
           <NumberMini 
             title="P/E"
-            numbers="2.9%"
+            numbers="21.2"
           />
         </StatsGroup>
       </section>

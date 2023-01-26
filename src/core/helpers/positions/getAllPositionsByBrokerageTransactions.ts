@@ -20,11 +20,17 @@ const getCurrentPositionPrice = (transactionsList: Transaction[]) => {
   }, 0)
 }
 
+// TODO: Pass smw else + rename
+type Tt = {
+  sharesAmount: number;
+  currentPositionPrice: number;
+}
+
 const getAllPositionsByBrokerageTransactions = (
   transactionsByTicker: NormalizedTransactionsByTicker
 ) => {  
   let positions = {
-    openPositions: {},
+    openPositions: {} as Tt,
     closedPositions: {},
   }
 

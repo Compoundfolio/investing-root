@@ -4,12 +4,16 @@ import {
   PortfolioSpecificAssetData,
 } from "./subTypes"
 
-type PortfolioAsset = {
-  ticker: Ticker
-  fullName: string
-  iconSrc: string
-  dividendData: PortfolioAssetDividendData
-  portfolioSpecificData: PortfolioSpecificAssetData
-}
+// TODO: type PortfolioAsset
+
+// type PortfolioAsset = {
+//   ticker: Ticker
+//   fullName: string
+//   iconSrc: string
+//   dividendData: PortfolioAssetDividendData
+//   portfolioSpecificData: PortfolioSpecificAssetData
+// }
+
+type PortfolioAsset = any
 
 export default PortfolioAsset

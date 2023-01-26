@@ -18,9 +18,7 @@ class ExanteBrokerage implements AbstractSideBrokerage {
 
   constructor(reportUnParsedData: string) {
     this.transactions = formatExanteCsvTransactions(reportUnParsedData)
-    this.assets = getExanteAssetListFromTransactions(this.transactions)
-    console.log("this.assets",this.assets);
-    
+    this.assets = getExanteAssetListFromTransactions(this.transactions)    
   }
 }
 
