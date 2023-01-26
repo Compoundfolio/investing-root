@@ -1,6 +1,6 @@
 import { NumberMaxi, NumberMini } from '@core'
 import React, { memo } from 'react'
-import { StyledAside } from './styled'
+import { StatsGroup, StyledAside } from './styled'
 
 const NumbersBar = () => {
   return (
@@ -8,44 +8,46 @@ const NumbersBar = () => {
       <NumberMaxi
         title="Portfolio value"
         numbers={96592.03}
+        curency="$"
       />
       <NumberMaxi
         title="Annual dividends"
         numbers={7875.11}
+        curency="$"
       />
-      <section>
-        <div>
+      <section className='flex flex-col gap-16'>
+        <StatsGroup>
           <NumberMini 
             title="Dividend yield"
             numbers="2.9%"
           />
           <NumberMini 
-            title="Dividend yield"
-            numbers="2.9%"
+            title="Yield on Cost"
+            numbers="5.15%"
           />
-        </div>
-        <div>
+        </StatsGroup>
+        <StatsGroup>
           <NumberMini 
-            title="Dividend yield"
-            numbers="2.9%"
+            title="Avg. price return"
+            numbers="7.9%"
             sub="per year"
           />
           <NumberMini 
-            title="Dividend yield"
+            title="Total return"
             numbers="2.9%"
             sub="per year"
           />
-        </div>
-        <div>
+        </StatsGroup>
+        <StatsGroup>
           <NumberMini 
-            title="Dividend yield"
+            title="Beta"
             numbers="2.9%"
           />
           <NumberMini 
-            title="Dividend yield"
+            title="P/E"
             numbers="2.9%"
           />
-        </div>
+        </StatsGroup>
       </section>
     </StyledAside>
   )
