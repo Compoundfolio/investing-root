@@ -1,18 +1,17 @@
 import { NumberMaxi, NumberMini } from '@core'
 import React, { memo } from 'react'
+import { StyledAside } from './styled'
 
 const NumbersBar = () => {
   return (
-    <aside>
+    <StyledAside className='flex flex-col gap-12'>
       <NumberMaxi
         title="Portfolio value"
         numbers={96592.03}
-        curency="$"
       />
       <NumberMaxi
         title="Annual dividends"
         numbers={7875.11}
-        curency="$"
       />
       <section>
         <div>
@@ -48,7 +47,7 @@ const NumbersBar = () => {
           />
         </div>
       </section>
-    </aside>
+    </StyledAside>
   )
 }
 

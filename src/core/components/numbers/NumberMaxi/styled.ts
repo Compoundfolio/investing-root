@@ -14,7 +14,7 @@ export const StyledH5 = styled.h5({
 
 export const StyledCurrencySign = styled.p({
   position: "absolute",
-  top: 0,
+  top: 16,
   left: 0,
   margin: 0,
   fontSize: 24,
@@ -36,4 +36,9 @@ export const StyledChangeValue = styled.div({
   position: "absolute",
   top: 0,
   right: 0,
+})
+
+export const StyledFloatNumberPart = styled.span({
+  fontSize: 20,
+  color: colors.gray,
 })
