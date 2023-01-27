@@ -1,5 +1,5 @@
 import { ResponsivePie } from '@nivo/pie'
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { StyledPieChartContainer } from './styled'
 import { Ticker, colors } from '@core'
 let positions = {
@@ -10,13 +10,24 @@ let positions = {
   closedPositions: {},
 }
 
-const f = (positionS = positions): typeof data => {
+const o = {
+  openPositions: {
+    "ALLY": { currentPositionPrice: 200 },
+    "TROW": { currentPositionPrice: 100 },
+    "BBY": { currentPositionPrice: 330 },
+    "BST": { currentPositionPrice: 20 },
+    "SCHD": { currentPositionPrice: 709 },
+    "ABBV": { currentPositionPrice: 301 },
+  }
+}
+
+const f = (positionS: typeof o = o): typeof data => {
   return Object
     .entries(positionS.openPositions)
-    .map(([ ticker, { sharesAmount } ]) => ({
+    .map(([ ticker, { currentPositionPrice } ]) => ({
       id: ticker,
       label: ticker,
-      value: sharesAmount,
+      value: currentPositionPrice,
     }))
 }
 
@@ -57,11 +68,80 @@ const { darkLightGreen, lightGreen, darkGreen, gold, grayD9 } = colors
 const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
 
 const PortfolioAssetsPieChart = () => {
+  const [selectedEntityPiePercentage , setSelectedEntityPiePercentage] = useState(0)
+
+  const dataSet = f()
+  const totalAssetsSum = dataSet.reduce((previousValue, currentValue) => {
+    return previousValue + currentValue.value
+  }, 0)
+
+  const handleClick = (d: any, f: any) => {
+    console.log(d, f);
+  }
+
+  const handleHover = (d: any) => {
+    const hoveredEntityPiePercentage = (d.value / totalAssetsSum) * 100
+    setSelectedEntityPiePercentage(hoveredEntityPiePercentage)
+  }
+
   return (
-    <StyledPieChartContainer>
+    <StyledPieChartContainer className='relative'>
+      <div className='absolute flex justify-center w-full text-white top-1/2'>
+        <span>{Math.round(selectedEntityPiePercentage)}%</span>
+      </div>
       <ResponsivePie
-        data={data}
+        data={f()}
+        onClick={handleClick}
+        onMouseEnter={handleHover}
         colors={CHART_COLORS_LIST}
+        activeInnerRadiusOffset={5}
+        motionConfig={{
+          mass: 1,
+          tension: 201,
+          friction: 25,
+          clamp: false,
+          precision: 0.01,
+          velocity: 0
+      }}
+      legends={[
+        {
+            anchor: 'bottom',
+            direction: 'row',
+            justify: false,
+            translateX: 0,
+            translateY: 56,
+            itemsSpacing: 8,
+            itemWidth: 100,
+            itemHeight: 18,
+            itemTextColor: '#999',
+            itemDirection: 'left-to-right',
+            itemOpacity: 1,
+            symbolSize: 18,
+            symbolShape: 'circle',
+            effects: [
+                {
+                    on: 'hover',
+                    style: {
+                        itemTextColor: '#000'
+                    }
+                }
+            ]
+        },
+        {
+            anchor: 'top-left',
+            direction: 'column',
+            justify: false,
+            translateX: 0,
+            translateY: 0,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemsSpacing: 8,
+            symbolSize: 20,
+            itemDirection: 'left-to-right'
+        }
+    ]}
+        //@ts-ignore
+        // tooltip={function (e){var t=e.datum;return(0,a.jsxs)(s,{style:{color:t.color},children:[(0,a.jsx)(d,{children:"id"}),(0,a.jsx)(c,{children:t.id}),(0,a.jsx)(d,{children:"value"}),(0,a.jsx)(c,{children:t.value}),(0,a.jsx)(d,{children:"formattedValue"}),(0,a.jsx)(c,{children:t.formattedValue}),(0,a.jsx)(d,{children:"color"}),(0,a.jsx)(c,{children:t.color})]})}}
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}
         padAngle={3}
