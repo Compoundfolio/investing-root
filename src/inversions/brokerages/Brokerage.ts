@@ -1,12 +1,20 @@
-import IBrokerage from './IBrokerage';
-import ISideBrokerage from './AbstractSideBrokerage';
+import AbstractBrokerage from './AbstractBrokerage';
+import AbstractSideBrokerage from './AbstractSideBrokerage';
 
-export default class Brokerage implements IBrokerage {
-  public brokerage: ISideBrokerage;
+export default class Brokerage implements AbstractBrokerage {
+  private brokerage: AbstractSideBrokerage;
 
-  constructor(brokerage: ISideBrokerage) {
-    this.brokerage = brokerage;
-  }
+  constructor(brokerageEntity: AbstractSideBrokerage) {
+    this.brokerage = brokerageEntity;
+  } 
+
+  getBrandName() {
+    return this.brokerage.brandName
+  };
+
+  getLogoPath() {
+    return this.brokerage.logoPath
+  };
 
   getAssets() {
     return this.brokerage.assets

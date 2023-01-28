@@ -105,29 +105,6 @@ const PortfolioAssetsPieChart = () => {
       }}
       legends={[
         {
-            anchor: 'bottom',
-            direction: 'row',
-            justify: false,
-            translateX: 0,
-            translateY: 56,
-            itemsSpacing: 8,
-            itemWidth: 100,
-            itemHeight: 18,
-            itemTextColor: '#999',
-            itemDirection: 'left-to-right',
-            itemOpacity: 1,
-            symbolSize: 18,
-            symbolShape: 'circle',
-            effects: [
-                {
-                    on: 'hover',
-                    style: {
-                        itemTextColor: '#000'
-                    }
-                }
-            ]
-        },
-        {
             anchor: 'top-left',
             direction: 'column',
             justify: false,
@@ -141,7 +118,6 @@ const PortfolioAssetsPieChart = () => {
         }
     ]}
         //@ts-ignore
-        // tooltip={function (e){var t=e.datum;return(0,a.jsxs)(s,{style:{color:t.color},children:[(0,a.jsx)(d,{children:"id"}),(0,a.jsx)(c,{children:t.id}),(0,a.jsx)(d,{children:"value"}),(0,a.jsx)(c,{children:t.value}),(0,a.jsx)(d,{children:"formattedValue"}),(0,a.jsx)(c,{children:t.formattedValue}),(0,a.jsx)(d,{children:"color"}),(0,a.jsx)(c,{children:t.color})]})}}
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}
         padAngle={3}
@@ -182,81 +158,56 @@ const PortfolioAssetsPieChart = () => {
             spacing: 10
           }
         ]}
-        fill={[
-          {
-            match: {
-              id: 'ruby'
-            },
-            id: 'dots'
-          },
-          {
-            match: {
-              id: 'c'
-            },
-            id: 'dots'
-          },
-          {
-            match: {
-              id: 'go'
-            },
-            id: 'dots'
-          },
-          {
-            match: {
-              id: 'css'
-            },
-            id: 'dots'
-          },
-          {
-            match: {
-              id: 'scala'
-            },
-            id: 'lines'
-          },
-          {
-            match: {
-              id: 'lisp'
-            },
-            id: 'lines'
-          },
-          {
-            match: {
-              id: 'elixir'
-            },
-            id: 'lines'
-          },
-          {
-            match: {
-              id: 'javascript'
-            },
-            id: 'lines'
-          }
-        ]}
-      // legends={[
-      //     {
-      //         anchor: 'bottom',
-      //         direction: 'row',
-      //         justify: false,
-      //         translateX: 0,
-      //         translateY: 56,
-      //         itemsSpacing: 0,
-      //         itemWidth: 100,
-      //         itemHeight: 18,
-      //         itemTextColor: '#999',
-      //         itemDirection: 'left-to-right',
-      //         itemOpacity: 1,
-      //         symbolSize: 18,
-      //         symbolShape: 'circle',
-      //         effects: [
-      //             {
-      //                 on: 'hover',
-      //                 style: {
-      //                     itemTextColor: '#000'
-      //                 }
-      //             }
-      //         ]
-      //     }
-      // ]}
+        // fill={[
+        //   {
+        //     match: {
+        //       id: 'ruby'
+        //     },
+        //     id: 'dots'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'c'
+        //     },
+        //     id: 'dots'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'go'
+        //     },
+        //     id: 'dots'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'css'
+        //     },
+        //     id: 'dots'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'scala'
+        //     },
+        //     id: 'lines'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'lisp'
+        //     },
+        //     id: 'lines'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'elixir'
+        //     },
+        //     id: 'lines'
+        //   },
+        //   {
+        //     match: {
+        //       id: 'javascript'
+        //     },
+        //     id: 'lines'
+        //   }
+        // ]}
       />
     </StyledPieChartContainer>
   )

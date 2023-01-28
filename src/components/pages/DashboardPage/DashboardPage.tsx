@@ -13,7 +13,7 @@ const DashboardPage = () => {
 
 
   const brokeragesIconLinks = useMemo(() => {
-    return selectedBrokerages.map(Brokerage => Brokerage.logoPath)
+    return selectedBrokerages.map(brokerage => brokerage.getLogoPath())
   }, [selectedBrokerages])
   
   return (

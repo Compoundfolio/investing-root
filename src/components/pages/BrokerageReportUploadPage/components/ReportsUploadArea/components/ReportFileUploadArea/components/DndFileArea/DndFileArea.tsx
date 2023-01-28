@@ -5,11 +5,17 @@ import { Transaction, getBrokerageClassByBrandName } from '@core';
 import { useState } from 'react';
 import Brokerage from 'src/inversions/brokerages/Brokerage';
 import { IDndFileArea } from './__types__';
+import { useSelectedBrokeragesStore } from 'src/components/pages/BrokerageReportUploadPage/stores';
 
 export default memo(function DndFileArea({
   selectedBrokerageName,
 }: IDndFileArea) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  const { 
+    isSelected, 
+    handleUpdateSelectedBrokerages 
+  } = useSelectedBrokeragesStore()
   
   // TODO: Hide the implementation, it's too massive to have it inside component
   const onDrop = (acceptedFiles: File[]) => {
@@ -23,6 +29,7 @@ export default memo(function DndFileArea({
 
       if (SelectedBrokerage) {
         const brokerage = new Brokerage(new SelectedBrokerage(reportUnParsedData))
+        handleUpdateSelectedBrokerages({ Brokerage: brokerage })
         setTransactions(brokerage.getAllTransactions())
       } else {
         console.error(`Can't find brokerage by brokerageName = ${selectedBrokerageName}`)
@@ -43,7 +50,7 @@ export default memo(function DndFileArea({
       <input {...getInputProps()} />
       <StyledDndTitle>Drag & drop the CSV report from your brokerage or</StyledDndTitle>
       <StyledDndTitleSub>browse it</StyledDndTitleSub>
-      {!!transactions && transactions.length}
+      {!!transactions && `${transactions.length} found!`}
     </StyledDndContainer>
   )
 })

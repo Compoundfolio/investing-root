@@ -13,8 +13,8 @@ class ExanteBrokerage implements AbstractSideBrokerage {
     closedPositions: {},
   }
 
-  static brandName = "Exante"
-  static logoPath = "https://exante.eu/static/i/dest/website/components/logos/flat_icon_1024x1024.png"
+  public brandName = "Exante"
+  public logoPath = "https://exante.eu/static/i/dest/website/components/logos/flat_icon_1024x1024.png"
 
   constructor(reportUnParsedData: string) {
     this.transactions = formatExanteCsvTransactions(reportUnParsedData)
