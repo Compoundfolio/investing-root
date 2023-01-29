@@ -10,13 +10,13 @@ const normalizeArrayOfObjectsBy = <T extends object>(
     const object = arrayToNormalize[index];
     const normalizeKeyValue: Ticker = arrayToNormalize[index][normalizeBy];
 
-    if (res[normalizeKeyValue]) {
+    if (res[normalizeKeyValue]?.length) {
       res[normalizeKeyValue] = [
         ...res[normalizeKeyValue],
         object
       ]
     } else {
-      res[normalizeKeyValue] = []
+      res[normalizeKeyValue] = [object]
     }
   }
 

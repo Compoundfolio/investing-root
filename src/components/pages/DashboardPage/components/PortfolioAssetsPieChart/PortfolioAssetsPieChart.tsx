@@ -21,7 +21,13 @@ const openPositionsHARDCODED = {
     "ABBV": { currentPositionPrice: 301 },
 }
 
-const f = (openPositions: any = openPositionsHARDCODED): typeof data => {
+type Data = {
+  id: string;
+  label: string;
+  value: number;
+}[]
+
+const f = (openPositions: any = openPositionsHARDCODED): Data => {
   return Object
   // @ts-ignore
     .entries(openPositions)
@@ -33,38 +39,6 @@ const f = (openPositions: any = openPositionsHARDCODED): typeof data => {
     }))
 }
 
-const data = [
-  {
-    "id": "css",
-    "label": "css",
-    "value": 445,
-    // "color": "hsl(258, 70%, 50%)"
-  },
-  {
-    "id": "elixir",
-    "label": "elixir",
-    "value": 584,
-    // "color": "hsl(31, 70%, 50%)"
-  },
-  {
-    "id": "hack",
-    "label": "hack",
-    "value": 135,
-    // "color": "hsl(49, 70%, 50%)"
-  },
-  {
-    "id": "sass",
-    "label": "sass",
-    "value": 213,
-    // "color": "hsl(296, 70%, 50%)"
-  },
-  {
-    "id": "stylus",
-    "label": "stylus",
-    "value": 558,
-    // "color": "hsl(147, 70%, 50%)"
-  }
-]
 
 const { darkLightGreen, lightGreen, darkGreen, gold, grayD9 } = colors
 const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
