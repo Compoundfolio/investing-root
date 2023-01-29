@@ -1,19 +1,28 @@
+import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
 import AbstractBrokerage from './AbstractBrokerage';
 import AbstractSideBrokerage from './AbstractSideBrokerage';
 
+/** Brokerage dependency inversion root */
 export default class Brokerage implements AbstractBrokerage {
   private brokerage: AbstractSideBrokerage;
+  private brandName: string
+  private logoPath: string
 
-  constructor(brokerageEntity: AbstractSideBrokerage) {
-    this.brokerage = brokerageEntity;
+  constructor(
+    SideBrokerageClass: SupportedBrokerage,
+    unparsedReport: string, 
+  ) {
+    this.brokerage = new SideBrokerageClass(unparsedReport);
+    this.brandName = SideBrokerageClass.brandName
+    this.logoPath = SideBrokerageClass.logoPath
   } 
 
   getBrandName() {
-    return AbstractSideBrokerage.brandName
+    return this.brandName
   };
 
   getLogoPath() {
-    return AbstractSideBrokerage.logoPath
+    return this.logoPath
   };
 
   getAssets() {

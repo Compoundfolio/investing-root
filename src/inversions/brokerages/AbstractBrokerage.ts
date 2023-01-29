@@ -4,9 +4,9 @@ import AbstractSideBrokerage from "./AbstractSideBrokerage";
 export default class AbstractBrokerage {
   private static brokerage: AbstractSideBrokerage
 
-  constructor(brokerageEntity: AbstractSideBrokerage) {
-    AbstractBrokerage.brokerage = brokerageEntity
-  }
+  // constructor(brokerageEntity: AbstractSideBrokerage) {
+  //   AbstractBrokerage.brokerage = brokerageEntity
+  // }
 
   getBrandName!: () => string
   getLogoPath!: () => string

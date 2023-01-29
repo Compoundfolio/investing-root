@@ -1,7 +1,8 @@
 import { ResponsivePie } from '@nivo/pie'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { StyledPieChartContainer } from './styled'
 import { Ticker, colors } from '@core'
+import { useBrokeragesData } from 'src/store'
 let positions = {
   openPositions: {} as { [K: Ticker]:  {
     sharesAmount: number;
@@ -10,20 +11,21 @@ let positions = {
   closedPositions: {},
 }
 
-const o = {
-  openPositions: {
+// For chart testing
+const openPositionsHARDCODED = {
     "ALLY": { currentPositionPrice: 200 },
     "TROW": { currentPositionPrice: 100 },
     "BBY": { currentPositionPrice: 330 },
     "BST": { currentPositionPrice: 20 },
     "SCHD": { currentPositionPrice: 709 },
     "ABBV": { currentPositionPrice: 301 },
-  }
 }
 
-const f = (positionS: typeof o = o): typeof data => {
+const f = (openPositions: any = openPositionsHARDCODED): typeof data => {
   return Object
-    .entries(positionS.openPositions)
+  // @ts-ignore
+    .entries(openPositions)
+    // @ts-ignore
     .map(([ ticker, { currentPositionPrice } ]) => ({
       id: ticker,
       label: ticker,
@@ -69,13 +71,19 @@ const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
 
 const PortfolioAssetsPieChart = () => {
   const [selectedEntityPiePercentage , setSelectedEntityPiePercentage] = useState(0)
+  const { brokerageEntities } = useBrokeragesData()  
 
-  const dataSet = f()
+  const dataSet = useMemo(() => {
+    return f(brokerageEntities[0]?.getAssets().openPositions ?? openPositionsHARDCODED)
+  }, [brokerageEntities])
+
+  
   const totalAssetsSum = dataSet.reduce((previousValue, currentValue) => {
     return previousValue + currentValue.value
   }, 0)
 
   const handleClick = (d: any, f: any) => {
+    // TODO: To uncover the asset category (if it's the category)
     console.log(d, f);
   }
 
@@ -87,10 +95,10 @@ const PortfolioAssetsPieChart = () => {
   return (
     <StyledPieChartContainer className='relative'>
       <div className='absolute flex justify-center w-full text-white top-1/2'>
-        <span>{Math.round(selectedEntityPiePercentage)}%</span>
+        <span>{selectedEntityPiePercentage.toFixed(2)}%</span>
       </div>
       <ResponsivePie
-        data={f()}
+        data={dataSet}
         onClick={handleClick}
         onMouseEnter={handleHover}
         colors={CHART_COLORS_LIST}
@@ -120,7 +128,7 @@ const PortfolioAssetsPieChart = () => {
         //@ts-ignore
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}
-        padAngle={3}
+        padAngle={1}
         cornerRadius={10}
         activeOuterRadiusOffset={8}
         arcLinkLabel={"f"}

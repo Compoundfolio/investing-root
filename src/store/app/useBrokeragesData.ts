@@ -1,16 +1,16 @@
 import { useCallback } from "react";
 import { atom, selector, useRecoilState } from "recoil";
-import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage";
-import AbstractBrokerage from 'src/inversions/brokerages/AbstractBrokerage';
+import Brokerage from 'src/inversions/brokerages/Brokerage';
 
 const DEFAULT_VALUE: never[] = []
 
-const brokeragesAtom = atom<AbstractBrokerage[]>({
+
+const brokeragesAtom = atom<Brokerage[]>({
   key: 'brokeragesAtom',
   default: DEFAULT_VALUE,
 });
 
-const brokeragesAtomSelector = selector<AbstractBrokerage[]>({
+const brokeragesAtomSelector = selector<Brokerage[]>({
   key: 'brokeragesAtomSelector',
   get: ({ get }) => get(brokeragesAtom),
   set: ({ set }, newValue) => set(brokeragesAtom, newValue ?? []),
@@ -19,9 +19,22 @@ const brokeragesAtomSelector = selector<AbstractBrokerage[]>({
 const useBrokeragesData = () => {
   const [value, setValue] = useRecoilState(brokeragesAtom)
 
-  const addBrokerageEntity = useCallback((brokerageEntity: AbstractBrokerage[]) => {
-    setValue(brokerageEntity)
+  const addBrokerageEntity = useCallback((newBrokerageEntity: Brokerage) => {
+    const seekForSameNames = (addedBrokerageEntity: Brokerage) => {
+      return addedBrokerageEntity.getBrandName() === newBrokerageEntity.getBrandName()
+    }
+
+    // For now, 1 unique brokerage = 1 unique report
+    // TODO: Refactor
+    // setValue(prev => prev.findIndex(seekForSameNames)
+    //   ? prev.map(addedBrokerageEntity => seekForSameNames(addedBrokerageEntity) ? newBrokerageEntity : addedBrokerageEntity)
+    //   : [...prev, newBrokerageEntity]
+    // )
+    setValue(prev => ([...prev, newBrokerageEntity]))
   }, [])
+
+  console.log("value", value, value.length);
+  
 
   return {
     brokerageEntities: value,

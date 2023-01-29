@@ -5,13 +5,13 @@ import { Transaction, getBrokerageClassByBrandName } from '@core';
 import { useState } from 'react';
 import Brokerage from 'src/inversions/brokerages/Brokerage';
 import { IDndFileArea } from './__types__';
-import { useSelectedBrokeragesStore } from 'src/components/pages/BrokerageReportUploadPage/stores';
+import { useBrokeragesData } from 'src/store';
 
 export default memo(function DndFileArea({
   selectedBrokerageName,
 }: IDndFileArea) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
-  const [uploadedReports, setUploadedReports] = useState({})
+  const { addBrokerageEntity } = useBrokeragesData()
   
   // TODO: Hide the implementation, it's too massive to have it inside component
   const onDrop = (acceptedFiles: File[]) => {
@@ -19,14 +19,14 @@ export default memo(function DndFileArea({
     const reader = new FileReader()
 
     reader.onload = function (e: any) {
-      const reportUnParsedData: string = e.target.result
+      const unparsedReport: string = e.target.result
       // TODO: Add loader ?
       const SelectedBrokerage = getBrokerageClassByBrandName(selectedBrokerageName)
 
       if (SelectedBrokerage) {
-        const brokerage = new Brokerage(new SelectedBrokerage(reportUnParsedData))
-        // handleUpdateSelectedBrokerages({ Brokerage: brokerage })
-        setTransactions(brokerage.getAllTransactions())
+        const newBrokerageDataEntity = new Brokerage(SelectedBrokerage, unparsedReport)
+        addBrokerageEntity(newBrokerageDataEntity)
+        setTransactions(newBrokerageDataEntity.getAllTransactions())
       } else {
         console.error(`Can't find brokerage by brokerageName = ${selectedBrokerageName}`)
       }
