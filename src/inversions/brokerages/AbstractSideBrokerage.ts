@@ -2,8 +2,8 @@ import { Transaction } from "src/core/types";
 
 export default abstract class AbstractSideBrokerage {
   public transactions: Transaction[] = []
-  public brandName!: string;
-  public logoPath!: string;
+  public static brandName: string;
+  public static logoPath: string;
 
   public assets: any = {
     openPositions: {},

@@ -9,11 +9,11 @@ export default class Brokerage implements AbstractBrokerage {
   } 
 
   getBrandName() {
-    return this.brokerage.brandName
+    return AbstractSideBrokerage.brandName
   };
 
   getLogoPath() {
-    return this.brokerage.logoPath
+    return AbstractSideBrokerage.logoPath
   };
 
   getAssets() {

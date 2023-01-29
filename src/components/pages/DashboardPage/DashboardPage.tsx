@@ -5,16 +5,17 @@ import { PageTitle } from '@core'
 import { useSelectedBrokeragesStore } from '../BrokerageReportUploadPage/stores'
 import { PortfolioAssetsList, PortfolioAssetsPieChart } from './components'
 import Brokerage from 'src/inversions/brokerages/Brokerage';
+import { useBrokeragesData } from 'src/store'
 
 const DashboardPage = () => {
-  const { selectedBrokerages } = useSelectedBrokeragesStore()
+  const { brokerageEntities } = useBrokeragesData()
 // TODO: Refactor
   // const f = new Brokerage(new selectedBrokerages[0])
 
 
   const brokeragesIconLinks = useMemo(() => {
-    return selectedBrokerages.map(brokerage => brokerage.getLogoPath())
-  }, [selectedBrokerages])
+    return brokerageEntities.map(brokerageEntity => brokerageEntity.getLogoPath())
+  }, [brokerageEntities])
   
   return (
     <DashboardContainer>

@@ -11,11 +11,7 @@ export default memo(function DndFileArea({
   selectedBrokerageName,
 }: IDndFileArea) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
-
-  const { 
-    isSelected, 
-    handleUpdateSelectedBrokerages 
-  } = useSelectedBrokeragesStore()
+  const [uploadedReports, setUploadedReports] = useState({})
   
   // TODO: Hide the implementation, it's too massive to have it inside component
   const onDrop = (acceptedFiles: File[]) => {
@@ -29,7 +25,7 @@ export default memo(function DndFileArea({
 
       if (SelectedBrokerage) {
         const brokerage = new Brokerage(new SelectedBrokerage(reportUnParsedData))
-        handleUpdateSelectedBrokerages({ Brokerage: brokerage })
+        // handleUpdateSelectedBrokerages({ Brokerage: brokerage })
         setTransactions(brokerage.getAllTransactions())
       } else {
         console.error(`Can't find brokerage by brokerageName = ${selectedBrokerageName}`)

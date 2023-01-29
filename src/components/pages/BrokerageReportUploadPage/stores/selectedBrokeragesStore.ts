@@ -1,15 +1,16 @@
 import { atom, selector, useRecoilState } from "recoil";
 import { useCallback } from "react";
 import AbstractBrokerage from "src/inversions/brokerages/AbstractBrokerage";
+import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
 
 const DEFAULT_VALUE: never[] = []
 
-const selectedBrokeragesState = atom<AbstractBrokerage[]>({
+const selectedBrokeragesState = atom<SupportedBrokerage[]>({
   key: 'selectedBrokerages',
   default: DEFAULT_VALUE,
 });
 
-const selectedBrokeragesListState = selector<AbstractBrokerage[]>({
+const selectedBrokeragesListState = selector<SupportedBrokerage[]>({
   key: 'selectedBrokeragesList',
   get: ({ get }) => get(selectedBrokeragesState),
   set: ({ set }, newValue) => set(selectedBrokeragesState, newValue ?? []),
@@ -22,17 +23,17 @@ const useSelectedBrokeragesStore = () => {
     Brokerage, 
     isDelete = false,
   }: {
-    Brokerage: AbstractBrokerage, 
+    Brokerage: SupportedBrokerage, 
     isDelete?: boolean,
   }) => {
     setValue(prev => isDelete 
-      ? prev.filter(({ getBrandName }) => getBrandName() !== Brokerage.getBrandName()) ?? DEFAULT_VALUE
+      ? prev.filter(({ brandName }) => brandName !== Brokerage.brandName) ?? DEFAULT_VALUE
       : [...prev, Brokerage]
     )
   }, [])
 
-  const isSelected = useCallback((Brokerage: AbstractBrokerage) => {
-    return !!value.find(({ getBrandName }) => getBrandName() === Brokerage.getBrandName())
+  const isSelected = useCallback((Brokerage: SupportedBrokerage) => {
+    return !!value.find(({ brandName }) => brandName === Brokerage.brandName)
   }, [value])
 
   return {
