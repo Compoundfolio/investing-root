@@ -45,7 +45,7 @@ const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
 
 const PortfolioAssetsPieChart = () => {
   const [selectedEntityPiePercentage , setSelectedEntityPiePercentage] = useState(0)
-  const { brokerageEntities } = useBrokeragesData()  
+  const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
     return f(brokerageEntities[0]?.getAssets().openPositions ?? openPositionsHARDCODED)
@@ -58,7 +58,6 @@ const PortfolioAssetsPieChart = () => {
 
   const handleClick = (d: any, f: any) => {
     // TODO: To uncover the asset category (if it's the category)
-    console.log(d, f);
   }
 
   const handleHover = (d: any) => {

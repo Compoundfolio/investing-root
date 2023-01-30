@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react'
 import NumbersBar from 'src/components/NumbersBar'
 import { DashboardColumn, DashboardContainer } from './styled'
 import { PageTitle } from '@core'
-import { PortfolioAssetsPieChart } from './components'
+import { PortfolioAssetsList, PortfolioAssetsPieChart } from './components'
 import { useBrokeragesData } from 'src/store'
 
 const DashboardPage = () => {
@@ -27,7 +27,7 @@ const DashboardPage = () => {
         {/* <DivStats /> */}
       </DashboardColumn>
       <DashboardColumn>
-        {/* <PortfolioAssetsList /> */}
+        <PortfolioAssetsList />
         {/* <PortfolioGrowthStats /> */}
       </DashboardColumn>
       <NumbersBar />

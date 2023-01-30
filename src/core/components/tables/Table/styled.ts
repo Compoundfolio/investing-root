@@ -27,6 +27,7 @@ export const styles = ({ theme }: { theme: Theme }) =>
     display: 'flex',
     alignItems: 'center',
     boxSizing: 'border-box',
+    color: "white"
   },
   [`& .${classes.tableRow}`]: {
     cursor: 'pointer',

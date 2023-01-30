@@ -12,9 +12,9 @@ const getCurrentPositionPrice = (transactionsList: Transaction[], sharesAmount: 
       return prevValue + (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
     } 
     
-    // if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
-    //   return prevValue - (((parseNumber(currentTransaction.orderPrice) ?? 0) * sharesAmount) ?? 0)
-    // }
+    if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
+      return prevValue - (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
+    }
 
     return 0
   }, 0)
@@ -49,8 +49,7 @@ const getAllPositionsByBrokerageTransactions = (
     openPositions: {} as Tt,
     closedPositions: {},
   }
-console.log("transactionsByTicker",transactionsByTicker);
-
+  
   Object
     .entries(transactionsByTicker)
     .forEach(([ ticker, transactionsList ]) => { 

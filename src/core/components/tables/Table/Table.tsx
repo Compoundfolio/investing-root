@@ -6,9 +6,9 @@ import Paper from '@mui/material/Paper';
 import {
   AutoSizer,
   Column,
-  Table as VirtualizedTable,
+  Table as VirtualTable,
 } from 'react-virtualized';
-import { ITable, Row } from './__types__';
+import { ITable, IVirtualizedTable, Row } from './__types__';
 import { Cell, Header } from './components';
 import { classes, styles } from './styled';
 
@@ -29,7 +29,7 @@ const TableWithVirtualization = ({
     <AutoSizer>
       {({ height, width }) => (
         // @ts-ignore
-        <VirtualizedTable
+        <VirtualTable
           height={height}
           width={width}
           rowHeight={rowHeight!}
@@ -70,7 +70,7 @@ const TableWithVirtualization = ({
               />
             );
           })}
-        </VirtualizedTable>
+        </VirtualTable>
       )}
     </AutoSizer>
   );
@@ -109,52 +109,57 @@ function createData(
   return { id, dessert, calories, fat, carbs, protein };
 }
 
-const rows: Data[] = [];
+const rowsExample: Data[] = [];
 
 for (let i = 0; i < 200; i += 1) {
   const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
+  rowsExample.push(createData(i, ...randomSelection));
 }
 
-export default function ReactVirtualizedTable() {
+const columnsExample = [
+  {
+    width: 200,
+    label: 'Dessert',
+    dataKey: 'dessert',
+  },
+  {
+    width: 120,
+    label: 'Calories\u00A0(g)',
+    dataKey: 'calories',
+    numeric: true,
+  },
+  {
+    width: 120,
+    label: 'Fat\u00A0(g)',
+    dataKey: 'fat',
+    numeric: true,
+  },
+  {
+    width: 120,
+    label: 'Carbs\u00A0(g)',
+    dataKey: 'carbs',
+    numeric: true,
+  },
+  {
+    width: 120,
+    label: 'Protein\u00A0(g)',
+    dataKey: 'protein',
+    numeric: true,
+  },
+]
 
-
+export default function VirtualizedTable({
+  rows = rowsExample,
+  columns = columnsExample,
+}: IVirtualizedTable) {
+  // console.log(rows,columns);
+  
   return (
     <div style={{ height: 400, width: '100%' }}>
       <Table
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
-        columns={[
-          {
-            width: 200,
-            label: 'Dessert',
-            dataKey: 'dessert',
-          },
-          {
-            width: 120,
-            label: 'Calories\u00A0(g)',
-            dataKey: 'calories',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Fat\u00A0(g)',
-            dataKey: 'fat',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Carbs\u00A0(g)',
-            dataKey: 'carbs',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Protein\u00A0(g)',
-            dataKey: 'protein',
-            numeric: true,
-          },
-        ]}
+        columns={columns}
       />
     </div>
   );

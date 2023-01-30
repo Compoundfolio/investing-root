@@ -31,10 +31,7 @@ const useBrokeragesData = () => {
     //   : [...prev, newBrokerageEntity]
     // )
     setValue(prev => ([...prev, newBrokerageEntity]))
-  }, [])
-
-  console.log("value", value, value.length);
-  
+  }, [])  
 
   return {
     brokerageEntities: value,
