@@ -1,4 +1,4 @@
-import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, Transaction } from 'src/core/types';
+import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, PortfolioAsset, Transaction } from 'src/core/types';
 import { parseNumber } from '../formaters';
 
 const getCurrentPositionPrice = (transactionsList: Transaction[], sharesAmount: number) => {
@@ -37,16 +37,16 @@ const getSharesAmount = (transactionsList: Transaction[]) => transactionsList.re
 }, 0)
 
 // TODO: Pass smw else + rename
-type Tt = {
+type AssetOpenPosition = {
   sharesAmount: number;
   currentPositionPrice: number;
 }
 
 const getAllPositionsByBrokerageTransactions = (
   transactionsByTicker: NormalizedTransactionsByTicker
-) => {    
+): PortfolioAsset => {    
   let positions = {
-    openPositions: {} as Tt,
+    openPositions: {} as AssetOpenPosition,
     closedPositions: {},
   }
   

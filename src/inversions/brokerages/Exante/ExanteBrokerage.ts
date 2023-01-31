@@ -7,11 +7,8 @@ import AbstractSideBrokerage from '../AbstractSideBrokerage';
 
 class ExanteBrokerage implements AbstractSideBrokerage {  
   transactions: Transaction[] = []
-  // assets: PortfolioAsset[] = []
-  assets: any = {
-    openPositions: {},
-    closedPositions: {},
-  }
+ 
+  assets: PortfolioAsset | {} = {}
 
   static brandName = "Exante"
   static logoPath = "https://exante.eu/static/i/dest/website/components/logos/flat_icon_1024x1024.png"
