@@ -13,6 +13,7 @@ export const classes = {
 // TODO: Refactor via @emotion 
 export const styles = ({ theme }: { theme: Theme }) =>
 ({
+  
   // temporary right-to-left patch, waiting for
   // https://github.com/bvaughn/react-virtualized/issues/454
   '& .ReactVirtualized__Table__headerRow': {
@@ -31,6 +32,8 @@ export const styles = ({ theme }: { theme: Theme }) =>
   },
   [`& .${classes.tableRow}`]: {
     cursor: 'pointer',
+    // flex: "none !important",
+    // width: "100%"
   },
   // [`& .${classes.tableRowHover}`]: {
   //   '&:hover': {
@@ -38,7 +41,8 @@ export const styles = ({ theme }: { theme: Theme }) =>
   //   },
   // },
   [`& .${classes.tableCell}`]: {
-    flex: 1,
+    // flex: 1,
+    width: "100%"
   },
   [`& .${classes.noClick}`]: {
     cursor: 'initial',
@@ -49,4 +53,9 @@ export const styles = ({ theme }: { theme: Theme }) =>
 export const StyledTableCell = styled(TableCell)
 (({ headerHeight }: Pick<HeaderProps, "headerHeight">) => ({
   height: headerHeight,
+  width: "100%",
+  "& .ReactVirtualized__Table__headerColumn": {
+    flex: "none !important",
+    width: "auto"
+  },
 }))

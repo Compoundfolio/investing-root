@@ -14,7 +14,7 @@ const DashboardPage = () => {
   
   return (
     <DashboardContainer>
-      <DashboardColumn>
+      <DashboardColumn fitContent>
         <PageTitle 
           title="Portfolio"
           // TODO: Remove hardcoded portfolioName

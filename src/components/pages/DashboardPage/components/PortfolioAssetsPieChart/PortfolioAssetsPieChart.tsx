@@ -84,20 +84,20 @@ const PortfolioAssetsPieChart = () => {
           precision: 0.01,
           velocity: 0
       }}
-      legends={[
-        {
-            anchor: 'top-left',
-            direction: 'column',
-            justify: false,
-            translateX: 0,
-            translateY: 0,
-            itemWidth: 100,
-            itemHeight: 20,
-            itemsSpacing: 8,
-            symbolSize: 20,
-            itemDirection: 'left-to-right'
-        }
-    ]}
+    //   legends={[
+    //     {
+    //         anchor: 'top-left',
+    //         direction: 'column',
+    //         justify: false,
+    //         translateX: 0,
+    //         translateY: 0,
+    //         itemWidth: 100,
+    //         itemHeight: 20,
+    //         itemsSpacing: 8,
+    //         symbolSize: 20,
+    //         itemDirection: 'left-to-right'
+    //     }
+    // ]}
         //@ts-ignore
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}

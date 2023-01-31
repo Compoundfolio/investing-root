@@ -6,10 +6,14 @@ export const DashboardContainer = styled.div({
   display: "flex",
 })
 
-export const DashboardColumn = styled.section({
-  width: "100%",
+interface IDashboardColumn {
+  fitContent?: boolean
+}
+export const DashboardColumn = styled.section
+(({ fitContent }: IDashboardColumn) => ({
+  width: fitContent ? "fit-content" : "100%",
   height: "100%",
   display: "flex",
   flexDirection: "column",
   gap: 64,
-})
+}))
