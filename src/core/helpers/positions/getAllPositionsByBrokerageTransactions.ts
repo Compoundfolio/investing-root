@@ -1,45 +1,21 @@
 import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, PortfolioAsset, Transaction } from 'src/core/types';
 import { parseNumber } from '../formaters';
+import { getAveragePositionPrice, getCurrentPositionPrice, getSharesAmount } from './helpers';
+import { MarketAPI } from 'src/inversions';
 
-const getCurrentPositionPrice = (transactionsList: Transaction[], sharesAmount: number) => {
-  return transactionsList.reduce((
-    prevValue: number, 
-    currentTransaction: Transaction
-  ) => {
-    const isTrade = currentTransaction.type === BrokerageTransactionType.TRADE
 
-    if (isTrade && currentTransaction.operation === OrderOperation.BUY) {
-      return prevValue + (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
-    } 
-    
-    if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
-      return prevValue - (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
-    }
 
-    return 0
-  }, 0)
-}
-
-const getSharesAmount = (transactionsList: Transaction[]) => transactionsList.reduce((
-  prevValue: number, 
-  currentTransaction: Transaction
-) => {
-  const isTrade = currentTransaction.type === BrokerageTransactionType.TRADE
-  if (isTrade && currentTransaction.operation === OrderOperation.BUY) {
-    return prevValue + (parseNumber(currentTransaction.orderAmount) ?? 0)
-  } 
-
-  if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
-    return prevValue - (parseNumber(currentTransaction.orderAmount) ?? 0)
-  }
-
-  return 0
-}, 0)
 
 // TODO: Pass smw else + rename
 type AssetOpenPosition = {
   sharesAmount: number;
-  currentPositionPrice: number;
+  /** By all open shares */
+  currentPositionPrice: number; // TODO: Rename as invested amount
+  
+  /** Average open position price */
+  averagePrice: number;
+  actualPositionPrice: number // actualOneSharePrice*sharesAmount
+  
 }
 
 const getAllPositionsByBrokerageTransactions = (
@@ -49,14 +25,17 @@ const getAllPositionsByBrokerageTransactions = (
     openPositions: {} as AssetOpenPosition,
     closedPositions: {},
   }
-  
+
   Object
     .entries(transactionsByTicker)
     .forEach(([ ticker, transactionsList ]) => { 
       const sharesAmount = getSharesAmount(transactionsList)
-      const openPositionData = {
+      const currentPositionPrice = getCurrentPositionPrice(transactionsList, sharesAmount)
+      const openPositionData: AssetOpenPosition = {
         sharesAmount,
-        currentPositionPrice: getCurrentPositionPrice(transactionsList, sharesAmount)
+        currentPositionPrice,
+        averagePrice: currentPositionPrice / sharesAmount,
+        actualPositionPrice: MarketAPI.getSharePriceByTicker(ticker) * sharesAmount
       }
 
       if (openPositionData.sharesAmount > 0) {
