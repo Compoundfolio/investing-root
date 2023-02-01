@@ -1,7 +1,6 @@
 import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, PortfolioAsset, Transaction } from 'src/core/types';
 import { parseNumber } from '../formaters';
 import { getAveragePositionPrice, getCurrentPositionPrice, getSharesAmount } from './helpers';
-import { MarketAPI } from 'src/inversions';
 
 
 

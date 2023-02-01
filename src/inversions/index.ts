@@ -1,2 +1,2 @@
 export * from './brokerages';
-export * from './marketApi';
+export * from './api';

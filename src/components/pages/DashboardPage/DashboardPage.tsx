@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react'
+import { memo, useMemo } from 'react';
 import NumbersBar from 'src/components/NumbersBar'
 import { DashboardColumn, DashboardContainer } from './styled'
 import { PageTitle } from '@core'
