@@ -1,21 +1,26 @@
 import React, { memo } from 'react'
-import { SUPPORTED_BROKERAGES, SupportedBrokerage } from '../../consts'
+import { SupportedBrokerage } from '../../consts'
 import { SelectableBrokerage } from './components'
 import { AppLogo } from 'src/core/components/icons'
 import { useSelectedBrokeragesStore } from '../../stores'
 import { StyledContainer } from './styled'
+import { ExanteBrokerage } from "src/inversions";
+
+export const SUPPORTED_BROKERAGES = [
+  ExanteBrokerage,
+] 
 
 export default memo(function BrokeragesSelectionZone() {
   const { 
     isSelected, 
     handleUpdateSelectedBrokerages 
-  } = useSelectedBrokeragesStore()
+  } = useSelectedBrokeragesStore()  
 
   return (
     <StyledContainer>
       <AppLogo withTitle />
-      {/* TODO: Pass to memo component */}
-      {SUPPORTED_BROKERAGES.map((Brokerage: SupportedBrokerage) => (
+      {/* TODO: Fix this */}
+      {[ExanteBrokerage].map((Brokerage: SupportedBrokerage) => (
         <SelectableBrokerage 
           key={Brokerage.brandName}
           Brokerage={Brokerage} 

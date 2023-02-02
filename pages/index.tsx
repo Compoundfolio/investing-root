@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useEffect } from 'react';
-import { MarketAPI } from 'src/api/market';
+// import { MarketAPI } from 'src/api/market';
 // import { MarketAPI } from 'src/api/market';
 // import { useEffect, useState } from 'react'
 // import { formatDateToDMY } from '@core/helpers';
@@ -64,11 +64,10 @@ export default function Home() {
   //   }
   // }, [transactions])
   
-  useEffect(() => {
-    const f = MarketAPI.getSharePriceByTicker("AVGO")
-    console.log(f);
-    
-  }, [])
+  // useEffect(() => {
+  //   const f = MarketAPI.getSharePriceByTicker("AVGO")
+  //   console.log(f);
+  // }, [])
 
   return (
     <>

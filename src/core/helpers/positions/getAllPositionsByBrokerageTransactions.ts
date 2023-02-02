@@ -1,6 +1,7 @@
 import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, PortfolioAsset, Transaction } from 'src/core/types';
 import { parseNumber } from '../formaters';
-import { getAveragePositionPrice, getCurrentPositionPrice, getSharesAmount } from './helpers';
+import { getCurrentPositionPrice, getSharesAmount } from './helpers';
+import { MarketAPI } from 'src/api/market';
 
 
 
@@ -17,13 +18,20 @@ type AssetOpenPosition = {
   
 }
 
-const getAllPositionsByBrokerageTransactions = (
+const getAllPositionsByBrokerageTransactions = async (
   transactionsByTicker: NormalizedTransactionsByTicker
+  //@ts-ignore
 ): PortfolioAsset => {    
   let positions = {
     openPositions: {} as AssetOpenPosition,
     closedPositions: {},
   }
+
+
+
+  const f = await MarketAPI.getSharePriceByTicker("AVGO")
+  console.log("f", f);
+  
 
   Object
     .entries(transactionsByTicker)
@@ -34,7 +42,7 @@ const getAllPositionsByBrokerageTransactions = (
         sharesAmount,
         currentPositionPrice,
         averagePrice: currentPositionPrice / sharesAmount,
-        actualPositionPrice: MarketAPI.getSharePriceByTicker(ticker) * sharesAmount
+        actualPositionPrice: 1 * sharesAmount
       }
 
       if (openPositionData.sharesAmount > 0) {

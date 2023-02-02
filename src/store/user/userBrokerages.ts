@@ -5,12 +5,12 @@ import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPa
 const DEFAULT_VALUE: never[] = []
 
 const userBrokeragesAtom = atom<SupportedBrokerage[]>({
-  key: 'userBrokeragesAtom',
+  key: 'userBrokeragesAtomm',
   default: DEFAULT_VALUE,
 });
 
 const userBrokeragesAtomSelector = selector<SupportedBrokerage[]>({
-  key: 'userBrokeragesAtomSelector',
+  key: 'userBrokeragesAtomSelectorr',
   get: ({ get }) => get(userBrokeragesAtom),
   set: ({ set }, newValue) => set(userBrokeragesAtom, newValue ?? []),
 });

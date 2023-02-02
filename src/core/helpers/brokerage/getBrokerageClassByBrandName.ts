@@ -1,5 +1,5 @@
-import { SUPPORTED_BROKERAGES } from '../../../components/pages/BrokerageReportUploadPage/consts'
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
+import { SUPPORTED_BROKERAGES } from '../../../components/pages/BrokerageReportUploadPage/components/BrokeragesSelectionZone/BrokeragesSelectionZone';
 
 const getBrokerageClassByBrandName = (brandName: string) => {
   return SUPPORTED_BROKERAGES

@@ -7,7 +7,7 @@
       "@core/helpers": [ "src/core/helpers" ],
       "@core/components": [ "src/core/components" ],
     },
-    "target": "ES6",
+    "target": "ES2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
