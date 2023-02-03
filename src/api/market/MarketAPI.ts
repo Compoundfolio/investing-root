@@ -1,16 +1,26 @@
-import { Ticker } from "@core";
-import { Api } from "src/inversions";
+import { Ticker, normalizeArrayOfObjectsBy } from "@core";
+import ehd from 'ehd-js'
+import { EHDLivePrice } from "ehd-js/src/types/model";
+import { TickerAndPrice } from "./types";
 
+ehd.setToken(`${process.env.NEXT_PUBLIC_STOCKS_API_KEY}`)
+
+// TODO: Split to different categories
 const MarketAPI = {
-  getSharePriceByTicker: async (ticker: Ticker) => {
-    const url = "https://api.polygon.io/v3/reference";
-
-    const sharePrice: number = await Api.GET({
-      url: `${url}/dividends?ticker=${ticker}&apiKey=${process.env.NEXT_PUBLIC_POLYGON_IO_API_KEY}`
-    })    
-
-    return sharePrice
-  }
+  getSharePriceByTicker: async (ticker: Ticker): Promise<number> => {
+    const { previousClose } = await ehd.livePrices({ code: ticker })
+    return previousClose
+  },
+  /** 
+   * **Docs notes:**
+   * 
+   * `We do not recommend using more than 15-20 tickers per request.`
+  */
+  getSharePriceForTickerList: async (tickerList: Ticker[]) => {
+    const [ firstTicker, ...restTickers ] = tickerList
+    const stocksPriceList = await ehd.livePrices({ code: firstTicker, s: restTickers })
+    return normalizeArrayOfObjectsBy<EHDLivePrice>(stocksPriceList, "code", "previousClose") as TickerAndPrice
+  },
 }
 
 export default MarketAPI

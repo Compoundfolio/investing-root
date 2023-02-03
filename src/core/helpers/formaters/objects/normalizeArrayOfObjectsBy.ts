@@ -1,22 +1,29 @@
-import { Ticker } from "src/core/types";
-
-const normalizeArrayOfObjectsBy = <T extends object>(
+const normalizeArrayOfObjectsBy = <T extends { [K: string]: any }>(
   arrayToNormalize: T[], 
-  normalizeBy: keyof T,
+  normalizeKey: keyof T,
+  normalizeValue?: keyof T,
 ) => {
-  let res: {[Ticker: Ticker]: T[]} = {}
+  type NormalizeKeyType = string
+  type NormalizeValueType = T[] | T[keyof T]
+  let res: {[ K: NormalizeKeyType]: NormalizeValueType } = {}
 
   for (let index = 0; index < arrayToNormalize.length; index++) {
     const object = arrayToNormalize[index];
-    const normalizeKeyValue: Ticker = arrayToNormalize[index][normalizeBy];
+    const normalizeKeyName = object[normalizeKey] as NormalizeKeyType;
 
-    if (res[normalizeKeyValue]?.length) {
-      res[normalizeKeyValue] = [
-        ...res[normalizeKeyValue],
+    if (normalizeValue) {
+      res[normalizeKeyName] = object[normalizeValue] as T[keyof T]
+      return res
+    }
+
+    const valueByKeyName = res[normalizeKeyName] as T[]
+    if (valueByKeyName?.length) {
+      res[normalizeKeyName] = [
+        ...valueByKeyName,
         object
       ]
     } else {
-      res[normalizeKeyValue] = [object]
+      res[normalizeKeyName] = [object]
     }
   }
 

@@ -1,10 +1,10 @@
-import { BrokerageTransactionType, NormalizedTransactionsByTicker, OrderOperation, PortfolioAsset, Transaction } from 'src/core/types';
-import { parseNumber } from '../formaters';
-import { getCurrentPositionPrice, getSharesAmount } from './helpers';
+import { NormalizedTransactionsByTicker, PortfolioAsset } from 'src/core/types';
+import {  
+  getCurrentPositionPrice, 
+  getSharesAmount, 
+  getTickersListWithOpenPosition,
+} from './helpers';
 import { MarketAPI } from 'src/api/market';
-
-
-
 
 // TODO: Pass smw else + rename
 type AssetOpenPosition = {
@@ -27,17 +27,14 @@ const getAllPositionsByBrokerageTransactions = async (
     closedPositions: {},
   }
 
-
-
-  const f = await MarketAPI.getSharePriceByTicker("AVGO")
-  console.log("f", f);
-  
+  const tickersListWithOpenPosition = getTickersListWithOpenPosition(transactionsByTicker)
+  const tickersWithOpenPositionMarketPriceDictionary = await MarketAPI.getSharePriceForTickerList(tickersListWithOpenPosition)
 
   Object
     .entries(transactionsByTicker)
     .forEach(([ ticker, transactionsList ]) => { 
       const sharesAmount = getSharesAmount(transactionsList)
-      const currentPositionPrice = getCurrentPositionPrice(transactionsList, sharesAmount)
+      const currentPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
       const openPositionData: AssetOpenPosition = {
         sharesAmount,
         currentPositionPrice,
@@ -45,6 +42,8 @@ const getAllPositionsByBrokerageTransactions = async (
         actualPositionPrice: 1 * sharesAmount
       }
 
+      // TODO: Count sold out positions too
+      
       if (openPositionData.sharesAmount > 0) {
         positions.openPositions = { ...positions.openPositions, [ticker]: openPositionData }
       } else {
