@@ -5,6 +5,7 @@ import {
   getTickersListWithOpenPosition,
 } from './helpers';
 import { MarketAPI } from 'src/api/market';
+import { Api } from 'src/inversions';
 
 // TODO: Pass smw else + rename
 type AssetOpenPosition = {
@@ -28,7 +29,7 @@ const getAllPositionsByBrokerageTransactions = async (
   }
 
   const tickersListWithOpenPosition = getTickersListWithOpenPosition(transactionsByTicker)
-  const tickersWithOpenPositionMarketPriceDictionary = await MarketAPI.getSharePriceForTickerList(tickersListWithOpenPosition)
+  const tickersWithOpenPositionMarketPriceDictionary: any = await Api.POST("/api/market", tickersListWithOpenPosition)  
 
   Object
     .entries(transactionsByTicker)

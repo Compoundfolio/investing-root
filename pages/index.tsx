@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useEffect } from 'react';
-// import { MarketAPI } from 'src/api/market';
+import { MarketAPI } from 'src/api/market';
 // import { MarketAPI } from 'src/api/market';
 // import { useEffect, useState } from 'react'
 // import { formatDateToDMY } from '@core/helpers';
@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 // import ISideBrokerage from '../src/inversions/brokerages/AbstractSideBrokerage';
 // import Brokerage from 'src/inversions/brokerages/Brokerage';
 import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploadPage';
+import { Api } from 'src/inversions';
 
 // const ACCOUNT_DIV_TAX = 0.15;
 
@@ -64,9 +65,10 @@ export default function Home() {
   //   }
   // }, [transactions])
   
-  // useEffect(() => {
-  //   const f = MarketAPI.getSharePriceByTicker("AVGO")
-  //   console.log(f);
+  // useEffect(() => {    
+  //     const f = async () => await Api.POST("/api/market", "AVGO")
+  //     console.log(f());
+    
   // }, [])
 
   return (

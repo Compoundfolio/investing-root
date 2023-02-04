@@ -10,8 +10,16 @@ class Api {
     // return data.results
   }
 
-  static async POST({ url, data }: Post) {
+  static async POST(url: string, data: unknown) {
     // return axios.post(url, { data })
+    const response = await fetch(url, {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const res = await response.json();
   }
 }
 

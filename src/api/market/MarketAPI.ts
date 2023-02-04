@@ -18,6 +18,8 @@ const MarketAPI = {
   */
   getSharePriceForTickerList: async (tickerList: Ticker[]) => {
     const [ firstTicker, ...restTickers ] = tickerList
+    console.log(firstTicker, restTickers);
+    
     const stocksPriceList = await ehd.livePrices({ code: firstTicker, s: restTickers })
     return normalizeArrayOfObjectsBy<EHDLivePrice>(stocksPriceList, "code", "previousClose") as TickerAndPrice
   },
