@@ -30,6 +30,7 @@ const getAllPositionsByBrokerageTransactions = async (
 
   const tickersListWithOpenPosition = getTickersListWithOpenPosition(transactionsByTicker)
   const tickersWithOpenPositionMarketPriceDictionary: any = await Api.POST("/api/market", tickersListWithOpenPosition)  
+console.log("tickersWithOpenPositionMarketPriceDictionary", tickersWithOpenPositionMarketPriceDictionary);
 
   Object
     .entries(transactionsByTicker)
