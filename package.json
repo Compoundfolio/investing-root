@@ -12,6 +12,7 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.5",
@@ -23,13 +24,14 @@
     "ehd-js": "0.0.12",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
-    "graphql": "^16.6.0",
+    "graphql": "15.3.0",
     "graphql-request": "^5.1.0",
     "micro": "^10.0.1",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-query": "^3.39.3",
     "react-virtualized": "^9.22.3",
     "recoil": "^0.7.6",
     "reflect-metadata": "^0.1.13",

@@ -8,10 +8,10 @@
       "@core/components": [ "src/core/components" ],
     },
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "esnext.asynciterable"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -20,7 +20,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,  
   },
   "include": ["next-env.d.ts", "environment.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

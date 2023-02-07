@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { MarketAPI } from 'src/api/market'
 import { TickerAndPrice } from 'src/api/market/types'
 
+
+
 type Data = TickerAndPrice
 
 export default async function handler(

@@ -1,5 +1,8 @@
+import { useQuery } from '@apollo/client';
 import Head from 'next/head'
+import Image from 'next/image';
 import { useEffect } from 'react';
+import { dehydrate } from 'react-query';
 import { MarketAPI } from 'src/api/market';
 // import { MarketAPI } from 'src/api/market';
 // import { useEffect, useState } from 'react'
@@ -12,64 +15,24 @@ import { MarketAPI } from 'src/api/market';
 // import Brokerage from 'src/inversions/brokerages/Brokerage';
 import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploadPage';
 import { Api } from 'src/inversions';
+// import { getDogs, queryClient } from 'src/utils';
 
 // const ACCOUNT_DIV_TAX = 0.15;
 
+// export async function getServerSideProps() {
+//   await queryClient.prefetchQuery(["dogs"], () => getDogs());
+
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   };
+// }
+
 export default function Home() {
-//   const [transactions, setTransactions] = useState<any>();
-//   const [totalInvestedAmount, setTotalInvestedAmount] = useState<any>();
-//   const [buiedYearlyDivs, setBuiedYearlyDivs] = useState<number>(0);
-//   const [BrokerageClass, setBrokerageClass] = useState<any>();
-//   const [UserBrokerage, setUserBrokerage] = useState<Brokerage>()
+  // @ts-ignore
+  // const { data } = useQuery(["dogs"], () => getDogs());
 
-//   const handleCsvReportUpload = (e: any) => {
-//     const input = e.target.files[0];
-//     const reader = new FileReader();
-
-//     reader.onload = function (e: any) {
-//       const transactionsList = getExanteTransactionsList(e.target.result)
-//       setTransactions(transactionsList)
-//       const B = BrokerageClass === "EXANTE" ? ExanteBrokerage : null
-//       BrokerageClass && B && setUserBrokerage(new Brokerage(new B(transactionsList)))
-//     };
-
-//     reader.readAsText(input);
-//   }
-  
-
-//   // transactions && console.log(transactions, process.env.POLYGON_IO_API_KEY);
-//   UserBrokerage && console.log("UserBrokerage", UserBrokerage.getAllTransactions());
-  
-
-  // useEffect(() => {
-  //   if (transactions) {
-  //     console.log(parseFloat(transactions.find((transaction: any) => transaction.ISIN === "FUNDING/WITHDRAWAL").Price));
-
-  //     const invested = transactions
-  //       .filter((transaction: any) => transaction.ISIN === "FUNDING/WITHDRAWAL")
-  //       .reduce((previousValue: any, currentValue: any) => previousValue + parseFloat(currentValue.Price), 0)
-
-  //     setTotalInvestedAmount(invested)
-  //   }
-  // }, [transactions])
-
-  // useEffect(() => {
-  //   if (transactions) {
-  //     const url = "https://api.polygon.io/v3/reference";
-  //     const tiker = transactions[0]["Symbol ID"].split('.')[0];
-
-  //     fetch(`${url}/dividends?ticker=${tiker}&apiKey=${process.env.NEXT_PUBLIC_POLYGON_IO_API_KEY}`)
-  //       .then(res => res.json())
-  //       .then(({ results }) => setBuiedYearlyDivs(results[0].cash_amount * results[0].frequency));
-
-  //   }
-  // }, [transactions])
-  
-  // useEffect(() => {    
-  //     const f = async () => await Api.POST("/api/market", "AVGO")
-  //     console.log(f());
-    
-  // }, [])
 
   return (
     <>
@@ -77,6 +40,17 @@ export default function Home() {
         <title>Setup Brokerages</title>
         <meta name="description" content="TODO" />
       </Head>
+      {/* {data?.dogs.map((f, i) => (
+        <div key={i}>
+          <Image height={350} src={f.image} alt="green iguana" />
+
+          <h1>{f.name}</h1>
+          <div>
+            {f.weight} pound {f.ageInWeeks} weeks old{" "}
+            {f.sex.toLowerCase()} {f.breed.toLowerCase()}
+          </div>
+        </div>
+      ))} */}
       <BrokerageReportUploadPage />
     </>
   )
