@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useQuery } from 'react-query';
 import Head from 'next/head'
 import Image from 'next/image';
 import { useEffect } from 'react';
@@ -15,23 +15,22 @@ import { MarketAPI } from 'src/api/market';
 // import Brokerage from 'src/inversions/brokerages/Brokerage';
 import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploadPage';
 import { Api } from 'src/inversions';
-// import { getDogs, queryClient } from 'src/utils';
+import { getDogs, queryClient } from 'src/utils';
 
-// const ACCOUNT_DIV_TAX = 0.15;
+const ACCOUNT_DIV_TAX = 0.15;
 
-// export async function getServerSideProps() {
-//   await queryClient.prefetchQuery(["dogs"], () => getDogs());
+export async function getServerSideProps() {
+  await queryClient.prefetchQuery(["dogs"], () => getDogs());
 
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   };
-// }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 export default function Home() {
-  // @ts-ignore
-  // const { data } = useQuery(["dogs"], () => getDogs());
+  const { data } = useQuery(["dogs"], () => getDogs());
 
 
   return (
@@ -40,9 +39,9 @@ export default function Home() {
         <title>Setup Brokerages</title>
         <meta name="description" content="TODO" />
       </Head>
-      {/* {data?.dogs.map((f, i) => (
+      {data?.dogs.map((f, i) => (
         <div key={i}>
-          <Image height={350} src={f.image} alt="green iguana" />
+          <Image width={350} height={350} src={f.image} alt="green iguana" />
 
           <h1>{f.name}</h1>
           <div>
@@ -50,7 +49,7 @@ export default function Home() {
             {f.sex.toLowerCase()} {f.breed.toLowerCase()}
           </div>
         </div>
-      ))} */}
+      ))}
       <BrokerageReportUploadPage />
     </>
   )
