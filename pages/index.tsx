@@ -17,10 +17,8 @@ import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploa
 import { Api } from 'src/inversions';
 import { getDogs, queryClient } from 'src/utils';
 
-const ACCOUNT_DIV_TAX = 0.15;
-
 export async function getServerSideProps() {
-  await queryClient.prefetchQuery(["dogs"], () => getDogs());
+  await queryClient.prefetchQuery(["dogz"], () => getDogs())
 
   return {
     props: {
@@ -30,8 +28,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home() {
-  const { data } = useQuery(["dogs"], () => getDogs());
-
+  const { data } = useQuery(["dogz"], () => getDogs())
 
   return (
     <>

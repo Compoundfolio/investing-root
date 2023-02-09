@@ -26,6 +26,7 @@
     "eslint-config-next": "13.0.5",
     "graphql": "15.3.0",
     "graphql-request": "^5.1.0",
+    "graphql-yoga": "^3.5.1",
     "micro": "^10.0.1",
     "next": "13.0.5",
     "react": "18.2.0",
