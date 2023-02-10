@@ -13,3 +13,11 @@ query dogByName($name: String!) {
     }
   }
 }
+# const FEATURED_SPEAKER = gql`
+#   mutation markFeatured($speakerId: ID!, $featured: Boolean!){
+#     markFeatured(speaker_id: theErrorIsHere$speakerId , featured: $featured){
+#       id
+#       featured
+#     }
+#   }
+# `;

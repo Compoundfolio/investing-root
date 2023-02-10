@@ -18,7 +18,7 @@ import { Api } from 'src/inversions';
 import { getDogs, queryClient } from 'src/utils';
 
 export async function getServerSideProps() {
-  await queryClient.prefetchQuery(["dogz"], () => getDogs())
+  await queryClient.prefetchQuery(["dogs"], () => getDogs())
 
   return {
     props: {
@@ -28,7 +28,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home() {
-  const { data } = useQuery(["dogz"], () => getDogs())
+  const { data } = useQuery(["dogs"], () => getDogs())
 
   return (
     <>

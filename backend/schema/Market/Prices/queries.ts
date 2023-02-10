@@ -1,7 +1,7 @@
 export const queries = /* GraphQL */ `
   type Query {
     dog(name: String!): Dog
-    dogs(): [Dog]
+    dogs: [Dog]
   }
 `
 

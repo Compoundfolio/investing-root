@@ -17,29 +17,29 @@ export type Scalars = {
 
 export type Dog = {
   __typename?: 'Dog';
-  ageInWeeks: Scalars['Float'];
-  attributes: Array<DogAttribute>;
-  availableDate: Scalars['String'];
-  breed: Scalars['String'];
-  color: Scalars['String'];
-  description: Array<Scalars['String']>;
-  fee: Scalars['Float'];
-  image: Scalars['String'];
+  ageInWeeks?: Maybe<Scalars['Int']>;
+  attributes?: Maybe<Array<Maybe<DogAttribute>>>;
+  availableDate?: Maybe<Scalars['String']>;
+  breed?: Maybe<Scalars['String']>;
+  color?: Maybe<Scalars['String']>;
+  description?: Maybe<Array<Maybe<Scalars['String']>>>;
+  fee?: Maybe<Scalars['Int']>;
+  image?: Maybe<Scalars['String']>;
   name: Scalars['ID'];
-  sex: Scalars['String'];
-  weight: Scalars['Float'];
+  sex?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['Int']>;
 };
 
 export type DogAttribute = {
   __typename?: 'DogAttribute';
   key: Scalars['ID'];
-  value: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
   __typename?: 'Query';
   dog?: Maybe<Dog>;
-  dogs: Array<Dog>;
+  dogs?: Maybe<Array<Maybe<Dog>>>;
 };
 
 
@@ -52,12 +52,12 @@ export type DogByNameQueryVariables = Exact<{
 }>;
 
 
-export type DogByNameQuery = { __typename?: 'Query', dog?: { __typename?: 'Dog', name: string, breed: string, ageInWeeks: number, image: string, sex: string, description: Array<string>, color: string, attributes: Array<{ __typename?: 'DogAttribute', key: string, value: string }> } | null };
+export type DogByNameQuery = { __typename?: 'Query', dog?: { __typename?: 'Dog', name: string, breed?: string | null, ageInWeeks?: number | null, image?: string | null, sex?: string | null, description?: Array<string | null> | null, color?: string | null, attributes?: Array<{ __typename?: 'DogAttribute', key: string, value?: string | null } | null> | null } | null };
 
 export type GetDogsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDogsQuery = { __typename?: 'Query', dogs: Array<{ __typename?: 'Dog', name: string, breed: string, ageInWeeks: number, image: string, sex: string, weight: number, fee: number }> };
+export type GetDogsQuery = { __typename?: 'Query', dogs?: Array<{ __typename?: 'Dog', name: string, breed?: string | null, ageInWeeks?: number | null, image?: string | null, sex?: string | null, weight?: number | null, fee?: number | null } | null> | null };
 
 
 export const DogByNameDocument = gql`
