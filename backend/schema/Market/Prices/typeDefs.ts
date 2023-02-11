@@ -16,14 +16,10 @@ const typeDefs = /* GraphQL */ `
     breed: String
     color: String
     fee: Int
-    weight: Int
+    weight: Float
     availableDate: String
   }
 
-  type Query {
-    dog(name: String!): Dog
-    dogs: [Dog]
-  }
-`
+` + queries
 
 export default typeDefs

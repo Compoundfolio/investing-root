@@ -2,7 +2,9 @@ import dogs from './dogs.json';
 
 const pricesResolvers = {
   Query: {
-    dog(name: string) {
+    dog(_, args) {
+      const name: string = args.name     
+
       const dog = dogs.find((dog) => dog.name === name);
       if (dog === undefined) {
         throw new Error("Dog not found");
