@@ -1,3 +1,4 @@
+import { isEmpty } from '@core'
 import { memo, useMemo } from 'react'
 import VirtualizedTable from 'src/core/components/tables/Table/Table'
 import { useBrokeragesData } from 'src/store'
@@ -6,15 +7,20 @@ const PortfolioAssetsList = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const rows = useMemo(() => {
-    return brokerageEntities.length 
-      ? Object
-        .entries(brokerageEntities[0]?.getAssets()?.openPositions)
-        .map(([ ticker, positionData ]) => ({
-          index: ticker,
-          ticker,
-          ...positionData as any
-        }))
-      : []
+    if (brokerageEntities.length) {
+      const assets = brokerageEntities[0].getAssets()
+      return brokerageEntities.length 
+        ? Object
+          .entries(assets.openPositions)
+          .map(([ ticker, positionData ]) => ({
+            index: ticker,
+            ticker,
+            ...positionData
+          }))
+        : []
+    }
+
+    return []
   }, [brokerageEntities])
   
   const columns = [
@@ -26,7 +32,7 @@ const PortfolioAssetsList = () => {
     {
       width: 120,
       label: 'Price\u00A0($)',
-      dataKey: 'currentPositionPrice',
+      dataKey: "actualPositionPrice",
       numeric: true,
     },
     {

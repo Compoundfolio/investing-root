@@ -1,25 +1,8 @@
 import { ResponsivePie } from '@nivo/pie'
 import { memo, useMemo, useState } from 'react'
 import { StyledPieChartContainer } from './styled'
-import { Ticker, colors } from '@core'
+import { OpenPosition, colors, isEmpty } from '@core'
 import { useBrokeragesData } from 'src/store'
-let positions = {
-  openPositions: {} as { [K: Ticker]:  {
-    sharesAmount: number;
-    currentPositionPrice: number;
-  }},
-  closedPositions: {},
-}
-
-// For chart testing
-const openPositionsHARDCODED = {
-    "ALLY": { currentPositionPrice: 200 },
-    "TROW": { currentPositionPrice: 100 },
-    "BBY": { currentPositionPrice: 330 },
-    "BST": { currentPositionPrice: 20 },
-    "SCHD": { currentPositionPrice: 709 },
-    "ABBV": { currentPositionPrice: 301 },
-}
 
 type Data = {
   id: string;
@@ -27,18 +10,15 @@ type Data = {
   value: number;
 }[]
 
-const f = (openPositions: any = openPositionsHARDCODED): Data => {
+const getChartDataSet = (openPositions: OpenPosition): Data => {  
   return Object
-  // @ts-ignore
     .entries(openPositions)
-    // @ts-ignore
-    .map(([ ticker, { currentPositionPrice } ]) => ({
+    .map(([ ticker, assets ]) => ({
       id: ticker,
       label: ticker,
-      value: currentPositionPrice,
+      value: assets.actualPositionPrice,
     }))
 }
-
 
 const { darkLightGreen, lightGreen, darkGreen, gold, grayD9 } = colors
 const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
@@ -48,7 +28,8 @@ const PortfolioAssetsPieChart = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
-    return f(brokerageEntities[0]?.getAssets().openPositions ?? openPositionsHARDCODED)
+    const assets = brokerageEntities[0].getAssets()
+    return getChartDataSet(assets?.openPositions)
   }, [brokerageEntities])
 
   

@@ -1,11 +1,11 @@
-import { Transaction } from "src/core/types";
+import { PortfolioOpenClosePositions, Transaction } from "src/core/types";
 
 export default abstract class AbstractSideBrokerage {
-  public transactions: Transaction[] = []
   static brandName: string;
   static logoPath: string;
-
-  public assets: any = {
+  
+  public transactions: Transaction[] = []
+  public assets: PortfolioOpenClosePositions = {
     openPositions: {},
     closedPositions: {},
   }

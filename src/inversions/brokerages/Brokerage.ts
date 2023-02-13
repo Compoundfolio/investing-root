@@ -1,6 +1,7 @@
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
 import AbstractBrokerage from './AbstractBrokerage';
 import AbstractSideBrokerage from './AbstractSideBrokerage';
+import { PortfolioOpenClosePositions, Transaction } from 'src/core/types';
 
 /** Brokerage dependency inversion root */
 export default class Brokerage implements AbstractBrokerage {
@@ -8,13 +9,20 @@ export default class Brokerage implements AbstractBrokerage {
   private brandName: string
   private logoPath: string
 
+  private transactions: Transaction[] = [] 
+  private assets: PortfolioOpenClosePositions
+
   constructor(
     SideBrokerageClass: SupportedBrokerage,
     unparsedReport: string, 
   ) {
-    this.brokerage = new SideBrokerageClass(unparsedReport);
+    const brokerageEntity = new SideBrokerageClass(unparsedReport)
+
+    this.brokerage = brokerageEntity;
     this.brandName = SideBrokerageClass.brandName
     this.logoPath = SideBrokerageClass.logoPath
+    this.transactions = brokerageEntity.transactions
+    this.assets = brokerageEntity.assets
   } 
 
   getBrandName() {
@@ -26,10 +34,10 @@ export default class Brokerage implements AbstractBrokerage {
   };
 
   getAssets() {
-    return this.brokerage.assets
+    return this.assets
   }
 
   getAllTransactions() {
-    return this.brokerage.transactions
+    return this.transactions
   };
 }

@@ -151,9 +151,7 @@ const columnsExample = [
 export default function VirtualizedTable({
   rows = rowsExample,
   columns = columnsExample,
-}: IVirtualizedTable) {
-  // console.log(rows,columns);
-  
+}: IVirtualizedTable) {  
   return (
     <div style={{ height: 400, width: '100%' }}>
       <Table

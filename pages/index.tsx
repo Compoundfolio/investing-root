@@ -36,7 +36,7 @@ export default function Home() {
         <title>Setup Brokerages</title>
         <meta name="description" content="TODO" />
       </Head>
-      {data?.dogs.map((f, i) => (
+      {/* {data?.dogs.map((f, i) => (
         <div key={i}>
           <Image width={350} height={350} src={f.image} alt="green iguana" />
 
@@ -46,7 +46,7 @@ export default function Home() {
             {f.sex.toLowerCase()} {f.breed.toLowerCase()}
           </div>
         </div>
-      ))}
+      ))} */}
       <BrokerageReportUploadPage />
     </>
   )

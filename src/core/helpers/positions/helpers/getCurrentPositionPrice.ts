@@ -5,7 +5,7 @@ import { TickerAndPrice } from "src/api/market/types"
 const getCurrentPositionPrice = (
   transactionsList: Transaction[],
   marketPricesByTicker: TickerAndPrice,
-) => {
+) => {  
   return transactionsList.reduce((
     prevValue: number, 
     currentTransaction: Transaction
@@ -20,7 +20,7 @@ const getCurrentPositionPrice = (
     } 
     
     if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
-      return prevValue + ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0)
+      return prevValue - ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0)
       // TODO: Uncomment and calculate invested total price this way as well
       // return prevValue - (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
     }

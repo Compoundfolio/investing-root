@@ -17,9 +17,7 @@ const MarketAPI = {
    * `We do not recommend using more than 15-20 tickers per request.`
   */
   getSharePriceForTickerList: async (tickerList: Ticker[]) => {
-    const [ firstTicker, ...restTickers ] = tickerList
-    console.log(firstTicker, restTickers);
-    
+    const [ firstTicker, ...restTickers ] = tickerList    
     const stocksPriceList = await ehd.livePrices({ code: firstTicker, s: restTickers })
     return normalizeArrayOfObjectsBy<EHDLivePrice>(stocksPriceList, "code", "previousClose") as TickerAndPrice
   },
