@@ -50,7 +50,7 @@ const getAllPositionsByBrokerageTransactions = (
         currentPositionPrice: shareMarketPrice, // Market 1 share price
         // averagePrice: openPositionInvestedValue / openSharesAmount,
         averagePrice: openPositionPrice / openSharesAmount, // Avg. portfolio 1 share price // TODO: Calculates wrong
-        actualPositionPrice: openPositionPrice
+        actualPositionPrice: Number(openPositionPrice.toFixed(2))
       }
       // TODO: Count sold out positions too
       

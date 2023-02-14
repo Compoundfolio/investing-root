@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  images: { domains: ['exante.eu', 'ohspets.shelterbuddy.com'] },
+  images: { domains: ['exante.eu', 'ohspets.shelterbuddy.com', "upload.wikimedia.org"] },
   webpack: (config) => {
     if (!config.experiments) {
       config.experiments = {};

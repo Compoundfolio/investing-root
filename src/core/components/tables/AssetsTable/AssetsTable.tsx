@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
+import { AssetPreviewTCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
 import { AssetOpenPosition } from "src/core/types"
 
 interface IAssetsTable {
@@ -26,14 +26,19 @@ const AssetsTable = ({
           </TRow>
         </THead>
         <TBody>
-          {data.map(asset => (
-            <TRow key={asset.id}>
-              <TCell>{asset.ticker}</TCell>
-              <TCell>{asset.actualPositionPrice}</TCell>
-              <TCell>{asset.sharesAmount}</TCell>
-              <TCell>{asset.sharesAmount}</TCell>
-              <TCell>{asset.sharesAmount}</TCell>
-              <TCell>{asset.sharesAmount}</TCell>
+          {data.map(({ id, ticker, sharesAmount, actualPositionPrice }) => (
+            <TRow key={id}>
+              <AssetPreviewTCell 
+                logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939"
+                assetFullName="Schwab Income Fund ..."
+                ticker={ticker} 
+                sharesAmount={sharesAmount}              
+              />
+              <TCell>{actualPositionPrice}</TCell>
+              <TCell>{sharesAmount}</TCell>
+              <TCell>{sharesAmount}</TCell>
+              <TCell>{sharesAmount}</TCell>
+              <TCell>{sharesAmount}</TCell>
             </TRow>
           ))}
         </TBody>
