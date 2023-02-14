@@ -1,7 +1,7 @@
-import { Children, ReactElement } from "react"
+import { ReactElement } from "react"
 
 interface IReactChildren {
-  children: ReactElement
+  children: ReactElement | string | ReactElement[] | number
 }
 
 export default IReactChildren

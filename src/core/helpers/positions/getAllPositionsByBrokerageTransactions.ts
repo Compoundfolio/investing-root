@@ -1,21 +1,10 @@
-import { NormalizedTransactionsByTicker, PortfolioOpenClosePositions } from 'src/core/types';
+import { AssetOpenPosition, NormalizedTransactionsByTicker, PortfolioOpenClosePositions, Ticker, Transaction } from 'src/core/types';
 import {  
   getCurrentPositionPrice, 
   getSharesAmount, 
 } from './helpers';
 import { TickerAndPrice } from 'src/api/market/types';
-
-// TODO: Pass smw else + rename
-export type AssetOpenPosition = {
-  sharesAmount: number;
-  /** By all open shares */
-  currentPositionPrice: number; // TODO: Rename as invested amount
-  
-  /** Average open position price */
-  averagePrice: number;
-  actualPositionPrice: number // actualOneSharePrice*sharesAmount
-  
-}
+import { v4 as uuidv4 } from 'uuid';
 
 const testData: TickerAndPrice = {
   ALLY: 33.5,
@@ -49,12 +38,14 @@ const getAllPositionsByBrokerageTransactions = (
 
   Object
     .entries(transactionsByTicker)
-    .forEach(([ ticker, transactionsList ]) => { 
+    .forEach(([ ticker, transactionsList ]: [Ticker, Transaction[]]) => { 
       const openSharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
       const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
 
       const openPositionData: AssetOpenPosition = {
+        id: uuidv4(),
+        ticker,
         sharesAmount: openSharesAmount,
         currentPositionPrice: shareMarketPrice, // Market 1 share price
         // averagePrice: openPositionInvestedValue / openSharesAmount,

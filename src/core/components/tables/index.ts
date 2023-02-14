@@ -1,1 +1,3 @@
-export { default as Table } from './Table';
+export { default as AssetsTable } from './AssetsTable';
+export * from './parts';
+
