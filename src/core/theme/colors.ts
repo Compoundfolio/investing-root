@@ -9,6 +9,7 @@ const colors = {
   gold: "#FFD390",
   grayD9: "#D9D9D9",
   pinkSoft: "#CF6679",
+  gray4C: "#4C596B",
 } as const
 
 export default colors
