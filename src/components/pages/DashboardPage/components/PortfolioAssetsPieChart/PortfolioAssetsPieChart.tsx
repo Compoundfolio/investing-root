@@ -1,14 +1,16 @@
 import { ResponsivePie } from '@nivo/pie'
-import { memo, useMemo, useState } from 'react'
+import { memo, useMemo, useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { StyledPieChartContainer } from './styled'
 import { OpenPosition, colors, isEmpty } from '@core'
 import { useBrokeragesData } from 'src/store'
+import { Pie } from "@nivo/pie";
 
-type Data = {
+type DataItem = {
   id: string;
   label: string;
   value: number;
-}[]
+}
+type Data = DataItem[]
 
 const getChartDataSet = (openPositions: OpenPosition): Data => {  
   return Object
@@ -41,19 +43,59 @@ const PortfolioAssetsPieChart = () => {
     // TODO: To uncover the asset category (if it's the category)
   }
 
-  const handleHover = (d: any) => {
+  const handleHover = (d: any) => {    
     const hoveredEntityPiePercentage = (d.value / totalAssetsSum) * 100
     setSelectedEntityPiePercentage(hoveredEntityPiePercentage)
   }
 
-  return (
-    <StyledPieChartContainer className='relative'>
+  const [activeItem, setActiveItem] = useState<DataItem | null>(null);
+  const [fillItems, setFillItems] = useState([]);
+
+  useEffect(() => {
+   if (activeItem && (activeItem as DataItem).id) {
+      setFillItems(
+        dataSet.map((item) => ({
+          match: { id: item.id },
+          id: item.id === (activeItem as DataItem).id ? "lines" : "opacity",
+        }))
+      );
+    } else {
+      setFillItems([]);
+    }
+  }, [activeItem]);  
+
+  const ref = useRef()
+
+  useEffect(() => {
+    if (ref.current) {
+      setTimeout(() => {
+        // @ts-ignore
+        const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
+        t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
+        console.log("t",t, ref.current);
+
+      }, 1000)
+    }
+  }, [ref.current])
+
+  return ( 
+    <StyledPieChartContainer className='relative' ref={ref}>
       <div className='absolute flex justify-center w-full text-white top-1/2'>
         <span>{selectedEntityPiePercentage.toFixed(2)}%</span>
       </div>
       <ResponsivePie
+      onClick={(item) => {                
+        if ((activeItem as DataItem)?.id === item.id) {
+          setActiveItem(null);
+        } else {
+          setActiveItem(item as DataItem);
+        }
+      }}
+        // onMouseMove={(e) => console.log(e)}
+        onMouseLeave={(e) => console.log(e)}
+        onMouseMove={(e) => console.log(e)}
         data={dataSet}
-        onClick={handleClick}
+        // onClick={handleClick}
         onMouseEnter={handleHover}
         colors={CHART_COLORS_LIST}
         activeInnerRadiusOffset={5}
@@ -65,20 +107,28 @@ const PortfolioAssetsPieChart = () => {
           precision: 0.01,
           velocity: 0
       }}
-    //   legends={[
-    //     {
-    //         anchor: 'top-left',
-    //         direction: 'column',
-    //         justify: false,
-    //         translateX: 0,
-    //         translateY: 0,
-    //         itemWidth: 100,
-    //         itemHeight: 20,
-    //         itemsSpacing: 8,
-    //         symbolSize: 20,
-    //         itemDirection: 'left-to-right'
-    //     }
-    // ]}
+      legends={[
+        {
+            anchor: 'top-left',
+            direction: 'column',
+            justify: false,
+            translateX: 0,
+            translateY: 0,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemsSpacing: 8,
+            symbolSize: 20,
+            itemDirection: 'left-to-right',
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemOpacity: 0.1
+                }
+              }
+            ]
+        }
+    ]}
         //@ts-ignore
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}
@@ -111,6 +161,15 @@ const PortfolioAssetsPieChart = () => {
             stagger: true
           },
           {
+            id: "opacity",
+            type: "patternDots",
+            background: "#a1a1a1",
+            color: "rgba(255, 255, 255, 0.3)",
+            size: 3,
+            padding: 1,
+            stagger: true,
+          },
+          {
             id: 'lines',
             type: 'patternLines',
             background: 'inherit',
@@ -120,6 +179,7 @@ const PortfolioAssetsPieChart = () => {
             spacing: 10
           }
         ]}
+        fill={fillItems}
         // fill={[
         //   {
         //     match: {

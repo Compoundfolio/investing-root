@@ -1,5 +1,5 @@
 import { AssetOpenPosition, AssetsTable } from '@core'
-import { memo, useMemo } from 'react'
+import { memo, useMemo, useCallback } from 'react';
 import { useBrokeragesData } from 'src/store'
 
 const PortfolioAssetsList = () => {
@@ -20,9 +20,14 @@ const PortfolioAssetsList = () => {
     return []
   }, [brokerageEntities])
 
+  const handleRowHover = useCallback(() => {
+    
+  }, [])
+
   return (
     <AssetsTable 
       data={rows}
+      onRowHover={handleRowHover}
     />
   )
 }

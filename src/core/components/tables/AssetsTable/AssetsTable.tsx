@@ -4,10 +4,12 @@ import { AssetOpenPosition } from "src/core/types"
 
 interface IAssetsTable {
   data: AssetOpenPosition[]
+  onRowHover: () => void
 }
 
 const AssetsTable = ({
   data = [],
+  onRowHover,
 }: IAssetsTable) => {
   return (
     <TWrapper
@@ -27,7 +29,7 @@ const AssetsTable = ({
         </THead>
         <TBody>
           {data.map(({ id, ticker, sharesAmount, actualPositionPrice }) => (
-            <TRow key={id}>
+            <TRow key={id} onHover={() => onRowHover(ticker)}>
               <AssetPreviewTCell 
                 logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939"
                 assetFullName="Schwab Income Fund ..."

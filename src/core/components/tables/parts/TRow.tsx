@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
+import IReactChildren from '../../../types/react/IReactChildren';
 
 const StyledTr = styled.tr({
   cursor: "pointer",
@@ -9,10 +10,13 @@ const StyledTr = styled.tr({
   }
 })
 
+interface ITRow extends IReactChildren {
+  onHover?: () => void
+}
 
-function TRow({ children }) {
+function TRow({ children, onHover }: ITRow) {
   return (
-    <StyledTr className="h-14">{children}</StyledTr>
+    <StyledTr onMouseEnter={onHover} className="h-14">{children}</StyledTr>
   )
 }
 
