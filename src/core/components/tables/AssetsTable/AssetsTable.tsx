@@ -38,12 +38,20 @@ const AssetsTable = ({
                 isPercentages
               />
               <GainCell
+                gainPercentage={17.44}
+              />
+              <GainCell
                 gainNumber={154.67}
                 gainPercentage={6.03}
               />
-              <TCell>{actualPositionPrice}</TCell>
+              <NumbersDifferenceCell 
+                topNumber={sharesAmount}
+                bottomNumber={sharesAmount}
+                isPercentages
+              />
               {/* <TCell>{actualPositionPrice}</TCell> */}
-              <TCell>{sharesAmount}</TCell>
+              {/* <TCell>{actualPositionPrice}</TCell> */}
+              {/* <TCell>{sharesAmount}</TCell> */}
               <TCell>{sharesAmount}</TCell>
             </TRow>
           ))}

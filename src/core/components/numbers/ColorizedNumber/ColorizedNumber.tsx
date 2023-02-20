@@ -8,6 +8,7 @@ const ColorizedNumber = ({
   // TODO: currency
   currency = "$",
   isPercentage = false,
+  isExtraBold = false,
 }: IColorizedNumber) => {
   const numberSymbol = number > 0 ? "+ " : "- "
   
@@ -15,7 +16,11 @@ const ColorizedNumber = ({
     <div className='flex items-center gap-1'>
       {isPercentage && <NumberMoveIcon isPositiveMove={number > 0}/>}
       {/* TODO: Refactor */}
-      <StyledNumber number={number} isPercentage={isPercentage}>
+      <StyledNumber 
+        number={number} 
+        isPercentage={isPercentage}
+        isExtraBold={isExtraBold}
+      >
         {!isPercentage && numberSymbol}{!isPercentage && currency}{isPercentage ? Math.abs(number) : number}{isPercentage && "%"}
       </StyledNumber>
     </div>

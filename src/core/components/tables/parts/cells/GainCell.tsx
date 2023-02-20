@@ -20,10 +20,11 @@ const GainCell = ({
       {gainPercentage && (
         <ColorizedNumber
           number={gainPercentage}
+          isExtraBold={gainPercentage !== undefined && gainNumber !== undefined}
           isPercentage
         />
       )}
-      {gainPercentage && (
+      {gainNumber && (
         <ColorizedNumber
           number={gainNumber}
         />
