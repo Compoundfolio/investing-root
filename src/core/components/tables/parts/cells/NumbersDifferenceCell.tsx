@@ -7,6 +7,7 @@ const commonStyles = {
   fontFamily: 'Chakra Petch',
   fontSize: 14,
   textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+  display: "block"
 } as const
 
 const StyledTopNumber = styled.span({
@@ -33,7 +34,7 @@ const NumbersDifferenceCell = ({
   isPercentages = false
 }: INumbersDifferenceCell) => {
   return (
-    <TCell className="flex flex-col">
+    <TCell>
       <StyledTopNumber>
         {topNumber}{isPercentages && "%"}
       </StyledTopNumber>

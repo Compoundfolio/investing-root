@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { AssetPreviewTCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
+import { AssetPreviewTCell, GainCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
 import { AssetOpenPosition } from "src/core/types"
 
 interface IAssetsTable {
@@ -42,8 +42,12 @@ const AssetsTable = ({
                 bottomNumber={sharesAmount}
                 isPercentages
               />
+              <GainCell
+                gainNumber={1544.67}
+                gainPercentage={6.03}
+              />
               <TCell>{actualPositionPrice}</TCell>
-              <TCell>{sharesAmount}</TCell>
+              {/* <TCell>{actualPositionPrice}</TCell> */}
               <TCell>{sharesAmount}</TCell>
               <TCell>{sharesAmount}</TCell>
             </TRow>
