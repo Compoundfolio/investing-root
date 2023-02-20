@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { IColorizedNumber } from "./__types__";
-import { getNumberColor } from "./helpers";
+import { getColorByGainNumber } from "@core/helpers";
 
 export const StyledNumber = styled.span
-(({ number }: Pick<IColorizedNumber, "number">) => ({
-  color: getNumberColor(number),
+(({ number, isPercentage }: Pick<IColorizedNumber, "number" | "isPercentage">) => ({
+  color: getColorByGainNumber(number),
   fontFamily: 'Chakra Petch',
-  fontWeight: 500,
-  fontSize: "14px",
+  fontWeight: isPercentage ? 700 : 400,
+  fontSize: isPercentage ? 14 : 13,
 }))

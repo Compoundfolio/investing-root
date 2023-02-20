@@ -1,11 +1,6 @@
 import { memo } from "react"
 import { AssetPreviewTCell, GainCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
-import { AssetOpenPosition } from "src/core/types"
-
-interface IAssetsTable {
-  data: AssetOpenPosition[]
-  onRowHover: () => void
-}
+import { IAssetsTable } from "./types"
 
 const AssetsTable = ({
   data = [],
@@ -33,7 +28,7 @@ const AssetsTable = ({
             {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}
               <AssetPreviewTCell 
                 logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939"
-                assetFullName="Schwab Income Fund ..."
+                assetFullName="Schwab Income Fund"
                 ticker={ticker} 
                 sharesAmount={sharesAmount}              
               />
@@ -43,7 +38,7 @@ const AssetsTable = ({
                 isPercentages
               />
               <GainCell
-                gainNumber={1544.67}
+                gainNumber={154.67}
                 gainPercentage={6.03}
               />
               <TCell>{actualPositionPrice}</TCell>

@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const StyledSvg = styled.svg
 (({ isPositiveMove }: INumberMoveIcon) => ({
-  transform: isPositiveMove ? "none" : "rotate(180)",
+  transform: isPositiveMove ? "none" : "rotate(180deg)",
 }))
 
 type INumberMoveIcon = {
