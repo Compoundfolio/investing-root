@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { AssetPreviewTCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
+import { AssetPreviewTCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
 import { AssetOpenPosition } from "src/core/types"
 
 interface IAssetsTable {
@@ -29,15 +29,20 @@ const AssetsTable = ({
         </THead>
         <TBody>
           {data.map(({ id, ticker, sharesAmount, actualPositionPrice }) => (
-            <TRow key={id} onHover={() => onRowHover(ticker)}>
+            <TRow key={id}>
+            {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}
               <AssetPreviewTCell 
                 logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939"
                 assetFullName="Schwab Income Fund ..."
                 ticker={ticker} 
                 sharesAmount={sharesAmount}              
               />
+              <NumbersDifferenceCell 
+                topNumber={sharesAmount}
+                bottomNumber={sharesAmount}
+                isPercentages
+              />
               <TCell>{actualPositionPrice}</TCell>
-              <TCell>{sharesAmount}</TCell>
               <TCell>{sharesAmount}</TCell>
               <TCell>{sharesAmount}</TCell>
               <TCell>{sharesAmount}</TCell>
