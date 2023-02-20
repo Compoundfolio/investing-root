@@ -3,4 +3,5 @@ export default interface IColorizedNumber {
   currency?: string
   isPercentage?: boolean
   isExtraBold?: boolean
+  color?: string
 }

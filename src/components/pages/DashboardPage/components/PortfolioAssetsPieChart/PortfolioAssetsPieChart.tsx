@@ -72,7 +72,7 @@ const PortfolioAssetsPieChart = () => {
         // @ts-ignore
         const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
         t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
-        console.log("t",t, ref.current);
+        // console.log("t",t, ref.current);
 
       }, 1000)
     }

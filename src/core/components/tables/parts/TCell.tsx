@@ -13,14 +13,15 @@ function TCell({
   th = false,
   align = "left",
   valign = "middle",
-  className
+  className,
+  title
 }: ITCell) {
   const commonStyles = `text-${align} w-full align-${valign}`
 
   return th ? (
-    <th className={clsx(commonStyles, ["h-14", "p-5", className])}>{children}</th>
+    <th title={title} className={clsx(commonStyles, ["h-14", "p-5", className])}>{children}</th>
   ) : (
-    <td className={clsx(commonStyles, ["px-5 py-2.5", className])}>{children}</td>
+    <td title={title} className={clsx(commonStyles, ["px-5 py-2.5", className])}>{children}</td>
   )
 }
 

@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { AssetPreviewTCell, GainCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper } from "../parts"
+import { AssetPreviewTCell, GainCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper, UpcomingDividendCell } from "../parts"
 import { IAssetsTable } from "./types"
 
 const AssetsTable = ({
@@ -49,10 +49,10 @@ const AssetsTable = ({
                 bottomNumber={sharesAmount}
                 isPercentages
               />
-              {/* <TCell>{actualPositionPrice}</TCell> */}
-              {/* <TCell>{actualPositionPrice}</TCell> */}
-              {/* <TCell>{sharesAmount}</TCell> */}
-              <TCell>{sharesAmount}</TCell>
+              <UpcomingDividendCell
+                dividendPayDate={new Date(2024, 6, 2, 6, 30, 45, 0)}
+                dividendAmount={5333.99}
+              />
             </TRow>
           ))}
         </TBody>

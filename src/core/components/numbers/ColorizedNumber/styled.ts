@@ -3,8 +3,13 @@ import { IColorizedNumber } from "./__types__";
 import { getColorByGainNumber } from "@core/helpers";
 
 export const StyledNumber = styled.span
-(({ number, isPercentage, isExtraBold }: Pick<IColorizedNumber, "number" | "isPercentage" | "isExtraBold">) => ({
-  color: getColorByGainNumber(number),
+(({ 
+  number, 
+  isPercentage, 
+  isExtraBold,
+  color
+}: Pick<IColorizedNumber, "number" | "isPercentage" | "isExtraBold" | "color">) => ({
+  color: color ?? getColorByGainNumber(number),
   fontFamily: 'Chakra Petch',
   fontWeight: isPercentage 
     ? isExtraBold ? 700 : 500 

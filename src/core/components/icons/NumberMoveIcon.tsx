@@ -9,15 +9,17 @@ const StyledSvg = styled.svg
 
 type INumberMoveIcon = {
   isPositiveMove: boolean
+  color?: string
 }
 
 const NumberMoveIcon = ({
   isPositiveMove,
+  color,
 }: INumberMoveIcon) => {
   return (
     <StyledSvg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg" isPositiveMove={isPositiveMove}>
       <g filter="url(#filter0_d_543_29722)">
-        <path d="M10.2974 0L16.2974 8H4.29736L10.2974 0Z" fill={isPositiveMove ? colors.darkGreen : colors.pinkSoft} />
+        <path d="M10.2974 0L16.2974 8H4.29736L10.2974 0Z" fill={color ?? (isPositiveMove ? colors.darkGreen : colors.pinkSoft)} />
       </g>
       <defs>
         <filter id="filter0_d_543_29722" x="0.297363" y="0" width="16" height="8" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
