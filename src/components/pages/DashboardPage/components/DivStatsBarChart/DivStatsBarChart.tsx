@@ -6,133 +6,79 @@ import { colors } from 'src/core/theme';
 const data = [
   {
     "month": "Jan",
-    "recievedDividendAmount": 34,
-    // "recievedDividendAmountColor": "hsl(263, 70%, 50%)",
-    // "burger": 200,
-    // "burgerColor": "hsl(87, 70%, 50%)",
-    // "sandwich": 183,
-    // "sandwichColor": "hsl(74, 70%, 50%)",
-    // "kebab": 21,
-    // "kebabColor": "hsl(82, 70%, 50%)",
-    // "fries": 2,
-    // "friesColor": "hsl(30, 70%, 50%)",
-    // "donut": 158,
-    // "donutColor": "hsl(299, 70%, 50%)"
+    "receivedDividendAmount": 34,
+    // "receivedDividendAmountColor": "hsl(263, 70%, 50%)",
+    // "estimatedNotReceivedDividendAmount": 200,
+    // "estimatedNotReceivedDividendAmountColor": "hsl(87, 70%, 50%)",
+    // "announcedDividendAmount": 183,
+    // "announcedDividendAmountColor": "hsl(74, 70%, 50%)",
+
   },
   {
     "month": "Feb",
-    "recievedDividendAmount": 109,
-    // "recievedDividendAmountColor": "hsl(2, 70%, 50%)",
-    // "burger": 7,
-    // "burgerColor": "hsl(174, 70%, 50%)",
-    // "sandwich": 157,
-    // "sandwichColor": "hsl(133, 70%, 50%)",
-    // "kebab": 76,
-    // "kebabColor": "hsl(54, 70%, 50%)",
-    // "fries": 179,
-    // "friesColor": "hsl(61, 70%, 50%)",
-    // "donut": 28,
-    // "donutColor": "hsl(35, 70%, 50%)"
+    "receivedDividendAmount": 109,
+    "announcedDividendAmount": 15,
+    "estimatedNotReceivedDividendAmount": 7,
   },
   {
     "month": "Mar",
-    "recievedDividendAmount": 131,
-    // "recievedDividendAmountColor": "hsl(74, 70%, 50%)",
-    // "burger": 155,
-    // "burgerColor": "hsl(119, 70%, 50%)",
-    // "sandwich": 127,
-    // "sandwichColor": "hsl(93, 70%, 50%)",
-    // "kebab": 64,
-    // "kebabColor": "hsl(276, 70%, 50%)",
-    // "fries": 116,
-    // "friesColor": "hsl(101, 70%, 50%)",
-    // "donut": 148,
-    // "donutColor": "hsl(66, 70%, 50%)"
+    "receivedDividendAmount": 10,
+    "announcedDividendAmount": 25,
+    "estimatedNotReceivedDividendAmount": 80,
   },
   {
     "month": "Apr",
-    "recievedDividendAmount": 174,
-    // "recievedDividendAmountColor": "hsl(199, 70%, 50%)",
-    // "burger": 117,
-    // "burgerColor": "hsl(178, 70%, 50%)",
-    // "sandwich": 126,
-    // "sandwichColor": "hsl(305, 70%, 50%)",
-    // "kebab": 12,
-    // "kebabColor": "hsl(194, 70%, 50%)",
-    // "fries": 183,
-    // "friesColor": "hsl(234, 70%, 50%)",
-    // "donut": 141,
-    // "donutColor": "hsl(41, 70%, 50%)"
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 88,
+    "estimatedNotReceivedDividendAmount": 25,
   },
   {
     "month": "May",
-    "recievedDividendAmount": 192,
-    // "recievedDividendAmountColor": "hsl(66, 70%, 50%)",
-    // "burger": 157,
-    // "burgerColor": "hsl(90, 70%, 50%)",
-    // "sandwich": 79,
-    // "sandwichColor": "hsl(286, 70%, 50%)",
-    // "kebab": 11,
-    // "kebabColor": "hsl(256, 70%, 50%)",
-    // "fries": 180,
-    // "friesColor": "hsl(200, 70%, 50%)",
-    // "donut": 62,
-    // "donutColor": "hsl(24, 70%, 50%)"
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 157,
   },
   {
     "month": "Jun",
-    "recievedDividendAmount": 121,
-    // "recievedDividendAmountColor": "hsl(231, 70%, 50%)",
-    // "burger": 108,
-    // "burgerColor": "hsl(172, 70%, 50%)",
-    // "sandwich": 8,
-    // "sandwichColor": "hsl(317, 70%, 50%)",
-    // "kebab": 160,
-    // "kebabColor": "hsl(112, 70%, 50%)",
-    // "fries": 6,
-    // "friesColor": "hsl(93, 70%, 50%)",
-    // "donut": 80,
-    // "donutColor": "hsl(311, 70%, 50%)"
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 16,
   },
   {
     "month": "Jul",
-    "recievedDividendAmount": 127,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
-    // "burger": 191,
-    // "burgerColor": "hsl(217, 70%, 50%)",
-    // "sandwich": 176,
-    // "sandwichColor": "hsl(21, 70%, 50%)",
-    // "kebab": 124,
-    // "kebabColor": "hsl(345, 70%, 50%)",
-    // "fries": 144,
-    // "friesColor": "hsl(57, 70%, 50%)",
-    // "donut": 145,
-    // "donutColor": "hsl(6, 70%, 50%)"
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 100,
+    "estimatedNotReceivedDividendAmount": 16,
   },
   {
     "month": "Aug",
-    "recievedDividendAmount": 12,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 100,
   },
   {
     "month": "Sep",
-    "recievedDividendAmount": 1,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 10,
   },
   {
     "month": "Oct",
-    "recievedDividendAmount": 110,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 20,
   },
   {
     "month": "Nov",
-    "recievedDividendAmount": 120,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 120,
+    "estimatedNotReceivedDividendAmount": 15,
   },
   {
     "month": "Dec",
-    "recievedDividendAmount": 133,
-    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    "receivedDividendAmount": 0,
+    "announcedDividendAmount": 0,
+    "estimatedNotReceivedDividendAmount": 40,
   },
 ]
 
@@ -140,111 +86,112 @@ const DivStatsBarChart = () => {
   return (
     <StyledBarChartContainer>
       <ResponsiveBar
-          data={data}
-          keys={[
-              'recievedDividendAmount',
-              'burger',
-              'sandwich',
-              'kebab',
-              'fries',
-              'donut'
-          ]}
-          indexBy="month"
-          margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
-          valueScale={{ type: 'linear' }}
-          indexScale={{ type: 'band', round: true }}
-          colors={[colors.darkGreen]}
-          // linear-gradient(360deg, rgba(15, 111, 114, 0.31) 0%, #0F6F72 73.44%, #FFD391 100%);
-          defs={[
-              {
-                  id: 'dots',
-                  type: 'patternDots',
-                  background: 'inherit',
-                  color: '#38bcb2',
-                  size: 4,
-                  padding: 1,
-                  stagger: true
-              },
-              {
-                  id: 'lines',
-                  type: 'patternLines',
-                  background: 'inherit',
-                  color: '#eed312',
-                  rotation: -45,
-                  lineWidth: 6,
-                  spacing: 10
-              }
-          ]}
-          fill={[
-              {
-                  match: {
-                      id: 'fries'
-                  },
-                  id: 'dots'
-              },
-              {
-                  match: {
-                      id: 'sandwich'
-                  },
-                  id: 'lines'
-              }
-          ]}
-          borderColor={{
-              from: 'color',
-              modifiers: [
-                  [
-                      'darker',
-                      1.6
-                  ]
-              ]
-          }}
-          axisTop={null}
-          axisRight={null}
-          axisBottom={{
-              tickSize: 0,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: '',
-              legendPosition: 'middle',
-              legendOffset: -60
-          }}
-          axisLeft={null}
-          enableGridY={false}
-          labelSkipHeight={9}
-          labelTextColor="black"
-          legends={[
-              {
-                  dataFrom: 'keys',
-                  anchor: 'bottom-right',
-                  direction: 'column',
-                  justify: false,
-                  translateX: 120,
-                  translateY: 0,
-                  itemsSpacing: 2,
-                  itemWidth: 100,
-                  itemHeight: 20,
-                  itemDirection: 'left-to-right',
-                  itemOpacity: 0.85,
-                  symbolSize: 20,
-                  effects: [
-                      {
-                          on: 'hover',
-                          style: {
-                              itemOpacity: 1
-                          }
-                      }
-                  ]
-              }
-          ]}
-          // tooltip={function(){}}
-          motionConfig="slow"
-          role="application"
-          isFocusable={true}
-          ariaLabel="Nivo bar chart demo"
-          barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in month: "+e.indexValue}}
+        data={data}
+        keys={[
+          'receivedDividendAmount',
+          'announcedDividendAmount',
+          'estimatedNotReceivedDividendAmount',
+          'kebab',
+          'fries',
+          'donut'
+        ]}
+        indexBy="month"
+        margin={{ bottom: 24 }}
+        padding={0.20}
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={[colors.lightGreen, colors.darkGreen, colors.darkGreenEasy]}
+        // linear-gradient(360deg, rgba(15, 111, 114, 0.31) 0%, #0F6F72 73.44%, #FFD391 100%);
+        defs={[
+          {
+            id: 'dots',
+            type: 'patternDots',
+            background: 'inherit',
+            color: '#38bcb2',
+            size: 4,
+            padding: 1,
+            stagger: true
+          },
+          {
+            id: 'lines',
+            type: 'patternLines',
+            background: 'inherit',
+            color: colors.green,
+            rotation: -45,
+            lineWidth: 6,
+            spacing: 10
+          }
+        ]}
+        fill={[
+          // {
+          //     match: {
+          //         id: 'receivedDividendAmount'
+          //     },
+          //     id: 'dots'
+          // },
+          {
+            match: {
+              id: 'receivedDividendAmount'
+            },
+            id: 'lines'
+          }
+        ]}
+        borderColor={{
+          from: 'color',
+          modifiers: [
+            [
+              'darker',
+              1.6
+            ]
+          ]
+        }}
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 5,
+          tickRotation: 0,
+          legend: '',
+          legendPosition: 'middle',
+          legendOffset: -60
+        }}
+        axisLeft={null}
+        enableGridY={false}
+        labelSkipHeight={9}
+        label={({ id, value }) => id === "estimatedNotReceivedDividendAmount" ? `~$${value}` : `$${value}`} // TODO: Currency
+        // legends={[
+        //     {
+        //         dataFrom: 'keys',
+        //         anchor: 'bottom-right',
+        //         direction: 'column',
+        //         justify: false,
+        //         translateX: 120,
+        //         translateY: 0,
+        //         itemsSpacing: 2,
+        //         itemWidth: 100,
+        //         itemHeight: 20,
+        //         itemDirection: 'left-to-right',
+        //         itemOpacity: 0.85,
+        //         symbolSize: 20,
+        //         effects: [
+        //             {
+        //                 on: 'hover',
+        //                 style: {
+        //                     itemOpacity: 1
+        //                 }
+        //             }
+        //         ]
+        //     }
+        // ]}
+        // tooltip={function(){}}
+        motionConfig="slow"
+        role="application"
+        isFocusable={true}
+        ariaLabel="Nivo bar chart demo"
+        barAriaLabel={function (e) { return e.id + ": " + e.formattedValue + " in month: " + e.indexValue }}
       />
     </StyledBarChartContainer>
-)
+  )
 }
 
 export default memo(DivStatsBarChart)
