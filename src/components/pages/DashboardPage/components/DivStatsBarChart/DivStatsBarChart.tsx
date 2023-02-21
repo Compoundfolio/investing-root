@@ -1,134 +1,160 @@
 import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
-import { StyledPieChartContainer } from '../PortfolioAssetsPieChart/styled'
+import { StyledBarChartContainer } from './styled'
+import { colors } from 'src/core/theme';
 
 const data = [
   {
-    "country": "AD",
-    "hot dog": 34,
-    "hot dogColor": "hsl(263, 70%, 50%)",
-    "burger": 200,
-    "burgerColor": "hsl(87, 70%, 50%)",
-    "sandwich": 183,
-    "sandwichColor": "hsl(74, 70%, 50%)",
-    "kebab": 21,
-    "kebabColor": "hsl(82, 70%, 50%)",
-    "fries": 2,
-    "friesColor": "hsl(30, 70%, 50%)",
-    "donut": 158,
-    "donutColor": "hsl(299, 70%, 50%)"
+    "month": "Jan",
+    "recievedDividendAmount": 34,
+    // "recievedDividendAmountColor": "hsl(263, 70%, 50%)",
+    // "burger": 200,
+    // "burgerColor": "hsl(87, 70%, 50%)",
+    // "sandwich": 183,
+    // "sandwichColor": "hsl(74, 70%, 50%)",
+    // "kebab": 21,
+    // "kebabColor": "hsl(82, 70%, 50%)",
+    // "fries": 2,
+    // "friesColor": "hsl(30, 70%, 50%)",
+    // "donut": 158,
+    // "donutColor": "hsl(299, 70%, 50%)"
   },
   {
-    "country": "AE",
-    "hot dog": 109,
-    "hot dogColor": "hsl(2, 70%, 50%)",
-    "burger": 7,
-    "burgerColor": "hsl(174, 70%, 50%)",
-    "sandwich": 157,
-    "sandwichColor": "hsl(133, 70%, 50%)",
-    "kebab": 76,
-    "kebabColor": "hsl(54, 70%, 50%)",
-    "fries": 179,
-    "friesColor": "hsl(61, 70%, 50%)",
-    "donut": 28,
-    "donutColor": "hsl(35, 70%, 50%)"
+    "month": "Feb",
+    "recievedDividendAmount": 109,
+    // "recievedDividendAmountColor": "hsl(2, 70%, 50%)",
+    // "burger": 7,
+    // "burgerColor": "hsl(174, 70%, 50%)",
+    // "sandwich": 157,
+    // "sandwichColor": "hsl(133, 70%, 50%)",
+    // "kebab": 76,
+    // "kebabColor": "hsl(54, 70%, 50%)",
+    // "fries": 179,
+    // "friesColor": "hsl(61, 70%, 50%)",
+    // "donut": 28,
+    // "donutColor": "hsl(35, 70%, 50%)"
   },
   {
-    "country": "AF",
-    "hot dog": 131,
-    "hot dogColor": "hsl(74, 70%, 50%)",
-    "burger": 155,
-    "burgerColor": "hsl(119, 70%, 50%)",
-    "sandwich": 127,
-    "sandwichColor": "hsl(93, 70%, 50%)",
-    "kebab": 64,
-    "kebabColor": "hsl(276, 70%, 50%)",
-    "fries": 116,
-    "friesColor": "hsl(101, 70%, 50%)",
-    "donut": 148,
-    "donutColor": "hsl(66, 70%, 50%)"
+    "month": "Mar",
+    "recievedDividendAmount": 131,
+    // "recievedDividendAmountColor": "hsl(74, 70%, 50%)",
+    // "burger": 155,
+    // "burgerColor": "hsl(119, 70%, 50%)",
+    // "sandwich": 127,
+    // "sandwichColor": "hsl(93, 70%, 50%)",
+    // "kebab": 64,
+    // "kebabColor": "hsl(276, 70%, 50%)",
+    // "fries": 116,
+    // "friesColor": "hsl(101, 70%, 50%)",
+    // "donut": 148,
+    // "donutColor": "hsl(66, 70%, 50%)"
   },
   {
-    "country": "AG",
-    "hot dog": 174,
-    "hot dogColor": "hsl(199, 70%, 50%)",
-    "burger": 117,
-    "burgerColor": "hsl(178, 70%, 50%)",
-    "sandwich": 126,
-    "sandwichColor": "hsl(305, 70%, 50%)",
-    "kebab": 12,
-    "kebabColor": "hsl(194, 70%, 50%)",
-    "fries": 183,
-    "friesColor": "hsl(234, 70%, 50%)",
-    "donut": 141,
-    "donutColor": "hsl(41, 70%, 50%)"
+    "month": "Apr",
+    "recievedDividendAmount": 174,
+    // "recievedDividendAmountColor": "hsl(199, 70%, 50%)",
+    // "burger": 117,
+    // "burgerColor": "hsl(178, 70%, 50%)",
+    // "sandwich": 126,
+    // "sandwichColor": "hsl(305, 70%, 50%)",
+    // "kebab": 12,
+    // "kebabColor": "hsl(194, 70%, 50%)",
+    // "fries": 183,
+    // "friesColor": "hsl(234, 70%, 50%)",
+    // "donut": 141,
+    // "donutColor": "hsl(41, 70%, 50%)"
   },
   {
-    "country": "AI",
-    "hot dog": 192,
-    "hot dogColor": "hsl(66, 70%, 50%)",
-    "burger": 157,
-    "burgerColor": "hsl(90, 70%, 50%)",
-    "sandwich": 79,
-    "sandwichColor": "hsl(286, 70%, 50%)",
-    "kebab": 11,
-    "kebabColor": "hsl(256, 70%, 50%)",
-    "fries": 180,
-    "friesColor": "hsl(200, 70%, 50%)",
-    "donut": 62,
-    "donutColor": "hsl(24, 70%, 50%)"
+    "month": "May",
+    "recievedDividendAmount": 192,
+    // "recievedDividendAmountColor": "hsl(66, 70%, 50%)",
+    // "burger": 157,
+    // "burgerColor": "hsl(90, 70%, 50%)",
+    // "sandwich": 79,
+    // "sandwichColor": "hsl(286, 70%, 50%)",
+    // "kebab": 11,
+    // "kebabColor": "hsl(256, 70%, 50%)",
+    // "fries": 180,
+    // "friesColor": "hsl(200, 70%, 50%)",
+    // "donut": 62,
+    // "donutColor": "hsl(24, 70%, 50%)"
   },
   {
-    "country": "AL",
-    "hot dog": 121,
-    "hot dogColor": "hsl(231, 70%, 50%)",
-    "burger": 108,
-    "burgerColor": "hsl(172, 70%, 50%)",
-    "sandwich": 8,
-    "sandwichColor": "hsl(317, 70%, 50%)",
-    "kebab": 160,
-    "kebabColor": "hsl(112, 70%, 50%)",
-    "fries": 6,
-    "friesColor": "hsl(93, 70%, 50%)",
-    "donut": 80,
-    "donutColor": "hsl(311, 70%, 50%)"
+    "month": "Jun",
+    "recievedDividendAmount": 121,
+    // "recievedDividendAmountColor": "hsl(231, 70%, 50%)",
+    // "burger": 108,
+    // "burgerColor": "hsl(172, 70%, 50%)",
+    // "sandwich": 8,
+    // "sandwichColor": "hsl(317, 70%, 50%)",
+    // "kebab": 160,
+    // "kebabColor": "hsl(112, 70%, 50%)",
+    // "fries": 6,
+    // "friesColor": "hsl(93, 70%, 50%)",
+    // "donut": 80,
+    // "donutColor": "hsl(311, 70%, 50%)"
   },
   {
-    "country": "AM",
-    "hot dog": 127,
-    "hot dogColor": "hsl(300, 70%, 50%)",
-    "burger": 191,
-    "burgerColor": "hsl(217, 70%, 50%)",
-    "sandwich": 176,
-    "sandwichColor": "hsl(21, 70%, 50%)",
-    "kebab": 124,
-    "kebabColor": "hsl(345, 70%, 50%)",
-    "fries": 144,
-    "friesColor": "hsl(57, 70%, 50%)",
-    "donut": 145,
-    "donutColor": "hsl(6, 70%, 50%)"
-  }
+    "month": "Jul",
+    "recievedDividendAmount": 127,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+    // "burger": 191,
+    // "burgerColor": "hsl(217, 70%, 50%)",
+    // "sandwich": 176,
+    // "sandwichColor": "hsl(21, 70%, 50%)",
+    // "kebab": 124,
+    // "kebabColor": "hsl(345, 70%, 50%)",
+    // "fries": 144,
+    // "friesColor": "hsl(57, 70%, 50%)",
+    // "donut": 145,
+    // "donutColor": "hsl(6, 70%, 50%)"
+  },
+  {
+    "month": "Aug",
+    "recievedDividendAmount": 12,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+  },
+  {
+    "month": "Sep",
+    "recievedDividendAmount": 1,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+  },
+  {
+    "month": "Oct",
+    "recievedDividendAmount": 110,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+  },
+  {
+    "month": "Nov",
+    "recievedDividendAmount": 120,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+  },
+  {
+    "month": "Dec",
+    "recievedDividendAmount": 133,
+    // "recievedDividendAmountColor": "hsl(300, 70%, 50%)",
+  },
 ]
 
 const DivStatsBarChart = () => {
   return (
-    <StyledPieChartContainer>
-
+    <StyledBarChartContainer>
       <ResponsiveBar
           data={data}
           keys={[
-              'hot dog',
+              'recievedDividendAmount',
               'burger',
               'sandwich',
               'kebab',
               'fries',
               'donut'
           ]}
-          indexBy="country"
-          margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+          indexBy="month"
+          margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
           valueScale={{ type: 'linear' }}
           indexScale={{ type: 'band', round: true }}
-          colors={{ scheme: 'nivo' }}
+          colors={[colors.darkGreen]}
+          // linear-gradient(360deg, rgba(15, 111, 114, 0.31) 0%, #0F6F72 73.44%, #FFD391 100%);
           defs={[
               {
                   id: 'dots',
@@ -215,9 +241,9 @@ const DivStatsBarChart = () => {
           role="application"
           isFocusable={true}
           ariaLabel="Nivo bar chart demo"
-          barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in country: "+e.indexValue}}
+          barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in month: "+e.indexValue}}
       />
-    </StyledPieChartContainer>
+    </StyledBarChartContainer>
 )
 }
 

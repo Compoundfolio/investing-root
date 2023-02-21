@@ -84,13 +84,13 @@ const PortfolioAssetsPieChart = () => {
         <span>{selectedEntityPiePercentage.toFixed(2)}%</span>
       </div>
       <ResponsivePie
-      onClick={(item) => {                
-        if ((activeItem as DataItem)?.id === item.id) {
-          setActiveItem(null);
-        } else {
-          setActiveItem(item as DataItem);
-        }
-      }}
+        onClick={(item) => {                
+          if ((activeItem as DataItem)?.id === item.id) {
+            setActiveItem(null);
+          } else {
+            setActiveItem(item as DataItem);
+          }
+        }}
         // onMouseMove={(e) => console.log(e)}
         onMouseLeave={(e) => console.log(e)}
         onMouseMove={(e) => console.log(e)}
