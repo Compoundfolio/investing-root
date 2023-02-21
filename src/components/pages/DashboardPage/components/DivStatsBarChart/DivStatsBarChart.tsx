@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { StyledBarChartContainer } from './styled'
 import { colors } from 'src/core/theme';
+import { YearSwitcher } from '@core';
 
 const data = [
   {
@@ -83,8 +84,15 @@ const data = [
 ]
 
 const DivStatsBarChart = () => {
+  const onYearBack = (year: number) => {}
+  const onYearForward = (year: number) => {}
+
   return (
     <StyledBarChartContainer>
+      <YearSwitcher 
+        onYearBack={onYearBack}
+        onYearForward={onYearForward}
+      />
       <ResponsiveBar
         data={data}
         keys={[

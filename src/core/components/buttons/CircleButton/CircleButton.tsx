@@ -7,7 +7,7 @@ const CircleButton = ({
   onClick,
 }: ICircleButton) => {
   return (
-    <IconButton onClick={onClick}>
+    <IconButton onClick={onClick} color="info">
       {children}
     </IconButton>
   )
