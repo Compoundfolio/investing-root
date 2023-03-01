@@ -1,4 +1,4 @@
-import { ID, Ticker } from "@core";
+import { DividendHistory, DividendStats, ID, Ticker } from "@core";
 
 type AssetOpenPosition = {
   id: ID
@@ -10,6 +10,9 @@ type AssetOpenPosition = {
   /** Average open position price */
   averagePrice: number;
   actualPositionPrice: number // actualOneSharePrice*sharesAmount
+  /** **Attention!** It's div history based on div. transactions from brokerage, not from API */
+  dividendHistory: DividendHistory;
+  dividendStats: DividendStats;
 }
 
 export default AssetOpenPosition

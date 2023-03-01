@@ -1,6 +1,7 @@
 import { AssetOpenPosition, NormalizedTransactionsByTicker, PortfolioOpenClosePositions, Ticker, Transaction } from 'src/core/types';
 import {  
   getCurrentPositionPrice, 
+  getDividendHistoryByDivTransactions, 
   getSharesAmount, 
 } from './helpers';
 import { TickerAndPrice } from 'src/api/market/types';
@@ -41,6 +42,7 @@ const getAllPositionsByBrokerageTransactions = (
     .forEach(([ ticker, transactionsList ]: [Ticker, Transaction[]]) => { 
       const openSharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
+      const dividendHistory = getDividendHistoryByDivTransactions(transactionsList)
       const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
 
       const openPositionData: AssetOpenPosition = {
@@ -50,7 +52,8 @@ const getAllPositionsByBrokerageTransactions = (
         currentPositionPrice: shareMarketPrice, // Market 1 share price
         // averagePrice: openPositionInvestedValue / openSharesAmount,
         averagePrice: openPositionPrice / openSharesAmount, // Avg. portfolio 1 share price // TODO: Calculates wrong
-        actualPositionPrice: Number(openPositionPrice.toFixed(2))
+        actualPositionPrice: Number(openPositionPrice.toFixed(2)),
+        dividendHistory,
       }
       // TODO: Count sold out positions too
       

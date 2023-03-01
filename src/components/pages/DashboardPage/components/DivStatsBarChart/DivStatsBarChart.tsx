@@ -13,7 +13,6 @@ const data = [
     // "estimatedNotReceivedDividendAmountColor": "hsl(87, 70%, 50%)",
     // "announcedDividendAmount": 183,
     // "announcedDividendAmountColor": "hsl(74, 70%, 50%)",
-
   },
   {
     "month": "Feb",
@@ -191,12 +190,18 @@ const DivStatsBarChart = () => {
         //         ]
         //     }
         // ]}
-        // tooltip={function(){}}
+        // tooltip={(data) => {
+        //   console.log(data);
+          
+        //   return (
+        //     <div>1122</div>
+        //   )
+        // }}
         motionConfig="slow"
         role="application"
         isFocusable={true}
-        ariaLabel="Nivo bar chart demo"
-        barAriaLabel={function (e) { return e.id + ": " + e.formattedValue + " in month: " + e.indexValue }}
+        // ariaLabel="Nivo bar chart demo"
+        // barAriaLabel={function (e) { return e.id + ": " + " in month: " + e.indexValue }}
       />
     </StyledBarChartContainer>
   )
