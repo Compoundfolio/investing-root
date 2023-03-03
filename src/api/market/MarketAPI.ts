@@ -1,6 +1,6 @@
 import { Ticker, normalizeArrayOfObjectsBy } from "@core";
 import ehd from 'ehd-js'
-import { EHDLivePrice } from "ehd-js/src/types/model";
+import { EHDDividend, EHDLivePrice } from "ehd-js/src/types/model";
 import { TickerAndPrice } from "./types";
 
 ehd.setToken(`${process.env.NEXT_PUBLIC_STOCKS_API_KEY}`)
@@ -21,6 +21,10 @@ const MarketAPI = {
     const stocksPriceList = await ehd.livePrices({ code: firstTicker, s: restTickers })
     return normalizeArrayOfObjectsBy<EHDLivePrice>(stocksPriceList, "code", "previousClose") as TickerAndPrice
   },
+  getDividendDataByTicker: async (ticker: Ticker): Promise<EHDDividend[]> => {
+    const dividendData = await ehd.dividends({ code: ticker })
+    return dividendData
+  }
 }
 
 export default MarketAPI
