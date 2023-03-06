@@ -4,6 +4,7 @@ import Transaction from '../../../types/brokerage/Transaction';
 /** Returns dividend history according asset transactions */
 const getDividendHistoryByDivTransactions = (transactionsList: Transaction[]): DividendHistory => {
   let divHistory = [] as DividendHistory
+console.log(transactionsList);
 
   transactionsList.forEach(currentTransaction => {
     const isDividend = currentTransaction.type === BrokerageTransactionType.DIVIDEND

@@ -1,5 +1,5 @@
 import { Currency, Transaction } from "src/core/types"
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { getOperation, getPartsFromSymbolId, getTime, getTransactionType } from "./helpers";
 import { getExanteTransactionsList, parseNumber } from "@core";
 

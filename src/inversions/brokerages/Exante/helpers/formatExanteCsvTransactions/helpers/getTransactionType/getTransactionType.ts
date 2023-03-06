@@ -17,7 +17,7 @@ const getTransactionType = ({
 
   if (exanteType === "COMMISSION") return BrokerageTransactionType.COMMISSION
   
-  if (exanteType === "TAX") return BrokerageTransactionType.TAX
+  if (exanteType === "TAX" || exanteType === "US TAX") return BrokerageTransactionType.TAX
 
   if (exanteType === "FUNDING/WITHDRAWAL") {
     const operationPrice = parseNumber(Price)
