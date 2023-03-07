@@ -1,7 +1,7 @@
 import { mergeToDictionary } from "./serializers";
 import ExanteCsvData from '../../../inversions/brokerages/Exante/__types__/ExanteCsvData';
 
-const getExanteTransactionsList = (str: string): ExanteCsvData => {
+const getExanteTransactionsList = <ReturnT = ExanteCsvData>(str: string) => {
 	const headers = str
 		.slice(0, str.indexOf("\n"))
 		.replaceAll(`"\t"`, ",")
@@ -17,7 +17,7 @@ const getExanteTransactionsList = (str: string): ExanteCsvData => {
 			.split(",")
 		);
 
-	return mergeToDictionary(headers, rows);
+	return mergeToDictionary(headers, rows) as ReturnT;
 }
 
 export default getExanteTransactionsList

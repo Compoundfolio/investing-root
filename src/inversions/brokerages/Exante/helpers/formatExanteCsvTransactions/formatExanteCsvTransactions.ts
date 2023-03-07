@@ -1,29 +1,56 @@
-import { Currency, Transaction } from "src/core/types"
+import { Currency, NonTradeTransaction, Transaction } from "src/core/types"
 import { v4 as uuidv4 } from 'uuid';
 import { getOperation, getPartsFromSymbolId, getTime, getTransactionType } from "./helpers";
-import { getExanteTransactionsList, parseNumber } from "@core";
+import { getExanteNonTradeTransactionsList, getExanteTransactionsList, parseNumber } from "@core";
 
-const formatExanteCsvTransactions = (reportUnParsedData: string): Transaction[] => {
-  let compaundfolioTransactions: Transaction[] = []
+const formatExanteCsvTransactions = (reportUnParsedData: string) => {
+  let parsedTradeTransactions: Transaction[] = []
+  let parsedNonTradeTransactions: NonTradeTransaction[] = []
 
-  const csvData = getExanteTransactionsList(reportUnParsedData)
+  const secondTablePos = reportUnParsedData.indexOf("Transaction ID")
+
+  const tradeTransactionsSourceString = reportUnParsedData.substring(0, secondTablePos)
+  const tradeTransactions = getExanteTransactionsList(tradeTransactionsSourceString)
+
+  const nonTradeTransactionsSourceString = reportUnParsedData.substr(secondTablePos)
+  const nonTradeTransactions = getExanteNonTradeTransactionsList(nonTradeTransactionsSourceString)
+
+  console.log("tradeTransactions",tradeTransactions);
+  console.log("nonTradeTransactions",nonTradeTransactions);
   
-  for (const exanteTransaction of csvData) {
-    compaundfolioTransactions.push({
-      id: exanteTransaction["Order Id"] ?? uuidv4(),
-      type: getTransactionType(exanteTransaction),
-      time: getTime(exanteTransaction.Time),
-      currency: exanteTransaction.Currency as Currency,
-      ticker: getPartsFromSymbolId(exanteTransaction["Symbol ID"]).ticker,
-      stockExchange: getPartsFromSymbolId(exanteTransaction["Symbol ID"]).exchange,
-      orderPrice: parseNumber(exanteTransaction.Price),
-      orderAmount: parseNumber(exanteTransaction.Quantity),
-      commission: parseNumber(exanteTransaction.Commission),
-      operation: getOperation(exanteTransaction.Side),
+  // Trade transactions
+  for (const exanteTradeTransaction of tradeTransactions) {
+    parsedTradeTransactions.push({
+      id: exanteTradeTransaction["Order Id"] ?? uuidv4(),
+      type: getTransactionType(exanteTradeTransaction),
+      time: getTime(exanteTradeTransaction.Time),
+      currency: exanteTradeTransaction.Currency as Currency,
+      ticker: getPartsFromSymbolId(exanteTradeTransaction["Symbol ID"])?.ticker,
+      stockExchange: getPartsFromSymbolId(exanteTradeTransaction["Symbol ID"])?.exchange,
+      orderPrice: parseNumber(exanteTradeTransaction.Price),
+      orderAmount: parseNumber(exanteTradeTransaction.Quantity),
+      commission: parseNumber(exanteTradeTransaction.Commission),
+      operation: getOperation(exanteTradeTransaction.Side), // TODO: Remove
     })
   }   
 
-  return compaundfolioTransactions
+  // Rest transactions
+  for (const exanteNonTradeTransaction of nonTradeTransactions) {
+    parsedNonTradeTransactions.push({
+      id: exanteNonTradeTransaction["Transaction ID"] ?? uuidv4(),
+      type: exanteNonTradeTransaction["Operation Type"],
+      time: exanteNonTradeTransaction["When"],
+      currency: exanteNonTradeTransaction["Asset"],
+      ticker: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.ticker ?? null,
+      stockExchange: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.exchange ?? null,
+      price: parseNumber(exanteNonTradeTransaction["Sum"]),
+    })
+  } 
+
+  return {
+    parsedTradeTransactions,
+    parsedNonTradeTransactions,
+  }
 }
 
 export default formatExanteCsvTransactions

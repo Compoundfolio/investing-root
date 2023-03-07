@@ -1,7 +1,7 @@
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
 import AbstractBrokerage from './AbstractBrokerage';
 import AbstractSideBrokerage from './AbstractSideBrokerage';
-import { PortfolioOpenClosePositions, Transaction } from 'src/core/types';
+import { NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
 
 /** Brokerage dependency inversion root */
 export default class Brokerage implements AbstractBrokerage {
@@ -10,6 +10,7 @@ export default class Brokerage implements AbstractBrokerage {
   private logoPath: string
 
   private transactions: Transaction[] = [] 
+  private nonTradeTransactions: NonTradeTransaction[] = []
   private assets: PortfolioOpenClosePositions
 
   constructor(
@@ -37,7 +38,11 @@ export default class Brokerage implements AbstractBrokerage {
     return this.assets
   }
 
-  getAllTransactions() {
+  getTradeTransactions() {
     return this.transactions
+  };
+
+  getNonTradeTransactions() {
+    return this.nonTradeTransactions
   };
 }

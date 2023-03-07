@@ -1,4 +1,4 @@
-import { PortfolioOpenClosePositions, Transaction } from 'src/core/types';
+import { NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
 import { 
   formatExanteCsvTransactions, 
   getExanteAssetListFromTransactions,
@@ -7,6 +7,7 @@ import AbstractSideBrokerage from '../AbstractSideBrokerage';
 
 class ExanteBrokerage implements AbstractSideBrokerage {  
   transactions: Transaction[] = []
+  nonTradeTransactions: NonTradeTransaction[] = []
  
   assets: PortfolioOpenClosePositions
 
@@ -14,10 +15,11 @@ class ExanteBrokerage implements AbstractSideBrokerage {
   static logoPath = "https://exante.eu/static/i/dest/website/components/logos/flat_icon_1024x1024.png"
 
   constructor(reportUnParsedData: string) {
-    this.transactions = formatExanteCsvTransactions(reportUnParsedData)
-    this.assets = getExanteAssetListFromTransactions(this.transactions)    
-    console.log(123, this.transactions, this.assets);
+    const { parsedTradeTransactions, parsedNonTradeTransactions } = formatExanteCsvTransactions(reportUnParsedData)
     
+    this.transactions = parsedTradeTransactions
+    this.nonTradeTransactions = parsedNonTradeTransactions
+    this.assets = getExanteAssetListFromTransactions(this.transactions, this.nonTradeTransactions)        
   }
 }
 

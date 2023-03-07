@@ -1,4 +1,4 @@
-import { AssetOpenPosition, NormalizedTransactionsByTicker, PortfolioOpenClosePositions, Ticker, Transaction } from 'src/core/types';
+import { AssetOpenPosition, NormalizedTransactionsByTicker, PortfolioOpenClosePositions, Ticker, Transaction, NonTradeTransaction } from 'src/core/types';
 import {  
   getCurrentPositionPrice, 
   getDividendHistoryByDivTransactions, 
@@ -25,7 +25,8 @@ const testData: TickerAndPrice = {
 } 
 
 const getAllPositionsByBrokerageTransactions = (
-  transactionsByTicker: NormalizedTransactionsByTicker
+  tradeTransactionsByTicker: NormalizedTransactionsByTicker,
+  nonTradeTransactions: NormalizedTransactionsByTicker<NonTradeTransaction>
   //@ts-ignore
 ): PortfolioOpenClosePositions => {    
   let positions: PortfolioOpenClosePositions = {
@@ -33,14 +34,14 @@ const getAllPositionsByBrokerageTransactions = (
     closedPositions: {},
   }  
 
-  // const tickersListWithOpenPosition = getTickersListWithOpenPosition(transactionsByTicker)
+  // const tickersListWithOpenPosition = getTickersListWithOpenPosition(tradeTransactionsByTicker)
   // TODO: Uncomment when API will be purchased
   // const tickersWithOpenPositionMarketPriceDictionary: TickerAndPrice = await Api.POST("/api/market", tickersListWithOpenPosition)  
   const tickersWithOpenPositionMarketPriceDictionary = testData  
   // console.log("tickersWithOpenPositionMarketPriceDictionary", tickersWithOpenPositionMarketPriceDictionary);
 
   Object
-    .entries(transactionsByTicker)
+    .entries(tradeTransactionsByTicker)
     .forEach(([ ticker, transactionsList ]: [Ticker, Transaction[]]) => { 
       const openSharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)

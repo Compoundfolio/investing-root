@@ -4,14 +4,29 @@ import {
   normalizeArrayOfObjectsBy,
   NormalizedTransactionsByTicker,
   getAllPositionsByBrokerageTransactions,
+  NonTradeTransaction,
 } from "@core"
 
 const getExanteAssetListFromTransactions = (
-  transactions: Transaction[]
+  tradeTransactions: Transaction[],
+  nonTradeTransactions: NonTradeTransaction[],
 ): PortfolioOpenClosePositions => {
-  if (transactions.length) {
-    const transactionsByTicker = normalizeArrayOfObjectsBy<Transaction>(transactions, "ticker") as NormalizedTransactionsByTicker
-    const openedAndClosedPositionsByTicker = getAllPositionsByBrokerageTransactions(transactionsByTicker)
+  if (tradeTransactions.length ) {
+    const tradeTransactionsNormalizedByTicker = normalizeArrayOfObjectsBy<Transaction>(
+      tradeTransactions, 
+      "ticker"
+    ) as NormalizedTransactionsByTicker
+
+    const nonTradeTransactionsNormalizedByTicker = normalizeArrayOfObjectsBy<NonTradeTransaction>(
+      nonTradeTransactions, 
+      "ticker",
+    ) as NormalizedTransactionsByTicker<NonTradeTransaction>
+    
+    const openedAndClosedPositionsByTicker = getAllPositionsByBrokerageTransactions(
+      tradeTransactionsNormalizedByTicker, 
+      nonTradeTransactionsNormalizedByTicker
+    )
+
     return openedAndClosedPositionsByTicker
   }
 

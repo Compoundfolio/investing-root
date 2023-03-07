@@ -1,4 +1,6 @@
-import { DividendHistory, DividendStats, ID, Ticker } from "@core";
+import { DividendStats, ID, Ticker } from "@core";
+import { EHDDividend } from "ehd-js/src/types/model";
+import { NonTradeTransaction } from 'src/core/types';
 
 type AssetOpenPosition = {
   id: ID
@@ -10,9 +12,11 @@ type AssetOpenPosition = {
   /** Average open position price */
   averagePrice: number;
   actualPositionPrice: number // actualOneSharePrice*sharesAmount
-  /** **Attention!** It's div history based on div. transactions from brokerage, not from API */
-  dividendHistory: DividendHistory;
   dividendStats: DividendStats;
+  wholeMarketDividendHistory: EHDDividend[],
+  payedDividendTaxTransactions: NonTradeTransaction<"TAX" | "US TAX">
+  payedBrokerageCommissionsTransactions: NonTradeTransaction<"COMMISSION">,
+  payedDividendTransactions: NonTradeTransaction<"DIVIDEND">
 }
 
 export default AssetOpenPosition

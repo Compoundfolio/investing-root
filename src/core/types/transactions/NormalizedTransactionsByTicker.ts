@@ -1,8 +1,8 @@
 import { Ticker } from "../assets";
 import { Transaction } from "../brokerage";
 
-type NormalizedTransactionsByTicker = {
-  [Ticker: Ticker]: Transaction[];
+type NormalizedTransactionsByTicker<T = Transaction> = {
+  [Ticker: Ticker]: T[];
 }
 
 export default NormalizedTransactionsByTicker

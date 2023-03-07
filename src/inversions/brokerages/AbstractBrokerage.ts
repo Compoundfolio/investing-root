@@ -14,6 +14,6 @@ export default class AbstractBrokerage {
 
   getBrandName!: () => string
   getLogoPath!: () => string
-  getAllTransactions!: () => Transaction[] | []
+  getTradeTransactions!: () => Transaction[] | []
   getAssets!: () => PortfolioOpenClosePositions[] | {}
 }

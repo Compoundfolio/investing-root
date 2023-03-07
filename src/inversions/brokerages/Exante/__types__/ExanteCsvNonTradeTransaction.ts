@@ -1,7 +1,7 @@
 import { Ticker } from "@core";
 import { SymbolId } from "../helpers";
 
-type ExanteCsvNonTradeTransactions = {
+type ExanteCsvNonTradeTransaction = {
   "Transaction ID"?: string,
   "Account ID"?: string,
   "Symbol ID"?: SymbolId, 
@@ -16,4 +16,4 @@ type ExanteCsvNonTradeTransactions = {
   "Parent UUID": string,
 }
 
-export default ExanteCsvNonTradeTransactions
+export default ExanteCsvNonTradeTransaction
