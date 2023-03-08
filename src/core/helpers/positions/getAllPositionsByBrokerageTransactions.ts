@@ -1,10 +1,17 @@
-import { AssetOpenPosition, NormalizedTransactionsByTicker, PortfolioOpenClosePositions, Ticker, Transaction, NonTradeTransaction } from 'src/core/types';
+import { 
+  AssetOpenPosition, 
+  NormalizedTransactionsByTicker, 
+  PortfolioOpenClosePositions, 
+  Ticker, 
+  Transaction, 
+  NonTradeTransaction,
+} from 'src/core/types';
 import {  
   getCurrentPositionPrice, 
-  getDividendHistoryByDivTransactions, 
   getDividendStatsByTicker, 
   getDividendHistoryByTicker,
-  getSharesAmount, 
+  getSharesAmount,
+  getNonTradeTransactions, 
 } from './helpers';
 import { TickerAndPrice } from 'src/api/market/types';
 import { v4 as uuidv4 } from 'uuid';
@@ -42,13 +49,13 @@ const getAllPositionsByBrokerageTransactions = (
 
   Object
     .entries(tradeTransactionsByTicker)
-    .forEach(([ ticker, transactionsList ]: [Ticker, Transaction[]]) => { 
+    .forEach(async ([ ticker, transactionsList ]: [Ticker, Transaction[]]) => { 
       const openSharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
-      const dividendHistory = getDividendHistoryByDivTransactions(transactionsList)
-      const wholeDividendHistoryForTicker = getDividendHistoryByTicker(ticker)
+      const wholeDividendHistoryForTicker = await getDividendHistoryByTicker(ticker)
       const dividendStats = getDividendStatsByTicker(ticker, openSharesAmount)
       const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
+      const nonTradeTransactionsList = nonTradeTransactions[ticker]
 
       const openPositionData: AssetOpenPosition = {
         id: uuidv4(),
@@ -58,8 +65,11 @@ const getAllPositionsByBrokerageTransactions = (
         // averagePrice: openPositionInvestedValue / openSharesAmount,
         averagePrice: openPositionPrice / openSharesAmount, // Avg. portfolio 1 share price // TODO: Calculates wrong
         actualPositionPrice: Number(openPositionPrice.toFixed(2)),
-        dividendHistory,
         dividendStats,
+        wholeMarketDividendHistory: wholeDividendHistoryForTicker,
+        payedDividendTaxTransactions: getNonTradeTransactions(nonTradeTransactionsList, ["US TAX", "TAX"]),
+        payedBrokerageCommissionsTransactions: getNonTradeTransactions(nonTradeTransactionsList, "COMMISSION"),
+        payedDividendTransactions: getNonTradeTransactions(nonTradeTransactionsList, "DIVIDEND"),
       }
       // TODO: Count sold out positions too
       
