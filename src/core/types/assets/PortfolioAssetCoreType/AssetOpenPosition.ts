@@ -14,9 +14,9 @@ type AssetOpenPosition = {
   actualPositionPrice: number // actualOneSharePrice*sharesAmount
   dividendStats: DividendStats;
   wholeMarketDividendHistory: EHDDividend[],
-  payedDividendTaxTransactions: NonTradeTransaction<"TAX" | "US TAX">
-  payedBrokerageCommissionsTransactions: NonTradeTransaction<"COMMISSION">,
-  payedDividendTransactions: NonTradeTransaction<"DIVIDEND">
+  payedDividendTaxTransactions: NonTradeTransaction<"TAX" | "US TAX">[]
+  payedBrokerageCommissionsTransactions: NonTradeTransaction<"COMMISSION">[],
+  payedDividendTransactions: NonTradeTransaction<"DIVIDEND">[]
 }
 
 export default AssetOpenPosition

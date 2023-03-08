@@ -5,10 +5,10 @@ const getNonTradeTransactions = <T extends NonTradeTransactionTypes>(
   nonTradeTransactionType: NonTradeTransactionTypes | NonTradeTransactionTypes[]
 ) => {
   const foundNonTradeTransactions = nonTradeTransactions.find(nonTradeTransaction => {
-    return nonTradeTransactionType instanceof Array 
+    return nonTradeTransactionType instanceof Array
       ? nonTradeTransactionType.includes(nonTradeTransaction.type)
       : nonTradeTransactionType == nonTradeTransaction.type
-  }) as NonTradeTransaction<T>
+  }) as unknown as NonTradeTransaction<T>[]
 
   return foundNonTradeTransactions
 }

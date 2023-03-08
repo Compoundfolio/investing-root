@@ -1,0 +1,1 @@
+export { default as useDivCharData } from './useDivChartData'

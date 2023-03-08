@@ -34,7 +34,6 @@ const testData: TickerAndPrice = {
 const getAllPositionsByBrokerageTransactions = (
   tradeTransactionsByTicker: NormalizedTransactionsByTicker,
   nonTradeTransactions: NormalizedTransactionsByTicker<NonTradeTransaction>
-  //@ts-ignore
 ): PortfolioOpenClosePositions => {    
   let positions: PortfolioOpenClosePositions = {
     openPositions: {},
