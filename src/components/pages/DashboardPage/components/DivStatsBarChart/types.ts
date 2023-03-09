@@ -1,10 +1,14 @@
 import { ShortMonthName } from "@core"
 
-export type DivChartData = DivChartDataEntity[]
+export type DivChartYearlyData = DivChartYearlyDataEntity[]
 
-export type DivChartDataEntity = {
+export type DivChartYearlyDataEntity = {
   month: ShortMonthName
   receivedDividendAmount?: number
   announcedDividendAmount?: number
   estimatedNotReceivedDividendAmount?: number
+}
+
+export type DivChartDataSet = {
+  [K: number]: DivChartYearlyData
 }

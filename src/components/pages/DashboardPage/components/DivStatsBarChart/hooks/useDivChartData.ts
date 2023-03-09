@@ -1,6 +1,5 @@
 import { useMemo } from "react"
 import { useBrokeragesData } from "src/store"
-import { getDivChartDataSet } from "../helpers"
 
 const useDivChartData = () => {
   const { brokerageEntities } = useBrokeragesData()

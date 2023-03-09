@@ -1,14 +1,33 @@
 import { NonTradeTransaction } from 'src/core/types';
-import { normalizeArrayOfObjectsBy } from '@core';
+import { getMonthShortNameFromDate, getYearByDate, normalizeArrayOfObjectsBy } from '@core';
+import getDividendNumbersForEachMonth from './getDividendNumbersForEachMonth';
 
+// TODO: Types
+// TODO: Rename the function and variables
 const getDivChartDataSetNormalizedByShortMonthName = (
-  payedDividendTransactions:  NonTradeTransaction<"DIVIDEND">[]
+  payedDividendTransactions: NonTradeTransaction<"DIVIDEND">[]
 ) => {
-  let normalizedDivData = {}
+  const payedDividendTransactionsWithShortMonthNames = payedDividendTransactions.map(payedDividendTransaction => ({
+    ...payedDividendTransaction,
+    time: getMonthShortNameFromDate(payedDividendTransaction.time),
+    year: getYearByDate(payedDividendTransaction.time)
+  }))
 
-  normalizeArrayOfObjectsBy(payedDividendTransactions, "") // TODO: Year too ....
+  const normalizedDivDataByYear = normalizeArrayOfObjectsBy(
+    payedDividendTransactionsWithShortMonthNames,
+    "year"
+  ) // 2023: []
 
-  return normalizedDivData
+  let resultDataSet = {}
+
+  Object.entries(normalizedDivDataByYear).forEach(([year, dividendTransactionsWithShortMonthNamesForParticularYear]) => {
+    resultDataSet[year] = getDividendNumbersForEachMonth(
+      dividendTransactionsWithShortMonthNamesForParticularYear as NonTradeTransaction<"DIVIDEND">[]
+    )
+  })
+
+
+  return resultDataSet
 }
 
 export default getDivChartDataSetNormalizedByShortMonthName

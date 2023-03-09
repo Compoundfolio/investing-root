@@ -3,6 +3,7 @@ import { ResponsiveBar } from '@nivo/bar'
 import { StyledBarChartContainer } from './styled'
 import { colors } from 'src/core/theme';
 import { YearSwitcher } from '@core';
+import { useDividendYearSwitch } from './hooks';
 
 const data = [
   {
@@ -82,9 +83,22 @@ const data = [
   },
 ]
 
+const HARDCODED_YEARLY_DIV_DATA = {
+  // TODO: When the user clicks forward years - show him estimated divs only (for each month)
+  2023: data,
+  2022: data,
+  2021: data,
+  2020: data,
+} as const
+
 const DivStatsBarChart = () => {
-  const onYearBack = (year: number) => {}
-  const onYearForward = (year: number) => {}
+  useDivChartData()
+
+  const {
+    selectedYearDividendsData,
+    onYearBack,
+    onYearForward,
+  } = useDividendYearSwitch(HARDCODED_YEARLY_DIV_DATA)
 
   return (
     <StyledBarChartContainer>
@@ -93,7 +107,7 @@ const DivStatsBarChart = () => {
         onYearForward={onYearForward}
       />
       <ResponsiveBar
-        data={data}
+        data={selectedYearDividendsData}
         keys={[
           'receivedDividendAmount',
           'announcedDividendAmount',
