@@ -1,14 +1,24 @@
 import { AssetOpenPosition } from "@core";
-import { DivChartYearlyData } from "../types";
+import { DivChartDataSet, DivChartYearlyData } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 
  const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartYearlyData => {
+  let divChartDataSet: DivChartDataSet = {}
+
   const dataSet = openPositions.map(openPosition => {
     const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(openPosition.payedDividendTransactions)
 
-    openPosition.payedDividendTransactions.forEach(payedDividend => {
-      payedDividend.time
+    Object.entries(divDataNormalizedByYears).forEach(([ year, dividendMonths ]) => {
+      dividendMonths.forEach(dividendMonth => {
+        divChartDataSet[year] = {
+          
+        }
+      })
     });
+
+    resultDataSet[year] = getDividendNumbersForEachMonth(
+      dividendTransactionsWithShortMonthNamesForParticularYear as NonTradeTransaction<"DIVIDEND">[]
+    )
 
     return {
       month

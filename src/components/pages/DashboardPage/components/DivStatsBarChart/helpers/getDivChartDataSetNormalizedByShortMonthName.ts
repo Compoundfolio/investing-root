@@ -1,6 +1,7 @@
 import { NonTradeTransaction } from 'src/core/types';
 import { getMonthShortNameFromDate, getYearByDate, normalizeArrayOfObjectsBy } from '@core';
 import getDividendNumbersForEachMonth from './getDividendNumbersForEachMonth';
+import { DivChartDataSet } from '../types';
 
 // TODO: Types
 // TODO: Rename the function and variables
@@ -18,7 +19,7 @@ const getDivChartDataSetNormalizedByShortMonthName = (
     "year"
   ) // 2023: []
 
-  let resultDataSet = {}
+  let resultDataSet: DivChartDataSet = {}
 
   Object.entries(normalizedDivDataByYear).forEach(([year, dividendTransactionsWithShortMonthNamesForParticularYear]) => {
     resultDataSet[year] = getDividendNumbersForEachMonth(
