@@ -10,19 +10,17 @@ import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNo
 
     Object.entries(divDataNormalizedByYears).forEach(([ year, dividendMonths ]) => {
       dividendMonths.forEach(dividendMonth => {
-        divChartDataSet[year] = {
-          
-        }
+        divChartDataSet[year].push(dividendMonth)
       })
     });
 
-    resultDataSet[year] = getDividendNumbersForEachMonth(
-      dividendTransactionsWithShortMonthNamesForParticularYear as NonTradeTransaction<"DIVIDEND">[]
-    )
+    // resultDataSet[year] = getDividendNumbersForEachMonth(
+    //   dividendTransactionsWithShortMonthNamesForParticularYear as NonTradeTransaction<"DIVIDEND">[]
+    // )
 
-    return {
-      month
-    }
+    // return {
+    //   month
+    // }
   }) as any
 
   return dataSet
