@@ -27,7 +27,8 @@ export default memo(function DndFileArea({
       if (SelectedBrokerage) {
         const newBrokerageDataEntity = new Brokerage(SelectedBrokerage, unparsedReport)
         addBrokerageEntity(newBrokerageDataEntity)
-        setTradeTransactions(newBrokerageDataEntity.getTradeTransactions())
+        setTradeTransactions(newBrokerageDataEntity.getTradeTransactions())        
+        setNonTradeTransactions(newBrokerageDataEntity.getNonTradeTransactions())
       } else {
         console.error(`Can't find brokerage by brokerageName = ${selectedBrokerageName}`)
       }
@@ -39,7 +40,7 @@ export default memo(function DndFileArea({
   const {
     getRootProps,
     getInputProps,
-  } = useDropzone({ onDrop })
+  } = useDropzone({ onDrop })  
   
   return (
     // TODO: Pass to reusable <DndFileUploadArea /> component
@@ -47,8 +48,8 @@ export default memo(function DndFileArea({
       <input {...getInputProps()} />
       <StyledDndTitle>Drag & drop the CSV report from your brokerage or</StyledDndTitle>
       <StyledDndTitleSub>browse it</StyledDndTitleSub>
-      {!!tradeTransactions && `${tradeTransactions.length} of buy/sell transactions found!`}
-      {!!nonTradeTransactions && `| ${nonTradeTransactions.length} of other transactions found!`}
+      {!!tradeTransactions.length && `${tradeTransactions.length} of buy/sell transactions found! `}
+      {!!nonTradeTransactions.length && `| ${nonTradeTransactions.length} of other transactions found!`}
     </StyledDndContainer>
   )
 })

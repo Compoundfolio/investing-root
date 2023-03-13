@@ -28,8 +28,8 @@ const AppLogo = ({
           </g>
         </g>
         <defs>
-          <filter id="filter0_d_555_27713" x="-14.7471" y="-23" width="93.7471" height="93.7471" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <filter id="filter0_d_555_27713" x="-14.7471" y="-23" width="93.7471" height="93.7471" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
             <feOffset />
             <feGaussianBlur stdDeviation="20" />
@@ -38,8 +38,8 @@ const AppLogo = ({
             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_555_27713" />
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_555_27713" result="shape" />
           </filter>
-          <filter id="filter1_d_555_27713" x="-25.1265" y="-19.5635" width="90.3105" height="90.3105" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <filter id="filter1_d_555_27713" x="-25.1265" y="-19.5635" width="90.3105" height="90.3105" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
             <feOffset />
             <feGaussianBlur stdDeviation="20" />
@@ -48,8 +48,8 @@ const AppLogo = ({
             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_555_27713" />
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_555_27713" result="shape" />
           </filter>
-          <filter id="filter2_d_555_27713" x="-32" y="-16.126" width="86.8735" height="86.874" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <filter id="filter2_d_555_27713" x="-32" y="-16.126" width="86.8735" height="86.874" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
             <feOffset />
             <feGaussianBlur stdDeviation="20" />
@@ -59,8 +59,8 @@ const AppLogo = ({
             <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_555_27713" result="shape" />
           </filter>
           <radialGradient id="paint0_angular_555_27713" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(23.3667 24.36) rotate(46.8573) scale(27.054 47.4568)">
-            <stop offset="0.00697357" stop-color="#33394C" />
-            <stop offset="0.747806" stop-color="#0F6F72" stop-opacity="0.69" />
+            <stop offset="0.00697357" stopColor="#33394C" />
+            <stop offset="0.747806" stopColor="#0F6F72" stopOpacity="0.69" />
           </radialGradient>
           <clipPath id="clip0_555_27713">
             <rect width={width} height={width} rx="8" fill="white" />

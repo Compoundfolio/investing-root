@@ -15,7 +15,7 @@ const getExanteAssetListFromTransactions = (
     const tradeTransactionsNormalizedByTicker = normalizeArrayOfObjectsBy<Transaction>(
       tradeTransactions, 
       "ticker"
-    ) as NormalizedTransactionsByTicker
+    ) as NormalizedTransactionsByTicker    
 
     const nonTradeTransactionsNormalizedByTicker = normalizeArrayOfObjectsBy<NonTradeTransaction>(
       nonTradeTransactions, 

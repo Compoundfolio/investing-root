@@ -10,13 +10,13 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
   const secondTablePos = reportUnParsedData.indexOf("Transaction ID")
 
   const tradeTransactionsSourceString = reportUnParsedData.substring(0, secondTablePos)
-  const tradeTransactions = getExanteTransactionsList(tradeTransactionsSourceString)
+  const tradeTransactions = getExanteTransactionsList(tradeTransactionsSourceString)  
 
   const nonTradeTransactionsSourceString = reportUnParsedData.substr(secondTablePos)
   const nonTradeTransactions = getExanteNonTradeTransactionsList(nonTradeTransactionsSourceString)
 
-  console.log("tradeTransactions",tradeTransactions);
-  console.log("nonTradeTransactions",nonTradeTransactions);
+  // console.log("tradeTransactions",tradeTransactions);
+  // console.log("nonTradeTransactions",nonTradeTransactions);
   
   // Trade transactions
   for (const exanteTradeTransaction of tradeTransactions) {
@@ -38,7 +38,7 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
   for (const exanteNonTradeTransaction of nonTradeTransactions) {
     parsedNonTradeTransactions.push({
       id: exanteNonTradeTransaction["Transaction ID"] ?? uuidv4(),
-      type: exanteNonTradeTransaction["Operation Type"],
+      type: exanteNonTradeTransaction["Operation type"],
       time: exanteNonTradeTransaction["When"],
       currency: exanteNonTradeTransaction["Asset"],
       ticker: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.ticker ?? null,

@@ -3,7 +3,6 @@ import { memo, useMemo, useState, useEffect, useLayoutEffect, useRef } from 'rea
 import { StyledPieChartContainer } from './styled'
 import { OpenPosition, colors, isEmpty } from '@core'
 import { useBrokeragesData } from 'src/store'
-import { Pie } from "@nivo/pie";
 
 type DataItem = {
   id: string;
@@ -71,7 +70,7 @@ const PortfolioAssetsPieChart = () => {
       setTimeout(() => {
         // @ts-ignore
         const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
-        t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
+        t && t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
         // console.log("t",t, ref.current);
 
       }, 1000)
@@ -99,14 +98,14 @@ const PortfolioAssetsPieChart = () => {
         onMouseEnter={handleHover}
         colors={CHART_COLORS_LIST}
         activeInnerRadiusOffset={5}
-        motionConfig={{
-          mass: 1,
-          tension: 201,
-          friction: 25,
-          clamp: false,
-          precision: 0.01,
-          velocity: 0
-      }}
+      //   motionConfig={{
+      //     mass: 1,
+      //     tension: 201,
+      //     friction: 25,
+      //     clamp: false,
+      //     precision: 0.01,
+      //     velocity: 0
+      // }}
     //   legends={[
     //     {
     //         anchor: 'top-left',

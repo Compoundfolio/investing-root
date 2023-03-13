@@ -1,38 +1,27 @@
 import { AssetOpenPosition } from "@core";
-import { DivChartDataSet, DivChartYearlyData } from "../types";
+import { DivChartDataSet, DivChartYearlyDataEntity } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 
- const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartYearlyData => {
+ const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartDataSet => {
   let divChartDataSet: DivChartDataSet = {}
 
-  const dataSet = openPositions.map(openPosition => {
+  openPositions.forEach(openPosition => {
     const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(openPosition.payedDividendTransactions)
 
     Object.entries(divDataNormalizedByYears).forEach(([ year, dividendMonths ]) => {
-      dividendMonths.forEach(dividendMonth => {
-        divChartDataSet[year].push(dividendMonth)
+      dividendMonths.forEach((dividendMonth, index) => {
+        divChartDataSet[year][index] = {
+          ...dividendMonth,
+          "month": dividendMonth.month,
+          "receivedDividendAmount": (divChartDataSet[year][index].receivedDividendAmount ?? 0) + (dividendMonth.receivedDividendAmount ?? 0),
+          "announcedDividendAmount": 0, // TODO:
+          "estimatedNotReceivedDividendAmount": 0 // TODO:
+        } as DivChartYearlyDataEntity
       })
     });
+  })
 
-    // resultDataSet[year] = getDividendNumbersForEachMonth(
-    //   dividendTransactionsWithShortMonthNamesForParticularYear as NonTradeTransaction<"DIVIDEND">[]
-    // )
-
-    // return {
-    //   month
-    // }
-  }) as any
-
-  return dataSet
+  return divChartDataSet
 }
 
 export default getDivChartDataSet
-
-// 
-
-// {
-//   month: "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec"
-//   receivedDividendAmount?: number
-//   announcedDividendAmount?: number
-//   estimatedNotReceivedDividendAmount?: number
-// }

@@ -1,8 +1,8 @@
-import { AssetOpenPosition } from '../../../helpers/positions/getAllPositionsByBrokerageTransactions';
 import { Ticker } from '../common';
+import AssetOpenPosition from './AssetOpenPosition';
 
 type OpenPosition = { 
-  [K: Ticker]: AssetOpenPosition 
+  [K: Ticker]: AssetOpenPosition
 } | {}
 
 export default OpenPosition

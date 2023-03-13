@@ -11,19 +11,21 @@ const normalizeArrayOfObjectsBy = <T extends { [K: string]: any }>(
     const object = arrayToNormalize[index];
     const normalizeKeyName = object[normalizeKey] as NormalizeKeyType;
 
-    if (normalizeValue) {
-      res[normalizeKeyName] = object[normalizeValue] as T[keyof T]
-      return res
-    }
-
-    const valueByKeyName = res[normalizeKeyName] as T[]
-    if (valueByKeyName?.length) {
-      res[normalizeKeyName] = [
-        ...valueByKeyName,
-        object
-      ]
-    } else {
-      res[normalizeKeyName] = [object]
+    if (normalizeKeyName) {
+      if (normalizeValue) {
+        res[normalizeKeyName] = object[normalizeValue] as T[keyof T]
+        return res
+      }
+  
+      const valueByKeyName = res[normalizeKeyName] as T[]
+      if (valueByKeyName?.length) {
+        res[normalizeKeyName] = [
+          ...valueByKeyName,
+          object
+        ]
+      } else {
+        res[normalizeKeyName] = [object]
+      }
     }
   }
 

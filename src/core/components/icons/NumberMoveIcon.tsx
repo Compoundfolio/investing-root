@@ -22,8 +22,8 @@ const NumberMoveIcon = ({
         <path d="M10.2974 0L16.2974 8H4.29736L10.2974 0Z" fill={color ?? (isPositiveMove ? colors.darkGreen : colors.pinkSoft)} />
       </g>
       <defs>
-        <filter id="filter0_d_543_29722" x="0.297363" y="0" width="16" height="8" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <filter id="filter0_d_543_29722" x="0.297363" y="0" width="16" height="8" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
           <feOffset dy="4" />
           <feGaussianBlur stdDeviation="2" />

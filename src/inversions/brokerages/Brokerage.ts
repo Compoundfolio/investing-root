@@ -23,6 +23,7 @@ export default class Brokerage implements AbstractBrokerage {
     this.brandName = SideBrokerageClass.brandName
     this.logoPath = SideBrokerageClass.logoPath
     this.transactions = brokerageEntity.transactions
+    this.nonTradeTransactions = brokerageEntity.nonTradeTransactions
     this.assets = brokerageEntity.assets
   } 
 
