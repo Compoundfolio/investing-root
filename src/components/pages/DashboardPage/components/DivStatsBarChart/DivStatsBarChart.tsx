@@ -95,6 +95,9 @@ const data = [
 const DivStatsBarChart = () => {
   const { dataSet } = useDivChartData()
 
+  console.log(dataSet);
+  
+
   const {
     selectedYearDividendsData,
     onYearBack,

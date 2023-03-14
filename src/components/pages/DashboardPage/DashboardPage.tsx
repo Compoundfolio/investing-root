@@ -22,7 +22,7 @@ const DashboardPage = () => {
           brokeragesIconLinks={brokeragesIconLinks}
         />
         <PortfolioAssetsPieChart />
-        {/* <DivStatsBarChart /> */}
+        <DivStatsBarChart />
       </DashboardColumn>
       <DashboardColumn>
         <PortfolioAssetsList />
