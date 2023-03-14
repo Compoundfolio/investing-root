@@ -11,7 +11,7 @@ type DataItem = {
 }
 type Data = DataItem[]
 
-const getChartDataSet = (openPositions: OpenPosition): Data => {  
+const getChartDataSet = (openPositions: OpenPosition): Data => {    
   return Object
     .entries(openPositions)
     .map(([ ticker, assets ]) => ({
@@ -29,7 +29,7 @@ const PortfolioAssetsPieChart = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
-    const assets = brokerageEntities[0].getAssets()
+    const assets = brokerageEntities[0].getAssets()    
     return getChartDataSet(assets?.openPositions)
   }, [brokerageEntities])
 

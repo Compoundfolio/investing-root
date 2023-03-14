@@ -9,7 +9,7 @@ const useDivChartData = () => {
     const assets = brokerageEntities[0].getAssets()
     const openPositionsListing = Object.values(assets?.openPositions)
     return getDivChartDataSet(openPositionsListing)
-  }, [brokerageEntities])
+  }, [brokerageEntities])  
 
   return {
     dataSet

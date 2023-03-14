@@ -34,9 +34,9 @@ const testData: TickerAndPrice = {
 const getAllPositionsByBrokerageTransactions = (
   tradeTransactionsByTicker: NormalizedTransactionsByTicker,
   nonTradeTransactions: NormalizedTransactionsByTicker<NonTradeTransaction>
-): PortfolioOpenClosePositions => {
-    let openPositions: PortfolioOpenClosePositions["openPositions"] = {}
-    let closedPositions: PortfolioOpenClosePositions["closedPositions"] = {}
+): PortfolioOpenClosePositions => {  
+  let openPositions: PortfolioOpenClosePositions["openPositions"] = {}
+  let closedPositions: PortfolioOpenClosePositions["closedPositions"] = {}
 
   // const tickersListWithOpenPosition = getTickersListWithOpenPosition(tradeTransactionsByTicker)
   // TODO: Uncomment when API will be purchased
@@ -46,10 +46,11 @@ const getAllPositionsByBrokerageTransactions = (
 
   Object
     .entries(tradeTransactionsByTicker)
-    .forEach(async ([ticker, transactionsList]: [Ticker, Transaction[]]) => {
+    .forEach(([ticker, transactionsList]: [Ticker, Transaction[]]) => {
       const openSharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
-      const wholeDividendHistoryForTicker = await getDividendHistoryByTicker(ticker)
+      // const wholeDividendHistoryForTicker = await getDividendHistoryByTicker(ticker)
+      const wholeDividendHistoryForTicker = []
       const dividendStats = getDividendStatsByTicker(ticker, openSharesAmount)
       const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
       const nonTradeTransactionsList = nonTradeTransactions[ticker]
@@ -72,17 +73,17 @@ const getAllPositionsByBrokerageTransactions = (
 
       // TODO: Count sold out positions too
 
-      if (openPositionData.sharesAmount > 0) {
-        openPositions = { ...positions.openPositions, [ticker]: openPositionData }
+      if (openPositionData.sharesAmount > 0) {                
+        openPositions = { ...openPositions, [ticker]: openPositionData }
       } else {
-        closedPositions = { ...positions.closedPositions, [ticker]: {} }
+        closedPositions = { ...closedPositions, [ticker]: {} }
       }
     })
 
   let positions: PortfolioOpenClosePositions = {
-    openPositions: {},
-    closedPositions: {},
-  }
+    openPositions,
+    closedPositions,
+  }  
 
   return positions
 }
