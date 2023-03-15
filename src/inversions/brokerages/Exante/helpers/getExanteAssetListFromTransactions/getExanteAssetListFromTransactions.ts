@@ -10,8 +10,8 @@ import {
 const getExanteAssetListFromTransactions = (
   tradeTransactions: Transaction[],
   nonTradeTransactions: NonTradeTransaction[],
-): PortfolioOpenClosePositions => {  
-  if (tradeTransactions.length) {
+): PortfolioOpenClosePositions => {
+  if (tradeTransactions.length ) {
     const tradeTransactionsNormalizedByTicker = normalizeArrayOfObjectsBy<Transaction>(
       tradeTransactions, 
       "ticker"
@@ -25,7 +25,7 @@ const getExanteAssetListFromTransactions = (
     const openedAndClosedPositionsByTicker = getAllPositionsByBrokerageTransactions(
       tradeTransactionsNormalizedByTicker, 
       nonTradeTransactionsNormalizedByTicker
-    )    
+    )
 
     return openedAndClosedPositionsByTicker
   }
