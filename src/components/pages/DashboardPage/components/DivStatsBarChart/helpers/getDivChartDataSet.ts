@@ -8,6 +8,8 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
 
   openPositions.forEach(openPosition => {
     const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(openPosition.payedDividendTransactions)
+    openPosition.ticker === "SCHD" && console.log(openPosition.ticker, divDataNormalizedByYears);
+    
     
     Object.entries(divDataNormalizedByYears).forEach(([ year, dividendMonths ]) => {
       if (!divChartDataSet[year]) {

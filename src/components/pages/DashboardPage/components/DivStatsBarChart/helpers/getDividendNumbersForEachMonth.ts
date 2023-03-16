@@ -6,8 +6,81 @@ import { INITIAL_DIV_CHART_DATA } from "../const"
 const getDividendNumbersForEachMonth = (
   dividendTransactionsWithShortMonthNamesForParticularYear: NonTradeTransaction<"DIVIDEND">[]
 ): DivChartYearlyData => {
-  let resultDivMonths = INITIAL_DIV_CHART_DATA 
-  let f = 0
+  let resultDivMonths = [
+    {
+      "month": "Jan",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Feb",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Mar",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Apr",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "May",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Jun",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Jul",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Aug",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Sep",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Oct",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Nov",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+    {
+      "month": "Dec",
+      "receivedDividendAmount": 0,
+      "announcedDividendAmount": 0,
+      "estimatedNotReceivedDividendAmount": 0,
+    },
+  ] as any
+  // let f = 0
 
   // TODO: Types
   const normalizedDivTransactionsByMonthShortName = normalizeArrayOfObjectsBy(
@@ -22,20 +95,14 @@ const getDividendNumbersForEachMonth = (
     .entries(normalizedDivTransactionsByMonthShortName)
     .forEach(([ monthShortName, divTransactions ], i) => {
       const index = resultDivMonths.findIndex(divMonth => divMonth.month === monthShortName)
-      // console.log(2,resultDivMonths);
 
       divTransactions.forEach(divTransaction => {
-        // i ===0 && console.log(123,index,resultDivMonths[index],divTransaction.price);
-        // console.log(resultDivMonths[index].receivedDividendAmount)
-        
-        // console.log(resultDivMonths[index].receivedDividendAmount, Number(divTransaction.price.toFixed(2)))
         resultDivMonths[index].receivedDividendAmount += Number(divTransaction.price.toFixed(2)) // TODO: - Div tax,
-        f += Number(divTransaction.price.toFixed(2))
       })
     })
 
     // TODO: Sort month in right order...
-console.log(f)
+// console.log(resultDivMonths)
 
   return resultDivMonths
 }

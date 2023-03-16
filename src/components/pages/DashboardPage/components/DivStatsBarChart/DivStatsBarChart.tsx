@@ -95,7 +95,7 @@ const data = [
 const DivStatsBarChart = () => {
   const { dataSet } = useDivChartData()
 
-  console.log(dataSet);
+  // console.log(dataSet);
   
 
   const {
