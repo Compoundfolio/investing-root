@@ -104,6 +104,9 @@ const DivStatsBarChart = () => {
     onYearForward,
   } = useDividendYearSwitch(dataSet)
 
+  console.log(selectedYearDividendsData);
+  
+
   return (
     <StyledBarChartContainer>
       <YearSwitcher 

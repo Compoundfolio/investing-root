@@ -1,6 +1,6 @@
 import { DivChartYearlyData } from "./types";
 
-export const INITIAL_DIV_CHART_DATA: DivChartYearlyData = [
+export const INITIAL_DIV_CHART_DATA = (): DivChartYearlyData => [
   {
     "month": "Jan",
     "receivedDividendAmount": 0,
