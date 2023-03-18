@@ -29,7 +29,7 @@ const getDivChartDataSetNormalizedByShortMonthName = (
     // @ts-ignore TODO:
     dividendTransactionsWithShortMonthNamesForParticularYear.forEach((dividendTransaction: NonTradeTransaction<"DIVIDEND">) => {
       const index = resultDataSet[year].findIndex(divMonth => divMonth.month === dividendTransaction.time)
-      resultDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(resultDataSet[year][index].receivedDividendAmount + dividendTransaction.price - dividendTransaction.dividendTax) // TODO: - Div tax,
+      resultDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(resultDataSet[year][index].receivedDividendAmount + dividendTransaction.price) // TODO: - Div tax,
     });
   })
 

@@ -37,7 +37,9 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
   // Rest transactions
   for (const exanteNonTradeTransaction of nonTradeTransactions) {
     parsedNonTradeTransactions.push({
-      id: exanteNonTradeTransaction["Transaction ID"] ?? uuidv4(),
+      id: exanteNonTradeTransaction["UUID"],
+      parentId: exanteNonTradeTransaction["Parent UUID"],
+      comment: exanteNonTradeTransaction["Comment"],
       type: exanteNonTradeTransaction["Operation type"],
       time: exanteNonTradeTransaction["When"],
       currency: exanteNonTradeTransaction["Asset"],

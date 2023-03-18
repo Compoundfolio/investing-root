@@ -4,6 +4,4 @@ export {default as getTickersListWithOpenPosition} from './getTickersListWithOpe
 export {default as getDividendStatsByTicker} from './getDividendStatsByTicker';
 export {default as getDividendHistoryByTicker} from './getDividendHistoryByTicker';
 export {default as getNonTradeTransactions} from './getNonTradeTransactions';
-
-
-
+export {default as getDividendTransactionsWithTax} from './getDividendTransactionsWithTax';

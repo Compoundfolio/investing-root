@@ -1,3 +1,4 @@
+// TODO: Types are wrong - refactor it!
 const normalizeArrayOfObjectsBy = <T extends { [K: string]: any }>(
   arrayToNormalize: T[], 
   normalizeKey: keyof T,

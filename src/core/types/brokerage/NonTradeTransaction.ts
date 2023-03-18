@@ -3,6 +3,8 @@ import NonTradeTransactionTypes from './NonTradeTransactionTypes';
 
 type NonTrade<OperationType> = {
   id: ID,
+  parentId: ID,
+  comment: string,
   type: OperationType,
   time: string,
   currency: Currency | string,
