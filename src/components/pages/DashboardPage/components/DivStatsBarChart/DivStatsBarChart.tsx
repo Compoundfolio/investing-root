@@ -6,97 +6,8 @@ import { YearSwitcher } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 
-const data = [
-  {
-    "month": "Jan",
-    "receivedDividendAmount": 34,
-    // "receivedDividendAmountColor": "hsl(263, 70%, 50%)",
-    // "estimatedNotReceivedDividendAmount": 200,
-    // "estimatedNotReceivedDividendAmountColor": "hsl(87, 70%, 50%)",
-    // "announcedDividendAmount": 183,
-    // "announcedDividendAmountColor": "hsl(74, 70%, 50%)",
-  },
-  {
-    "month": "Feb",
-    "receivedDividendAmount": 109,
-    "announcedDividendAmount": 15,
-    "estimatedNotReceivedDividendAmount": 7,
-  },
-  {
-    "month": "Mar",
-    "receivedDividendAmount": 10,
-    "announcedDividendAmount": 25,
-    "estimatedNotReceivedDividendAmount": 80,
-  },
-  {
-    "month": "Apr",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 88,
-    "estimatedNotReceivedDividendAmount": 25,
-  },
-  {
-    "month": "May",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 157,
-  },
-  {
-    "month": "Jun",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 16,
-  },
-  {
-    "month": "Jul",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 100,
-    "estimatedNotReceivedDividendAmount": 16,
-  },
-  {
-    "month": "Aug",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 100,
-  },
-  {
-    "month": "Sep",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 10,
-  },
-  {
-    "month": "Oct",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 20,
-  },
-  {
-    "month": "Nov",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 120,
-    "estimatedNotReceivedDividendAmount": 15,
-  },
-  {
-    "month": "Dec",
-    "receivedDividendAmount": 0,
-    "announcedDividendAmount": 0,
-    "estimatedNotReceivedDividendAmount": 40,
-  },
-]
-
-// const HARDCODED_YEARLY_DIV_DATA = {
-//   // TODO: When the user clicks forward years - show him estimated divs only (for each month)
-//   2023: data,
-//   2022: data,
-//   2021: data,
-//   2020: data,
-// } as const
-
 const DivStatsBarChart = () => {
-  const { dataSet } = useDivChartData()
-
-  // console.log(dataSet);
-  
+  const { dataSet } = useDivChartData()  
 
   const {
     selectedYearDividendsData,
@@ -104,7 +15,7 @@ const DivStatsBarChart = () => {
     onYearForward,
   } = useDividendYearSwitch(dataSet)
 
-  console.log(selectedYearDividendsData);
+  console.log(2, dataSet, selectedYearDividendsData);
   
 
   return (

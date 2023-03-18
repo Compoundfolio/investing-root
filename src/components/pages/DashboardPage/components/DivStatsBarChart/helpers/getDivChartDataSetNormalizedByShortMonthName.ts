@@ -1,5 +1,5 @@
 import { NonTradeTransaction } from 'src/core/types';
-import { getMonthShortNameFromDate, getYearByDate, normalizeArrayOfObjectsBy } from '@core';
+import { getMonthShortNameFromDate, getYearByDate, normalizeArrayOfObjectsBy, parseNumberToFixed2 } from '@core';
 import { DivChartDataSet } from '../types';
 import { INITIAL_DIV_CHART_DATA } from '../const';
 
@@ -29,7 +29,7 @@ const getDivChartDataSetNormalizedByShortMonthName = (
     // @ts-ignore TODO:
     dividendTransactionsWithShortMonthNamesForParticularYear.forEach((dividendTransaction: NonTradeTransaction<"DIVIDEND">) => {
       const index = resultDataSet[year].findIndex(divMonth => divMonth.month === dividendTransaction.time)
-      resultDataSet[year][index].receivedDividendAmount = Number( ( resultDataSet[year][index].receivedDividendAmount + Number(dividendTransaction.price.toFixed(2)) ).toFixed(2) ) // TODO: - Div tax,
+      resultDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(resultDataSet[year][index].receivedDividendAmount + dividendTransaction.price - dividendTransaction.dividendTax) // TODO: - Div tax,
     });
   })
 

@@ -1,5 +1,5 @@
-import { AssetOpenPosition, parseNumber } from '@core';
-import { DivChartDataSet, DivChartYearlyDataEntity } from "../types";
+import { AssetOpenPosition, parseNumberToFixed2 } from '@core';
+import { DivChartDataSet } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 import { INITIAL_DIV_CHART_DATA } from "../const";
 
@@ -18,9 +18,9 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
           divChartDataSet[year] = [ ...INITIAL_DIV_CHART_DATA() ]
         }      
         
-        dividendMonths.forEach((dividendMonth) => {
+        dividendMonths.forEach((dividendMonth) => {          
           const index: number = divChartDataSet[year].findIndex(divMonth => divMonth.month === dividendMonth.month)          
-          divChartDataSet[year][index].receivedDividendAmount = Number( ( divChartDataSet[year][index].receivedDividendAmount + Number(dividendMonth.receivedDividendAmount.toFixed(2)) ).toFixed(2) ) // TODO: - Div tax,
+          divChartDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(divChartDataSet[year][index].receivedDividendAmount + dividendMonth.receivedDividendAmount) // TODO: - Div tax,
           // divChartDataSet[year][index] = {
           //   ...divChartDataSet[year][index],
           //   // "month": dividendMonth.month,
@@ -32,7 +32,7 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
     });
   })
 
-  console.log(divChartDataSet);
+  console.log(1, divChartDataSet);
   
 
   return divChartDataSet
