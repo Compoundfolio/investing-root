@@ -36,11 +36,6 @@ button::after {
   border-radius: 50%;
   background-color: rgba(217, 217, 217, 0.3);
   
-  width: 100px;
-  height: 100px;
-  margin-top: -50px;
-  margin-left: -50px;
-  
   /* Center the ripple */
   top: 50%;
   left: 50%;

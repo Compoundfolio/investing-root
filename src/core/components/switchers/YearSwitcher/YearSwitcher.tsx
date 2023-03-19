@@ -1,32 +1,33 @@
 import React from 'react'
 import CircleArrowButton from '../../buttons/CircleArrowButton/CircleArrowButton'
-import useYearSwitcher, { IUseYearSwitcher } from './useYearSwitcher'
 import { StyledYear } from './styled';
 
+interface IUseYearSwitcher {
+  year: number
+  onYearBack: () => void
+  onYearForward: () => void
+}
+
 const YearSwitcher = ({
+  year,
   onYearBack,
   onYearForward,
 }: IUseYearSwitcher) => {
-  const  {
-    year,
-    goYearBack,
-    goYearForward
-  } = useYearSwitcher({ 
-    onYearBack, 
-    onYearForward,
-  })
-
   return (
     <div className='flex items-center gap-2'>
-      <CircleArrowButton 
-        onClick={goYearBack}
-        arrowIconOrientation="right"
-      />
+      <div>
+        <CircleArrowButton 
+          onClick={onYearBack}
+          arrowIconOrientation="right"
+        />
+      </div>
       <StyledYear>{year}</StyledYear>
-      <CircleArrowButton 
-        onClick={goYearForward}
-        arrowIconOrientation="left"
-      />
+      <div>
+        <CircleArrowButton 
+          onClick={onYearForward}
+          arrowIconOrientation="left"
+        />
+      </div>
     </div>
   )
 }

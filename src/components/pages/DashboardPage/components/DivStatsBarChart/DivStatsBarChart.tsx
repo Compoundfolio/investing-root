@@ -5,11 +5,13 @@ import { colors } from 'src/core/theme';
 import { YearSwitcher } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
+import { linearGradientDef } from '@nivo/core'
 
 const DivStatsBarChart = () => {
   const { dataSet } = useDivChartData()  
 
   const {
+    selectedYear,
     selectedYearDividendsData,
     onYearBack,
     onYearForward,
@@ -21,6 +23,7 @@ const DivStatsBarChart = () => {
   return (
     <StyledBarChartContainer>
       <YearSwitcher 
+        year={selectedYear}
         onYearBack={onYearBack}
         onYearForward={onYearForward}
       />
@@ -40,41 +43,68 @@ const DivStatsBarChart = () => {
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
         colors={[colors.lightGreen, colors.darkGreen, colors.darkGreenEasy]}
+         // 1. defining gradients
+         defs={[
+          // using helpers
+          // will inherit colors from current element
+          linearGradientDef('receivedDivsGradient', [
+            { offset: 0, color: colors.gold },
+            { offset: 20, color: colors.darkGreen },
+            // { offset: 100, color: colors.darkGreen },
+            // { offset: 100, color: 'inherit' },
+          ],
+          // you may specify transforms for your gradients, e.g. rotations and skews,
+          // following the transform attribute format.
+          // For instance here we rotate 90 degrees relative to the center of the object.
+          {
+              // gradientTransform: 'rotate(90 0.5 0.5)'
+          }),
+      ]}
+      // 2. defining rules to apply those gradients
+      fill={[
+          // match using object query
+          { match: { id: 'receivedDividendAmount' }, id: 'receivedDivsGradient' },
+          // match using function
+          // { match: d => d.id === 'vue', id: 'gradientB' },
+          // match all, will only affect 'elm', because once a rule match,
+          // others are skipped, so now it acts as a fallback
+          // { match: '*', id: 'gradientC' },
+      ]}
         // linear-gradient(360deg, rgba(15, 111, 114, 0.31) 0%, #0F6F72 73.44%, #FFD391 100%);
-        defs={[
-          {
-            id: 'dots',
-            type: 'patternDots',
-            background: 'inherit',
-            color: '#38bcb2',
-            size: 4,
-            padding: 1,
-            stagger: true
-          },
-          {
-            id: 'lines',
-            type: 'patternLines',
-            background: 'inherit',
-            color: colors.green,
-            rotation: -45,
-            lineWidth: 6,
-            spacing: 10
-          }
-        ]}
-        fill={[
-          // {
-          //     match: {
-          //         id: 'receivedDividendAmount'
-          //     },
-          //     id: 'dots'
-          // },
-          {
-            match: {
-              id: 'receivedDividendAmount'
-            },
-            id: 'lines'
-          }
-        ]}
+        // defs={[
+        //   {
+        //     id: 'dots',
+        //     type: 'patternDots',
+        //     background: 'inherit',
+        //     color: '#38bcb2',
+        //     size: 4,
+        //     padding: 1,
+        //     stagger: true
+        //   },
+        //   {
+        //     id: 'lines',
+        //     type: 'patternLines',
+        //     background: 'inherit',
+        //     color: colors.green,
+        //     rotation: -45,
+        //     lineWidth: 6,
+        //     spacing: 10
+        //   }
+        // ]}
+        // fill={[
+        //   // {
+        //   //     match: {
+        //   //         id: 'receivedDividendAmount'
+        //   //     },
+        //   //     id: 'dots'
+        //   // },
+        //   {
+        //     match: {
+        //       id: 'receivedDividendAmount'
+        //     },
+        //     id: 'lines'
+        //   }
+        // ]}
         borderColor={{
           from: 'color',
           modifiers: [
