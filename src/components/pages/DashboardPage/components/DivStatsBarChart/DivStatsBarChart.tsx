@@ -2,11 +2,12 @@ import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { StyledBarChartContainer } from './styled'
 import { colors } from 'src/core/theme';
-import { YearSwitcher } from '@core';
+import { YearSwitcher, parseNumberToFixed2 } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 import { linearGradientDef } from '@nivo/core'
 import { CustomAxisBottomTick } from './components';
+import { Box } from '@mui/material';
 
 const DivStatsBarChart = () => {
   const { dataSet } = useDivChartData()  
@@ -18,13 +19,29 @@ const DivStatsBarChart = () => {
     onYearForward,
   } = useDividendYearSwitch(dataSet)  
 
+  const yearDivs = selectedYearDividendsData.reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
+  const pervYearDivs = dataSet[selectedYear-1].reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
+  const yearDivGrowthPercentage = parseNumberToFixed2((yearDivs / pervYearDivs) * 100)
+
   return (
     <StyledBarChartContainer>
-      <YearSwitcher 
-        year={selectedYear}
-        onYearBack={onYearBack}
-        onYearForward={onYearForward}
-      />
+
+      {/* TODO: Pass to core */}
+      <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
+        <Box display="flex" alignItems="center" gap={1}>
+          <h2>Dividends</h2>
+          {/* TODO: Estimated divs */}
+          <span>[${yearDivs} / $500.41] up {yearDivGrowthPercentage}%</span>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <YearSwitcher 
+            year={selectedYear}
+            onYearBack={onYearBack}
+            onYearForward={onYearForward}
+          />
+        </Box>
+      </Box>
+      
       <ResponsiveBar
         data={selectedYearDividendsData}
         keys={[
@@ -36,7 +53,7 @@ const DivStatsBarChart = () => {
           'donut'
         ]}
         indexBy="month"
-        margin={{ bottom: 36 }}
+        margin={{ bottom: 28 }}
         padding={0.20}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
