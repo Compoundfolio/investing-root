@@ -6,6 +6,7 @@ import { YearSwitcher } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 import { linearGradientDef } from '@nivo/core'
+import { CustomAxisBottomTick } from './components';
 
 const DivStatsBarChart = () => {
   const { dataSet } = useDivChartData()  
@@ -15,10 +16,7 @@ const DivStatsBarChart = () => {
     selectedYearDividendsData,
     onYearBack,
     onYearForward,
-  } = useDividendYearSwitch(dataSet)
-
-  console.log(2, dataSet, selectedYearDividendsData);
-  
+  } = useDividendYearSwitch(dataSet)  
 
   return (
     <StyledBarChartContainer>
@@ -38,31 +36,19 @@ const DivStatsBarChart = () => {
           'donut'
         ]}
         indexBy="month"
-        margin={{ bottom: 24 }}
+        margin={{ bottom: 36 }}
         padding={0.20}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
         colors={[colors.lightGreen, colors.darkGreen, colors.darkGreenEasy]}
-         // 1. defining gradients
-         defs={[
-          // using helpers
-          // will inherit colors from current element
+        defs={[
           linearGradientDef('receivedDivsGradient', [
             { offset: 0, color: colors.gold },
-            { offset: 20, color: colors.darkGreen },
-            // { offset: 100, color: colors.darkGreen },
-            // { offset: 100, color: 'inherit' },
-          ],
-          // you may specify transforms for your gradients, e.g. rotations and skews,
-          // following the transform attribute format.
-          // For instance here we rotate 90 degrees relative to the center of the object.
-          {
-              // gradientTransform: 'rotate(90 0.5 0.5)'
-          }),
-      ]}
-      // 2. defining rules to apply those gradients
+            { offset: 30, color: colors.darkGreen },
+            { offset: 90, color: "rgba(15, 110, 113, 0.3)" },
+          ])
+        ]}
       fill={[
-          // match using object query
           { match: { id: 'receivedDividendAmount' }, id: 'receivedDivsGradient' },
           // match using function
           // { match: d => d.id === 'vue', id: 'gradientB' },
@@ -122,7 +108,8 @@ const DivStatsBarChart = () => {
           tickRotation: 0,
           legend: '',
           legendPosition: 'middle',
-          legendOffset: -60
+          legendOffset: -60,
+          renderTick: CustomAxisBottomTick
         }}
         axisLeft={null}
         enableGridY={false}

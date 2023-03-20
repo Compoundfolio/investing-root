@@ -8,7 +8,7 @@ const useDividendYearSwitch = (dataSet: DivChartDataSet) => {
   const [ selectedYear, setSelectedYear ] = useState<number>(currentYear)
 
   const yearsList = Object.keys(dataSet)
-
+  
   const onYearBack = () => {    
     setSelectedYear(prev => yearsList.includes(`${prev - 1}`) ? prev - 1 : prev)
   }
