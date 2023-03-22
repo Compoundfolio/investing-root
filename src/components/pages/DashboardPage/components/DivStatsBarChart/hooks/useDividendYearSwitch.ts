@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { DivChartDataSet, DivChartYearlyData } from "../types"
 
 const currentYear = new Date().getFullYear()
@@ -9,13 +9,13 @@ const useDividendYearSwitch = (dataSet: DivChartDataSet) => {
 
   const yearsList = Object.keys(dataSet)
   
-  const onYearBack = () => {    
+  const onYearBack = useCallback(() => {    
     setSelectedYear(prev => yearsList.includes(`${prev - 1}`) ? prev - 1 : prev)
-  }
+  }, [yearsList])
 
-  const onYearForward = () => {
+  const onYearForward = useCallback(() => {
     setSelectedYear(prev => yearsList.includes(`${prev + 1}`) ? prev + 1 : prev)
-  }
+  }, [yearsList])
 
   useEffect(() => {
     setSelectedYearDividendsData(dataSet[selectedYear])
