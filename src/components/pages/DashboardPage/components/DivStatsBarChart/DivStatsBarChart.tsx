@@ -21,12 +21,13 @@ const DivStatsBarChart = () => {
   const yearDivs = selectedYearDividendsData.reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
   const pervYearDivs = dataSet[selectedYear-1].reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
   const yearDivGrowthPercentage = parseNumberToFixed2((yearDivs / pervYearDivs) * 100)
+  const estimatedSelectedYearDivs = 500.01
 
   return (
     <StyledBarChartContainer>
       <DivChartHeader 
-        currentlySelectedYearDivs={0} 
-        currentlySelectedYearExpectedTotalDivs={0} 
+        currentlySelectedYearDivs={yearDivs} 
+        currentlySelectedYearExpectedTotalDivs={estimatedSelectedYearDivs} 
         currentlySelectedYearDivGrowthPercentageComparedToPrevYear={yearDivGrowthPercentage} 
         currentlySelectedYear={selectedYear} 
         onYearBack={onYearBack} 
