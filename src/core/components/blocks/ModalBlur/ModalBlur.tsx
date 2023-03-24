@@ -1,6 +1,8 @@
 import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
 import { BackgroundFogBlur } from './styled';
+import { ShortcutHelper } from "../../help";
+import { Box } from "@mui/material";
 
 const ModalBlur = ({
   isOpen = false,
@@ -15,14 +17,17 @@ const ModalBlur = ({
           <div
             className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className="relative w-full mx-auto my-6 max-w-7xl">
-              <div className="relative flex flex-col w-full outline-none focus:outline-none">
+            <div className="relative w-full h-full mx-auto my-6 max-w-7xl">
+              <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5">
                   {/* TODO: Optional title? */}
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto p-6 text-white">
+                <div className="relative flex-auto w-full h-full p-6 text-white">
+                  <Box position="fixed" top={16} left={16}>
+                    <ShortcutHelper keyShortcuts={[ { keyName: "Esc" } ]}/>
+                  </Box>
                   {children}
                 </div>
                 {/*footer*/}
@@ -47,7 +52,7 @@ const ModalBlur = ({
               </div>
             </div>
           </div>
-          <BackgroundFogBlur className="fixed inset-0 z-40"></BackgroundFogBlur>
+          <BackgroundFogBlur className="fixed inset-0 z-40"/>
         </>
       )}
     </>

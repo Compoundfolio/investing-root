@@ -1,1 +1,1 @@
-export * from './ModalBlur'
+export { default as ModalBlur } from './ModalBlur'

@@ -1,5 +1,5 @@
 import { ResponsivePie } from '@nivo/pie'
-import { memo, useMemo, useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { memo, useMemo, useState, useEffect, useRef } from 'react';
 import { StyledPieChartContainer } from './styled'
 import { OpenPosition, colors, isEmpty } from '@core'
 import { useBrokeragesData } from 'src/store'
@@ -65,17 +65,17 @@ const PortfolioAssetsPieChart = () => {
 
   const ref = useRef()
 
-  useEffect(() => {
-    if (ref.current) {
-      setTimeout(() => {
-        // @ts-ignore
-        const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
-        t && t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
-        // console.log("t",t, ref.current);
+  // useEffect(() => {
+  //   if (ref.current) {
+  //     setTimeout(() => {
+  //       // @ts-ignore
+  //       const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
+  //       t && t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
+  //       // console.log("t",t, ref.current);
 
-      }, 1000)
-    }
-  }, [ref.current])
+  //     }, 1000)
+  //   }
+  // }, [ref.current])
 
   return ( 
     <StyledPieChartContainer className='relative' ref={ref}>

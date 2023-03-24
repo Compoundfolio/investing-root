@@ -1,7 +1,11 @@
-import { ColorizedNumber, NumberMini, YearSwitcher } from '@core'
+import { ColorizedNumber,  ModalBlur,  NumberMini, YearSwitcher, colors } from '@core'
 import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import React, { memo } from 'react'
+import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton';
+import { useOpen } from 'src/core/hooks';
+import DivStatsBarChart from '../DivStatsBarChart';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 interface IDivChartHeader {
   currentlySelectedYearDivs: number
@@ -21,23 +25,26 @@ const StyledChartTitle = styled.h2({
 const DivChartHeader = ({
   currentlySelectedYearDivs,
   currentlySelectedYearExpectedTotalDivs,
-  currentlySelectedYearDivGrowthPercentageComparedToPrevYear,
   currentlySelectedYear,
   onYearBack,
   onYearForward,
 }: IDivChartHeader) => {
+  const [ isFullScreenOpen, handleIsFullScreenOpen ] = useOpen()
+
   return <>
     <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
       <Box display="flex" alignItems="center" gap={1}>
         <StyledChartTitle>Dividends</StyledChartTitle>
-        {/* TODO: Estimated divs */}
-      </Box>
-      <Box display="flex" alignItems="center" gap={1}>
         <YearSwitcher 
           year={currentlySelectedYear}
           onYearBack={onYearBack}
           onYearForward={onYearForward}
         />
+      </Box>
+      <Box display="flex" alignItems="center" gap={1}>
+        <CircleButton onClick={handleIsFullScreenOpen}>
+          <FullscreenIcon sx={{ color: colors.gray4C }} />
+        </CircleButton>
       </Box>
     </Box>
     <Box display="flex" alignItems="center" justifyContent="space-between" mb={4}>
@@ -49,12 +56,16 @@ const DivChartHeader = ({
         title="Estimated total"
         numbers={`$${currentlySelectedYearExpectedTotalDivs}`}
       />
-      <ColorizedNumber
-        number={currentlySelectedYearDivGrowthPercentageComparedToPrevYear}
-        isPercentage
-        isExtraBold
-      />
     </Box>
+
+    <ModalBlur
+        isOpen={isFullScreenOpen}
+        handleOpenChange={handleIsFullScreenOpen}
+        // onSave={handleReportsUpload}
+        // saveButtonTitle=""
+      >
+        <DivStatsBarChart />
+      </ModalBlur>
   </>
 }
 
