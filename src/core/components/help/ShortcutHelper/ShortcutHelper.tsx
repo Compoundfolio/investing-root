@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
 import { IShortcutHelper } from './types'
-
 const ShortcutHelper = ({
   keyShortcuts,
 }: IShortcutHelper) => {
