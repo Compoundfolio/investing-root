@@ -7,10 +7,14 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css'
 import { queryClient } from 'src/utils/queryClient';
 import { QueryClientProvider, Hydrate } from 'react-query';
+import { SessionProvider } from "next-auth/react"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ 
+  Component, 
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
-    <>
+    <SessionProvider session={session}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +34,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </RecoilRoot>
         </Hydrate>
       </QueryClientProvider>
-    </>
+    </SessionProvider>
   )
 }
