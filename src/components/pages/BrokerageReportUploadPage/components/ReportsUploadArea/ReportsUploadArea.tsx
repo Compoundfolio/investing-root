@@ -18,6 +18,10 @@ const ReportsUploadArea = () => {
       <ReportFileUploadArea 
         selectedBrokerageName={selectedBrokerageName}
       />
+      <SelectedBrokeragesSwitchingList 
+        selectedBrokerageName={selectedBrokerageName}
+        handleChangeSelectedBrokerage={handleChangeSelectedBrokerage}
+      />
       {/* <NavigationAside /> */}
     </SSectionContainer>
   )

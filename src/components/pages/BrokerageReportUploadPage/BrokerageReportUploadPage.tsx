@@ -35,7 +35,7 @@ const BrokerageReportUploadPage = () => {
         isOpen={isReportsUploadModalOpen}
         handleOpenChange={handleReportsCsvUploadModalOpen}
         onSave={handleReportsUpload}
-        // saveButtonTitle=""
+        noMaxWidth
       >
         <ReportsUploadArea />
       </ModalBlur>

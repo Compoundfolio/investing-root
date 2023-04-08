@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
-import {useDropzone} from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 import { StyledDndContainer, StyledDndTitle, StyledDndTitleSub } from './styled'
 import { NonTradeTransaction, Transaction, getBrokerageClassByBrandName } from '@core';
 import { useState } from 'react';
 import Brokerage from 'src/inversions/brokerages/Brokerage';
 import { IDndFileArea } from './__types__';
 import { useBrokeragesData } from 'src/store';
+import { UploadMetrixCards } from './components';
 
 export default memo(function DndFileArea({
   selectedBrokerageName,
@@ -13,7 +14,7 @@ export default memo(function DndFileArea({
   const [tradeTransactions, setTradeTransactions] = useState<Transaction[]>([])
   const [nonTradeTransactions, setNonTradeTransactions] = useState<NonTradeTransaction[]>([])
   const { addBrokerageEntity } = useBrokeragesData()
-  
+
   // TODO: Hide the implementation, it's too massive to have it inside component
   const onDrop = (acceptedFiles: File[]) => {
     const inputFile = acceptedFiles[0]
@@ -27,7 +28,7 @@ export default memo(function DndFileArea({
       if (SelectedBrokerage) {
         const newBrokerageDataEntity = new Brokerage(SelectedBrokerage, unparsedReport)
         addBrokerageEntity(newBrokerageDataEntity)
-        setTradeTransactions(newBrokerageDataEntity.getTradeTransactions())        
+        setTradeTransactions(newBrokerageDataEntity.getTradeTransactions())
         setNonTradeTransactions(newBrokerageDataEntity.getNonTradeTransactions())
       } else {
         console.error(`Can't find brokerage by brokerageName = ${selectedBrokerageName}`)
@@ -40,16 +41,23 @@ export default memo(function DndFileArea({
   const {
     getRootProps,
     getInputProps,
-  } = useDropzone({ onDrop })  
-  
-  return (
-    // TODO: Pass to reusable <DndFileUploadArea /> component
+  } = useDropzone({ onDrop })
+
+  return <>
+    {/* TODO: Make upload area kinda fixed */}
+    {/* TODO: Pass to reusable <DndFileUploadArea /> component */}
     <StyledDndContainer {...getRootProps()}>
-      <input {...getInputProps()} />
+      {/* TODO: Allow CSV files only */}
+      {/* TODO: Add CSV file validation */}
+      <input accept="csv" {...getInputProps()} />
       <StyledDndTitle>Drag & drop the CSV report from your brokerage or</StyledDndTitle>
       <StyledDndTitleSub>browse it</StyledDndTitleSub>
-      {!!tradeTransactions.length && `${tradeTransactions.length} of buy/sell transactions found! `}
-      {!!nonTradeTransactions.length && `| ${nonTradeTransactions.length} of other transactions found!`}
     </StyledDndContainer>
-  )
+    {(!!tradeTransactions.length || !!nonTradeTransactions.length) && (
+      <UploadMetrixCards
+        tradesAmount={tradeTransactions.length}
+        nonTradesAmount={nonTradeTransactions.length}
+      />
+    )}
+  </>
 })

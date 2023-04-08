@@ -1,6 +1,7 @@
 import { memo } from "react"
 import { DndFileArea } from "./components"
 import { IReportFileUploadArea } from './__types__';
+import HelpToUploadBtn from "./components/HelpToUploadBtn/HelpToUploadBtn";
 
 const ReportFileUploadArea = ({
   selectedBrokerageName
@@ -10,7 +11,9 @@ const ReportFileUploadArea = ({
       <div>
         {/* TODO: */}
         {/* <Title /> */}
-        {/* <HelpBtn /> */}
+        <HelpToUploadBtn 
+          // selectedBrokerageName={selectedBrokerageName} 
+        />
       </div>
       <DndFileArea 
         selectedBrokerageName={selectedBrokerageName} 

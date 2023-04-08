@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from "react";
+import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
 import { BackgroundFogBlur } from './styled';
 import { ShortcutHelper } from "../../help";
@@ -7,10 +7,12 @@ import { useModalCloseKeyShortcut } from "./hooks";
 
 const ModalBlur = ({
   isOpen = false,
+  noMaxWidth = false,
   children,
   handleOpenChange,
   onSave,
 }: IModalBlur) => {
+  const maxWidthClass = noMaxWidth ? "" : "max-w-7xl"
 
   useModalCloseKeyShortcut(isOpen, handleOpenChange)
 
@@ -21,7 +23,7 @@ const ModalBlur = ({
           <div
             className="fixed inset-0 z-50 flex items-center justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className="relative w-full h-full mx-auto my-6 max-w-7xl">
+            <div className={`relative w-full h-full mx-auto my-6 ${maxWidthClass}`}>
               <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5">

@@ -12,7 +12,7 @@ const SelectedBrokeragesSwitchingList = ({
   const { selectedBrokerages } = useSelectedBrokeragesStore()
 
   return (
-    <aside>
+    <aside className='flex flex-col gap-8'>
       {selectedBrokerages.map((Brokerage: SupportedBrokerage) => (
         <SelectableBrokerage
           key={Brokerage.brandName}
@@ -21,6 +21,23 @@ const SelectedBrokeragesSwitchingList = ({
           handleUpdateSelectedBrokerages={handleChangeSelectedBrokerage}
         />
       ))}
+      {selectedBrokerages.map((Brokerage: SupportedBrokerage) => (
+        <SelectableBrokerage
+          key={Brokerage.brandName}
+          Brokerage={Brokerage}
+          isSelected={selectedBrokerageName === Brokerage.brandName}
+          handleUpdateSelectedBrokerages={handleChangeSelectedBrokerage}
+        />
+      ))}
+      {selectedBrokerages.map((Brokerage: SupportedBrokerage) => (
+        <SelectableBrokerage
+          key={Brokerage.brandName}
+          Brokerage={Brokerage}
+          isSelected={selectedBrokerageName === Brokerage.brandName}
+          handleUpdateSelectedBrokerages={handleChangeSelectedBrokerage}
+        />
+      ))}
+      
     </aside>
   )
 }
