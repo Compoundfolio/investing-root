@@ -2,13 +2,27 @@ import React, { memo } from 'react'
 import { generateDrinkStats } from '@nivo/generators'
 import { ResponsiveLine } from '@nivo/line'
 import { StyledChartContainer } from './styled'
+import { linearGradientDef } from '@nivo/core'
+import { colors } from '@core'
 
 const data = generateDrinkStats(18)
 
+// const HARD_CODED_DATA = [
+//   {
+//     id: string;
+//     color: string;
+//     data: Array<{
+//         color: string;
+//         x: string;
+//         y: number;
+//     }>
+//   }
+// ]
+
 const properties = {
-  width: 900,
-  height: 400,
-  margin: { top: 15, right: 15, bottom: 30, left: 15 },
+  // width: 900,
+  // height: 400,
+  margin: { top: 15, right: 15, bottom: 20, left: 15 },
   data,
   animate: true,
   enableSlices: 'x',
@@ -88,6 +102,7 @@ const PortfolioGrowthChart = () => {
           },
         ]}
         colors={['rgb(97, 205, 187)', 'rgb(244, 117, 96)']}
+        
         markers={[
           {
             axis: 'y',
@@ -106,7 +121,23 @@ const PortfolioGrowthChart = () => {
           min: xminValue,
           max: xmaxValue,
         }}
-        areaOpacity={0.07}
+        defs={[
+                      linearGradientDef('gradientA', [
+                        // { offset: 1, color: "black", opacity: 0.01 },
+                        { offset: 100, color: colors.darkGreen, opacity: 1 },
+                        // { offset: 50, color: "red", opacity: 0.01  },
+                        // { offset: 50, color: colors.lightGreen, opacity: 1  },
+                      ]),
+                      linearGradientDef('gradientB', [
+                        // { offset: 50, color: 'blue', opacity: .1 },
+                        { offset: 100, color: 'red', opacity: 1 },
+                    ]),
+                  ]}
+                  fill={[
+                    { match: { id: 'positive :)' }, id: 'gradientA' },
+                    { match: { id: 'negative :(' }, id: 'gradientB' },
+                  ]}
+        areaOpacity={1}
         useMesh={true}
         crosshairType="cross"
       />
