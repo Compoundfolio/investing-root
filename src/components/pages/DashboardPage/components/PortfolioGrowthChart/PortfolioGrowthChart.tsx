@@ -4,6 +4,7 @@ import { ResponsiveLine } from '@nivo/line'
 import { StyledChartContainer } from './styled'
 import { linearGradientDef } from '@nivo/core'
 import { colors } from '@core'
+import { ChartTooltip, ChartValuePoint } from './components'
 
 // const data = generateDrinkStats(18)
 
@@ -35,7 +36,7 @@ const properties = {
 }
 
 const PortfolioGrowthChart = () => {
-  
+
 
   return (
     <StyledChartContainer>
@@ -44,9 +45,9 @@ const PortfolioGrowthChart = () => {
         enableGridX={false}
         enableGridY={false}
         enableArea={true}
-        enablePoints={false}
-        enablePointLabel={false}
-        enableSlices={false}
+        // enablePoints={false}
+        // enablePointLabel={true}
+        // enableSlices={false}
         axisLeft={null}
         axisBottom={{
           tickSize: 0,
@@ -134,6 +135,7 @@ const PortfolioGrowthChart = () => {
           min: xminValue,
           max: xmaxValue,
         }}
+        yFormat=""
         defs={[
           linearGradientDef('gradientA', [
             { offset: 100, color: colors.darkGreen, opacity: 0.25 },
@@ -150,6 +152,22 @@ const PortfolioGrowthChart = () => {
         areaBlendMode=""
         useMesh={true}
         crosshairType="cross"
+        // enablePointLabel={true}
+        pointSymbol={ChartValuePoint}
+        pointSize={8}
+        pointBorderWidth={1}
+        pointBorderColor={{
+          from: 'color',
+          modifiers: [['darker', 0.3]],
+        }}
+        pointLabelYOffset={-20}
+
+        // layers={[ChartValuePoint]}
+
+        // pointLabel={"1"}
+        enableSlices="x"
+        // 882
+        sliceTooltip={ChartTooltip}
       />
     </StyledChartContainer>
   )
