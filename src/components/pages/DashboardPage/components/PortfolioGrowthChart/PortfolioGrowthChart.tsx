@@ -5,7 +5,7 @@ import { StyledChartContainer } from './styled'
 import { linearGradientDef } from '@nivo/core'
 import { colors } from '@core'
 
-const data = generateDrinkStats(18)
+// const data = generateDrinkStats(18)
 
 // const HARD_CODED_DATA = [
 //   {
@@ -19,18 +19,23 @@ const data = generateDrinkStats(18)
 //   }
 // ]
 
+const POSITIVE_COLOR = colors.darkGreen
+const NEGATIVE_COLOR = colors.pinkSoft
+
+const xminValue = 0
+const xmaxValue = 7
+
 const properties = {
   // width: 900,
   // height: 400,
   margin: { top: 15, right: 15, bottom: 20, left: 15 },
-  data,
+  // data,
   animate: true,
   enableSlices: 'x',
 }
 
 const PortfolioGrowthChart = () => {
-  const xminValue = -1
-  const xmaxValue = 1
+  
 
   return (
     <StyledChartContainer>
@@ -64,11 +69,19 @@ const PortfolioGrowthChart = () => {
               { x: 3, y: 0.6 },
               { x: 4, y: 0.3 },
               { x: 5, y: 0 },
-              { x: 6, y: null },
-              { x: 7, y: null },
-              { x: 8, y: null },
-              { x: 9, y: null },
-              { x: 10, y: null },
+
+              { x: 6, y: 6 },
+              { x: 7, y: 5 },
+              { x: 8, y: xmaxValue },
+              { x: 9, y: 3 },
+              { x: 10, y: 5 },
+
+              // { x: 6, y: null },
+              // { x: 7, y: null },
+              // { x: 8, y: null },
+              // { x: 9, y: null },
+              // { x: 10, y: null },
+
               { x: 11, y: 0 },
               { x: 12, y: 0.4 },
               { x: 13, y: 0.6 },
@@ -78,40 +91,40 @@ const PortfolioGrowthChart = () => {
               { x: 17, y: 0 },
             ],
           },
-          {
-            id: 'negative :(',
-            data: [
-              { x: 5, y: 0 },
-              { x: 6, y: -0.3 },
-              { x: 7, y: -0.5 },
-              { x: 8, y: -0.9 },
-              { x: 9, y: -0.2 },
-              { x: 10, y: -0.4 },
-              { x: 11, y: 0 },
-              { x: 12, y: null },
-              { x: 13, y: null },
-              { x: 14, y: null },
-              { x: 15, y: null },
-              { x: 16, y: null },
-              { x: 17, y: 0 },
-              { x: 18, y: -0.4 },
-              { x: 19, y: -0.2 },
-              { x: 20, y: -0.1 },
-              { x: 21, y: -0.6 },
-            ],
-          },
+          // {
+          //   id: 'negative :(',
+          //   data: [
+          //     { x: 5, y: 0 },
+          //     { x: 6, y: -0.3 },
+          //     { x: 7, y: -0.5 },
+          //     { x: 8, y: -0.9 },
+          //     { x: 9, y: -0.2 },
+          //     { x: 10, y: -0.4 },
+          //     { x: 11, y: 0 },
+          //     { x: 12, y: null },
+          //     { x: 13, y: null },
+          //     { x: 14, y: null },
+          //     { x: 15, y: null },
+          //     { x: 16, y: null },
+          //     { x: 17, y: 0 },
+          //     { x: 18, y: -0.4 },
+          //     { x: 19, y: -0.2 },
+          //     { x: 20, y: -0.1 },
+          //     { x: 21, y: -0.6 },
+          //   ],
+          // },
         ]}
-        colors={['rgb(97, 205, 187)', 'rgb(244, 117, 96)']}
-        
-        markers={[
-          {
-            axis: 'y',
-            value: 0,
-            lineStyle: { stroke: '#b0413e', strokeWidth: 1 },
-            legend: 'y marker at 0',
-            legendPosition: 'bottom-left',
-          },
-        ]}
+        colors={[POSITIVE_COLOR, NEGATIVE_COLOR]}
+
+        // markers={[
+        //   {
+        //     axis: 'y',
+        //     value: 0,
+        //     lineStyle: { stroke: '#b0413e', strokeWidth: 1 },
+        //     legend: 'y marker at 0',
+        //     legendPosition: 'bottom-left',
+        //   },
+        // ]}
         xScale={{
           type: 'linear',
         }}
@@ -122,22 +135,19 @@ const PortfolioGrowthChart = () => {
           max: xmaxValue,
         }}
         defs={[
-                      linearGradientDef('gradientA', [
-                        // { offset: 1, color: "black", opacity: 0.01 },
-                        { offset: 100, color: colors.darkGreen, opacity: 1 },
-                        // { offset: 50, color: "red", opacity: 0.01  },
-                        // { offset: 50, color: colors.lightGreen, opacity: 1  },
-                      ]),
-                      linearGradientDef('gradientB', [
-                        // { offset: 50, color: 'blue', opacity: .1 },
-                        { offset: 100, color: 'red', opacity: 1 },
-                    ]),
-                  ]}
-                  fill={[
-                    { match: { id: 'positive :)' }, id: 'gradientA' },
-                    { match: { id: 'negative :(' }, id: 'gradientB' },
-                  ]}
+          linearGradientDef('gradientA', [
+            { offset: 100, color: colors.darkGreen, opacity: 0.25 },
+          ]),
+          linearGradientDef('gradientB', [
+            { offset: 100, color: colors.pinkSoft, opacity: 0.25 },
+          ]),
+        ]}
+        fill={[
+          { match: { id: 'positive :)' }, id: 'gradientA' },
+          { match: { id: 'negative :(' }, id: 'gradientB' },
+        ]}
         areaOpacity={1}
+        areaBlendMode=""
         useMesh={true}
         crosshairType="cross"
       />
