@@ -1,5 +1,4 @@
 import { StringDate } from 'src/core/types';
-import ExanteCsvTransaction from '../../../../__types__/ExanteCsvTransaction';
 
 /**
  * Get EXANTE transaction type

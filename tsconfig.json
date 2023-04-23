@@ -8,7 +8,7 @@
       "@core/components": [ "src/core/components" ],
     },
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext", "esnext.asynciterable"],
+    "lib": ["dom", "dom.iterable", "esnext", "esnext.asynciterable",],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,

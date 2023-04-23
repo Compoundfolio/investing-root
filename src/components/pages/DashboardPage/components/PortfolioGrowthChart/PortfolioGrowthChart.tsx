@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
-import { generateDrinkStats } from '@nivo/generators'
 import { ResponsiveLine } from '@nivo/line'
 import { StyledChartContainer } from './styled'
 import { linearGradientDef } from '@nivo/core'
 import { colors } from '@core'
 import { ChartTooltip, ChartValuePoint } from './components'
+import { useValueChartData } from './hooks';
 
 // const data = generateDrinkStats(18)
 
@@ -27,16 +27,16 @@ const xminValue = 0
 const xmaxValue = 7
 
 const properties = {
-  // width: 900,
-  // height: 400,
   margin: { top: 15, right: 15, bottom: 20, left: 15 },
-  // data,
   animate: true,
-  enableSlices: 'x',
 }
 
 const PortfolioGrowthChart = () => {
 
+  const data = useValueChartData()
+
+  console.log(data);
+  
 
   return (
     <StyledChartContainer>
@@ -49,7 +49,19 @@ const PortfolioGrowthChart = () => {
         // enablePointLabel={true}
         // enableSlices={false}
         axisLeft={null}
+        xScale={{
+            type: 'time',
+            format: '%Y-%m-%d',
+            useUTC: false,
+            precision: 'day',
+        }}
+        xFormat="time:%Y-%m-%d"
         axisBottom={{
+          format: '%b %d',
+          tickValues: 'every 2 days',
+          legend: 'time scale',
+          legendOffset: -12,
+
           tickSize: 0,
           tickPadding: 5,
           tickRotation: 0,
@@ -60,63 +72,66 @@ const PortfolioGrowthChart = () => {
           // legendOffset: 46,
           // TODO: renderTick: CustomAxisBottomTick
         }}
-        data={[
-          {
-            id: 'positive :)',
-            data: [
-              { x: 0, y: 0.7 },
-              { x: 1, y: 0.9 },
-              { x: 2, y: 0.8 },
-              { x: 3, y: 0.6 },
-              { x: 4, y: 0.3 },
-              { x: 5, y: 0 },
+        data={[{
+          id: 'positive :)',
+          data,
+        }]}
+        // data={[
+        //   {
+        //     id: 'positive :)',
+        //     data: [
+        //       { x: 0, y: 0.7 },
+        //       { x: 1, y: 0.9 },
+        //       { x: 2, y: 0.8 },
+        //       { x: 3, y: 0.6 },
+        //       { x: 4, y: 0.3 },
+        //       { x: 5, y: 0 },
 
-              { x: 6, y: 6 },
-              { x: 7, y: 5 },
-              { x: 8, y: xmaxValue },
-              { x: 9, y: 3 },
-              { x: 10, y: 5 },
+        //       { x: 6, y: 6 },
+        //       { x: 7, y: 5 },
+        //       { x: 8, y: xmaxValue },
+        //       { x: 9, y: 3 },
+        //       { x: 10, y: 5 },
 
-              // { x: 6, y: null },
-              // { x: 7, y: null },
-              // { x: 8, y: null },
-              // { x: 9, y: null },
-              // { x: 10, y: null },
+        //       // { x: 6, y: null },
+        //       // { x: 7, y: null },
+        //       // { x: 8, y: null },
+        //       // { x: 9, y: null },
+        //       // { x: 10, y: null },
 
-              { x: 11, y: 0 },
-              { x: 12, y: 0.4 },
-              { x: 13, y: 0.6 },
-              { x: 14, y: 0.5 },
-              { x: 15, y: 0.3 },
-              { x: 16, y: 0.4 },
-              { x: 17, y: 0 },
-            ],
-          },
-          // {
-          //   id: 'negative :(',
-          //   data: [
-          //     { x: 5, y: 0 },
-          //     { x: 6, y: -0.3 },
-          //     { x: 7, y: -0.5 },
-          //     { x: 8, y: -0.9 },
-          //     { x: 9, y: -0.2 },
-          //     { x: 10, y: -0.4 },
-          //     { x: 11, y: 0 },
-          //     { x: 12, y: null },
-          //     { x: 13, y: null },
-          //     { x: 14, y: null },
-          //     { x: 15, y: null },
-          //     { x: 16, y: null },
-          //     { x: 17, y: 0 },
-          //     { x: 18, y: -0.4 },
-          //     { x: 19, y: -0.2 },
-          //     { x: 20, y: -0.1 },
-          //     { x: 21, y: -0.6 },
-          //   ],
-          // },
-        ]}
+        //       { x: 11, y: 0 },
+        //       { x: 12, y: 0.4 },
+        //       { x: 13, y: 0.6 },
+        //       { x: 14, y: 0.5 },
+        //       { x: 15, y: 0.3 },
+        //       { x: 16, y: 0.4 },
+        //       { x: 17, y: 0 },
+        //     ],
+        //   },
+        //   // {
+        //   //   id: 'negative :(',
+        //   //   data: [
+        //   //     { x: 5, y: 0 },
+        //   //     { x: 6, y: -0.3 },
+        //   //     { x: 7, y: -0.5 },
+        //   //     { x: 8, y: -0.9 },
+        //   //     { x: 9, y: -0.2 },
+        //   //     { x: 10, y: -0.4 },
+        //   //     { x: 11, y: 0 },
+        //   //     { x: 12, y: null },
+        //   //     { x: 13, y: null },
+        //   //     { x: 14, y: null },
+        //   //     { x: 15, y: null },
+        //   //     { x: 16, y: null },
+        //   //     { x: 17, y: 0 },
+        //   //     { x: 18, y: -0.4 },
+        //   //     { x: 19, y: -0.2 },
+        //   //     { x: 20, y: -0.1 },
+        //   //     { x: 21, y: -0.6 },
+        //   //   ],
+        //   // },
+        // ]}
         colors={[POSITIVE_COLOR, NEGATIVE_COLOR]}
-
         // markers={[
         //   {
         //     axis: 'y',
@@ -126,9 +141,9 @@ const PortfolioGrowthChart = () => {
         //     legendPosition: 'bottom-left',
         //   },
         // ]}
-        xScale={{
-          type: 'linear',
-        }}
+        // xScale={{
+        //   type: 'linear',
+        // }}
         yScale={{
           type: 'linear',
           stacked: false,
@@ -152,7 +167,6 @@ const PortfolioGrowthChart = () => {
         areaBlendMode=""
         useMesh={true}
         crosshairType="cross"
-        // enablePointLabel={true}
         pointSymbol={ChartValuePoint}
         pointSize={8}
         pointBorderWidth={1}
@@ -161,12 +175,7 @@ const PortfolioGrowthChart = () => {
           modifiers: [['darker', 0.3]],
         }}
         pointLabelYOffset={-20}
-
-        // layers={[ChartValuePoint]}
-
-        // pointLabel={"1"}
         enableSlices="x"
-        // 882
         sliceTooltip={ChartTooltip}
       />
     </StyledChartContainer>
