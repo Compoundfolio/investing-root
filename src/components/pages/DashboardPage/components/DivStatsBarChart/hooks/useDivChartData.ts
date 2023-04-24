@@ -6,8 +6,10 @@ const useDivChartData = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
-    const assets = brokerageEntities[0].getAssets()
+    const assets = brokerageEntities[0].getAssets()     
     const openPositionsListing = Object.values(assets?.openPositions)
+    console.log(getDivChartDataSet(openPositionsListing));
+    
     return getDivChartDataSet(openPositionsListing)
   }, [brokerageEntities])  
 

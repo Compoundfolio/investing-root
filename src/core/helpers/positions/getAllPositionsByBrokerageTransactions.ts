@@ -58,7 +58,7 @@ const getAllPositionsByBrokerageTransactions = (
       const nonTradeTransactionsList = nonTradeTransactions[ticker]
 
       const payedDividendTransactionsWithoutTax = getNonTradeTransactions<"DIVIDEND">(nonTradeTransactionsList, "DIVIDEND")
-      const payedDividendTaxTransactions = getNonTradeTransactions<"TAX">(nonTradeTransactionsList, ["US TAX", "TAX"])
+      const payedDividendTaxTransactions = getNonTradeTransactions<"TAX">(nonTradeTransactionsList, "TAX")
       const payedBrokerageCommissionsTransactions = getNonTradeTransactions<"COMMISSION">(nonTradeTransactionsList, "COMMISSION")
 
       const payedDividendTransactionsWithTax = getDividendTransactionsWithTax(

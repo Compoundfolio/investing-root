@@ -1,11 +1,11 @@
-import { Transaction, BrokerageTransactionType, OrderOperation } from "src/core/types"
+import { Transaction, OrderOperation } from "src/core/types"
 import { parseNumber } from "../../formaters"
 
 const getSharesAmount = (transactionsList: Transaction[]) => transactionsList.reduce((
   prevValue: number, 
   currentTransaction: Transaction
 ) => {
-  const isTrade = currentTransaction.type === BrokerageTransactionType.TRADE
+  const isTrade = currentTransaction.type === "TRADE"
   if (isTrade && currentTransaction.operation === OrderOperation.BUY) {
     return prevValue + (parseNumber(currentTransaction.orderAmount) ?? 0)
   } 

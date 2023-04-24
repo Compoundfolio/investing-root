@@ -1,5 +1,5 @@
-import { ExanteCsvNonTradeTransaction } from "src/inversions/brokerages/Exante/__types__"
+import BrokerageTransactionType from "./BrokerageTransactionType"
 
-type NonTradeTransactionTypes = Exclude<ExanteCsvNonTradeTransaction["Operation Type"], "TRADE">
+type NonTradeTransactionTypes = Exclude<BrokerageTransactionType, "TRADE">
 
 export default NonTradeTransactionTypes

@@ -2,6 +2,7 @@ import { parseNumber } from '@core';
 import { BrokerageTransactionType } from 'src/core/types';
 import { ExanteCsvTransaction } from 'src/inversions/brokerages/Exante/__types__';
 
+// TODO: Refactor
 const getTransactionType = ({ 
   "Trade type": TradeType, 
   ISIN, 
@@ -11,20 +12,21 @@ const getTransactionType = ({
 
   if (!exanteType) return
 
-  if (exanteType === "TRADE") return BrokerageTransactionType.TRADE
+  if (exanteType === "TRADE") return "TRADE"
 
-  if (exanteType === "DIVIDEND") return BrokerageTransactionType.DIVIDEND
+  if (exanteType === "DIVIDEND") return "DIVIDEND"
 
-  if (exanteType === "COMMISSION") return BrokerageTransactionType.COMMISSION
+  if (exanteType === "COMMISSION") return "COMMISSION"
   
-  if (exanteType === "TAX" || exanteType === "US TAX") return BrokerageTransactionType.TAX
+  if (exanteType === "TAX" || exanteType === "US TAX") return "TAX"
 
   if (exanteType === "FUNDING/WITHDRAWAL") {
     const operationPrice = parseNumber(Price)
     if (!operationPrice) return 
+    
     return operationPrice > 0 
-      ? BrokerageTransactionType.DEPOSIT
-      : BrokerageTransactionType.WITHDRAWAL
+      ? "DEPOSIT"
+      : "WITHDRAWAL"
   }
 
 }

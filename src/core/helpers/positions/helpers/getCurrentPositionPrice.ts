@@ -1,4 +1,4 @@
-import { Transaction, BrokerageTransactionType, OrderOperation } from "src/core/types"
+import { Transaction, OrderOperation } from "src/core/types"
 import { parseNumber } from "../../formaters"
 import { TickerAndPrice } from "src/api/market/types"
 
@@ -10,7 +10,7 @@ const getCurrentPositionPrice = (
     prevValue: number, 
     currentTransaction: Transaction
   ) => {
-    const isTrade = currentTransaction.type === BrokerageTransactionType.TRADE
+    const isTrade = currentTransaction.type === "TRADE"
     const assetMarketPrice = (parseNumber(marketPricesByTicker[currentTransaction.ticker]) ?? 0)
 
     if (isTrade && currentTransaction.operation === OrderOperation.BUY) {

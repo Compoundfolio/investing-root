@@ -1,16 +1,16 @@
-import { BrokerageTransactionType, NonTradeTransaction, normalizeArrayOfObjectsBy } from '@core';
+import { NonTradeTransaction, normalizeArrayOfObjectsBy } from '@core';
 import { NormalizedValueChartDataSet, ValueChartDataSet, ValueChartDataSetEntity } from "../types"
 import { format } from "date-fns"
 
 const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[]) => {
   return allNonTradeTransactions
     .filter(transaction => 
-      transaction.type === BrokerageTransactionType.DEPOSIT || 
-      transaction.type === BrokerageTransactionType.WITHDRAWAL
+      transaction.type === "DEPOSIT" || 
+      transaction.type === "WITHDRAWAL"
     )
-    .map<ValueChartDataSetEntity>(({ time, orderPrice, type }) => ({ 
+    .map<ValueChartDataSetEntity>(({ time, price, type }) => ({ 
       x: format(new Date(time), "yyy-mm-dd"), 
-      y: type === BrokerageTransactionType.WITHDRAWAL ? -orderPrice : orderPrice
+      y: type === "WITHDRAWAL" ? -price : price
     }))
 }
 
@@ -21,11 +21,6 @@ const getValueChartDataSet = (
     getDepositsAndWithdrawals(allNonTradeTransactions),
     "x",
   ) as NormalizedValueChartDataSet
-    console.log(allNonTradeTransactions
-      .filter(transaction => 
-        transaction.type === BrokerageTransactionType.DEPOSIT || 
-        transaction.type === BrokerageTransactionType.WITHDRAWAL
-      ));
     
   const dataSet = Object
     .entries(normalizedDepositsAndWithdrawalsPricesByDate)

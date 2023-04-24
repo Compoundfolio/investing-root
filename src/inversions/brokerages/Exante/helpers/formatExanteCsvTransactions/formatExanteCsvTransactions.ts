@@ -1,4 +1,4 @@
-import { Currency, NonTradeTransaction, Transaction } from "src/core/types"
+import { Currency, NonTradeTransaction, NonTradeTransactionTypes, Transaction } from "src/core/types"
 import { v4 as uuidv4 } from 'uuid';
 import { getOperation, getPartsFromSymbolId, getTime, getTransactionType } from "./helpers";
 import { getExanteNonTradeTransactionsList, getExanteTransactionsList, parseNumber } from "@core";
@@ -14,9 +14,6 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
 
   const nonTradeTransactionsSourceString = reportUnParsedData.substr(secondTablePos)
   const nonTradeTransactions = getExanteNonTradeTransactionsList(nonTradeTransactionsSourceString)
-
-  // console.log("tradeTransactions",tradeTransactions);
-  // console.log("nonTradeTransactions",nonTradeTransactions);
   
   // Trade transactions
   for (const exanteTradeTransaction of tradeTransactions) {
@@ -40,7 +37,7 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       id: exanteNonTradeTransaction["UUID"],
       parentId: exanteNonTradeTransaction["Parent UUID"],
       comment: exanteNonTradeTransaction["Comment"],
-      type: exanteNonTradeTransaction["Operation type"],
+      type: getTransactionType(exanteNonTradeTransaction["Operation type"]) as NonTradeTransactionTypes,
       time: exanteNonTradeTransaction["When"],
       currency: exanteNonTradeTransaction["Asset"],
       ticker: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.ticker ?? null,

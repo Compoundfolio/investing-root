@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { StyledBarChartContainer } from './styled'
 import { colors } from 'src/core/theme';
-import { YearSwitcher, parseNumberToFixed2 } from '@core';
+import { parseNumberToFixed2 } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 import { linearGradientDef } from '@nivo/core'
@@ -21,6 +21,7 @@ const DivStatsBarChart = () => {
   const yearDivs = selectedYearDividendsData.reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
   const pervYearDivs = dataSet[selectedYear-1].reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
   const yearDivGrowthPercentage = parseNumberToFixed2((yearDivs / pervYearDivs) * 100)
+  // TODO: estimatedSelectedYearDivs
   const estimatedSelectedYearDivs = 500.01
 
   return (
