@@ -5,8 +5,8 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
 
  const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartDataSet => {
   let divChartDataSet: DivChartDataSet = {}
-
-  openPositions.forEach(openPosition => {
+  
+  openPositions.forEach(openPosition => {    
     const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(
       openPosition.payedDividendTransactions
     )
@@ -17,10 +17,10 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
         if (!divChartDataSet[year]) {
           divChartDataSet[year] = [ ...INITIAL_DIV_CHART_DATA() ]
         }      
-        
+                
         dividendMonths.forEach((dividendMonth) => {          
           const index: number = divChartDataSet[year].findIndex(divMonth => divMonth.month === dividendMonth.month)          
-          divChartDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(divChartDataSet[year][index].receivedDividendAmount + dividendMonth.receivedDividendAmount) // TODO: - Div tax,
+          divChartDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(divChartDataSet[year][index].receivedDividendAmount + dividendMonth.receivedDividendAmount) // TODO: - Div tax,          
           // divChartDataSet[year][index] = {
           //   ...divChartDataSet[year][index],
           //   // "month": dividendMonth.month,
@@ -30,10 +30,7 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
           // } as DivChartYearlyDataEntity
         })
     });
-  })
-
-  console.log(1, divChartDataSet);
-  
+  })  
 
   return divChartDataSet
 }

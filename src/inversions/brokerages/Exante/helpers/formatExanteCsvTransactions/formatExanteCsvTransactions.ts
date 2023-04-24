@@ -19,7 +19,6 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
   for (const exanteTradeTransaction of tradeTransactions) {
     parsedTradeTransactions.push({
       id: exanteTradeTransaction["Order Id"] ?? uuidv4(),
-      type: getTransactionType(exanteTradeTransaction),
       time: getTime(exanteTradeTransaction.Time),
       currency: exanteTradeTransaction.Currency as Currency,
       ticker: getPartsFromSymbolId(exanteTradeTransaction["Symbol ID"])?.ticker,
@@ -28,6 +27,11 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       orderAmount: parseNumber(exanteTradeTransaction.Quantity),
       commission: parseNumber(exanteTradeTransaction.Commission),
       operation: getOperation(exanteTradeTransaction.Side), // TODO: Remove
+      type: getTransactionType(
+        exanteTradeTransaction["Trade type"], 
+        exanteTradeTransaction.ISIN, 
+        parseNumber(exanteTradeTransaction.Price)
+      ),
     })
   }   
 
@@ -37,12 +41,16 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       id: exanteNonTradeTransaction["UUID"],
       parentId: exanteNonTradeTransaction["Parent UUID"],
       comment: exanteNonTradeTransaction["Comment"],
-      type: getTransactionType(exanteNonTradeTransaction["Operation type"]) as NonTradeTransactionTypes,
       time: exanteNonTradeTransaction["When"],
       currency: exanteNonTradeTransaction["Asset"],
       ticker: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.ticker ?? null,
       stockExchange: getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.exchange ?? null,
       price: parseNumber(exanteNonTradeTransaction["Sum"]),
+      type: getTransactionType(
+        exanteNonTradeTransaction["Operation type"],
+        exanteNonTradeTransaction.ISIN,
+        parseNumber(exanteNonTradeTransaction["Sum"]),
+      ) as NonTradeTransactionTypes,
     })
   } 
 
