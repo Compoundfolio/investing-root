@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import { StyledChartContainer } from './styled'
 import { linearGradientDef } from '@nivo/core'
@@ -6,37 +6,29 @@ import { colors } from '@core'
 import { ChartTooltip, ChartValuePoint } from './components'
 import { useValueChartData } from './hooks';
 
-// const data = generateDrinkStats(18)
-
-// const HARD_CODED_DATA = [
-//   {
-//     id: string;
-//     color: string;
-//     data: Array<{
-//         color: string;
-//         x: string;
-//         y: number;
-//     }>
-//   }
-// ]
-
 const POSITIVE_COLOR = colors.darkGreen
 const NEGATIVE_COLOR = colors.pinkSoft
 
-const xminValue = 0
-const xmaxValue = 7
-
 const properties = {
-  margin: { top: 15, right: 15, bottom: 20, left: 15 },
+  margin: { top: 15, right: 30, bottom: 20, left: 60 },
   animate: true,
 }
 
 const PortfolioGrowthChart = () => {
 
-  const data = useValueChartData()
+  const data = useValueChartData() 
 
-  console.log(data);
-  
+  const [
+    oldestDateItem,
+    earliestDateItem,
+    minPriceValue,
+    maxPriceValue,
+  ] = useMemo(() => [
+    data[0],
+    data[data.length-1],
+    Math.min(...data.map(item => item.y)),
+    Math.max(...data.map(item => item.y)),
+  ], [ data ])
 
   return (
     <StyledChartContainer>
@@ -48,29 +40,10 @@ const PortfolioGrowthChart = () => {
         // enablePoints={false}
         // enablePointLabel={true}
         // enableSlices={false}
-        axisLeft={null}
-        xScale={{
-            type: 'time',
-            format: '%Y-%m-%d',
-            useUTC: false,
-            precision: 'day',
-        }}
-        xFormat="time:%Y-%m-%d"
+        axisLeft={{}}
         axisBottom={{
-          format: '%b %d',
-          tickValues: 'every 2 days',
-          legend: 'time scale',
-          legendOffset: -12,
-
-          tickSize: 0,
-          tickPadding: 5,
-          tickRotation: 0,
-          // TODO: date range legend as here
-          // https://nivo.rocks/storybook/?path=/story/line--real-time-chart
-          // legend: `${this.formatTime(dataA[0].x)} ——— ${this.formatTime(last(dataA).x)}`,
-          // legendPosition: 'middle',
-          // legendOffset: 46,
-          // TODO: renderTick: CustomAxisBottomTick
+          // TODO: Format
+          tickValues: [ oldestDateItem.x, earliestDateItem.x ],
         }}
         data={[{
           id: 'positive :)',
@@ -147,16 +120,15 @@ const PortfolioGrowthChart = () => {
         yScale={{
           type: 'linear',
           stacked: false,
-          min: xminValue,
-          max: xmaxValue,
+          min: minPriceValue,
+          max: maxPriceValue,
         }}
-        yFormat=""
         defs={[
           linearGradientDef('gradientA', [
-            { offset: 100, color: colors.darkGreen, opacity: 0.25 },
+            { offset: 100, color: colors.darkGreen, opacity: 0.1 },
           ]),
           linearGradientDef('gradientB', [
-            { offset: 100, color: colors.pinkSoft, opacity: 0.25 },
+            { offset: 100, color: colors.pinkSoft, opacity: 0.1 },
           ]),
         ]}
         fill={[
@@ -165,6 +137,7 @@ const PortfolioGrowthChart = () => {
         ]}
         areaOpacity={1}
         areaBlendMode=""
+        areaBaselineValue={100}
         useMesh={true}
         crosshairType="cross"
         pointSymbol={ChartValuePoint}
