@@ -7,10 +7,17 @@ import { addPrevDatePrice, getValueChartDataEntity } from './xyMapers';
 const getValueChartDataSet = (
   allNonTradeTransactions: NonTradeTransaction[],
 ): ValueChartDataSet => {
-  const depositsAndWithdrawals = getDepositsAndWithdrawals(allNonTradeTransactions)
+  const depositsAndWithdrawals_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
+  // const buysAndSells_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
+
+  // Day +-change = All positions day change + commissions + taxes + day gain from sells
+  // {
+  //   x: date
+  //   y: allOpenPossitionsGain + commissions + taxes + sellsGain + allOpenCashPossitionsGain + dividendsGain + couponGain
+  // }
 
   const normalizedDepositsAndWithdrawalsPricesByDate = normalizeArrayOfObjectsBy(
-    depositsAndWithdrawals, 
+    depositsAndWithdrawals_xy, 
     "x",
   ) as NormalizedValueChartDataSet
 
@@ -18,12 +25,14 @@ const getValueChartDataSet = (
     .entries(normalizedDepositsAndWithdrawalsPricesByDate)
     .map(getValueChartDataEntity)
     .map(addPrevDatePrice)
+    
 
   const lastDataSetEntity = dataSet[dataSet.length-1]
-  const noTransactionsMadeByToday = differenceInDays(new Date(), new Date(lastDataSetEntity.x)) > 0
+  const x = format(new Date(), "yyyy-MM-dd")
+  const noTransactionsMadeByToday = differenceInDays(new Date(x), new Date(lastDataSetEntity.x)) > 0
     
   noTransactionsMadeByToday && dataSet.push({
-    x: format(new Date(), "yyyy-MM-dd"),
+    x,
     y: lastDataSetEntity.y,
   } satisfies ValueChartDataSetEntity)
     

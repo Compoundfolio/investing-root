@@ -135,9 +135,9 @@ const PortfolioGrowthChart = () => {
           { match: { id: 'positive :)' }, id: 'gradientA' },
           { match: { id: 'negative :(' }, id: 'gradientB' },
         ]}
-        areaOpacity={1}
-        areaBlendMode=""
-        areaBaselineValue={100}
+        areaOpacity={0.65}
+        // areaBlendMode=""
+        // areaBaselineValue={100}
         useMesh={true}
         crosshairType="x"
         // pointSymbol={ChartValuePoint}
