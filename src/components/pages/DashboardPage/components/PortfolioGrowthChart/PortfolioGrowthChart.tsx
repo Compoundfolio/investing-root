@@ -31,7 +31,7 @@ const PortfolioGrowthChart = () => {
   ], [ data ])
 
   return (
-    <StyledChartContainer>
+    <StyledChartContainer id="valueChart">
       <ResponsiveLine
         {...properties}
         enableGridX={false}
@@ -40,7 +40,7 @@ const PortfolioGrowthChart = () => {
         // enablePoints={false}
         // enablePointLabel={true}
         // enableSlices={false}
-        axisLeft={{}}
+        axisLeft={null}
         axisBottom={{
           // TODO: Format
           tickValues: [ oldestDateItem.x, earliestDateItem.x ],
@@ -139,15 +139,15 @@ const PortfolioGrowthChart = () => {
         areaBlendMode=""
         areaBaselineValue={100}
         useMesh={true}
-        crosshairType="cross"
-        pointSymbol={ChartValuePoint}
-        pointSize={8}
-        pointBorderWidth={1}
-        pointBorderColor={{
-          from: 'color',
-          modifiers: [['darker', 0.3]],
-        }}
-        pointLabelYOffset={-20}
+        crosshairType="x"
+        // pointSymbol={ChartValuePoint}
+        // pointSize={8}
+        // pointBorderWidth={1}
+        // pointBorderColor={{
+        //   from: 'color',
+        //   modifiers: [['darker', 0.3]],
+        // }}
+        // pointLabelYOffset={-20}
         enableSlices="x"
         sliceTooltip={ChartTooltip}
       />

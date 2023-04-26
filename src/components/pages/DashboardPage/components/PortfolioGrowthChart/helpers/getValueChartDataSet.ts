@@ -1,51 +1,33 @@
-import { NonTradeTransaction, normalizeArrayOfObjectsBy, oldDatesFirst } from '@core';
+import { NonTradeTransaction, normalizeArrayOfObjectsBy } from '@core';
 import { NormalizedValueChartDataSet, ValueChartDataSet, ValueChartDataSetEntity } from "../types"
-import { format } from "date-fns"
+import { format, differenceInDays } from "date-fns"
+import getDepositsAndWithdrawals from './getDepositsAndWithdrawals';
+import { addPrevDatePrice, getValueChartDataEntity } from './xyMapers';
 
-
-
-const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[]) => {
-  return allNonTradeTransactions
-    .filter(transaction => 
-      transaction.type === "DEPOSIT" || 
-      transaction.type === "WITHDRAWAL"
-    )
-    .map<ValueChartDataSetEntity>(({ time, price, type }) => ({ 
-      x: format(new Date(time), "yyyy-MM-dd"), 
-      y: type === "WITHDRAWAL" ? -price : price
-    }))
-    .sort(oldDatesFirst)
-}
 const getValueChartDataSet = (
   allNonTradeTransactions: NonTradeTransaction[],
 ): ValueChartDataSet => {
+  const depositsAndWithdrawals = getDepositsAndWithdrawals(allNonTradeTransactions)
 
   const normalizedDepositsAndWithdrawalsPricesByDate = normalizeArrayOfObjectsBy(
-    getDepositsAndWithdrawals(allNonTradeTransactions),
+    depositsAndWithdrawals, 
     "x",
   ) as NormalizedValueChartDataSet
-  
-  const dataSet = Object
+
+  const dataSet: ValueChartDataSet = Object
     .entries(normalizedDepositsAndWithdrawalsPricesByDate)
-    .map(([ xDate, yPrices ]) => ({
-      x: xDate,
-      y: yPrices.reduce((prev, cur) => prev + cur.y, 0) // Get total d&w by specific date 
-    }))
-    .map(({ x, y }, index, mappedArray) => ({
-      x,
-      y: y + (mappedArray[index-1]?.y ?? 0) // Get total d&w by specific date + prev date 
-    }))
+    .map(getValueChartDataEntity)
+    .map(addPrevDatePrice)
 
-    console.log(Object
-      .entries(normalizedDepositsAndWithdrawalsPricesByDate)
-      .map(([ xDate, yPrices ]) => ({
-        x: xDate,
-        y: yPrices.reduce((prev, cur) => prev + cur.y, 0) // Get total d&w by specific date 
-      })));
+  const lastDataSetEntity = dataSet[dataSet.length-1]
+  const noTransactionsMadeByToday = differenceInDays(new Date(), new Date(lastDataSetEntity.x)) > 0
     
-
+  noTransactionsMadeByToday && dataSet.push({
+    x: format(new Date(), "yyyy-MM-dd"),
+    y: lastDataSetEntity.y,
+  } satisfies ValueChartDataSetEntity)
+    
   return dataSet
-
 }
 
 export default getValueChartDataSet
