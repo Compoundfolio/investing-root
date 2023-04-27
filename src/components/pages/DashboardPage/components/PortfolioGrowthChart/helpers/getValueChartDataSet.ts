@@ -3,18 +3,20 @@ import { NormalizedValueChartDataSet, ValueChartDataSet, ValueChartDataSetEntity
 import { format, differenceInDays } from "date-fns"
 import getDepositsAndWithdrawals from './getDepositsAndWithdrawals';
 import { addPrevDatePrice, getValueChartDataEntity } from './xyMapers';
+import getDividendsGainsXY from './getDividendsGainsXY';
 
 const getValueChartDataSet = (
   allNonTradeTransactions: NonTradeTransaction[],
 ): ValueChartDataSet => {
   const depositsAndWithdrawals_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
-  // const buysAndSells_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
+  // const dividendsGains_xy = getDividendsGainsXY()
 
   // Day +-change = All positions day change + commissions + taxes + day gain from sells
   // {
   //   x: date
   //   y: allOpenPossitionsGain + commissions + taxes + sellsGain + allOpenCashPossitionsGain + dividendsGain + couponGain
   // }
+  
 
   const normalizedDepositsAndWithdrawalsPricesByDate = normalizeArrayOfObjectsBy(
     depositsAndWithdrawals_xy, 

@@ -2,7 +2,7 @@ import { NonTradeTransaction, oldDatesFirst } from "@core"
 import { format } from "date-fns"
 import { ValueChartDataSetEntity } from "../types"
 
-const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[]) => {
+const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[]): ValueChartDataSetEntity[] => {
   return allNonTradeTransactions
     .filter(transaction => 
       transaction.type === "DEPOSIT" || 
