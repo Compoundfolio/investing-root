@@ -1,9 +1,13 @@
-import { NonTradeTransaction, oldDatesFirst } from "@core"
+import { NonTradeTransaction, normalizeArrayOfObjectsBy, oldDatesFirst } from "@core"
 import { format } from "date-fns"
-import { ValueChartDataSetEntity } from "../types"
+import { NormalizedValueChartDataSet, ValueChartDataSet, ValueChartDataSetEntity } from "../types"
+import { getValueChartDataEntity, addPrevDatePrice } from "./xyMapers"
 
-const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[]): ValueChartDataSetEntity[] => {
-  return allNonTradeTransactions
+// TODO: Optimize complexity
+const getDepositsAndWithdrawals = (
+  allNonTradeTransactions: NonTradeTransaction[]
+): NormalizedValueChartDataSet => {
+  const xyArr = allNonTradeTransactions
     .filter(transaction => 
       transaction.type === "DEPOSIT" || 
       transaction.type === "WITHDRAWAL"
@@ -13,6 +17,21 @@ const getDepositsAndWithdrawals = (allNonTradeTransactions: NonTradeTransaction[
       y: type === "WITHDRAWAL" ? -price : price
     }))
     .sort(oldDatesFirst)
+
+  const normalizedDepositsAndWithdrawalsPricesByDate = normalizeArrayOfObjectsBy(
+    xyArr, 
+    "x",
+  ) as NormalizedValueChartDataSet
+    
+  const dataSet: ValueChartDataSet = Object
+    .entries(normalizedDepositsAndWithdrawalsPricesByDate)
+    .map(getValueChartDataEntity)
+    .map(addPrevDatePrice)
+
+  return normalizeArrayOfObjectsBy(
+    dataSet, 
+    "x",
+  ) as NormalizedValueChartDataSet
 }
 
 export default getDepositsAndWithdrawals

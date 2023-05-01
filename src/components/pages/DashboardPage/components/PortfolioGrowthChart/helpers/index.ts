@@ -1,3 +1,5 @@
 export { default as getValueChartDataSet } from './getValueChartDataSet'
 export { default as getDepositsAndWithdrawals } from './getDepositsAndWithdrawals'
+export { default as mergeNormalizedXy } from './mergeNormalizedXy'
+export { default as addCurrentDayXyAtTheEnd } from './addCurrentDayXyAtTheEnd'
 export * from './xyMapers'
