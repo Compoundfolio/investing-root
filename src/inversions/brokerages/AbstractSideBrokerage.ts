@@ -1,4 +1,4 @@
-import { NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from "src/core/types";
+import { Dividends, NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from "src/core/types";
 
 export default abstract class AbstractSideBrokerage {
   static brandName: string;
@@ -10,6 +10,8 @@ export default abstract class AbstractSideBrokerage {
     openPositions: {},
     closedPositions: {},
   }
+  public taxedDividends: Dividends = {}
+
   // TODO:
   constructor(reportUnParsedData: string) {}
 }

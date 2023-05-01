@@ -1,7 +1,7 @@
 import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
 import AbstractBrokerage from './AbstractBrokerage';
 import AbstractSideBrokerage from './AbstractSideBrokerage';
-import { NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
+import { Dividends, NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
 
 /** Brokerage dependency inversion root */
 export default class Brokerage implements AbstractBrokerage {
@@ -9,13 +9,15 @@ export default class Brokerage implements AbstractBrokerage {
   private brandName: string
   private logoPath: string
 
-  private transactions: Transaction[] = [] 
+  private transactions: Transaction[] = []
   private nonTradeTransactions: NonTradeTransaction[] = []
   private assets: PortfolioOpenClosePositions
 
+  private taxedDividends: Dividends = {}
+
   constructor(
     SideBrokerageClass: SupportedBrokerage,
-    unparsedReport: string, 
+    unparsedReport: string,
   ) {
     const brokerageEntity = new SideBrokerageClass(unparsedReport)
 
@@ -25,7 +27,7 @@ export default class Brokerage implements AbstractBrokerage {
     this.transactions = brokerageEntity.transactions
     this.nonTradeTransactions = brokerageEntity.nonTradeTransactions
     this.assets = brokerageEntity.assets
-  } 
+  }
 
   getBrandName() {
     return this.brandName
@@ -46,4 +48,8 @@ export default class Brokerage implements AbstractBrokerage {
   getNonTradeTransactions() {
     return this.nonTradeTransactions
   };
+
+  getTaxedDividends() {
+    return this.taxedDividends
+  }
 }

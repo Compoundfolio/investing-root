@@ -7,7 +7,12 @@ const useValueChartData = () => {
 
   const dataSet = useMemo(() => {
     const allNoNTradeTransactions = brokerageEntities[0].getNonTradeTransactions()
-    return getValueChartDataSet(allNoNTradeTransactions)
+    const dividends = brokerageEntities[0].getTaxedDividends()
+
+    return getValueChartDataSet(
+      allNoNTradeTransactions,
+      dividends,
+    )
   }, [brokerageEntities])  
 
   return dataSet

@@ -1,4 +1,4 @@
-import { PortfolioOpenClosePositions, Transaction } from "src/core/types";
+import { PortfolioOpenClosePositions, Transaction, Dividends } from "src/core/types";
 import AbstractSideBrokerage from "./AbstractSideBrokerage";
 
 export default class AbstractBrokerage {
@@ -8,12 +8,12 @@ export default class AbstractBrokerage {
     openPositions: {},
     closedPositions: {},
   }
-  // constructor(brokerageEntity: AbstractSideBrokerage) {
-  //   AbstractBrokerage.brokerage = brokerageEntity
-  // }
+  
+  private static taxedDividends: Dividends
 
   getBrandName!: () => string
   getLogoPath!: () => string
   getTradeTransactions!: () => Transaction[] | []
   getAssets!: () => PortfolioOpenClosePositions[] | {}
+  getTaxedDividends!: () => Dividends | {}
 }
