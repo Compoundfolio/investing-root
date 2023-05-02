@@ -10,8 +10,7 @@ export default abstract class AbstractSideBrokerage {
     openPositions: {},
     closedPositions: {},
   }
-  public taxedDividends: Dividends = {}
-
+  
   // TODO:
   constructor(reportUnParsedData: string) {}
 }

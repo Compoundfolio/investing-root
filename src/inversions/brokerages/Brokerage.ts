@@ -2,6 +2,7 @@ import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPa
 import AbstractBrokerage from './AbstractBrokerage';
 import AbstractSideBrokerage from './AbstractSideBrokerage';
 import { Dividends, NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
+import { getAllDivsAfterTax } from './helpers';
 
 /** Brokerage dependency inversion root */
 export default class Brokerage implements AbstractBrokerage {
@@ -27,6 +28,8 @@ export default class Brokerage implements AbstractBrokerage {
     this.transactions = brokerageEntity.transactions
     this.nonTradeTransactions = brokerageEntity.nonTradeTransactions
     this.assets = brokerageEntity.assets
+
+    this.taxedDividends = getAllDivsAfterTax(this.assets)
   }
 
   getBrandName() {

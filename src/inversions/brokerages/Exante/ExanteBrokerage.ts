@@ -20,7 +20,6 @@ class ExanteBrokerage implements AbstractSideBrokerage {
     this.transactions = parsedTradeTransactions
     this.nonTradeTransactions = parsedNonTradeTransactions
     this.assets = getExanteAssetListFromTransactions(this.transactions, this.nonTradeTransactions)   
-    this.taxedDividends = getAllDivsAfterTax(this.nonTradeTransactions)
   }
 }
 
