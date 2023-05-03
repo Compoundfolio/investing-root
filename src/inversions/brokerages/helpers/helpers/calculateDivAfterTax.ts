@@ -1,9 +1,9 @@
-import { AssetOpenPosition, parseNumberToFixed2 } from '@core';
+import { AssetPosition, Dividends, parseNumberToFixed2 } from '@core';
 import { DivChartDataSet } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 import { INITIAL_DIV_CHART_DATA } from "../const";
 
- const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartDataSet => {
+ const calculateDivAfterTax = (openPositions: AssetPosition[]): Dividends => {
   let divChartDataSet: DivChartDataSet = {}
   
   openPositions.forEach(openPosition => {    
@@ -28,4 +28,4 @@ import { INITIAL_DIV_CHART_DATA } from "../const";
   return divChartDataSet
 }
 
-export default getDivChartDataSet
+export default calculateDivAfterTax

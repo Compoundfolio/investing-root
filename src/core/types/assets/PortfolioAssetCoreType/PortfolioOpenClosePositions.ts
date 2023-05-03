@@ -1,8 +1,8 @@
-import OpenPosition from './OpenPosition';
+import NormalizedPositions from './NormalizedPositions';
 
 type PortfolioOpenClosePositions = {
-  openPositions: OpenPosition,
-  closedPositions: any | {}, // TODO:
+  openPositions: NormalizedPositions,
+  closedPositions: NormalizedPositions,
 }
 
 export default PortfolioOpenClosePositions

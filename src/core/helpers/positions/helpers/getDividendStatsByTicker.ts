@@ -8,7 +8,7 @@ const getDividendStatsByTicker = (ticker: Ticker, openSharesAmount: number): Div
     div5yGrowth: 0.00,
     div10yGrowth: 0.00,
     divForOneShare: 0.01,
-    divForAllShares: 0.01 * openSharesAmount,
+    divForAllShares: 0.01 * Math.abs(openSharesAmount),
   } as DividendStats
 }
 

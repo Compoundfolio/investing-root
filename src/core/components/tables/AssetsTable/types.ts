@@ -1,6 +1,6 @@
-import { AssetOpenPosition } from "src/core/types"
+import { AssetPosition } from "src/core/types"
 
 export interface IAssetsTable {
-  data: AssetOpenPosition[]
+  data: AssetPosition[]
   onRowHover: () => void
 }

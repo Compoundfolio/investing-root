@@ -1,9 +1,9 @@
-import { AssetOpenPosition, parseNumberToFixed2 } from '@core';
+import { AssetPosition, parseNumberToFixed2 } from '@core';
 import { DivChartDataSet } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 import { INITIAL_DIV_CHART_DATA } from "../const";
 
- const getDivChartDataSet = (openPositions: AssetOpenPosition[]): DivChartDataSet => {
+ const getDivChartDataSet = (openPositions: AssetPosition[]): DivChartDataSet => {
   let divChartDataSet: DivChartDataSet = {}
   
   openPositions.forEach(openPosition => {    

@@ -2,7 +2,7 @@ import { DividendStats, ID, Ticker } from "@core";
 import { EHDDividend } from "ehd-js/src/types/model";
 import { NonTradeTransaction } from 'src/core/types';
 
-type AssetOpenPosition = {
+type AssetPosition = {
   id: ID
   ticker: Ticker;
   /** Total shares owned at the moment */
@@ -19,4 +19,4 @@ type AssetOpenPosition = {
   payedDividendTransactions: NonTradeTransaction<"DIVIDEND">[]
 }
 
-export default AssetOpenPosition
+export default AssetPosition

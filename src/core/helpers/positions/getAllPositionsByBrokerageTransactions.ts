@@ -1,5 +1,5 @@
 import {
-  AssetOpenPosition,
+  AssetPosition,
   NormalizedTransactionsByTicker,
   PortfolioOpenClosePositions,
   Ticker,
@@ -49,11 +49,11 @@ const getAllPositionsByBrokerageTransactions = (
   Object
     .entries(tradeTransactionsByTicker)
     .forEach(([ticker, transactionsList]: [Ticker, Transaction[]]) => {
-      const openSharesAmount = getSharesAmount(transactionsList)
+      const sharesAmount = getSharesAmount(transactionsList)
       const openPositionPrice = getCurrentPositionPrice(transactionsList, tickersWithOpenPositionMarketPriceDictionary)
       // const wholeDividendHistoryForTicker = await getDividendHistoryByTicker(ticker)
       const wholeDividendHistoryForTicker = []
-      const dividendStats = getDividendStatsByTicker(ticker, openSharesAmount)
+      const dividendStats = getDividendStatsByTicker(ticker, sharesAmount)
       const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
       const nonTradeTransactionsList = nonTradeTransactions[ticker]
 
@@ -66,15 +66,15 @@ const getAllPositionsByBrokerageTransactions = (
         payedDividendTaxTransactions
       )
 
-      const openPositionData: AssetOpenPosition = {
+      const positionData: AssetPosition = {
         // TODO: Add trade transactions list field
         id: uuidv4(),
         ticker,
-        sharesAmount: openSharesAmount,
-        currentPositionPrice: shareMarketPrice, // Market 1 share price
-        // averagePrice: openPositionInvestedValue / openSharesAmount,
-        averagePrice: openPositionPrice / openSharesAmount, // Avg. portfolio 1 share price // TODO: Calculates wrong
-        actualPositionPrice: parseNumberToFixed2(openPositionPrice),
+        sharesAmount: sharesAmount,
+        currentPositionPrice: sharesAmount > 0 ? shareMarketPrice : 0, // Market 1 share price
+        // averagePrice: openPositionInvestedValue / sharesAmount,
+        averagePrice: openPositionPrice / Math.abs(sharesAmount), // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
+        actualPositionPrice: sharesAmount > 0 ? parseNumberToFixed2(openPositionPrice) : 0,
         dividendStats,
         wholeMarketDividendHistory: wholeDividendHistoryForTicker,
         payedDividendTransactions: payedDividendTransactionsWithTax,
@@ -82,12 +82,10 @@ const getAllPositionsByBrokerageTransactions = (
         payedBrokerageCommissionsTransactions,
       }
 
-      // TODO: Count sold out positions too
-
-      if (openPositionData.sharesAmount > 0) {                
-        openPositions = { ...openPositions, [ticker]: openPositionData }
+      if (positionData.sharesAmount > 0) {                
+        openPositions = { ...openPositions, [ticker]: positionData }
       } else {
-        closedPositions = { ...closedPositions, [ticker]: {} }
+        closedPositions = { ...closedPositions, [ticker]: positionData }
       }
     })
 
