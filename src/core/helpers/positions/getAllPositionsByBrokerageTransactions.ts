@@ -60,7 +60,7 @@ const getAllPositionsByBrokerageTransactions = (
       const payedDividendTransactionsWithoutTax = getNonTradeTransactions<"DIVIDEND">(nonTradeTransactionsList, "DIVIDEND")
       const payedDividendTaxTransactions = getNonTradeTransactions<"TAX">(nonTradeTransactionsList, "TAX")
       const payedBrokerageCommissionsTransactions = getNonTradeTransactions<"COMMISSION">(nonTradeTransactionsList, "COMMISSION")
-
+      
       const payedDividendTransactionsWithTax = getDividendTransactionsWithTax(
         payedDividendTransactionsWithoutTax, 
         payedDividendTaxTransactions
@@ -73,7 +73,7 @@ const getAllPositionsByBrokerageTransactions = (
         sharesAmount: sharesAmount,
         currentPositionPrice: sharesAmount > 0 ? shareMarketPrice : 0, // Market 1 share price
         // averagePrice: openPositionInvestedValue / sharesAmount,
-        averagePrice: openPositionPrice / Math.abs(sharesAmount), // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
+        averagePrice: sharesAmount > 0 ? openPositionPrice / Math.abs(sharesAmount) : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
         actualPositionPrice: sharesAmount > 0 ? parseNumberToFixed2(openPositionPrice) : 0,
         dividendStats,
         wholeMarketDividendHistory: wholeDividendHistoryForTicker,
@@ -82,7 +82,7 @@ const getAllPositionsByBrokerageTransactions = (
         payedBrokerageCommissionsTransactions,
       }
 
-      if (positionData.sharesAmount > 0) {                
+      if (positionData.sharesAmount > 0) {  
         openPositions = { ...openPositions, [ticker]: positionData }
       } else {
         closedPositions = { ...closedPositions, [ticker]: positionData }

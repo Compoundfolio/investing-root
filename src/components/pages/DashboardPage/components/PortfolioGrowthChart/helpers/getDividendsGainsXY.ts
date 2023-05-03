@@ -1,16 +1,16 @@
 import { Dividend, Dividends, normalizeArrayOfObjectsBy, oldDatesFirst } from "@core"
-import { NormalizedValueChartDataSet, ValueChartDataSetEntity } from "../types"
+import { NormalizedValueChartDataSet } from "../types"
 
 const calcDiv = (dividendList: Dividend[]): number => {
-  return dividendList.reduce((prevNumber, currentDiv) => {
-    return prevNumber + (currentDiv.price + currentDiv.divTax)
-  }, 0)
+  return dividendList.reduce((prevDivPrice, currentDiv) => prevDivPrice + currentDiv.price, 0)
 }
 
 const getDividendsGainsXY = (dividends: Dividends): NormalizedValueChartDataSet => {
+  console.log(dividends);
+  
   const divsXY = Object
     .entries(dividends)
-    .map<ValueChartDataSetEntity>(([date, dividendList]) => ({
+    .map(([date, dividendList]) => ({
       x: date,
       y: calcDiv(dividendList),
     }))

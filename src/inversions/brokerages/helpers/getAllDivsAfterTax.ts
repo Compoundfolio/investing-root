@@ -4,11 +4,11 @@ import { calculateDivAfterTax } from './helpers';
 const getAllDivsAfterTax = (positions: PortfolioOpenClosePositions): Dividends => {
   const { openPositions, closedPositions } = positions
   const allPositions = Object.values({ ...openPositions, ...closedPositions })
+  console.log(openPositions);
+  console.log(closedPositions);
+  
   const divsAfterTax = calculateDivAfterTax(allPositions)
-  // TODO: Extend closedPositions type
-  // TODO: openPositions & closedPositions MUST HAVE SAME TYPE!
-
-
+  return divsAfterTax
 }
 
 export default getAllDivsAfterTax

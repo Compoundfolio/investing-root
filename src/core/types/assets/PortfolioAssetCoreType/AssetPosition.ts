@@ -16,6 +16,7 @@ type AssetPosition = {
   wholeMarketDividendHistory: EHDDividend[],
   payedDividendTaxTransactions: NonTradeTransaction<"TAX">[]
   payedBrokerageCommissionsTransactions: NonTradeTransaction<"COMMISSION">[],
+  /** Taxed divs */
   payedDividendTransactions: NonTradeTransaction<"DIVIDEND">[]
 }
 

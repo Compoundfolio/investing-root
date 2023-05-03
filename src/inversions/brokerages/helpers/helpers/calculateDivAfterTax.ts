@@ -1,31 +1,29 @@
-import { AssetPosition, Dividends, parseNumberToFixed2 } from '@core';
-import { DivChartDataSet } from "../types";
-import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
-import { INITIAL_DIV_CHART_DATA } from "../const";
+import { AssetPosition, Dividends, normalizeArrayOfObjectsBy, Dividend, sumNormalizedArraysOfNumbers, oldDatesFirst, isEmpty } from '@core';
+import { format } from 'date-fns';
+import { mergeWith } from 'lodash';
 
  const calculateDivAfterTax = (openPositions: AssetPosition[]): Dividends => {
-  let divChartDataSet: DivChartDataSet = {}
+  let divsByDate: Dividends = {}
   
-  openPositions.forEach(openPosition => {    
-    const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(
-      openPosition.payedDividendTransactions
-    )
+  openPositions.forEach(openPosition => {      
+    if ( openPosition.payedDividendTransactions.length === 0 ) return 
     
-    Object
-      .entries(divDataNormalizedByYears)
-      .forEach(([ year, dividendMonths ]) => {
-        if (!divChartDataSet[year]) {
-          divChartDataSet[year] = [ ...INITIAL_DIV_CHART_DATA() ]
-        }      
-                
-        dividendMonths.forEach((dividendMonth) => {          
-          const index: number = divChartDataSet[year].findIndex(divMonth => divMonth.month === dividendMonth.month)          
-          divChartDataSet[year][index].receivedDividendAmount = parseNumberToFixed2(divChartDataSet[year][index].receivedDividendAmount + dividendMonth.receivedDividendAmount)        
-        })
-    });
-  })  
+    const divsWithFormattedPayDate: Dividend[] = openPosition.payedDividendTransactions
+      .map(dividend => ({
+        date: format(new Date(dividend.time), "yyy-MM-dd"),
+        price: dividend.price,
+      }))
+      // .sort(oldDatesFirst)
 
-  return divChartDataSet
+    const normalizedDivsByDate = normalizeArrayOfObjectsBy(divsWithFormattedPayDate, "date")
+    !Object.values(normalizedDivsByDate) && console.log(normalizedDivsByDate);
+    console.log(normalizedDivsByDate);
+    
+    mergeWith(divsByDate, normalizedDivsByDate, sumNormalizedArraysOfNumbers("price"));
+  })    
+console.log(divsByDate);
+
+  return divsByDate
 }
 
 export default calculateDivAfterTax
