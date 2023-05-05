@@ -1,15 +1,9 @@
 import { isArray } from 'lodash';
 
-const sumNormalizedArraysOfNumbers = (customizeBy: string) => (incomingValue: object[] = [], result: object[]) => {
-  console.log(incomingValue);
-  console.log(result);
-  
-  if (isArray(incomingValue)) {
-    customizeBy === "price" && console.log(incomingValue, result)
-    return incomingValue
-      .concat(result)
-      .reduce((prev, cur) => prev + cur[customizeBy], 0);
-  }
+const sumNormalizedArraysOfNumbers = (customizeBy: string) => (incomingValue: object[] = [], result: object[]) => {  
+  return (isArray(incomingValue) ? incomingValue : [ incomingValue ])
+    .concat(isArray(result) ? result : [ result ])
+    .reduce((prev, cur) => (prev ?? 0) + (cur?.[customizeBy] ?? cur ?? 0), 0);
 }
 
 export default sumNormalizedArraysOfNumbers;
