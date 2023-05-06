@@ -1,7 +1,7 @@
 import { NormalizedValueChartDataSet, ValueChartDataSet } from "../types";
 import { mergeWith } from "lodash"
-import { fromNormalizedToObject } from "./xyMapers";
-import { sumNormalizedArraysOfNumbers } from "@core";
+import { fromNormalizedToObject, sumYValues } from "./xyMapers";
+import { oldDatesFirst, sumNormalizedArraysOfNumbers } from "@core";
 
 function mergeNormalizedXy(...args: NormalizedValueChartDataSet[]): ValueChartDataSet {
   let uniqueYears = {} as NormalizedValueChartDataSet
@@ -10,9 +10,14 @@ function mergeNormalizedXy(...args: NormalizedValueChartDataSet[]): ValueChartDa
     mergeWith(uniqueYears, arg, sumNormalizedArraysOfNumbers("y"));
   })
 
-  return Object
+  const xyList = Object
     .entries(uniqueYears)
     .map(fromNormalizedToObject)
+    .sort(oldDatesFirst)
+
+  const mergedSumOfXyValues = sumYValues(xyList)
+
+  return mergedSumOfXyValues
 }
 
 export default mergeNormalizedXy

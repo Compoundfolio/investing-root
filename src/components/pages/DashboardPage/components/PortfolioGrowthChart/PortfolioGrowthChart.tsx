@@ -140,6 +140,8 @@ const PortfolioGrowthChart = () => {
         // areaBaselineValue={100}
         useMesh={true}
         crosshairType="x"
+        pointSize={0}
+        // pointSymbol={null}
         // pointSymbol={ChartValuePoint}
         // pointSize={8}
         // pointBorderWidth={1}

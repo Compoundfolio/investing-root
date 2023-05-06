@@ -1,7 +1,7 @@
 import { NonTradeTransaction, normalizeArrayOfObjectsBy, oldDatesFirst } from "@core"
 import { format } from "date-fns"
 import { NormalizedValueChartDataSet, ValueChartDataSet, ValueChartDataSetEntity } from "../types"
-import { getValueChartDataEntity, addPrevDatePrice } from "./xyMapers"
+import { getValueChartDataEntity } from "./xyMapers"
 
 // TODO: Optimize complexity
 const getDepositsAndWithdrawals = (
@@ -26,7 +26,6 @@ const getDepositsAndWithdrawals = (
   const dataSet: ValueChartDataSet = Object
     .entries(normalizedDepositsAndWithdrawalsPricesByDate)
     .map(getValueChartDataEntity)
-    .map(addPrevDatePrice)
 
   return normalizeArrayOfObjectsBy(
     dataSet, 

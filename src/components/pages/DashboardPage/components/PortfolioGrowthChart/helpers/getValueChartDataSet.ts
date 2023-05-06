@@ -10,17 +10,17 @@ const getValueChartDataSet = (
   dividends: Dividends,
 ): ValueChartDataSet => {
   const depositsAndWithdrawals_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
-  const dividendsGains_xy = getDividendsGainsXY(dividends)
+  const dividendsGainsAfterTax_xy = getDividendsGainsXY(dividends)
 
   // Day +-change = All positions day change + commissions + taxes + day gain from sells
   // {
   //   x: date
-  //   y: allOpenPossitionsGain + commissions + taxes + sellsGain + allOpenCashPossitionsGain + dividendsGain + couponGain
+  //   y: allOpenPossitionsGain + (TODO)commissions + (Done)div_taxes + sellsGain + allOpenCashPossitionsGain + (Done)dividendsGain
   // }  
 
   const dataSet = mergeNormalizedXy(
     depositsAndWithdrawals_xy,
-    dividendsGains_xy,
+    dividendsGainsAfterTax_xy,
   )
     
   return addCurrentDayXyAtTheEnd(dataSet)
