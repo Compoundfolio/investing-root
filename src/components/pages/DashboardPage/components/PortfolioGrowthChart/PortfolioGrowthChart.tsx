@@ -3,7 +3,7 @@ import { ResponsiveLine } from '@nivo/line'
 import { StyledChartContainer } from './styled'
 import { linearGradientDef } from '@nivo/core'
 import { colors } from '@core'
-import { ChartTooltip, ChartValuePoint } from './components'
+import { ChartTooltip } from './components'
 import { useValueChartData } from './hooks';
 
 const POSITIVE_COLOR = colors.darkGreen

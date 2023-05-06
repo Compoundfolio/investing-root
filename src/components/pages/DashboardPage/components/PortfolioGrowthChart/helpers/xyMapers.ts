@@ -1,4 +1,4 @@
-import { formatToXyListFromDictionary, getIsoDatesDaysBetweenTwoDates, normalizeArrayOfObjectsBy } from "@core";
+import { formatToXyListFromDictionary, getIsoDatesDaysBetweenTwoDates, normalizeArrayOfObjectsBy, parseNumberToFixed2 } from "@core";
 import { ValueChartDataSet } from "../types";
 
 export const getValueChartDataEntity = ([xDate, yPrices]) => ({
@@ -18,7 +18,7 @@ export const sumYValues = (xyList: ValueChartDataSet): ValueChartDataSet => {
   xyList.forEach(({ x, y }) => {
     summedXyValues.push({
       x,
-      y: y + lastSummedXyYValue // Get total value by specific date + prev date 
+      y: parseNumberToFixed2(y + lastSummedXyYValue) // Get total value by specific date + prev date 
     })
 
     lastSummedXyYValue = y + lastSummedXyYValue
