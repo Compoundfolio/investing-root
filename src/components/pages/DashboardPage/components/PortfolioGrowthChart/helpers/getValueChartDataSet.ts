@@ -3,7 +3,6 @@ import { NormalizedValueChartDataSet, ValueChartDataSet } from "../types"
 import getDepositsAndWithdrawals from './getDepositsAndWithdrawals';
 import getDividendsGainsXY from './getDividendsGainsXY';
 import mergeNormalizedXy from './mergeNormalizedXy';
-import addCurrentDayXyAtTheEnd from './addCurrentDayXyAtTheEnd';
 import { fillValueChartWithEmptyDays } from './xyMapers';
 
 const getValueChartDataSet = (
@@ -28,7 +27,6 @@ const getValueChartDataSet = (
     emptyDays_xy,
   )
     
-  // return addCurrentDayXyAtTheEnd(dataSet)
   return dataSet
 }
 
