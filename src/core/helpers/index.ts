@@ -5,4 +5,4 @@ export * from './brokerage';
 export * from './positions';
 export * from './styled';
 export * from './customizers';
-
+export * from './ranges';
