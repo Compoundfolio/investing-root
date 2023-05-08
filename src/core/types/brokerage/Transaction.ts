@@ -15,6 +15,7 @@ type Transaction = {
   orderAmount: number | null
   commission: number | null
   orderPrice: number | null // TODO: Type
+  sellGain: number
   operation?: OrderOperation
 }
 
