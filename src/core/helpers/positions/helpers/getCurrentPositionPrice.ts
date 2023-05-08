@@ -13,14 +13,18 @@ const getCurrentPositionPrice = (
     const isTrade = currentTransaction.type === "TRADE"
     const assetMarketPrice = (parseNumber(marketPricesByTicker[currentTransaction.ticker]) ?? 0)
 
-    if (isTrade && currentTransaction.operation === OrderOperation.BUY) {
-      return prevValue + ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0)
+    if (isTrade && currentTransaction.operation === OrderOperation.BUY) {      
+      return prevValue + ((currentTransaction.orderPrice * Number(currentTransaction.orderAmount)) ?? 0)
+      // return prevValue + ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0) // <- current market assets price
+
       // TODO: Uncomment and calculate invested total price this way as well
       // return prevValue + (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
     } 
     
-    if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
-      return prevValue - ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0)
+    if (isTrade && currentTransaction.operation === OrderOperation.SELL) {      
+      return prevValue - (((currentTransaction.orderPrice * Number(currentTransaction.orderAmount)) ?? 0) - currentTransaction.sellGain)
+      // return prevValue - ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0) // <- current market assets price
+
       // TODO: Uncomment and calculate invested total price this way as well
       // return prevValue - (((parseNumber(currentTransaction.orderPrice) ?? 0) * Number(currentTransaction.orderAmount)) ?? 0)
     }

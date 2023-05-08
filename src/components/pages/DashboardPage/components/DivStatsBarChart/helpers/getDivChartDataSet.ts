@@ -3,10 +3,10 @@ import { DivChartDataSet } from "../types";
 import getDivChartDataSetNormalizedByShortMonthName from "./getDivChartDataSetNormalizedByShortMonthName";
 import { INITIAL_DIV_CHART_DATA } from "../const";
 
- const getDivChartDataSet = (openPositions: AssetPosition[]): DivChartDataSet => {
+ const getDivChartDataSet = (allPositions: AssetPosition[]): DivChartDataSet => {
   let divChartDataSet: DivChartDataSet = {}
   
-  openPositions.forEach(openPosition => {    
+  allPositions.forEach(openPosition => {    
     const divDataNormalizedByYears = getDivChartDataSetNormalizedByShortMonthName(
       openPosition.payedDividendTransactions
     )

@@ -18,7 +18,7 @@ import { TickerAndPrice } from 'src/api/market/types';
 import { v4 as uuidv4 } from 'uuid';
 import { parseNumberToFixed2 } from '../formaters';
 
-const testData: TickerAndPrice = {
+const currentMarketAssetsPrices: TickerAndPrice = {
   ALLY: 33.5,
   BBY: 88.77,
   TROW: 111.00,
@@ -43,7 +43,7 @@ const getAllPositionsByBrokerageTransactions = (
   // const tickersListWithOpenPosition = getTickersListWithOpenPosition(tradeTransactionsByTicker)
   // TODO: Uncomment when API will be purchased
   // const tickersWithOpenPositionMarketPriceDictionary: TickerAndPrice = await Api.POST("/api/market", tickersListWithOpenPosition)  
-  const tickersWithOpenPositionMarketPriceDictionary = testData
+  const tickersWithOpenPositionMarketPriceDictionary = currentMarketAssetsPrices
   // console.log("tickersWithOpenPositionMarketPriceDictionary", tickersWithOpenPositionMarketPriceDictionary);
 
   Object
@@ -73,7 +73,7 @@ const getAllPositionsByBrokerageTransactions = (
         sharesAmount: sharesAmount,
         currentPositionPrice: sharesAmount > 0 ? shareMarketPrice : 0, // Market 1 share price
         // averagePrice: openPositionInvestedValue / sharesAmount,
-        averagePrice: sharesAmount > 0 ? openPositionPrice / Math.abs(sharesAmount) : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
+        averagePrice: sharesAmount > 0 ? openPositionPrice / sharesAmount : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
         actualPositionPrice: sharesAmount > 0 ? parseNumberToFixed2(openPositionPrice) : 0,
         dividendStats,
         wholeMarketDividendHistory: wholeDividendHistoryForTicker,
