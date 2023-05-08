@@ -1,7 +1,7 @@
 import { ResponsivePie } from '@nivo/pie'
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
 import { StyledPieChartContainer } from './styled'
-import { OpenPosition, colors, isEmpty } from '@core'
+import { NormalizedPositions, colors } from '@core'
 import { useBrokeragesData } from 'src/store'
 
 type DataItem = {
@@ -11,7 +11,7 @@ type DataItem = {
 }
 type Data = DataItem[]
 
-const getChartDataSet = (openPositions: OpenPosition): Data => {    
+const getChartDataSet = (openPositions: NormalizedPositions): Data => {    
   return Object
     .entries(openPositions)
     .map(([ ticker, assets ]) => ({
@@ -30,17 +30,13 @@ const PortfolioAssetsPieChart = () => {
 
   const dataSet = useMemo(() => {
     const assets = brokerageEntities[0].getAssets()    
-    return getChartDataSet(assets?.openPositions)
+    return getChartDataSet(assets.openPositions)
   }, [brokerageEntities])
 
   
   const totalAssetsSum = dataSet.reduce((previousValue, currentValue) => {
     return previousValue + currentValue.value
   }, 0)
-
-  const handleClick = (d: any, f: any) => {
-    // TODO: To uncover the asset category (if it's the category)
-  }
 
   const handleHover = (d: any) => {    
     const hoveredEntityPiePercentage = (d.value / totalAssetsSum) * 100
@@ -65,18 +61,6 @@ const PortfolioAssetsPieChart = () => {
 
   const ref = useRef()
 
-  // useEffect(() => {
-  //   if (ref.current) {
-  //     setTimeout(() => {
-  //       // @ts-ignore
-  //       const t = ref.current.querySelectorAll("path[fill='#D9D9D9']")[0]
-  //       t && t.dispatchEvent(new MouseEvent('mouseover', { 'view': window, 'bubbles': true, 'cancelable': true }))
-  //       // console.log("t",t, ref.current);
-
-  //     }, 1000)
-  //   }
-  // }, [ref.current])
-
   return ( 
     <StyledPieChartContainer className='relative' ref={ref}>
       <div className='absolute flex justify-center w-full text-white top-1/2'>
@@ -90,45 +74,12 @@ const PortfolioAssetsPieChart = () => {
             setActiveItem(item as DataItem);
           }
         }}
-        // onMouseMove={(e) => console.log(e)}
         onMouseLeave={(e) => console.log(e)}
         onMouseMove={(e) => console.log(e)}
         data={dataSet}
-        // onClick={handleClick}
         onMouseEnter={handleHover}
         colors={CHART_COLORS_LIST}
         activeInnerRadiusOffset={5}
-      //   motionConfig={{
-      //     mass: 1,
-      //     tension: 201,
-      //     friction: 25,
-      //     clamp: false,
-      //     precision: 0.01,
-      //     velocity: 0
-      // }}
-    //   legends={[
-    //     {
-    //         anchor: 'top-left',
-    //         direction: 'column',
-    //         justify: false,
-    //         translateX: 0,
-    //         translateY: 0,
-    //         itemWidth: 100,
-    //         itemHeight: 20,
-    //         itemsSpacing: 8,
-    //         symbolSize: 20,
-    //         itemDirection: 'left-to-right',
-    //         effects: [
-    //           {
-    //             on: "hover",
-    //             style: {
-    //               itemOpacity: 0.1
-    //             }
-    //           }
-    //         ]
-    //     }
-    // ]}
-        //@ts-ignore
         margin={{ top: 15, right: 15, bottom: 15, left: 15 }}
         innerRadius={0.5}
         padAngle={1}
@@ -179,56 +130,6 @@ const PortfolioAssetsPieChart = () => {
           }
         ]}
         fill={fillItems}
-        // fill={[
-        //   {
-        //     match: {
-        //       id: 'ruby'
-        //     },
-        //     id: 'dots'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'c'
-        //     },
-        //     id: 'dots'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'go'
-        //     },
-        //     id: 'dots'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'css'
-        //     },
-        //     id: 'dots'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'scala'
-        //     },
-        //     id: 'lines'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'lisp'
-        //     },
-        //     id: 'lines'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'elixir'
-        //     },
-        //     id: 'lines'
-        //   },
-        //   {
-        //     match: {
-        //       id: 'javascript'
-        //     },
-        //     id: 'lines'
-        //   }
-        // ]}
       />
     </StyledPieChartContainer>
   )
