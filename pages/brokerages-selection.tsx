@@ -1,6 +1,8 @@
 import { useSession, signIn, signOut } from "next-auth/react"
+import Head from "next/head"
+import BrokerageReportUploadPage from 'src/components/pages/BrokerageReportUploadPage';
 
-const Login = () => {
+const BrokerageSelection = () => {
   const { data: session } = useSession()
   // const { accessToken } = session
 
@@ -14,10 +16,13 @@ const Login = () => {
   }
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <Head>
+        <title>Setup Brokerages</title>
+        <meta name="description" content="TODO" />
+      </Head>
+      <BrokerageReportUploadPage />
     </>
   )
 }
 
-export default Login
+export default BrokerageSelection

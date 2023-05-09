@@ -8,11 +8,27 @@ import styles from '../styles/Home.module.css'
 import { queryClient } from 'src/utils/queryClient';
 import { QueryClientProvider, Hydrate } from 'react-query';
 import { SessionProvider } from "next-auth/react"
+import { getAuth } from 'firebase/auth';
+import { useRouter } from 'next/router';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useEffect } from 'react';
+import { initFirebase } from '../firebase';
 
-export default function App({ 
-  Component, 
+export default function App({
+  Component,
   pageProps: { session, ...pageProps }
 }: AppProps) {
+
+  const auth = getAuth(initFirebase());
+  const router = useRouter();
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user])
+
   return (
     <SessionProvider session={session}>
       <Head>
@@ -28,6 +44,14 @@ export default function App({
             <DebugObserver />
             <StyledMain>
               <div className={styles.container}>
+                {loading && (
+                  <div className="text-white">Checking sight-in status...</div>
+                )}
+                {user && (
+                  <button onClick={() => auth.signOut()} className="text-white">
+                    Sign Out
+                  </button>
+                )}
                 <Component {...pageProps} />
               </div>
             </StyledMain>
