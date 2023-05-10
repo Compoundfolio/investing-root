@@ -58,3 +58,41 @@ button:focus:not(:active)::after {
     transform: scale(10);
   }
 }
+
+/*  */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient {
+  --size: 250px;
+  --speed: 50s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+
+  /* width: var(--size); */
+  /* height: var(--size); */
+  filter: blur(calc(var(--size) / 1));
+  background-image: linear-gradient(hsl(158, 82, 57, 85%), hsl(252, 82, 57));
+  /* background-blend-mode:color-burn; */
+  /* background: greeт; */
+  animation: rotate var(--speed) var(--easing) infinite;
+  /* border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; */
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  /* z-index: 0 !important; */
+}
+
+@media (min-width: 720px) {
+  .gradient {
+    --size: 500px;
+  }
+}
+/* This is just to transition when you change the viewport size. */
+/* * {
+  transition: all 1 linear;
+} */

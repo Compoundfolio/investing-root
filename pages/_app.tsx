@@ -44,9 +44,9 @@ export default function App({
             <DebugObserver />
             <StyledMain>
               <div className={styles.container}>
-                {loading && (
+                {/* {loading && (
                   <div className="text-white">Checking sight-in status...</div>
-                )}
+                )} */}
                 {user && (
                   <button onClick={() => auth.signOut()} className="text-white">
                     Sign Out
