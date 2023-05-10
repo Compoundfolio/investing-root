@@ -13,12 +13,12 @@ import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 import { initFirebase } from '../firebase';
+import { SideBar } from '@srcComponents';
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps }
 }: AppProps) {
-
   const auth = getAuth(initFirebase());
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
@@ -53,6 +53,9 @@ export default function App({
                   </button>
                 )}
                 <Component {...pageProps} />
+                
+                {/* {user && router.pathname !== '/brokerages-selection' && <SideBar />} */}
+              {user && <SideBar />}
               </div>
             </StyledMain>
           </RecoilRoot>

@@ -1,2 +1,2 @@
 export { default as NumbersBar } from './NumbersBar';
-export { default as DashboardPage } from './DashboardPage';
+export { default as SideBar } from './SideBar';
