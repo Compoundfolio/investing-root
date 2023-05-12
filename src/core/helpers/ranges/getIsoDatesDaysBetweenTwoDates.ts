@@ -3,7 +3,6 @@ import { IsoDate } from "src/core/types";
 type IsoDateDaysDictionary<TValue = void> = {
   [K: IsoDate]: TValue
 }
-
 const getIsoDatesDaysBetweenTwoDates = <TValue = void>(
   startDate: Date, 
   endDate: Date, 

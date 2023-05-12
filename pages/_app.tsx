@@ -21,7 +21,7 @@ export default function App({
 }: AppProps) {
   const auth = getAuth(initFirebase());
   const router = useRouter();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     if (!user) {
@@ -44,18 +44,13 @@ export default function App({
             <DebugObserver />
             <StyledMain>
               <div className={styles.container}>
-                {/* {loading && (
-                  <div className="text-white">Checking sight-in status...</div>
-                )} */}
                 {user && (
                   <button onClick={() => auth.signOut()} className="text-white">
                     Sign Out
                   </button>
                 )}
                 <Component {...pageProps} />
-                
-                {/* {user && router.pathname !== '/brokerages-selection' && <SideBar />} */}
-              {user && <SideBar />}
+                {user && router.pathname !== '/brokerages-selection' && <SideBar />}
               </div>
             </StyledMain>
           </RecoilRoot>

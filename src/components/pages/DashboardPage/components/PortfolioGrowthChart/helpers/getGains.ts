@@ -3,12 +3,12 @@ import { format } from "date-fns"
 import { NormalizedValueChartDataSet, ValueChartDataSet } from "../types"
 import { getValueChartDataEntity } from "./xyMapers"
 
-const getSellGains = (tradeTransactions: Transaction[]): NormalizedValueChartDataSet => {
+const getGains = (tradeTransactions: Transaction[]): NormalizedValueChartDataSet => {
   const commissionsXyList = tradeTransactions
     .filter(({ type, operation }) => type === "TRADE" && operation === OrderOperation.SELL)
-    .map(({ time, sellGain }) => ({
+    .map(({ time, gain }) => ({
       x: format(new Date(time), "yyyy-MM-dd"),
-      y: sellGain
+      y: gain
     }))
     .sort(oldDatesFirst)
 
@@ -27,4 +27,4 @@ const getSellGains = (tradeTransactions: Transaction[]): NormalizedValueChartDat
   ) as NormalizedValueChartDataSet
 }
 
-export default getSellGains
+export default getGains

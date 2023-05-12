@@ -22,7 +22,7 @@ const getCurrentPositionPrice = (
     } 
     
     if (isTrade && currentTransaction.operation === OrderOperation.SELL) {      
-      return prevValue - (((currentTransaction.orderPrice * Number(currentTransaction.orderAmount)) ?? 0) - currentTransaction.sellGain)
+      return prevValue - (((currentTransaction.orderPrice * Number(currentTransaction.orderAmount)) ?? 0) - currentTransaction.gain)
       // return prevValue - ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0) // <- current market assets price
 
       // TODO: Uncomment and calculate invested total price this way as well

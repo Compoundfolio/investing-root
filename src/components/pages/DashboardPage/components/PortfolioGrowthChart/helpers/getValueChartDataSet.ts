@@ -5,7 +5,7 @@ import getDividendsGainsXY from './getDividendsGainsXY';
 import mergeNormalizedXy from './mergeNormalizedXy';
 import { fillValueChartWithEmptyDays } from './xyMapers';
 import getCommissions from './getCommissions';
-import getSellGains from './getSellGains';
+import getGains from './getGains';
 
 const getValueChartDataSet = (
   allNonTradeTransactions: NonTradeTransaction[],
@@ -15,7 +15,7 @@ const getValueChartDataSet = (
   const depositsAndWithdrawals_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
   const dividendsGainsAfterTax_xy = getDividendsGainsXY(dividends)
   const commissions_xy = getCommissions(allNonTradeTransactions)
-  const sellGains_xy = getSellGains(tradeTransactions)  
+  const gains_xy = getGains(tradeTransactions)  
 
   const firstDepositDate = Object.keys(depositsAndWithdrawals_xy)[0]
   const emptyDays_xy = fillValueChartWithEmptyDays(new Date(firstDepositDate)) as unknown as NormalizedValueChartDataSet
@@ -30,7 +30,7 @@ const getValueChartDataSet = (
     depositsAndWithdrawals_xy,
     dividendsGainsAfterTax_xy,
     commissions_xy,
-    sellGains_xy,
+    gains_xy,
     emptyDays_xy,
   )
     

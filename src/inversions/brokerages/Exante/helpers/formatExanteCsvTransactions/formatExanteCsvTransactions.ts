@@ -32,7 +32,7 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
         exanteTradeTransaction.ISIN, 
         parseNumber(exanteTradeTransaction.Price),
       ),
-      sellGain: parseNumber(exanteTradeTransaction["P&L"])
+      gain: parseNumber(exanteTradeTransaction["P&L"])
     })
   }   
 
