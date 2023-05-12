@@ -14,7 +14,7 @@ const ModalBlur = ({
 }: IModalBlur) => {
   const maxWidthClass = noMaxWidth ? "" : "max-w-7xl"
 
-  useModalCloseKeyShortcut(isOpen, handleOpenChange)
+  // useModalCloseKeyShortcut(isOpen, handleOpenChange)
 
   return (
     <>
@@ -31,8 +31,11 @@ const ModalBlur = ({
                 </div>
                 {/*body*/}
                 <div className="relative flex flex-col justify-center flex-auto w-full h-full p-6 text-white align-center">
-                  <Box position="fixed" top={16} left={16}>
-                    <ShortcutHelper keyShortcuts={[ { keyName: "Esc" } ]}/>
+                  <Box position="fixed" top={16} left={16} zIndex={9999}>
+                    <ShortcutHelper 
+                      keyShortcuts={[ { keyName: "Esc", eventKey: "Escape" } ]}
+                      onClick={handleOpenChange}
+                    />
                   </Box>
                   {children}
                 </div>
