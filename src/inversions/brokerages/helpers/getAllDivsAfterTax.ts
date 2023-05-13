@@ -6,7 +6,6 @@ const getAllDivsAfterTax = (positions: PortfolioOpenClosePositions): Dividends =
   const allPositions = Object.values({ ...openPositions, ...closedPositions })
   
   const divsAfterTax = calculateDivAfterTax(allPositions)
-  console.log(divsAfterTax);
   
   return divsAfterTax
 }

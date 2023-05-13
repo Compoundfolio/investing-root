@@ -26,7 +26,7 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       orderPrice: parseNumber(exanteTradeTransaction.Price),
       orderAmount: parseNumber(exanteTradeTransaction.Quantity),
       commission: parseNumber(exanteTradeTransaction.Commission),
-      operation: getOperation(exanteTradeTransaction.Side), // TODO: Remove
+      operation: getOperation(exanteTradeTransaction.Side),
       type: getTransactionType(
         exanteTradeTransaction["Trade type"], 
         exanteTradeTransaction.ISIN, 

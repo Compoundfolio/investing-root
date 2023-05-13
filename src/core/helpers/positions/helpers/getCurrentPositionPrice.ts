@@ -11,7 +11,7 @@ const getCurrentPositionPrice = (
     currentTransaction: Transaction
   ) => {
     const isTrade = currentTransaction.type === "TRADE"
-    const assetMarketPrice = (parseNumber(marketPricesByTicker[currentTransaction.ticker]) ?? 0)
+    const assetMarketPrice = marketPricesByTicker[currentTransaction.ticker] ?? 0
 
     if (isTrade && currentTransaction.operation === OrderOperation.BUY) {      
       return prevValue + ((currentTransaction.orderPrice * Number(currentTransaction.orderAmount)) ?? 0)

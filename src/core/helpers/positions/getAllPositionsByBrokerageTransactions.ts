@@ -18,10 +18,10 @@ import { TickerAndPrice } from 'src/api/market/types';
 import { v4 as uuidv4 } from 'uuid';
 import { parseNumberToFixed2 } from '../formaters';
 
-const currentMarketAssetsPrices: TickerAndPrice = {
+// TODO: Remove hard-code
+export const currentMarketAssetsPrices: TickerAndPrice = {
   ALLY: 33.5,
   BBY: 88.77,
-  TROW: 111.00,
   BST: 35.66,
   SCHD: 77.88,
   LOW: 199.33,
@@ -29,7 +29,7 @@ const currentMarketAssetsPrices: TickerAndPrice = {
   TSCO: 222.43,
   HD: 333.67,
   ABBV: 167.5,
-  AVGO: 500.44,
+  AVGO: 660.44,
   TXN: 191.91,
 }
 
@@ -54,7 +54,7 @@ const getAllPositionsByBrokerageTransactions = (
       // const wholeDividendHistoryForTicker = await getDividendHistoryByTicker(ticker)
       const wholeDividendHistoryForTicker = []
       const dividendStats = getDividendStatsByTicker(ticker, sharesAmount)
-      const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker]
+      const shareMarketPrice = tickersWithOpenPositionMarketPriceDictionary[ticker] ?? 0
       const nonTradeTransactionsList = nonTradeTransactions[ticker]
 
       const payedDividendTransactionsWithoutTax = getNonTradeTransactions<"DIVIDEND">(nonTradeTransactionsList, "DIVIDEND")
@@ -66,14 +66,18 @@ const getAllPositionsByBrokerageTransactions = (
         payedDividendTaxTransactions
       )
 
+      const isSoldOut = sharesAmount > 0
+
+      // sum()
+
       const positionData: AssetPosition = {
         // TODO: Add trade transactions list field
         id: uuidv4(),
         ticker,
-        sharesAmount: sharesAmount,
-        currentPositionPrice: sharesAmount > 0 ? shareMarketPrice : 0, // Market 1 share price
+        sharesAmount,
+      currentPositionPrice: shareMarketPrice, // Market 1 share price
         // averagePrice: openPositionInvestedValue / sharesAmount,
-        averagePrice: sharesAmount > 0 ? openPositionPrice / sharesAmount : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
+      averagePrice: isSoldOut ? openPositionPrice / sharesAmount : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
         actualPositionPrice: sharesAmount > 0 ? parseNumberToFixed2(openPositionPrice) : 0,
         dividendStats,
         wholeMarketDividendHistory: wholeDividendHistoryForTicker,

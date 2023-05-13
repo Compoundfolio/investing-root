@@ -24,7 +24,7 @@ const getExanteAssetListFromTransactions = (
     
     const openedAndClosedPositionsByTicker = getAllPositionsByBrokerageTransactions(
       tradeTransactionsNormalizedByTicker, 
-      nonTradeTransactionsNormalizedByTicker
+      nonTradeTransactionsNormalizedByTicker,
     )
 
     return openedAndClosedPositionsByTicker

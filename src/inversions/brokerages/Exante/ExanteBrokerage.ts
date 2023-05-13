@@ -1,5 +1,6 @@
 import { Dividends, NonTradeTransaction, PortfolioOpenClosePositions, Transaction } from 'src/core/types';
 import { 
+  formatBrokerageTradeMarketGains,
   formatExanteCsvTransactions, 
   getExanteAssetListFromTransactions,
 } from './helpers';
@@ -17,9 +18,19 @@ class ExanteBrokerage implements AbstractSideBrokerage {
   constructor(reportUnParsedData: string) {
     const { parsedTradeTransactions, parsedNonTradeTransactions } = formatExanteCsvTransactions(reportUnParsedData)
     
-    this.transactions = parsedTradeTransactions
+    // TODO: Pass smw. else?
+    this.transactions = formatBrokerageTradeMarketGains(parsedTradeTransactions)
+
     this.nonTradeTransactions = parsedNonTradeTransactions
     this.assets = getExanteAssetListFromTransactions(this.transactions, this.nonTradeTransactions)   
+  }
+
+  setTransactions(transactions: Transaction[]) {
+    this.transactions = transactions
+  }
+
+  setNonTradeTransactions(nonTradeTransactions: NonTradeTransaction[]) {
+    this.nonTradeTransactions = nonTradeTransactions
   }
 }
 
