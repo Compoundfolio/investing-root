@@ -17,6 +17,7 @@ import {
 import { TickerAndPrice } from 'src/api/market/types';
 import { v4 as uuidv4 } from 'uuid';
 import { parseNumberToFixed2 } from '../formaters';
+import { getPercentageDifference } from '../math';
 
 // TODO: Remove hard-code
 export const currentMarketAssetsPrices: TickerAndPrice = {
@@ -66,19 +67,26 @@ const getAllPositionsByBrokerageTransactions = (
         payedDividendTaxTransactions
       )
 
-      const isSoldOut = sharesAmount > 0
+      const isSoldOut = sharesAmount === 0
 
-      // sum()
+      const actualPositionPrice = shareMarketPrice * sharesAmount
+      const averagePrice = openPositionPrice / sharesAmount
+
+      !isSoldOut && console.log(averagePrice, shareMarketPrice, getPercentageDifference(shareMarketPrice,averagePrice)+"%",);
+      
 
       const positionData: AssetPosition = {
         // TODO: Add trade transactions list field
         id: uuidv4(),
         ticker,
         sharesAmount,
-      currentPositionPrice: shareMarketPrice, // Market 1 share price
+      // invested: openPositionPrice,
+      currentPositionPrice: shareMarketPrice,
         // averagePrice: openPositionInvestedValue / sharesAmount,
-      averagePrice: isSoldOut ? openPositionPrice / sharesAmount : 0, // Avg. portfolio 1 share price // TODO: Calculates wrong // TODO: Calc. wrong for sold out positions, openPositionPrice calculates wrong for this case
-        actualPositionPrice: sharesAmount > 0 ? parseNumberToFixed2(openPositionPrice) : 0,
+      averagePrice: isSoldOut ? 0 : parseNumberToFixed2(averagePrice),
+
+        actualPositionPrice: isSoldOut ? 0 : parseNumberToFixed2(actualPositionPrice),
+
         dividendStats,
         wholeMarketDividendHistory: wholeDividendHistoryForTicker,
         payedDividendTransactions: payedDividendTransactionsWithTax,

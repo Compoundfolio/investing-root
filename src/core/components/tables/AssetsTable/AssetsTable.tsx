@@ -15,7 +15,8 @@ const AssetsTable = ({
         <THead>
           <TRow>
             <TCell th>Name</TCell>
-            <TCell th>Yield/YOC</TCell>
+            <TCell th>Average price</TCell>
+            {/* <TCell th>Yield/YOC</TCell> */}
             <TCell th>10Y Dividend growth</TCell>
             <TCell th>Total return</TCell>
             <TCell th>Relative size (%)</TCell>
@@ -23,7 +24,7 @@ const AssetsTable = ({
           </TRow>
         </THead>
         <TBody>
-          {data.map(({ id, ticker, sharesAmount, actualPositionPrice }) => (
+          {data.map(({ id, ticker, sharesAmount, averagePrice }) => (
             <TRow key={id}>
             {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}
               <AssetPreviewTCell 
@@ -33,8 +34,8 @@ const AssetsTable = ({
                 sharesAmount={sharesAmount}              
               />
               <NumbersDifferenceCell 
-                topNumber={sharesAmount}
-                bottomNumber={sharesAmount}
+                topNumber={averagePrice}
+                bottomNumber={averagePrice}
                 isPercentages
               />
               <GainCell

@@ -6,3 +6,4 @@ export * from './positions';
 export * from './styled';
 export * from './customizers';
 export * from './ranges';
+export * from './math';
