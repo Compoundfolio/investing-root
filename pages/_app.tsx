@@ -8,12 +8,30 @@ import styles from '../styles/Home.module.css'
 import { queryClient } from 'src/utils/queryClient';
 import { QueryClientProvider, Hydrate } from 'react-query';
 import { SessionProvider } from "next-auth/react"
-import { getAuth } from 'firebase/auth';
+import { User, getAuth } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
+
+import { useEffect, useState } from 'react'
+
+function useDebounce<T>(value: T, delay?: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 500)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [value, delay])
+
+  return debouncedValue
+}
+
+// export default useDebounce
 
 export default function App({
   Component,
@@ -23,11 +41,14 @@ export default function App({
   const router = useRouter();
   const [user] = useAuthState(auth);
 
+  const debouncedUser = useDebounce<User>(user, 5000)
+
+
   useEffect(() => {
-    if (!user) {
+    if (!debouncedUser) {
       router.push("/");
     }
-  }, [user])
+  }, [debouncedUser])
 
   return (
     <SessionProvider session={session}>

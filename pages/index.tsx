@@ -48,7 +48,7 @@ export default function Home() {
 
   // TODO: Use app colors
   return (
-    <StyledContainer className="flex h-full">
+    <StyledContainer className="flex w-full h-full">
       <div className="z-10 flex flex-col flex-1 h-full" style={{ minHeight: "inherit" }}>
         <div>
           <AppLogo withTitle />

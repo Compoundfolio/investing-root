@@ -4,6 +4,7 @@
   min-height: inherit;
   padding: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
