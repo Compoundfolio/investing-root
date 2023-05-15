@@ -15,7 +15,7 @@ const getValueChartDataSet = (
   const depositsAndWithdrawals_xy = getDepositsAndWithdrawals(allNonTradeTransactions)
   const dividendsGainsAfterTax_xy = getDividendsGainsXY(dividends)
   const commissions_xy = getCommissions(allNonTradeTransactions)
-  const gains_xy = getGains(tradeTransactions)  
+  const gains_xy = getGains(tradeTransactions)
 
   const firstDepositDate = Object.keys(depositsAndWithdrawals_xy)[0]
   const emptyDays_xy = fillValueChartWithEmptyDays(new Date(firstDepositDate)) as unknown as NormalizedValueChartDataSet

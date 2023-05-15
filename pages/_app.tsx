@@ -43,7 +43,6 @@ export default function App({
 
   const debouncedUser = useDebounce<User>(user, 5000)
 
-
   useEffect(() => {
     if (!debouncedUser) {
       router.push("/");
