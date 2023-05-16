@@ -6,6 +6,7 @@ const getAssetMarketGain = (
   orderPrice: Transaction["orderPrice"],
   orderAmount: Transaction["orderAmount"],
 ): Transaction["gain"] => {
+  // TODO: Add MarketAPI instead of hard-code
   const marketPrice = currentMarketAssetsPrices[ticker] ?? orderPrice
   return (marketPrice - orderPrice) * orderAmount
 }

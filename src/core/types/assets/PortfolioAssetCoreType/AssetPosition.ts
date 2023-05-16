@@ -1,4 +1,4 @@
-import { DividendStats, ID, Ticker } from "@core";
+import { DividendStats, ID, Ticker, Transaction } from '@core';
 import { EHDDividend } from "ehd-js/src/types/model";
 import { NonTradeTransaction } from 'src/core/types';
 
@@ -18,6 +18,7 @@ type AssetPosition = {
   payedBrokerageCommissionsTransactions: NonTradeTransaction<"COMMISSION">[],
   /** Taxed divs */
   payedDividendTransactions: NonTradeTransaction<"DIVIDEND">[]
+  allTradeTransactions: Transaction[]
 }
 
 export default AssetPosition

@@ -92,6 +92,7 @@ const getAllPositionsByBrokerageTransactions = (
         payedDividendTransactions: payedDividendTransactionsWithTax,
         payedDividendTaxTransactions,
         payedBrokerageCommissionsTransactions,
+        allTradeTransactions: transactionsList,
       }
 
       if (positionData.sharesAmount > 0) {  

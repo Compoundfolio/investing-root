@@ -1,2 +1,2 @@
-/** YYYY-MM-DD format */
-export type IsoDate = `${number}-${number}-${number}`
+/** yyyy-MM-dd format */
+export type IsoDate = string
