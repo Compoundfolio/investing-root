@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { colors } from 'src/core/theme';
+import { IDivStatsBarChart } from "./types";
 
-export const StyledBarChartContainer = styled.section({
-  width: "380px",
+
+export const StyledBarChartContainer = styled.section(({ openedInModal }: Pick<IDivStatsBarChart, "openedInModal">) => ({
+  width: openedInModal ? "100%" : "380px",
   height: "380px",
   "& text[dominant-baseline=central]": {
     fontSize: "8px !important",
@@ -20,4 +22,4 @@ export const StyledBarChartContainer = styled.section({
     fill: `${colors.darkGreen} !important`,
     fontWeight: 600,
   }
-})
+}))

@@ -42,9 +42,11 @@ const DivChartHeader = ({
         />
       </Box>
       <Box display="flex" alignItems="center" gap={1}>
-        <CircleButton onClick={handleIsFullScreenOpen}>
-          <FullscreenIcon sx={{ color: colors.gray4C }} />
-        </CircleButton>
+        {!isFullScreenOpen && (
+          <CircleButton onClick={handleIsFullScreenOpen}>
+            <FullscreenIcon sx={{ color: colors.gray4C }} />
+          </CircleButton>
+        )}
       </Box>
     </Box>
     <Box display="flex" alignItems="center" justifyContent="space-between" mb={4}>
@@ -64,7 +66,7 @@ const DivChartHeader = ({
         // onSave={handleReportsUpload}
         // saveButtonTitle=""
       >
-        <DivStatsBarChart />
+        <DivStatsBarChart openedInModal />
       </ModalBlur>
   </>
 }

@@ -7,8 +7,11 @@ import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 import { linearGradientDef } from '@nivo/core'
 import { CustomAxisBottomTick, DivChartHeader } from './components';
+import { IDivStatsBarChart } from './types';
 
-const DivStatsBarChart = () => {
+const DivStatsBarChart = ({
+  openedInModal = false
+}: IDivStatsBarChart) => {
   const { dataSet } = useDivChartData()
 
   const {
@@ -26,15 +29,17 @@ const DivStatsBarChart = () => {
   const estimatedSelectedYearDivs = 500.01
 
   return (
-    <StyledBarChartContainer>
-      <DivChartHeader
-        currentlySelectedYearDivs={yearDivs}
-        currentlySelectedYearExpectedTotalDivs={estimatedSelectedYearDivs}
-        currentlySelectedYearDivGrowthPercentageComparedToPrevYear={yearDivGrowthPercentage}
-        currentlySelectedYear={selectedYear}
-        onYearBack={onYearBack}
-        onYearForward={onYearForward}
-      />
+    <StyledBarChartContainer openedInModal={openedInModal}>
+      {!openedInModal && (
+        <DivChartHeader
+          currentlySelectedYearDivs={yearDivs}
+          currentlySelectedYearExpectedTotalDivs={estimatedSelectedYearDivs}
+          currentlySelectedYearDivGrowthPercentageComparedToPrevYear={yearDivGrowthPercentage}
+          currentlySelectedYear={selectedYear}
+          onYearBack={onYearBack}
+          onYearForward={onYearForward}
+        />
+      )}
       <ResponsiveBar
         data={selectedYearDividendsData}
         keys={[

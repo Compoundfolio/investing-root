@@ -1,5 +1,9 @@
 import { ShortMonthName } from "@core"
 
+export interface IDivStatsBarChart {
+  openedInModal?: boolean
+}
+
 export type DivChartYearlyData = DivChartYearlyDataEntity[]
 
 export type DivChartYearlyDataEntity = {

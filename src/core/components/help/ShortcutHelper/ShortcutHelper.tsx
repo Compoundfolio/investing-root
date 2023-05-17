@@ -63,6 +63,7 @@ const ShortcutHelper = ({
         >
           <button
             className={`bg-black overflow-hidden relative h-10 px-3 rounded-lg flex justify-center align-center border border-white p-[4px] transition-all duration-75 top-0 ${activeShortcuts.includes(keyShortcut.eventKey) && "top-1"}`}
+            // onClick={onClick}
           >
             {keyShortcut.keyName}
           </button>
