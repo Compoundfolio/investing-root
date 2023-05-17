@@ -1,4 +1,4 @@
-import { ColorizedNumber,  ModalBlur,  NumberMini, YearSwitcher, colors } from '@core'
+import { ModalBlur, NumberMini, YearSwitcher, colors } from '@core'
 import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import React, { memo } from 'react'
@@ -29,13 +29,13 @@ const DivChartHeader = ({
   onYearBack,
   onYearForward,
 }: IDivChartHeader) => {
-  const [ isFullScreenOpen, handleIsFullScreenOpen ] = useOpen()
+  const [isFullScreenOpen, handleIsFullScreenOpen] = useOpen()
 
   return <>
     <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
       <Box display="flex" alignItems="center" gap={1}>
         <StyledChartTitle>Dividends</StyledChartTitle>
-        <YearSwitcher 
+        <YearSwitcher
           year={currentlySelectedYear}
           onYearBack={onYearBack}
           onYearForward={onYearForward}
@@ -61,13 +61,14 @@ const DivChartHeader = ({
     </Box>
 
     <ModalBlur
-        isOpen={isFullScreenOpen}
-        handleOpenChange={handleIsFullScreenOpen}
-        // onSave={handleReportsUpload}
-        // saveButtonTitle=""
-      >
-        <DivStatsBarChart openedInModal />
-      </ModalBlur>
+      title="Dividends"
+      isOpen={isFullScreenOpen}
+      handleOpenChange={handleIsFullScreenOpen}
+    // onSave={handleReportsUpload}
+    // saveButtonTitle=""
+    >
+      <DivStatsBarChart openedInModal />
+    </ModalBlur>
   </>
 }
 

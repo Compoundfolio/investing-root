@@ -1,6 +1,6 @@
 import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
-import { BackgroundFogBlur } from './styled';
+import { BackgroundFogBlur, StyledModalTitle } from './styled';
 import { ShortcutHelper } from "../../help";
 import { Box } from "@mui/material";
 import { useModalCloseKeyShortcut } from "./hooks";
@@ -9,6 +9,7 @@ const ModalBlur = ({
   isOpen = false,
   noMaxWidth = false,
   children,
+  title,
   handleOpenChange,
   onSave,
 }: IModalBlur) => {
@@ -24,11 +25,16 @@ const ModalBlur = ({
             className="fixed inset-0 z-50 flex items-center justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
             <div className={`relative w-full h-full mx-auto my-6 ${maxWidthClass}`}>
-              <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full h-full py-10 outline-none focus:outline-none">
                 {/*header*/}
-                {/* <div className="flex items-start justify-between p-5"> */}
-                  {/* TODO: Optional title? */}
-                {/* </div> */}
+                {title && (
+                  <div className="flex items-start justify-between p-5">
+                    {/* TODO: Optional title? */}
+                    <StyledModalTitle>
+                      {title}
+                    </StyledModalTitle>
+                  </div>
+                )}
                 {/*body*/}
                 <div className="relative flex flex-col justify-center flex-auto w-full h-full p-6 text-white align-center">
                   <Box position="fixed" top={16} left={16} zIndex={9999}>

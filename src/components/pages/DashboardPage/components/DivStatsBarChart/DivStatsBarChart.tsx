@@ -6,7 +6,7 @@ import { parseNumberToFixed2 } from '@core';
 import { useDividendYearSwitch } from './hooks';
 import useDivChartData from './hooks/useDivChartData';
 import { linearGradientDef } from '@nivo/core'
-import { CustomAxisBottomTick, DivChartHeader } from './components';
+import { CustomAxisBottomTick, DivChartHeader, DivStats } from './components';
 import { IDivStatsBarChart } from './types';
 
 const DivStatsBarChart = ({
@@ -30,7 +30,11 @@ const DivStatsBarChart = ({
 
   return (
     <StyledBarChartContainer openedInModal={openedInModal}>
-      {!openedInModal && (
+      {openedInModal ? (
+        <DivStats
+
+        />
+      ) : (
         <DivChartHeader
           currentlySelectedYearDivs={yearDivs}
           currentlySelectedYearExpectedTotalDivs={estimatedSelectedYearDivs}
