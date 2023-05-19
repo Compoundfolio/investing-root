@@ -5,11 +5,15 @@ import { IDivStatsBarChart } from "./types";
 
 export const StyledBarChartContainer = styled.section(({ openedInModal }: Pick<IDivStatsBarChart, "openedInModal">) => ({
   width: openedInModal ? "100%" : "380px",
-  height: "380px",
+  height: openedInModal ? "100%" : "380px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
   "& text[dominant-baseline=central]": {
-    fontSize: "8px !important",
+    fontSize: `${openedInModal ? "10" : "8"}px !important`,
     fontFamily: 'Chakra Petch !important',
-    fill:`${colors.whiteEasy} !important`
+    fontWeight: openedInModal ? 900 : 300,
+    fill:`${openedInModal ? colors.white : colors.whiteEasy} !important`
   },
   "& text[dominant-baseline=middle]": {
     fontSize: "12px !important",

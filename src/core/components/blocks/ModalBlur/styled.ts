@@ -8,5 +8,6 @@ export const BackgroundFogBlur = styled.div({
 
 export const StyledModalTitle = styled.h1({
   color: colors.white,
-  fontSize: 32,
+  fontSize: 64,
+  fontWeight: 400,
 })

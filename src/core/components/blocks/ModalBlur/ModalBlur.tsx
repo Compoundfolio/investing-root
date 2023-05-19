@@ -22,21 +22,24 @@ const ModalBlur = ({
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+            className="fixed inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className={`relative w-full h-full mx-auto my-6 ${maxWidthClass}`}>
-              <div className="relative flex flex-col w-full h-full py-10 outline-none focus:outline-none">
+            <div className={`relative w-full h-full mx-auto ${maxWidthClass}`}>
+              <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
                 {/*header*/}
                 {title && (
-                  <div className="flex items-start justify-between p-5">
+                  <div className="flex items-start justify-between py-5">
                     {/* TODO: Optional title? */}
-                    <StyledModalTitle>
-                      {title}
-                    </StyledModalTitle>
+                    <div className="flex items-center gap-6">
+                      <StyledModalTitle>
+                        {title}
+                      </StyledModalTitle>
+                    </div>
                   </div>
                 )}
                 {/*body*/}
-                <div className="relative flex flex-col justify-center flex-auto w-full h-full p-6 text-white align-center">
+                {/* <div className="relative flex flex-col justify-center w-full h-full text-white "> */}
+                <div className="relative flex flex-col justify-between w-full h-full text-white ">
                   <Box position="fixed" top={16} left={16} zIndex={9999}>
                     <ShortcutHelper
                       keyShortcuts={[{ keyName: "Esc", eventKey: "Escape" }]}

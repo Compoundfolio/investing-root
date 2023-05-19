@@ -31,9 +31,7 @@ const DivStatsBarChart = ({
   return (
     <StyledBarChartContainer openedInModal={openedInModal}>
       {openedInModal ? (
-        <DivStats
-
-        />
+        <DivStats />
       ) : (
         <DivChartHeader
           currentlySelectedYearDivs={yearDivs}
@@ -80,7 +78,7 @@ const DivStatsBarChart = ({
         axisRight={null}
         axisBottom={{
           tickSize: 0,
-          tickPadding: 5,
+          tickPadding: openedInModal ? 15 : 5,
           tickRotation: 0,
           legend: '',
           legendPosition: 'middle',
