@@ -29,29 +29,46 @@ const ShortcutHelper = ({
     ]
   }, [keyShortcuts, shortcutTriggerEventKeyName])
 
-  console.log(activeShortcuts);
+  console.log(123,activeShortcuts);
   
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    console.log(event.key);
-    console.log(keyShortcutEventKeys.includes(event.key),keyShortcutEventKeys,event.key);
-    console.log(activeShortcuts.includes(event.key),activeShortcuts,event.key);
-    
+    if (event.key === shortcutTriggerEventKeyName) {
+      // Clean up the active state, except making active trigger key
+      setActiveShortcuts([event.key])
+      return
+    }
+
     if (
       keyShortcutEventKeys.includes(event.key) &&
       !activeShortcuts.includes(event.key)
     ) {
-      console.log(event.key);
       setActiveShortcuts(prev => [...prev, event.key])
     }
-  }, [keyShortcutEventKeys, activeShortcuts]);
+  }, [activeShortcuts, keyShortcutEventKeys, shortcutTriggerEventKeyName])
+
+  const handleKeyUnPress = useCallback((event: KeyboardEvent) => {
+    if (!activeShortcuts.includes(event.key)) {
+      console.log(activeShortcuts,event.key);
+      
+      return
+    }
+
+    const index = activeShortcuts.indexOf(event.key)
+
+    if (index !== -1) {
+      setActiveShortcuts(prev => prev.slice(index, 1))
+    }
+  }, [activeShortcuts])
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('keyup', handleKeyPress);
+    document.addEventListener('keydown', handleKeyUnPress);
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [keyShortcuts]);
+      document.removeEventListener('keyup', handleKeyPress);
+      document.removeEventListener('keydown', handleKeyUnPress);
+  };
+  }, [handleKeyPress, handleKeyUnPress]);
 
   useEffect(() => {
     isEqual(activeShortcuts, keyShortcutEventKeys) && onClick()
