@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useState, useMemo } from 'react'
 import { IShortcutHelper, KeyShortcut } from './types'
 import { isMacOs } from '@core/helpers'
+import { isEqual } from 'lodash'
 
 const commandButton = {
   keyName: '⌘',
@@ -19,21 +20,28 @@ const ShortcutHelper = ({
   onClick,
 }: IShortcutHelper) => {
   const [activeShortcuts, setActiveShortcuts] = useState<KeyShortcut["eventKey"][]>(initialState)
-  const shortcutTriggerKeyName = isMacOs() ? commandButton.keyName : ctrlButton.keyName
+  const shortcutTriggerEventKeyName = isMacOs() ? commandButton.eventKey : ctrlButton.eventKey
 
   const keyShortcutEventKeys = useMemo(() => {
-    return keyShortcuts
-      .map(keyShortcut => keyShortcut.eventKey)
-      .concat(shortcutTriggerKeyName)
-  }, [keyShortcuts, shortcutTriggerKeyName])
+    return [ 
+      shortcutTriggerEventKeyName, 
+      ...keyShortcuts.map(keyShortcut => keyShortcut.eventKey) 
+    ]
+  }, [keyShortcuts, shortcutTriggerEventKeyName])
+
+  console.log(activeShortcuts);
+  
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
     console.log(event.key);
-
+    console.log(keyShortcutEventKeys.includes(event.key),keyShortcutEventKeys,event.key);
+    console.log(activeShortcuts.includes(event.key),activeShortcuts,event.key);
+    
     if (
       keyShortcutEventKeys.includes(event.key) &&
       !activeShortcuts.includes(event.key)
     ) {
+      console.log(event.key);
       setActiveShortcuts(prev => [...prev, event.key])
     }
   }, [keyShortcutEventKeys, activeShortcuts]);
@@ -44,6 +52,10 @@ const ShortcutHelper = ({
       document.removeEventListener('keydown', handleKeyPress);
     };
   }, [keyShortcuts]);
+
+  useEffect(() => {
+    isEqual(activeShortcuts, keyShortcutEventKeys) && onClick()
+  }, [activeShortcuts])
 
   return (
     <button 
