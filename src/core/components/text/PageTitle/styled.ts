@@ -11,7 +11,6 @@ export const StyledPageName = styled.h1({
 })
 
 export const StyledPortfolioName = styled.span({
-  fontFamily: 'Open Sans',
   fontSize: 12,
   letterSpacing: "0.4px",
   color: colors.white,

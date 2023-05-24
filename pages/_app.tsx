@@ -12,8 +12,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // import { useEffect } from 'react';
 import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
-
+import { Montserrat, Chakra_Petch } from '@next/font/google'
 import { useEffect, useState } from 'react'
+import clsx from 'clsx';
 
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)
@@ -28,6 +29,16 @@ function useDebounce<T>(value: T, delay?: number): T {
 
   return debouncedValue
 }
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ["300" , "400" , "500" , "600" , "700"],
+})
+
+const chakraPetch = Chakra_Petch({
+  weight: ["300" , "400" , "500" , "600" , "700"],
+  subsets: ['latin']
+})
 
 // export default useDebounce
 
@@ -53,7 +64,7 @@ export default function App({
         <Hydrate state={pageProps.dehydratedState}> */}
           <RecoilRoot>
             <DebugObserver />
-            <StyledMain>
+            <StyledMain className={montserrat.className}>
               <div className={styles.container}>
                 {user && (
                   <button onClick={() => auth.signOut()} className="text-white">

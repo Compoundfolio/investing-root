@@ -6,7 +6,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', 'Chakra Petch', -apple-system, Roboto, sans-serif;
   font-weight: 400;
   font-size: 14px;
 }
@@ -78,7 +77,7 @@ button:focus:not(:active)::after {
   /* width: var(--size); */
   /* height: var(--size); */
   filter: blur(calc(var(--size) / 1));
-  /* background-image: linear-gradient(hsl(158, 82, 57, 85%), hsl(252, 82, 57)); */
+  background-image: linear-gradient(hsl(158, 82, 57, 85%), hsl(252, 82, 57));
   /* background-blend-mode:color-burn; */
   /* background: greeт; */
   animation: rotate var(--speed) var(--easing) infinite;
