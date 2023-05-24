@@ -1,6 +1,5 @@
-import { useQuery } from 'react-query';
-import { dehydrate } from 'react-query';
-import { getDogs, queryClient } from 'src/utils';
+// import { useQuery } from 'react-query';
+// import { dehydrate } from 'react-query';
 import { initFirebase } from '../firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from 'next/router';
@@ -9,15 +8,6 @@ import { AppLogo, colors } from '@core';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
-export async function getServerSideProps() {
-  await queryClient.prefetchQuery(["dogs"], () => getDogs())
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
 
 const StyledContainer = styled.div({
   minHeight: "inherit",
@@ -26,7 +16,7 @@ const StyledContainer = styled.div({
 })
 
 export default function Home() {
-  const { data } = useQuery(["dogs"], () => getDogs())
+  // const { data } = useQuery(["dogs"], () => getDogs())
   const firebaseApp = initFirebase();
   const provider = new GoogleAuthProvider();
   const auth = getAuth(firebaseApp);
