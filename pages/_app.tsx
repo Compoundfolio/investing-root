@@ -66,12 +66,15 @@ export default function App({
             <DebugObserver />
             <StyledMain className={montserrat.className}>
               <div className={styles.container}>
-                {user && (
+                {/* {user && (
                   <button onClick={() => auth.signOut()} className="text-white">
                     Sign Out
                   </button>
-                )}
-                <Component {...pageProps} />
+                )} */}
+                <div className='p-10'>
+                  <Component {...pageProps} />
+                </div>
+                <div>lol</div>
                 {user && router.pathname !== '/brokerages-selection' && <SideBar />}
               </div>
             </StyledMain>

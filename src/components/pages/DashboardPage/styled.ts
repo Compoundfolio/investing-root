@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 
+const DASHBOARD_VIEWS_GAP = 40 as const
+
 export const DashboardContainer = styled.div({
   width: "100%",
   height: "100%",
   display: "flex",
-  gap: "8px"
+  gap: DASHBOARD_VIEWS_GAP
 })
 
 interface IDashboardColumn {
@@ -16,5 +18,5 @@ export const DashboardColumn = styled.section
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: 64,
+  gap: DASHBOARD_VIEWS_GAP,
 }))

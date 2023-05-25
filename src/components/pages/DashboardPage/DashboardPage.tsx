@@ -11,11 +11,11 @@ const DashboardPage = () => {
   const brokeragesIconLinks = useMemo(() => {
     return brokerageEntities.map(brokerageEntity => brokerageEntity.getLogoPath())
   }, [brokerageEntities])
-  
+
   return (
     <DashboardContainer>
       <DashboardColumn fitContent>
-        <PageTitle 
+        <PageTitle
           title="Portfolio"
           // TODO: Remove hardcoded portfolioName
           portfolioName="Dividend Growth F.I.R.E till 35th"
