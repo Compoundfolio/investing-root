@@ -9,5 +9,8 @@ export const StyledAside = styled.aside({
   minHeight: "inherit",
   padding: "40px 35px",
   alignItems: "center",
-  gap: 24
+  gap: 24,
+  position: "sticky",
+  top: 0,
+  right: 0,
 })

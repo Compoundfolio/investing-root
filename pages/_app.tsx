@@ -14,7 +14,6 @@ import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
 import { Montserrat, Chakra_Petch } from '@next/font/google'
 import { useEffect, useState } from 'react'
-import clsx from 'clsx';
 
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)
@@ -32,11 +31,11 @@ function useDebounce<T>(value: T, delay?: number): T {
 
 const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ["300" , "400" , "500" , "600" , "700"],
+  weight: ["300", "400", "500", "600", "700"],
 })
 
 const chakraPetch = Chakra_Petch({
-  weight: ["300" , "400" , "500" , "600" , "700"],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ['latin']
 })
 
@@ -48,6 +47,7 @@ export default function App({
 }: AppProps) {
   const auth = getAuth(initFirebase());
   const router = useRouter();
+
   const [user] = useAuthState(auth);
 
   const debouncedUser = useDebounce<User>(user, 5000)
@@ -58,28 +58,33 @@ export default function App({
     }
   }, [debouncedUser])
 
+  const isRenderSideBar = router.pathname !== "/" && router.pathname !== `/brokerages-selection`
+
   return (
     <SessionProvider session={session}>
       {/* <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}> */}
-          <RecoilRoot>
-            <DebugObserver />
-            <StyledMain className={montserrat.className}>
-              <div className={styles.container}>
-                {/* {user && (
-                  <button onClick={() => auth.signOut()} className="text-white">
-                    Sign Out
-                  </button>
-                )} */}
-                <div className='p-10'>
-                  <Component {...pageProps} />
-                </div>
-                <div>lol</div>
-                {user && router.pathname !== '/brokerages-selection' && <SideBar />}
+      <RecoilRoot>
+        <DebugObserver />
+        <StyledMain className={montserrat.className}>
+          <div className={styles.container}>
+            {user && (
+              <button onClick={() => auth.signOut()} className="absolute text-white top-4 left-4">
+                Sign Out
+              </button>
+            )}
+            {isRenderSideBar ? <>
+              <div className='p-10'>
+                <Component key="rootComponent" {...pageProps} />
               </div>
-            </StyledMain>
-          </RecoilRoot>
-        {/* </Hydrate>
+              <SideBar />
+              </> : (
+              <Component key="rootComponent" {...pageProps} />
+            )}
+          </div>
+        </StyledMain>
+      </RecoilRoot>
+      {/* </Hydrate>
       </QueryClientProvider> */}
     </SessionProvider>
   )
