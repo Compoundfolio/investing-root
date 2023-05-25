@@ -1,8 +1,14 @@
+import styled from '@emotion/styled';
 import React from 'react'
+
+const StyledTable = styled.table({
+  // tableLayout: "fixed",
+  // borderCollapse: "collapse",
+})
 
 function TTable({ children }) {
   return (
-    <table>{children}</table>
+    <StyledTable>{children}</StyledTable>
   )
 }
 

@@ -1,15 +1,30 @@
+import styled from '@emotion/styled'
 import React from 'react'
+import { IReactChildren } from 'src/core/types'
 
-const style = {
-  display: "block",
+const StyledTBody = styled.tbody
+(({ height }: Pick<ITBody, "height">) => ({
   overflow: "auto",
-  height: "200px",
-  width: "100%",
-} as const
+  height: height ?? "100%",
+}))
 
-function TBody({ children }) {
+interface ITBody extends IReactChildren {
+  /** After this value table scroll table body appears */
+  height?: number
+}
+
+function TBody({
+  children,
+  height,
+  ...rest
+}: ITBody) {
   return (
-    <tbody style={style}>{children}</tbody>
+    <StyledTBody
+      height={height}
+      {...rest}
+    >
+      {children}
+    </StyledTBody>
   )
 }
 

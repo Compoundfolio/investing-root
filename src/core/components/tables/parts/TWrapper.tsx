@@ -11,8 +11,12 @@ interface ITWrapper extends IReactChildren {
 const StyledSection = styled.section({
   color: colors.white,
   "& table thead tr": {
-    display: "block"
-  }
+    display: "block",
+    height: "auto",
+  },
+  "& table tbody": {
+    display: "block",
+  },
 })
 
 const StyledTableName = styled.h2({
@@ -26,7 +30,7 @@ const StyledTableSize = styled.span({
   color: colors.gray,
 })
 
-function TWrapper({
+function TWrapper({ 
   children,
   title,
   size,

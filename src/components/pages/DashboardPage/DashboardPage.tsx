@@ -25,8 +25,8 @@ const DashboardPage = () => {
         <DivStatsBarChart />
       </DashboardColumn>
       <DashboardColumn>
-        <PortfolioGrowthChart />
         <PortfolioAssetsList />
+        <PortfolioGrowthChart />
       </DashboardColumn>
       <NumbersBar />
     </DashboardContainer>
