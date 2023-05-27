@@ -12,7 +12,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // import { useEffect } from 'react';
 import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
-import { Montserrat, Chakra_Petch } from '@next/font/google'
+import { Montserrat, Chakra_Petch } from "next/font/google"
 import { useEffect, useState } from 'react'
 
 function useDebounce<T>(value: T, delay?: number): T {
