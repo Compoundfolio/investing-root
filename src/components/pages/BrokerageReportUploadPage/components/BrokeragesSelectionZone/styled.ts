@@ -7,4 +7,5 @@ export const StyledContainer = styled.div({
   flexDirection: "column",
   justifyContent: "space-between",
   alignItems: "center",
+  width: "100%"
 })
