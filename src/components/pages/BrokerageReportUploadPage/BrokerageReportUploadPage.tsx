@@ -4,7 +4,7 @@ import { useSelectedBrokeragesStore } from "./stores"
 import { useOpen } from "src/core/hooks"
 import ModalBlur from 'src/core/components/blocks/ModalBlur';
 import { useRouter } from 'next/router';
-import { DASHBOARD_PAGE_PATH } from 'src/routing';
+import { ROUTES } from '../../../routing/routes';
 
 const BrokerageReportUploadPage = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
@@ -21,7 +21,7 @@ const BrokerageReportUploadPage = () => {
   }, [selectedBrokerages.length])
 
   const handleReportsUpload = () => {
-    router.push(DASHBOARD_PAGE_PATH)
+    router.push(ROUTES.DASHBOARD)
     // Save selected brokerages classes entity list to the storage
     // Save selected report data to the storage
     // Save selected report data to the storage

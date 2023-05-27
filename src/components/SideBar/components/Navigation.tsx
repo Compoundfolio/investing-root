@@ -1,16 +1,19 @@
-import Link from 'next/link'
 import React from 'react'
-import { DashboardPageIcon } from '../icons'
+import { LinkLazy } from '@core'
+import { useRouter } from 'next/router'
+import navItems from './navItems'
 
 const Navigation = () => {
+  const router = useRouter()
+
   return (
     <nav>
-      <ul>
-        <li>
-          <Link href={'/dashboard'}>
-            <DashboardPageIcon />
-          </Link>
-        </li>
+      <ul className='flex flex-col justify-center gap-4'>
+        {navItems.map(({ path, child }) => (
+          <LinkLazy key={path} to={path} isActive={router.pathname === path}>
+            {child}
+          </LinkLazy>
+        ))}
       </ul>
     </nav>
   )

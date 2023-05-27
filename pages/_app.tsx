@@ -14,6 +14,7 @@ import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
 import { Montserrat, Chakra_Petch } from "next/font/google"
 import { useEffect, useState } from 'react'
+import { ROUTES, ROUTES_GUEST } from 'src/routing';
 
 function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)
@@ -53,12 +54,12 @@ export default function App({
   const debouncedUser = useDebounce<User>(user, 5000)
 
   useEffect(() => {
-    if (!debouncedUser) {
-      router.push("/");
-    }
+    router.push(debouncedUser ? ROUTES.DASHBOARD : ROUTES_GUEST.AUTH);
   }, [debouncedUser])
 
-  const isRenderSideBar = router.pathname !== "/" && router.pathname !== `/brokerages-selection`
+  const isRenderSideBar = Object
+    .values<string>(ROUTES)
+    .includes(router.pathname)
 
   return (
     <SessionProvider session={session}>
