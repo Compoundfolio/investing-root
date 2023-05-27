@@ -47,7 +47,6 @@ export default memo(function DndFileArea({
     {/* TODO: Make upload area kinda fixed */}
     {/* TODO: Pass to reusable <DndFileUploadArea /> component */}
     <StyledDndContainer {...getRootProps()}>
-      {/* TODO: Allow CSV files only */}
       {/* TODO: Add CSV file validation */}
       <input accept="csv" {...getInputProps()} />
       <StyledDndTitle>Drag & drop the CSV report from your brokerage or</StyledDndTitle>
