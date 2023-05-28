@@ -1,0 +1,16 @@
+@import '../../../../app/global.css';
+
+.twrap {
+  color: var(--color-white);
+}
+
+.tableName {
+  font-size: 20px;
+  color: var(--color-darkGray);
+}
+
+.tableSize {
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--color-gray);
+}

@@ -5,14 +5,9 @@ import { useRouter } from 'next/router';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { AppLogo, colors } from '@core';
 import Image from 'next/image';
-import styled from '@emotion/styled';
-
-const StyledContainer = styled.div({
-  minHeight: "inherit",
-  display: "flex",
-  alignItems: "center",
-})
-
+import styles from './AuthPage.module.css';
+import clsx from 'clsx';
+ 
 const AuthPage = () => {
   const firebaseApp = initFirebase();
   const provider = new GoogleAuthProvider();
@@ -30,7 +25,7 @@ const AuthPage = () => {
 
   // TODO: Use app colors
   return (
-    <StyledContainer className="flex w-full h-full">
+    <section className={clsx(styles.authContainer, "flex w-full h-full")}>
       <div className="z-10 flex flex-col flex-1 h-full" style={{ minHeight: "inherit" }}>
         <div>
           <AppLogo withTitle />
@@ -55,7 +50,7 @@ const AuthPage = () => {
       <div className="z-10 flex items-center justify-center flex-1 h-full" style={{ minHeight: "inherit" }}>
         <AppLogo />
       </div>
-    </StyledContainer>
+    </section>
   )
 }
 

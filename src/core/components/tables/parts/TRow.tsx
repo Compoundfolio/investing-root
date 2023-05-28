@@ -1,14 +1,7 @@
-import styled from '@emotion/styled'
+import styles from './TRow.module.css'
 import React from 'react'
 import IReactChildren from '../../../types/react/IReactChildren';
-
-const StyledTr = styled.tr({
-  cursor: "pointer",
-  "&:hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    backdropFilter: "blur(75px)",
-  }
-})
+import clsx from 'clsx';
 
 interface ITRow extends IReactChildren {
   onHover?: () => void
@@ -16,7 +9,7 @@ interface ITRow extends IReactChildren {
 
 function TRow({ children, onHover }: ITRow) {
   return (
-    <StyledTr onMouseEnter={onHover} className="h-14">{children}</StyledTr>
+    <tr onMouseEnter={onHover} className={clsx([ styles.tr ,"h-14" ])}>{children}</tr>
   )
 }
 

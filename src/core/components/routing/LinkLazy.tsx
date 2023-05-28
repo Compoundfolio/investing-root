@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
 import { ILinkLazy } from './types'
-import { StyledLink } from './styled'
+import Link from 'next/link'
+import clsx from 'clsx';
+import styles from './LinkLazy.module.css'
 
 const LinkLazy = ({
   children,
@@ -15,13 +17,14 @@ const LinkLazy = ({
     href: to,
     prefetch: false,
     isActive,
+    className: clsx(styles.navLink, isActive && styles.navLink__active),
   }
 
   return withoutLiWrapper ? (
-    <StyledLink key={to} {...props}>{children}</StyledLink>
+    <Link key={to} {...props}>{children}</Link>
   ) : (
     <li>
-      <StyledLink key={to} {...props}>{children}</StyledLink>
+      <Link key={to} {...props}>{children}</Link>
     </li>
   )
 }

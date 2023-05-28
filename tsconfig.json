@@ -2,13 +2,26 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@srcComponents": [ "src/components" ],
-      "@core": [ "src/core" ],
-      "@core/helpers": [ "src/core/helpers" ],
-      "@core/components": [ "src/core/components" ],
+      "@srcComponents": [
+        "src/components"
+      ],
+      "@core": [
+        "src/core"
+      ],
+      "@core/helpers": [
+        "src/core/helpers"
+      ],
+      "@core/components": [
+        "src/core/components"
+      ]
     },
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext", "esnext.asynciterable",],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "esnext.asynciterable"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,8 +35,23 @@
     "jsx": "preserve",
     "incremental": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,  
+    "experimentalDecorators": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "environment.d.ts", "**/*.ts", "**/*.tsx", "src/api/auth/[...nextauth].js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "environment.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/api/auth/[...nextauth].js",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

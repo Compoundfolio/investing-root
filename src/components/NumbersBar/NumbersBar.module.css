@@ -1,0 +1,9 @@
+.aside {
+  min-width: 220px;
+}
+
+.statsGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

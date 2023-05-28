@@ -1,9 +1,10 @@
 import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
-import { BackgroundFogBlur, StyledModalTitle } from './styled';
+import styles from './ModalBlur.module.css';
 import { ShortcutHelper } from "../../help";
 import { Box } from "@mui/material";
-import { useModalCloseKeyShortcut } from "./hooks";
+// import { useModalCloseKeyShortcut } from "./hooks";
+import clsx from 'clsx';
 
 const ModalBlur = ({
   isOpen = false,
@@ -31,9 +32,9 @@ const ModalBlur = ({
                   <div className="flex items-start justify-between py-5">
                     {/* TODO: Optional title? */}
                     <div className="flex items-center gap-6">
-                      <StyledModalTitle>
+                      <span className={styles.modalTitle}>
                         {title}
-                      </StyledModalTitle>
+                      </span>
                     </div>
                   </div>
                 )}
@@ -63,7 +64,7 @@ const ModalBlur = ({
               </div>
             </div>
           </div>
-          <BackgroundFogBlur className="fixed inset-0 z-40" />
+          <div className={clsx(styles.backgroundFogBlur ,"fixed inset-0 z-40")} />
         </>
       )}
     </>

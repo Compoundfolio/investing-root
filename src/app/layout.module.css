@@ -1,0 +1,13 @@
+.container {
+  background: linear-gradient(75.27deg, rgba(15, 111, 114, 0.106) 75.87%, rgba(0, 0, 0, 0) 95.64%), #0E1317;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  min-height: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  background: linear-gradient(107.28deg, #183A68 13.31%, #C4C4C4 97.18%);
+  background-blend-mode: multiply;
+  min-height: 100vh;
+}

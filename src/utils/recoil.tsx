@@ -1,3 +1,5 @@
+"use client"
+
 import { useRecoilSnapshot } from "recoil";
 import { useEffect } from 'react';
 

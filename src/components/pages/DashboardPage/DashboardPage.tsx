@@ -1,9 +1,10 @@
 import { memo, useMemo } from 'react';
 import NumbersBar from 'src/components/NumbersBar'
-import { DashboardColumn, DashboardContainer } from './styled'
+import styles from './DashboardPage.module.css'
 import { PageTitle } from '@core'
 import { DivStatsBarChart, PortfolioAssetsList, PortfolioAssetsPieChart, PortfolioGrowthChart } from './components'
 import { useBrokeragesData } from 'src/store'
+import clsx from 'clsx';
 
 const DashboardPage = () => {
   const { brokerageEntities } = useBrokeragesData()
@@ -13,8 +14,8 @@ const DashboardPage = () => {
   }, [brokerageEntities])
 
   return (
-    <DashboardContainer>
-      <DashboardColumn fitContent>
+    <section className={styles.dashboard_container}>
+      <section className={clsx(styles.dashboard_column, styles.fitContent)}>
         <PageTitle
           title="Portfolio"
           // TODO: Remove hardcoded portfolioName
@@ -23,13 +24,13 @@ const DashboardPage = () => {
         />
         <PortfolioAssetsPieChart />
         <DivStatsBarChart />
-      </DashboardColumn>
-      <DashboardColumn>
+      </section>
+      <section className={styles.dashboard_column}>
         <PortfolioAssetsList />
         <PortfolioGrowthChart />
-      </DashboardColumn>
+      </section>
       <NumbersBar />
-    </DashboardContainer>
+    </section>
   )
 }
 

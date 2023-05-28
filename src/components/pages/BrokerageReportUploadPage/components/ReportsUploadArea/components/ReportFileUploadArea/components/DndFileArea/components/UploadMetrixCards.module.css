@@ -1,0 +1,15 @@
+@import '../../../../../../../../../../app/global.css';
+
+.card {
+  background-color: var(--color-darkGreen);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.number {
+  font-family: "Chakra Petch";
+  font-size: 32px;
+}

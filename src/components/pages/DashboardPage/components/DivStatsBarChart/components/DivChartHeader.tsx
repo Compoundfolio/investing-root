@@ -1,5 +1,5 @@
 import { ModalBlur, NumberMini, YearSwitcher, colors } from '@core'
-import styled from '@emotion/styled'
+import styles from './DivChartHeader.module.css'
 import { Box } from '@mui/material'
 import React, { memo } from 'react'
 import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton';
@@ -16,12 +16,6 @@ interface IDivChartHeader {
   onYearForward: () => void
 }
 
-const StyledChartTitle = styled.h2({
-  fontWeight: 400,
-  fontSize: 20,
-  color: `rgba(255, 255, 255, 0.2)`,
-})
-
 const DivChartHeader = ({
   currentlySelectedYearDivs,
   currentlySelectedYearExpectedTotalDivs,
@@ -34,7 +28,7 @@ const DivChartHeader = ({
   return <>
     <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
       <Box display="flex" alignItems="center" gap={1}>
-        <StyledChartTitle>Dividends</StyledChartTitle>
+        <h2 className={styles.chartName}>Dividends</h2>
         <YearSwitcher
           year={currentlySelectedYear}
           onYearBack={onYearBack}
