@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyledNumberBlockWrapper } from './styled'
+import styles from './NumberInBlock.module.css'
 
 const NumberInBlock = () => {
   return (
-    <StyledNumberBlockWrapper>
+    <div className={styles.numberBlock_wrapper}>
       LOLOL
-    </StyledNumberBlockWrapper>
+    </div>
   )
 }
 

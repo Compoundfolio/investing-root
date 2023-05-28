@@ -1,0 +1,43 @@
+@import '../../../../app/global.css';
+
+.numberMaxi_container {
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-darkGray);
+}
+
+.numberMaxi_container_title {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0px;
+}
+
+.numberMaxi_container_currencySign {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  margin: 0;
+  font-size: 24px;
+  color: var(--color-darkGray);
+  display: inline-block;
+  width: 100%;
+}
+
+.numberMaxi_container_number {
+  font-family: 'Chakra Petch';
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 52px;
+  color: var(--color-white);
+  padding-left: 28px;
+}
+
+.numberMaxi_container_changeValue {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.numberMaxi_container_number_floatPart {
+  font-size: 20px;
+  color: var(--color-gray),
+}
