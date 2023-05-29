@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { INumberMini } from './types'
-import { Container, MiniNumber, SubTitle, Title } from './styled'
+import styles from './NumberMini.module.css'
 
 const NumberMini = ({
   title,
@@ -8,11 +8,19 @@ const NumberMini = ({
   sub,
 }: INumberMini) => {
   return (
-    <Container>
-      <Title>{title}</Title>
-      <MiniNumber>{numbers}</MiniNumber>
-      {sub && <SubTitle>{sub}</SubTitle>}
-    </Container>
+    <div className={styles.numberContainer}>
+      <h6 className={styles.numberContainer_title}>
+        {title}
+      </h6>
+      <span className={styles.numberContainer_value}>
+        {numbers}
+      </span>
+      {sub && (
+        <span className={styles.numberContainer_subTitle}>
+          {sub}
+        </span>
+      )}
+    </div>
   )
 }
 

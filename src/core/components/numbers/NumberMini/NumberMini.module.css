@@ -1,0 +1,30 @@
+@import '../../../../../app/global.css';
+
+.numberContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.numberContainer_title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--color-white);
+  margin-bottom: 24px;
+}
+
+.numberContainer_value {
+  font-family: 'Chakra Petch';
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 31px;
+  color: var(--color-grayD9);
+}
+
+.numberContainer_subTitle {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-darkGray);
+}
