@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { StyledPageName, StyledPortfolioName } from './styled'
+import styles from './PageTitle.module.css'
 import Image from 'next/image'
 
 interface IPageTitle {
@@ -16,7 +16,7 @@ const PageTitle = ({
   return (
     <div>
       <div className='flex items-center'>
-        <StyledPageName>{title}</StyledPageName>
+        <h1 className={styles.pageName}>{title}</h1>
         {brokeragesIconLinks && (
           <div className='flex items-center gap-1'>
             {brokeragesIconLinks.map(link => (
@@ -31,7 +31,7 @@ const PageTitle = ({
           </div>
         )}
       </div>
-      <StyledPortfolioName>{portfolioName}</StyledPortfolioName>
+      <span className={styles.portfolioName}>{portfolioName}</span>
     </div>
   )
 }

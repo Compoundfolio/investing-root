@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import styles from '../styles/Home.module.css'
 import type { AppProps } from 'next/app'
 import { DebugObserver } from 'src/utils';
-import { StyledMain } from 'styles/globalStyledComponents';
+// import { StyledMain } from 'styles/globalStyledComponents';
 import { SessionProvider } from "next-auth/react"
 import { getAuth } from 'firebase/auth';
 import { useRouter } from 'next/router';
@@ -49,7 +49,7 @@ export default function App({
         <Hydrate state={pageProps.dehydratedState}> */}
       <RecoilRoot>
         <DebugObserver />
-        <StyledMain className={montserrat.className}>
+        {/* <StyledMain className={montserrat.className}> */}
           <div className={styles.container}>
             {user && (
               <button onClick={() => auth.signOut()} className="absolute text-white top-4 left-4">
@@ -65,7 +65,7 @@ export default function App({
               <Component key="rootComponent" {...pageProps} />
             )}
           </div>
-        </StyledMain>
+        {/* </StyledMain> */}
       </RecoilRoot>
       {/* </Hydrate>
       </QueryClientProvider> */}

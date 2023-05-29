@@ -1,20 +1,13 @@
 import React, { memo, useMemo } from 'react'
 import TCell from '../TCell'
 import { ColorizedNumber, PayCircleStatus } from 'src/core/components';
-import styled from '@emotion/styled';
-import { colors } from 'src/core/theme';
+import styles from './UpcomingDividendCell.module.css';
 import { getPayStatusColor } from '@core/helpers';
 
 interface IUpcomingDividendCell {
   dividendAmount: number
   dividendPayDate: Date
 }
-
-const StyledPayDate = styled.span({
-  fontWeight: 500,
-  fontSize: 14,
-  color: colors.white,
-})
 
 const UpcomingDividendCell = ({
   dividendAmount,
@@ -29,10 +22,11 @@ const UpcomingDividendCell = ({
           payDate={dividendPayDate} 
           payStatusColor={payStatusColor}
         />
-        <StyledPayDate>
+        <span className={styles.dividendTableCell_payDate}>
           {/* {dividendPayDate} */}
+          {/* TODO: Resolve hard-code */}
           Aug 20
-        </StyledPayDate>
+        </span>
       </div>
       <ColorizedNumber 
         number={dividendAmount}
