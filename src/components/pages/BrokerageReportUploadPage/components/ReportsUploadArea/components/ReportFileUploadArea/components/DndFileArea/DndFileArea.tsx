@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { StyledDndContainer, StyledDndTitle, StyledDndTitleSub } from './styled'
+import styles from './DndFileArea.module.css'
 import { NonTradeTransaction, Transaction, getBrokerageClassByBrandName } from '@core';
 import { useState } from 'react';
 import Brokerage from 'src/inversions/brokerages/Brokerage';
@@ -46,12 +46,12 @@ export default memo(function DndFileArea({
   return <>
     {/* TODO: Make upload area kinda fixed */}
     {/* TODO: Pass to reusable <DndFileUploadArea /> component */}
-    <StyledDndContainer {...getRootProps()}>
+    <section className={styles.dndFileAreaContainer} {...getRootProps()}>
       {/* TODO: Add CSV file validation */}
       <input accept="csv" {...getInputProps()} />
-      <StyledDndTitle>Drag & drop the CSV report from your brokerage or</StyledDndTitle>
-      <StyledDndTitleSub>browse it</StyledDndTitleSub>
-    </StyledDndContainer>
+      <p className={styles.dndFileAreaContainer_title}>Drag & drop the CSV report from your brokerage or</p>
+      <span className={styles.dndFileAreaContainer_titleSub}>browse it</span>
+    </section>
     {(!!tradeTransactions.length || !!nonTradeTransactions.length) && (
       <UploadMetrixCards
         tradesAmount={tradeTransactions.length}
