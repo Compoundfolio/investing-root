@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@nivo/bar": "^0.80.0",

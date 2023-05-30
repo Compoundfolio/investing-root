@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
-import { StyledBarChartContainer } from './styled'
+import { barChartContainerStyle } from './styled'
 import { colors } from 'src/core/theme';
 import { parseNumberToFixed2 } from '@core';
 import { useDividendYearSwitch } from './hooks';
@@ -29,7 +29,7 @@ const DivStatsBarChart = ({
   const estimatedSelectedYearDivs = 500.01
 
   return (
-    <StyledBarChartContainer openedInModal={openedInModal}>
+    <section style={barChartContainerStyle({openedInModal})}>
       {openedInModal ? (
         <DivStats />
       ) : (
@@ -93,7 +93,7 @@ const DivStatsBarChart = ({
         role="application"
         isFocusable={true}
       />
-    </StyledBarChartContainer>
+    </section>
   )
 }
 
