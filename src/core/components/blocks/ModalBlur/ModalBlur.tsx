@@ -2,7 +2,6 @@ import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
 import styles from './ModalBlur.module.css';
 import { ShortcutHelper } from "../../help";
-import { Box } from "@mui/material";
 // import { useModalCloseKeyShortcut } from "./hooks";
 import clsx from 'clsx';
 
@@ -41,12 +40,12 @@ const ModalBlur = ({
                 {/*body*/}
                 {/* <div className="relative flex flex-col justify-center w-full h-full text-white "> */}
                 <div className="relative flex flex-col justify-between w-full h-full text-white ">
-                  <Box position="fixed" top={16} left={16} zIndex={9999}>
+                  <div className={styles.shortcut_wrapper}>
                     <ShortcutHelper
                       keyShortcuts={[{ keyName: "Esc", eventKey: "Escape" }]}
                       onClick={handleOpenChange}
                     />
-                  </Box>
+                  </div>
                   {children}
                 </div>
                 {/*footer*/}

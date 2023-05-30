@@ -1,6 +1,5 @@
 import { ModalBlur, NumberMini, YearSwitcher, colors } from '@core'
 import styles from './DivChartHeader.module.css'
-import { Box } from '@mui/material'
 import React, { memo } from 'react'
 import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton';
 import { useOpen } from 'src/core/hooks';
@@ -26,24 +25,24 @@ const DivChartHeader = ({
   const [isFullScreenOpen, handleIsFullScreenOpen] = useOpen()
 
   return <>
-    <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
-      <Box display="flex" alignItems="center" gap={1}>
+    <div className={styles.divChartHead_container}>
+      <div className={styles.divChartHead_container_groupWrap}>
         <h2 className={styles.chartName}>Dividends</h2>
         <YearSwitcher
           year={currentlySelectedYear}
           onYearBack={onYearBack}
           onYearForward={onYearForward}
         />
-      </Box>
-      <Box display="flex" alignItems="center" gap={1}>
+      </div>
+      <div className={styles.divChartHead_container_groupWrap}>
         {!isFullScreenOpen && (
           <CircleButton onClick={handleIsFullScreenOpen}>
             <FullscreenIcon sx={{ color: colors.gray4C }} />
           </CircleButton>
         )}
-      </Box>
-    </Box>
-    <Box display="flex" alignItems="center" justifyContent="space-between" mb={4}>
+      </div>
+    </div>
+    <div className={styles.divChartHead_container_numbersWrap}>
       <NumberMini
         title="Received"
         numbers={`$${currentlySelectedYearDivs}`}
@@ -52,7 +51,7 @@ const DivChartHeader = ({
         title="Estimated total"
         numbers={`$${currentlySelectedYearExpectedTotalDivs}`}
       />
-    </Box>
+    </div>
 
     <ModalBlur
       title="Dividends"

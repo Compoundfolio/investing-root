@@ -10,3 +10,10 @@
   font-size: 64px;
   font-weight: 400;
 }
+
+.shortcut_wrapper {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+}
