@@ -1,3 +1,4 @@
+"use client"
 import React, { memo, useCallback, useEffect, useState, useMemo } from 'react'
 import { IShortcutHelper, KeyShortcut } from './types'
 import { isMacOs } from '@core/helpers'
