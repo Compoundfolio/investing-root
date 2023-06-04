@@ -1,5 +1,3 @@
-@import '../../../../../app/global.css';
-
 .numberContainer {
   display: flex;
   flex-direction: column;
