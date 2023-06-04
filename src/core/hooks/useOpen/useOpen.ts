@@ -8,7 +8,7 @@ type ReturnType = [
 
 /**
  * Hook to handle open/show statuses
- */
+ */ 
 const useOpen = (): ReturnType => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
