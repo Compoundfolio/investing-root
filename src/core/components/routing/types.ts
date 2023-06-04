@@ -4,5 +4,4 @@ export interface ILinkLazy extends IReactChildren {
   /** @example "/example-route" */
   to: string,
   withoutLiWrapper?: boolean,
-  isActive?: boolean
 }
