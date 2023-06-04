@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import { initFirebase } from '../../../../../../../firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const GoogleAuthButton = () => {

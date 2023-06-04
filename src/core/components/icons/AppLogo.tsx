@@ -1,8 +1,5 @@
 import React, { memo } from 'react'
 import { HIGHEST_PRIORITY_Z_INDEX_VALUE } from '../../theme/otherCssRelatedConsts';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
-import { initFirebase } from '../../../../firebase/firebase';
 
 interface IAppLogo {
   width?: number
@@ -13,19 +10,12 @@ const AppLogo = ({
   width = 48,
   withTitle = false
 }: IAppLogo) => {
-  const firebaseApp = initFirebase();
-  const auth = getAuth(firebaseApp);
-  const [user] = useAuthState(auth);
   
   return (
     // {/* TODO: Kill style */}
     <div style={{ zIndex: HIGHEST_PRIORITY_Z_INDEX_VALUE }} className="flex items-center gap-2.5">
       <svg width={width} height={width} viewBox={`0 0 ${width} ${width}`} fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_555_27713)">
-          {user && <>
-            <rect width={width} height={width} rx="8" fill="url(#paint0_angular_555_27713)" />
-            <rect width={width} height={width} rx="8" fill="#000040" fillOpacity="0.3" />
-          </>}
           <g filter="url(#filter0_d_555_27713)">
             <rect x="25.2529" y="17" width="13.7471" height="13.7471" rx="6.87355" fill="white" />
           </g>

@@ -6,7 +6,7 @@ import { DebugObserver } from 'src/utils';
 // import { StyledMain } from 'styles/globalStyledComponents';
 import { SessionProvider } from "next-auth/react"
 import { getAuth } from 'firebase/auth';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { initFirebase } from '../firebase';
 import { SideBar } from '@srcComponents';
