@@ -1,18 +1,26 @@
-import { memo } from 'react'
+"use client"
+
+import { memo, useMemo } from 'react'
 import styles from './PageTitle.module.css'
 import Image from 'next/image'
+import { useBrokeragesData } from 'src/store'
 
 interface IPageTitle {
   title: string
   portfolioName: string
-  brokeragesIconLinks?: string[]
 }
 
 const PageTitle = ({
   title,
   portfolioName,
-  brokeragesIconLinks,
 }: IPageTitle) => {
+
+  const { brokerageEntities } = useBrokeragesData()
+
+  const brokeragesIconLinks = useMemo(() => {
+    return brokerageEntities.map(brokerageEntity => brokerageEntity.getLogoPath())
+  }, [brokerageEntities])
+
   return (
     <div>
       <div className='flex items-center'>
@@ -20,12 +28,12 @@ const PageTitle = ({
         {brokeragesIconLinks && (
           <div className='flex items-center gap-1'>
             {brokeragesIconLinks.map(link => (
-              <Image 
+              <Image
                 key={link}
-                src={link} 
-                width={32} 
-                height={32} 
-                alt='Brokerage icon' 
+                src={link}
+                width={32}
+                height={32}
+                alt='Brokerage icon'
               />
             ))}
           </div>

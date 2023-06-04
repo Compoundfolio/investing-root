@@ -1,3 +1,5 @@
+"use client"
+
 import React, { memo, useMemo } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import { chartContainerStyled } from './styled'

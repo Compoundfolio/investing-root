@@ -1,5 +1,7 @@
+"use client"
+
 import { ResponsivePie } from '@nivo/pie'
-import { memo, useMemo, useState, useEffect, useRef } from 'react';
+import { memo, useMemo, useState, useRef } from 'react';
 import styles from './PortfolioAssetsPieChart.module.css'
 import { NormalizedPositions, colors } from '@core'
 import { useBrokeragesData } from 'src/store'

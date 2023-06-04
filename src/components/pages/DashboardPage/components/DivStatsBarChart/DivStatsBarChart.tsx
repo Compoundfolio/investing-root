@@ -1,3 +1,4 @@
+"use client"
 import React, { memo } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import { barChartContainerStyle } from './styled'
