@@ -17,11 +17,12 @@ const LinkLazy = ({
     href: to,
     prefetch: false,
     isActive,
-    className: clsx(styles.navLink, isActive && styles.navLink__active),
+    // className: clsx(styles.navLink, isActive && styles.navLink__active),
+    // className: styles.navLink,
   }
 
   return withoutLiWrapper ? (
-    <Link key={to} {...props}>{children}</Link>
+    <Link key={to} className={styles.navLink} {...props}>{children}</Link>
   ) : (
     <li>
       <Link key={to} {...props}>{children}</Link>

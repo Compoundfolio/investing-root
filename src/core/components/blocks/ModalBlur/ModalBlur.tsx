@@ -1,3 +1,5 @@
+"use client"
+
 import { memo } from "react";
 import IModalBlur from "./__types__/IModalBlur";
 import styles from './ModalBlur.module.css';

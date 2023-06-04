@@ -1,5 +1,3 @@
-// "use client"
-
 import styles from './layout.module.css'
 import './global.css'
 
@@ -31,19 +29,6 @@ export default function RootLayout({
           <DebugObserver />
           <main className={clsx([ styles.main, montserrat.className ])}>
             <div className={styles.container}>
-              {/* {user && (
-                <button onClick={() => auth.signOut()} className="absolute text-white top-4 left-4">
-                  Sign Out
-                </button>
-              )} */}
-              {/* {isRenderSideBar ? <>
-                <div className='p-10'>
-                  <Component key="rootComponent" {...pageProps} />
-                </div>
-                <SideBar />
-              </> : (
-                <Component key="rootComponent" {...pageProps} />
-              )} */}
               {children}
             </div>
           </main>

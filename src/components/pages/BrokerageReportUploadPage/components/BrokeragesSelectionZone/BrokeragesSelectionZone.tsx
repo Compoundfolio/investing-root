@@ -6,10 +6,6 @@ import { useSelectedBrokeragesStore } from '../../stores'
 import styles from './BrokeragesSelectionZone.module.css'
 import { ExanteBrokerage } from "src/inversions";
 
-export const SUPPORTED_BROKERAGES = [
-  ExanteBrokerage,
-] 
-
 export default memo(function BrokeragesSelectionZone() {
   const { 
     isSelected, 
