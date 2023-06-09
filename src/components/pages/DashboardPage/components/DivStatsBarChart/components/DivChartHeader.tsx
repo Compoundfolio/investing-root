@@ -1,6 +1,11 @@
-"use client"
-import React from 'react'
+import { ModalBlur, NumberMini, YearSwitcher, colors } from '@core'
+import styles from './DivChartHeader.module.css'
+import { Box } from '@mui/material'
+import React, { memo } from 'react'
+import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton';
 import { useOpen } from 'src/core/hooks';
+import DivStatsBarChart from '../DivStatsBarChart';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 interface IDivChartHeader {
   currentlySelectedYearDivs: number
@@ -21,8 +26,43 @@ const DivChartHeader = ({
   const [isFullScreenOpen, handleIsFullScreenOpen] = useOpen()
 
   return <>
-    todo
+    <Box display="flex" alignItems="center" justifyContent="space-between" gap={3} mb={4}>
+      <Box display="flex" alignItems="center" gap={1}>
+        <h2 className={styles.chartName}>Dividends</h2>
+        <YearSwitcher
+          year={currentlySelectedYear}
+          onYearBack={onYearBack}
+          onYearForward={onYearForward}
+        />
+      </Box>
+      <Box display="flex" alignItems="center" gap={1}>
+        {!isFullScreenOpen && (
+          <CircleButton onClick={handleIsFullScreenOpen}>
+            <FullscreenIcon sx={{ color: colors.gray4C }} />
+          </CircleButton>
+        )}
+      </Box>
+    </Box>
+    <Box display="flex" alignItems="center" justifyContent="space-between" mb={4}>
+      <NumberMini
+        title="Received"
+        numbers={`$${currentlySelectedYearDivs}`}
+      />
+      <NumberMini
+        title="Estimated total"
+        numbers={`$${currentlySelectedYearExpectedTotalDivs}`}
+      />
+    </Box>
+
+    <ModalBlur
+      title="Dividends"
+      isOpen={isFullScreenOpen}
+      handleOpenChange={handleIsFullScreenOpen}
+    >
+      <DivStatsBarChart openedInModal />
+      {/* TODO */}
+    </ModalBlur>
   </>
 }
 
-export default DivChartHeader
+export default memo(DivChartHeader)

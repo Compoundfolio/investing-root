@@ -1,2 +1,2 @@
-export {default as ShortcutHelper} from './ShortcutHelper';
+export {default} from './ShortcutHelper';
 export * from './types';

@@ -25,7 +25,8 @@ const GoogleAuthButton = () => {
   return (
     <button
       onClick={signIn}
-      className="justify-center w-full gap-2 px-8 py-3 text-black transition duration-150 bg-white rounded-lg hover:shadow hover:bg-gray-200">
+      className="justify-center w-full gap-2 px-8 py-3 text-black transition duration-150 bg-white rounded-lg hover:shadow hover:bg-gray-200"
+    >
       {/* TODO: Download image */}
       <Image 
         width={24} 

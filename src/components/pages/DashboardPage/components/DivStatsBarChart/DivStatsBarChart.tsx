@@ -22,9 +22,9 @@ const DivStatsBarChart = ({
     onYearForward,
   } = useDividendYearSwitch(dataSet)
 
-  const yearDivs = selectedYearDividendsData.reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
-  const pervYearDivs = dataSet[selectedYear - 1].reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount), 0)
-  const yearDivGrowthPercentage = parseNumberToFixed2((yearDivs / pervYearDivs) * 100)
+  const yearDivs = selectedYearDividendsData.reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount!), 0)
+  const pervYearDivs = dataSet[selectedYear - 1].reduce((prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount!), 0)
+  const yearDivGrowthPercentage = parseNumberToFixed2((yearDivs! / pervYearDivs!) * 100)
 
   // TODO: estimatedSelectedYearDivs
   const estimatedSelectedYearDivs = 500.01
@@ -35,9 +35,9 @@ const DivStatsBarChart = ({
         <DivStats />
       ) : (
         <DivChartHeader
-          currentlySelectedYearDivs={yearDivs}
+          currentlySelectedYearDivs={yearDivs!}
           currentlySelectedYearExpectedTotalDivs={estimatedSelectedYearDivs}
-          currentlySelectedYearDivGrowthPercentageComparedToPrevYear={yearDivGrowthPercentage}
+          currentlySelectedYearDivGrowthPercentageComparedToPrevYear={yearDivGrowthPercentage!}
           currentlySelectedYear={selectedYear}
           onYearBack={onYearBack}
           onYearForward={onYearForward}
@@ -84,7 +84,7 @@ const DivStatsBarChart = ({
           legend: '',
           legendPosition: 'middle',
           legendOffset: -60,
-          renderTick: CustomAxisBottomTick
+          // renderTick: CustomAxisBottomTick
         }}
         axisLeft={null}
         enableGridY={false}

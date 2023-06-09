@@ -1,3 +1,5 @@
+"use client"
+
 import React, { memo } from 'react'
 import { SupportedBrokerage } from '../../consts'
 import { SelectableBrokerage } from './components'
