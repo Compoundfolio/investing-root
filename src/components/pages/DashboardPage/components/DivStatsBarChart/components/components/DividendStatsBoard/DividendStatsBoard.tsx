@@ -16,7 +16,7 @@ const DividendStatsBoard = () => {
         {/* Heading */}
       </header>
       <section>
-        <div>
+        <div className='flex flex-col gap-16'>
           <LineProgressChart
             lowerNumber={receivedDividends}
             greaterNumber={expectedTotalDividends}

@@ -1,4 +1,4 @@
-import { getPercentageDifference } from '@core'
+import { colors, getPercentageDifference } from '@core'
 import React from 'react'
 import ProgressLegendItem from './components/ProgressLegendItem'
 
@@ -18,6 +18,8 @@ const LineProgressChart = ({
   const percentageDifference = getPercentageDifference(greaterNumber, lowerNumber)
   const restPercentageDifference = 100 - percentageDifference
   const progressSizeStyle = { width: `${percentageDifference}%` }
+  
+  const t = `bg-[${colors.gold}]`
 
   return (
     <section className='w-full'>
@@ -25,8 +27,8 @@ const LineProgressChart = ({
         <span>{lowerNumber}</span>
         <span>{greaterNumber}</span>
       </div>
-      <div className="w-full h-4 bg-neutral-200 dark:bg-neutral-600 rounded-xl">
-        <div className="h-4 bg-yellow-500 rounded-xl" style={progressSizeStyle} />
+      <div className="w-full h-[16px] bg-neutral-200 dark:bg-neutral-600 rounded-xl">
+        <div className={`h-[16px] ${t} shadow-md rounded-xl`} style={progressSizeStyle} />
       </div>
       <legend className='flex gap-16'>
         <ProgressLegendItem 

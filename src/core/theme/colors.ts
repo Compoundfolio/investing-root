@@ -8,7 +8,7 @@ const colors = {
   darkGray: "#323740",
   darkGreen: "#0F6F72",
   darkGreenEasy: "#0F6F721A", 
-  gold: "#FFD390",
+  gold: "#ffd390",
   grayD9: "#D9D9D9",
   pinkSoft: "#CF6679",
   gray4C: "#4C596B",
