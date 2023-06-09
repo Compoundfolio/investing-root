@@ -10,6 +10,9 @@ const nextConfig = {
     config.experiments.topLevelAwait = true;
     return config;
   },
+  // Prefer loading of ES Modules over CommonJS
+  experimental: { esmExternals: 'loose' }
+
 }
 
 module.exports = nextConfig

@@ -1,6 +1,8 @@
+"use client"
+
 import React, { memo, useMemo } from 'react'
 import { ResponsiveLine } from '@nivo/line'
-import { StyledChartContainer } from './styled'
+import { chartContainerStyled } from './styled'
 import { linearGradientDef } from '@nivo/core'
 import { colors } from '@core'
 import { ChartTooltip } from './components'
@@ -31,7 +33,7 @@ const PortfolioGrowthChart = () => {
   ], [ data ])
 
   return (
-    <StyledChartContainer id="valueChart">
+    <section style={chartContainerStyled} id="valueChart">
       <ResponsiveLine
         {...properties}
         enableGridX={false}
@@ -153,7 +155,7 @@ const PortfolioGrowthChart = () => {
         enableSlices="x"
         sliceTooltip={ChartTooltip}
       />
-    </StyledChartContainer>
+    </section>
   )
 }
 

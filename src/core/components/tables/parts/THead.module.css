@@ -1,0 +1,7 @@
+.thead {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-gray4C);
+  text-transform: uppercase;
+  text-align: left;
+}

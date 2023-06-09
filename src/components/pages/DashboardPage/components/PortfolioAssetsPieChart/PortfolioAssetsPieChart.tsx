@@ -1,8 +1,11 @@
+"use client"
+
 import { ResponsivePie } from '@nivo/pie'
-import { memo, useMemo, useState, useEffect, useRef } from 'react';
-import { StyledPieChartContainer } from './styled'
+import { memo, useMemo, useState, useRef } from 'react';
+import styles from './PortfolioAssetsPieChart.module.css'
 import { NormalizedPositions, colors } from '@core'
 import { useBrokeragesData } from 'src/store'
+import clsx from 'clsx';
 
 type DataItem = {
   id: string;
@@ -46,23 +49,24 @@ const PortfolioAssetsPieChart = () => {
   const [activeItem, setActiveItem] = useState<DataItem | null>(null);
   const [fillItems, setFillItems] = useState([]);
 
-  useEffect(() => {
-   if (activeItem && (activeItem as DataItem).id) {
-      setFillItems(
-        dataSet.map((item) => ({
-          match: { id: item.id },
-          id: item.id === (activeItem as DataItem).id ? "lines" : "opacity",
-        }))
-      );
-    } else {
-      setFillItems([]);
-    }
-  }, [activeItem]);  
+  // useEffect(() => {
+  //  if (activeItem && (activeItem as DataItem).id) {
+  //     setFillItems(
+  //       dataSet.map((item) => ({
+  //         match: { id: item.id },
+  //         id: item.id === (activeItem as DataItem).id ? "lines" : "opacity",
+  //       }))
+  //     );
+  //   } else {
+  //     setFillItems([]);
+  //   }
+  // }, [activeItem]);  
 
   const ref = useRef()
 
   return ( 
-    <StyledPieChartContainer className='relative' ref={ref}>
+    // <section className={clsx(styles.pieChartContainer, 'relative')} ref={ref}>
+    <section className={clsx(styles.pieChartContainer, 'relative')}>
       <div className='absolute flex justify-center w-full text-white top-1/2'>
         <span>{selectedEntityPiePercentage.toFixed(2)}%</span>
       </div>
@@ -131,7 +135,7 @@ const PortfolioAssetsPieChart = () => {
         ]}
         fill={fillItems}
       />
-    </StyledPieChartContainer>
+    </section>
   )
 }
 

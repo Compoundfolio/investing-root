@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { SSectionContainer } from './styled'
+import styles from './ReportsUploadArea.module.css'
 import { ReportFileUploadArea, SelectedBrokeragesSwitchingList } from './components'
 import { useSelectedBrokerageToUploadReport } from './hooks'
 
@@ -10,7 +10,7 @@ const ReportsUploadArea = () => {
   } = useSelectedBrokerageToUploadReport()
 
   return (
-    <SSectionContainer>
+    <section className={styles.sectionContainer}>
       <SelectedBrokeragesSwitchingList 
         selectedBrokerageName={selectedBrokerageName}
         handleChangeSelectedBrokerage={handleChangeSelectedBrokerage}
@@ -22,8 +22,7 @@ const ReportsUploadArea = () => {
         selectedBrokerageName={selectedBrokerageName}
         handleChangeSelectedBrokerage={handleChangeSelectedBrokerage}
       />
-      {/* <NavigationAside /> */}
-    </SSectionContainer>
+    </section>
   )
 }
 

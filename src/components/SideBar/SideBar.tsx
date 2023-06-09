@@ -1,16 +1,16 @@
 import { memo } from 'react';
-import { StyledAside } from './styled';
+import styles from './SideBar.module.css';
 import { AppLogo } from '@core';
 import { Navigation, UserAvatar } from './components';
 
 const SideBar = () => {
   return (
-    <StyledAside>
+    <aside className={styles.sideBarContainer}>
       <AppLogo />
       <UserAvatar />
       <hr className="w-full bg-white" />
       <Navigation />
-    </StyledAside>
+    </aside>
   )
 }
 

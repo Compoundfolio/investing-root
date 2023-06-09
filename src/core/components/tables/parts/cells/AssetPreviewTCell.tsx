@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import TCell from '../TCell'
 import Image from 'next/image'
-import { colors } from 'src/core/theme'
-import styled from '@emotion/styled';
+import styles from './AssetPreviewTCell.module.css';
 import { Ticker } from 'src/core/types';
+import clsx from 'clsx';
 
 interface IAssetPreviewTCell {
   logoSrc: string
@@ -11,24 +11,6 @@ interface IAssetPreviewTCell {
   assetFullName: string
   sharesAmount: number
 }
-
-const commonStyles = {
-  fontSize: 14,
-  textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-} as const
-
-const StyledAssetName = styled.span({
-  ...commonStyles,
-  fontWeight: 700,
-  "& > span": {
-    fontWeight: 400,
-  }
-})
-
-const StyledSharesAmount = styled.span({
-  ...commonStyles,
-  color: colors.gray4C,
-})
 
 function AssetPreviewTCell({
   ticker,
@@ -48,13 +30,13 @@ function AssetPreviewTCell({
           />
         </div>
         <div className="flex flex-col">
-          <StyledAssetName>
-            {ticker} • <span>{assetFullName}</span>
-          </StyledAssetName>
-          <StyledSharesAmount>
+          <span className={clsx(styles.assetPreviewCell, styles.assetPreviewCell_assetName)}>
+            {ticker} • <span className={styles.assetPreviewCell_assetName_fullName}>{assetFullName}</span>
+          </span>
+          <span className={clsx(styles.assetPreviewCell, styles.assetPreviewCell_sharesAmount)}>
             {/* TODO: Share / Shares ... */}
             {sharesAmount} shares
-          </StyledSharesAmount>
+          </span>
         </div>
       </div>
     </TCell>

@@ -1,0 +1,7 @@
+.positiveMove {
+  transform: none;
+}
+
+.negativeMove {
+  transform: rotate(180deg);
+}

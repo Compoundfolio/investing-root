@@ -1,10 +1,6 @@
 import { getPayStatusColor } from '@core/helpers'
 import React, { memo, useMemo } from 'react'
-import styled from '@emotion/styled';
-
-const StyledSvg = styled.svg({
-  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-})
+import styles from './PayCircleStatus.module.css';
 
 interface IPayCircleStatus {
   payDate: Date
@@ -18,7 +14,7 @@ const PayCircleStatus = ({
   const statusColor = useMemo(() => payStatusColor ?? getPayStatusColor(payDate), [payStatusColor, payDate])
 
   return (
-    <StyledSvg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={styles.circularStatus} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="5" cy="5" r="5" fill="url(#paint0_radial_543_29700)" />
       <defs>
         <radialGradient id="paint0_radial_543_29700" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(5 5) rotate(90) scale(5)">
@@ -26,7 +22,7 @@ const PayCircleStatus = ({
           <stop offset="1" stopColor={statusColor.color} stopOpacity="0.53" />
         </radialGradient>
       </defs>
-    </StyledSvg>
+    </svg>
   )
 }
 

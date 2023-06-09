@@ -1,0 +1,16 @@
+.pageName {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  margin: 0;
+  margin-right: 8px;
+  color: var(--color-white);
+}
+
+.portfolioName {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: var(--color-white);
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}

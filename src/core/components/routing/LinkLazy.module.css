@@ -1,0 +1,14 @@
+.navLink {
+  border-radius: 26px;
+  padding: 4px;
+  display: inline-block;
+}
+
+.navLink__active {
+  background-color: var(--color-darkGray);
+}
+
+.navLink > svg {
+  width: 26px;
+  height: 26px;
+}

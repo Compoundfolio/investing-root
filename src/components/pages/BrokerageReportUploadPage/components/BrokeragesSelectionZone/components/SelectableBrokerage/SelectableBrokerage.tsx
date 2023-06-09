@@ -1,10 +1,11 @@
 import React, { memo } from 'react'
 import { ISelectableBrokerage } from './__types__'
 import {
-  SelectableBrokerageButton,
-  StyledBrokerageBrandName, 
-  StyledImage,  
+  brokerageButtonStyle,
+  imageStyle, 
+  brokerageBrandNameStyle,  
 } from './styles'
+import Image from 'next/image'
 
 export default memo(function SelectableBrokerage({
   Brokerage,
@@ -12,20 +13,20 @@ export default memo(function SelectableBrokerage({
   handleUpdateSelectedBrokerages,
 }: ISelectableBrokerage) {
   return (
-    <SelectableBrokerageButton
+    <button
       onClick={() => handleUpdateSelectedBrokerages({ Brokerage, isDelete: isSelected })}
-      isSelected={isSelected}
+      style={brokerageButtonStyle({isSelected})}
     >
-      <StyledImage
+      <Image
         width={64}
         height={64}
-        isSelected={isSelected}
+        style={imageStyle({isSelected})}
         alt={Brokerage.brandName}
         src={Brokerage.logoPath}
       />
-      <StyledBrokerageBrandName>
+      <h2 style={brokerageBrandNameStyle}>
         {Brokerage.brandName}
-      </StyledBrokerageBrandName>
-    </SelectableBrokerageButton>
+      </h2>
+    </button>
   )
 })

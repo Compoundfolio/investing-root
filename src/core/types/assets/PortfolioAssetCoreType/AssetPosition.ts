@@ -10,8 +10,8 @@ type AssetPosition = {
   /** By all open shares */
   currentPositionPrice: number; // TODO: Rename as invested amount
   /** Average open position price */
-  averagePrice: number;
-  actualPositionPrice: number // actualOneSharePrice*sharesAmount
+  averagePrice: number | null;
+  actualPositionPrice: number | null // actualOneSharePrice*sharesAmount
   dividendStats: DividendStats;
   wholeMarketDividendHistory: EHDDividend[],
   payedDividendTaxTransactions: NonTradeTransaction<"TAX">[]

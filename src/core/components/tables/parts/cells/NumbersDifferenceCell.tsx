@@ -1,26 +1,7 @@
 import React, { memo } from 'react'
 import TCell from '../TCell'
-import styled from '@emotion/styled';
-import { colors } from 'src/core/theme';
-
-const commonStyles = {
-  fontFamily: 'Chakra Petch',
-  fontSize: 14,
-  textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-  display: "block"
-} as const
-
-const StyledTopNumber = styled.span({
-  ...commonStyles,
-  fontWeight: 500,
-  color: colors.white,
-})
-
-const StyledBottomNumber = styled.span({
-  ...commonStyles,
-  fontWeight: 400,
-  color: colors.gray4C,
-})
+import styles from './NumbersDifferenceCell.module.css';
+import clsx from 'clsx';
 
 interface INumbersDifferenceCell {
   topNumber: number
@@ -35,12 +16,12 @@ const NumbersDifferenceCell = ({
 }: INumbersDifferenceCell) => {
   return (
     <TCell>
-      <StyledTopNumber>
+      <span className={clsx(styles.number, styles.number_top)}>
         {topNumber}{isPercentages && "%"}
-      </StyledTopNumber>
-      <StyledBottomNumber>
+      </span>
+      <span className={clsx(styles.number, styles.number_bottom)}>
         {bottomNumber}{isPercentages && "%"}
-      </StyledBottomNumber>
+      </span>
     </TCell>
   )
 }

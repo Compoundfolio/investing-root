@@ -1,11 +1,6 @@
 import { memo } from 'react'
 import { colors } from 'src/core/theme';
-import styled from '@emotion/styled';
-
-const StyledSvg = styled.svg
-(({ isPositiveMove }: INumberMoveIcon) => ({
-  transform: isPositiveMove ? "none" : "rotate(180deg)",
-}))
+import styles from './NumberMoveIcon.module.css';
 
 type INumberMoveIcon = {
   isPositiveMove: boolean
@@ -17,7 +12,7 @@ const NumberMoveIcon = ({
   color,
 }: INumberMoveIcon) => {
   return (
-    <StyledSvg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg" isPositiveMove={isPositiveMove}>
+    <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg" className={isPositiveMove ? styles.positiveMove : styles.negativeMove}>
       <g filter="url(#filter0_d_543_29722)">
         <path d="M10.2974 0L16.2974 8H4.29736L10.2974 0Z" fill={color ?? (isPositiveMove ? colors.darkGreen : colors.pinkSoft)} />
       </g>
@@ -33,7 +28,7 @@ const NumberMoveIcon = ({
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_543_29722" result="shape" />
         </filter>
       </defs>
-    </StyledSvg>
+    </svg>
 
   )
 }

@@ -1,10 +1,11 @@
 import { NumberMaxi, NumberMini } from '@core'
 import React, { memo } from 'react'
-import { StatsGroup, StyledAside } from './styled'
+import styles from './NumbersBar.module.css'
+import clsx from 'clsx';
 
 const NumbersBar = () => {
   return (
-    <StyledAside className='flex flex-col gap-12'>
+    <aside className={clsx(styles.aside, 'flex flex-col gap-12')}>
       <NumberMaxi
         title="Portfolio value"
         numbers={96592.03}
@@ -16,7 +17,7 @@ const NumbersBar = () => {
         curency="$"
       />
       <section className='flex flex-col gap-16'>
-        <StatsGroup>
+        <div className={styles.statsGroup}>
           <NumberMini 
             title="Dividend yield"
             numbers="2.9%"
@@ -25,8 +26,8 @@ const NumbersBar = () => {
             title="Yield on Cost"
             numbers="5.15%"
           />
-        </StatsGroup>
-        <StatsGroup>
+        </div>
+        <div className={styles.statsGroup}>
           <NumberMini 
             title="Avg. price return"
             numbers="7.9%"
@@ -37,8 +38,8 @@ const NumbersBar = () => {
             numbers="2.9%"
             sub="per year"
           />
-        </StatsGroup>
-        <StatsGroup>
+        </div>
+        <div className={styles.statsGroup}>
           <NumberMini 
             title="Beta"
             numbers="1.23"
@@ -47,9 +48,9 @@ const NumbersBar = () => {
             title="P/E"
             numbers="21.2"
           />
-        </StatsGroup>
+        </div>
       </section>
-    </StyledAside>
+    </aside>
   )
 }
 

@@ -1,25 +1,10 @@
-import { colors } from '@core'
-import styled from '@emotion/styled'
-import React, { memo } from 'react'
-
-const StyledCard = styled.div({
-  backgroundColor: colors.darkGreen,
-  color: colors.white,
-  display: "flex",
-  flexDirection: "column",
-  padding: 8,
-  borderRadius: 8,
-})
-
-const StyledNumber = styled.span({
-  fontFamily: "Chakra Petch",
-  fontSize: 32,
-})
+import { memo } from 'react'
+import styles from './UploadMetrixCards.module.css'
 
 interface IUploadMetrixCards {
   tradesAmount: number,
   nonTradesAmount: number,
-}
+} 
 
 const UploadMetrixCards = ({
   tradesAmount,
@@ -28,16 +13,16 @@ const UploadMetrixCards = ({
   return (
     <div className='flex w-full gap-4 mt-12'>
       {tradesAmount && (
-        <StyledCard>
-          <StyledNumber>+ {tradesAmount}</StyledNumber>
+        <section className={styles.card}>
+          <span className={styles.number}>+ {tradesAmount}</span>
           of buy/sell transactions found!
-        </StyledCard>
+        </section>
       )}
       {nonTradesAmount && (
-        <StyledCard>
-          <StyledNumber>+ {nonTradesAmount}</StyledNumber>
+        <section className={styles.card}>
+          <span className={styles.number}>+ {nonTradesAmount}</span>
           of other transactions found!
-        </StyledCard>
+        </section>
       )}
     </div>
   )

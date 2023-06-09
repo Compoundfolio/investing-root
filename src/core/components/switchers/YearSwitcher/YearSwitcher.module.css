@@ -1,0 +1,7 @@
+.yearSwitcher_year {
+  color: var(--color-yellow);
+  font-weight: 500;
+  font-size: 13px;
+  width: 36px;
+  text-align: center;
+}

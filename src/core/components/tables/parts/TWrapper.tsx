@@ -1,34 +1,12 @@
 import React from 'react'
 import { IReactChildren } from 'src/core/types'
-import styled from '@emotion/styled';
-import { colors } from 'src/core/theme';
+import styles from './TWrapper.module.css'
+import clsx from 'clsx';
 
 interface ITWrapper extends IReactChildren {
   title: string
   size: number
 }
-
-const StyledSection = styled.section({
-  color: colors.white,
-  "& table thead tr": {
-    display: "block",
-    height: "auto",
-  },
-  "& table tbody": {
-    display: "block",
-  },
-})
-
-const StyledTableName = styled.h2({
-  fontSize: 20,
-  color: colors.darkGray,
-})
-
-const StyledTableSize = styled.span({
-  fontWeight: 300,
-  fontSize: 16,
-  color: colors.gray,
-})
 
 function TWrapper({ 
   children,
@@ -36,13 +14,13 @@ function TWrapper({
   size,
 }: ITWrapper) {
   return (
-    <StyledSection className="flex flex-col justify-between">
+    <section className={clsx([styles.twrap, "flex flex-col justify-between"])}>
       <div className="flex flex-col">
-        <StyledTableName>{title}</StyledTableName>
-        {size > 0 && <StyledTableSize>[{size}]</StyledTableSize>}
+        <h2 className={styles.tableName}>{title}</h2>
+        {size > 0 && <span className={styles.tableSize}>[{size}]</span>}
       </div>
       {children}
-    </StyledSection>
+    </section>
   )
 }
 

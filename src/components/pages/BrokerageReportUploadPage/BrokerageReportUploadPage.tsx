@@ -1,9 +1,11 @@
+"use client"
+
 import { memo, useEffect } from 'react';
 import { BrokeragesSelectionZone, ReportsUploadArea } from "./components"
 import { useSelectedBrokeragesStore } from "./stores"
 import { useOpen } from "src/core/hooks"
 import ModalBlur from 'src/core/components/blocks/ModalBlur';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { ROUTES } from '../../../routing/routes';
 
 const BrokerageReportUploadPage = () => {

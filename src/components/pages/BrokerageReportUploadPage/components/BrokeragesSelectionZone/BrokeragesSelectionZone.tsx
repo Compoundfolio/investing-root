@@ -1,14 +1,12 @@
+"use client"
+
 import React, { memo } from 'react'
 import { SupportedBrokerage } from '../../consts'
 import { SelectableBrokerage } from './components'
 import { AppLogo } from 'src/core/components/icons'
 import { useSelectedBrokeragesStore } from '../../stores'
-import { StyledContainer } from './styled'
+import styles from './BrokeragesSelectionZone.module.css'
 import { ExanteBrokerage } from "src/inversions";
-
-export const SUPPORTED_BROKERAGES = [
-  ExanteBrokerage,
-] 
 
 export default memo(function BrokeragesSelectionZone() {
   const { 
@@ -17,7 +15,7 @@ export default memo(function BrokeragesSelectionZone() {
   } = useSelectedBrokeragesStore()  
 
   return (
-    <StyledContainer>
+    <section className={styles.selection__container}>
       <AppLogo withTitle />
       {/* TODO: Fix this */}
       {[ExanteBrokerage].map((Brokerage: SupportedBrokerage) => (
@@ -30,6 +28,6 @@ export default memo(function BrokeragesSelectionZone() {
       ))}
       {/* * TODO: HelpLegend */}
       <div></div>
-    </StyledContainer>
+    </section>
   )
 })

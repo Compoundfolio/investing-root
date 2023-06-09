@@ -1,3 +1,5 @@
+"use client" // TODO: Rid off use client
+
 import {
   AssetPosition,
   NormalizedTransactionsByTicker,
@@ -111,3 +113,4 @@ const getAllPositionsByBrokerageTransactions = (
 }
 
 export default getAllPositionsByBrokerageTransactions
+

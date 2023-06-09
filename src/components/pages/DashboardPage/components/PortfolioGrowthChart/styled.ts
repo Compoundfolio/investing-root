@@ -1,7 +1,6 @@
-import styled from "@emotion/styled";
 import { colors } from 'src/core/theme';
 
-export const StyledChartContainer = styled.section({
+export const chartContainerStyled = {
   // width: "100%",
   height: 115,
   "& div > div": {
@@ -11,4 +10,4 @@ export const StyledChartContainer = styled.section({
   "& line[fill=none]": {
     stroke: `${colors.white} !important`
   }
-})
+}

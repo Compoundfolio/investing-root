@@ -1,0 +1,9 @@
+.userAvatar_wrapper {
+  border-top: 2px solid var(--color-whiteEasy);
+  border-radius: 6px,
+}
+
+.userAvatar_wrapper_image {
+  border: 5px solid var(--color-gray4C);
+  border-radius: 6px;
+}

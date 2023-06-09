@@ -1,37 +1,45 @@
-import { memo } from 'react'
-import { StyledPageName, StyledPortfolioName } from './styled'
+"use client"
+
+import { memo, useMemo } from 'react'
+import styles from './PageTitle.module.css'
 import Image from 'next/image'
+import { useBrokeragesData } from 'src/store'
 
 interface IPageTitle {
   title: string
   portfolioName: string
-  brokeragesIconLinks?: string[]
 }
 
 const PageTitle = ({
   title,
   portfolioName,
-  brokeragesIconLinks,
 }: IPageTitle) => {
+
+  const { brokerageEntities } = useBrokeragesData()
+
+  const brokeragesIconLinks = useMemo(() => {
+    return brokerageEntities.map(brokerageEntity => brokerageEntity.getLogoPath())
+  }, [brokerageEntities])
+
   return (
     <div>
       <div className='flex items-center'>
-        <StyledPageName>{title}</StyledPageName>
+        <h1 className={styles.pageName}>{title}</h1>
         {brokeragesIconLinks && (
           <div className='flex items-center gap-1'>
             {brokeragesIconLinks.map(link => (
-              <Image 
+              <Image
                 key={link}
-                src={link} 
-                width={32} 
-                height={32} 
-                alt='Brokerage icon' 
+                src={link}
+                width={32}
+                height={32}
+                alt='Brokerage icon'
               />
             ))}
           </div>
         )}
       </div>
-      <StyledPortfolioName>{portfolioName}</StyledPortfolioName>
+      <span className={styles.portfolioName}>{portfolioName}</span>
     </div>
   )
 }
