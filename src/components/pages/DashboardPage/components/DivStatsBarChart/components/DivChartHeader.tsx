@@ -6,6 +6,7 @@ import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton'
 import { useOpen } from 'src/core/hooks';
 import DivStatsBarChart from '../DivStatsBarChart';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import { DividendStatsBoard } from './components';
 
 interface IDivChartHeader {
   currentlySelectedYearDivs: number
@@ -59,8 +60,7 @@ const DivChartHeader = ({
       isOpen={isFullScreenOpen}
       handleOpenChange={handleIsFullScreenOpen}
     >
-      <DivStatsBarChart openedInModal />
-      {/* TODO */}
+      <DividendStatsBoard />
     </ModalBlur>
   </>
 }
