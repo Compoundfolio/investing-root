@@ -1,3 +1,4 @@
+// TODO: Rename
 /**
  * Returns either positive or negative diff between two numbers
  * @example

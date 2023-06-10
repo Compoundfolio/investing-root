@@ -15,8 +15,69 @@
   --color-darkGreenEasy: #0F6F721A;
   --color-gold: #FFD390;
   --color-grayD9: #D9D9D9;
+  --color-grayEB: #EBEBF5;
   --color-pinkSoft: #CF6679;
   --color-yellow: #F3BB38;
+}
+
+@layer components {
+  .chartStatsNumber {
+    font-family: 'Chakra Petch';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 46px;
+    color: var(--color-gold);
+    margin-bottom: 8px
+  }
+  .chartStatsNumberFaded {
+    @apply chartStatsNumber;
+    opacity: 0.5;
+  }
+
+  .progressLegendItem {
+    @apply rounded-xl;
+    width: 30px;
+    height: 4px;
+    background: var(--color-gold);
+    margin-top: 8px;
+  }
+  .progressLegendItemFaded {
+    @apply progressLegendItem;
+    opacity: 0.2;
+  }
+  
+
+  .progressLegendTitle {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-grayEB);
+    opacity: 0.3;
+  }
+  
+  .progressLegendValue {
+    @apply progressLegendTitle;
+    font-weight: 600;
+    color: var(--color-white);
+    opacity: 1;
+  }
+
+  .progressLineChartBase {
+    @apply rounded-xl;
+    position: relative;
+    height: 16.45px;
+    background-color: rgba(255, 211, 145, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* opacity: 0.25; */
+  }
+  .progressLineChartProg {
+    @apply progressLineChartBase;
+    background-color: var(--color-gold);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
 }
 
 html,

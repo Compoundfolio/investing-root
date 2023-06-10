@@ -14,7 +14,7 @@ const DividendYieldChart = () => {
 
   return (
     <div>
-      <h2>{focusValue}%</h2>
+      <span className='chartStatsNumber'>{focusValue}%</span>
       <LineYieldChart handleMouseFocus={handleMouseFocus} />
     </div>
   )

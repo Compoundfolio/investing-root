@@ -42,7 +42,7 @@ const LineYieldChart = ({
   ], [data])
 
   return (
-    <div style={{ width: 390, height: 50 + 40 }}>
+    <div style={{ width: 491, height: 50 + 40 }}>
       <ResponsiveLine
         {...properties}
         // @ts-ignore
