@@ -78,6 +78,40 @@
     left: 0;
     opacity: 1;
   }
+
+  /* Line chart */
+  .lineChartPathShadow {
+    filter: drop-shadow(0px 4px 4px var(--color-gold));
+  }
+
+  .lineChartMarkersText {
+    color: var(--color-gold);
+    font-size: 12px;
+    font-family: 'Chakra Petch';
+    opacity: 0.5;
+    position: absolute;
+  }
+
+  .lineChartMarkersText-lt {
+    @apply lineChartMarkersText;
+    left: -22px;
+    top: 11px;
+  }
+  .lineChartMarkersText-lb {
+    @apply lineChartMarkersText;
+    left: -22px;
+    bottom: 11px;
+  }
+  .lineChartMarkersText-rt {
+    @apply lineChartMarkersText;
+    right: -33px;
+    top: 11px;
+  }
+  .lineChartMarkersText-rb {
+    @apply lineChartMarkersText;
+    right: -26px;
+    bottom: 11px;
+  }
 }
 
 html,

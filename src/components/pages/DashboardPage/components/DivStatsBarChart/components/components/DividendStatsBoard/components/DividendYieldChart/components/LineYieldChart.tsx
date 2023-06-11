@@ -21,6 +21,17 @@ const properties = {
   animate: true,
 }
 
+const yMarker = (value: number) => ({
+  axis: 'y',
+  value,
+  lineStyle: {
+    stroke: colors.gold,
+    strokeWidth: 0.5,
+    opacity: 0.5,
+    strokeDasharray: 2.5,
+  },
+} as const)
+
 interface ILineYieldChart {
   handleMouseFocus: Function
 }
@@ -42,7 +53,11 @@ const LineYieldChart = ({
   ], [data])
 
   return (
-    <div style={{ width: 491, height: 50 + 40 }}>
+    <div style={{ width: 491 - 56, height: 35 + 40, marginLeft: 24 }} className="[&_path]:lineChartPathShadow relative">
+      <span className='lineChartMarkersText-lt'>max</span>
+      <span className='lineChartMarkersText-rt'>{maxPriceValue}%</span>
+      <span className='lineChartMarkersText-lb'>min</span>
+      <span className='lineChartMarkersText-rb'>{minPriceValue}%</span>
       <ResponsiveLine
         {...properties}
         // @ts-ignore
@@ -69,38 +84,8 @@ const LineYieldChart = ({
           max: maxPriceValue,
         }}
         markers={[
-          {
-            axis: 'y',
-            value: minPriceValue,
-            lineStyle: {
-              stroke: 'rgba(255, 211, 145, 0.1)',
-              strokeWidth: 0.5,
-              opacity: 1,
-              strokeDasharray: 2.5,
-            },
-            legend: 'min',
-            textStyle: {
-              fill: 'rgba(255, 211, 145, 0.5)',
-              fontSize: 12,
-              fontFamily: 'Chakra Petch'
-            },
-          },
-          {
-            axis: 'y',
-            value: maxPriceValue,
-            lineStyle: {
-              stroke: 'rgba(255, 211, 145, 0.3)',
-              strokeWidth: 0.5,
-              opacity: 1,
-              strokeDasharray: 2.5,
-            },
-            legend: 'max',
-            textStyle: {
-              fill: 'rgba(255, 211, 145, 0.5)',
-              fontSize: 12,
-              fontFamily: 'Chakra Petch'
-            },
-          },
+          yMarker(minPriceValue),
+          yMarker(maxPriceValue),
         ]}
       />
     </div>
