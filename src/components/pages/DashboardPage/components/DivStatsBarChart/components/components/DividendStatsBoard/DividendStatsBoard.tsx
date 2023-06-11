@@ -1,8 +1,10 @@
 import React, { memo } from 'react'
 import { 
+  DividendMapChart,
   DividendYieldChart,
   LineProgressChart 
 } from './components'
+
 
 const DividendStatsBoard = () => {
 
@@ -23,7 +25,7 @@ const DividendStatsBoard = () => {
           />
           <DividendYieldChart />
         </div>
-        {/* Dividend Map Chart */}
+        <DividendMapChart />
       </section>
       <aside>
         {/* DividendStatsPlates */}

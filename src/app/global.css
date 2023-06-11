@@ -91,7 +91,6 @@
     opacity: 0.5;
     position: absolute;
   }
-
   .lineChartMarkersText-lt {
     @apply lineChartMarkersText;
     left: -22px;
@@ -112,6 +111,8 @@
     right: -26px;
     bottom: 11px;
   }
+
+  
 }
 
 html,

@@ -9,7 +9,7 @@ import clsx from 'clsx';
 
 const ModalBlur = ({
   isOpen = false,
-  noMaxWidth = false,
+  noMaxWidth = true,
   children,
   title,
   handleOpenChange,
@@ -26,7 +26,7 @@ const ModalBlur = ({
           <div
             className="fixed inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
-            <div className={`relative w-full h-full mx-auto ${maxWidthClass}`}>
+            <div className={`relative w-full h-full mx-auto ${maxWidthClass} p-12`}>
               <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
                 {/*header*/}
                 {title && (
