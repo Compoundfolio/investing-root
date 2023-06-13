@@ -1,4 +1,3 @@
-import { NumberInBlock } from "@core/components"
 
 const DivStats = () => {
   return (

@@ -1,0 +1,63 @@
+.numberBlock_wrapper {
+  width: 135px;
+  height: 135px;
+  border-radius: 4px;
+  padding: 16px;
+  font-family: "Chakra Petch";
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.numberBlock_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16;
+}
+
+.numberBlock_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.numberBlock_content__number {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.numberBlock_content__divider {
+  border: 2px solid var(--color-darkGreen);
+}
+
+.numberBlock_content__description {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.numberBlock_head__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.numberBlock_head__item_name {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-darkLightGreen);
+}
+
+.numberBlock_head__item_number {
+  @apply numberBlock_head__item_name;
+  font-weight: 400;
+}
