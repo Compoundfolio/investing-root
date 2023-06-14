@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
-import { 
+import {
   DividendMapChart,
   DividendStatsGroup,
   DividendYieldChart,
-  LineProgressChart 
+  LineProgressChart
 } from './components'
 
 
@@ -18,19 +18,21 @@ const DividendStatsBoard = () => {
       <header>
         {/* Heading */}
       </header>
-      <section>
-        <div className='flex flex-col gap-16'>
-          <LineProgressChart
-            lowerNumber={receivedDividends}
-            greaterNumber={expectedTotalDividends}
-          />
-          <DividendYieldChart />
-        </div>
-        <DividendMapChart />
-      </section>
-      <aside>
-        <DividendStatsGroup />
-      </aside>
+      <div className='flex justify-between gap-16'>
+        <section className='flex justify-between w-full gap-16'>
+          <div className='flex flex-col gap-16'>
+            <LineProgressChart
+              lowerNumber={receivedDividends}
+              greaterNumber={expectedTotalDividends}
+            />
+            <DividendYieldChart />
+          </div>
+          <DividendMapChart />
+        </section>
+        <aside>
+          <DividendStatsGroup />
+        </aside>
+      </div>
       {/* <DivStatsBarChart openedInModal /> */}
     </div>
   )

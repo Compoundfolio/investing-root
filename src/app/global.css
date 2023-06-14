@@ -26,9 +26,9 @@
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
-    line-height: 46px;
+    line-height: 30px;
     color: var(--color-gold);
-    margin-bottom: 8px
+    margin-bottom: 16px
   }
   .chartStatsNumberFaded {
     @apply chartStatsNumber;

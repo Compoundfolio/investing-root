@@ -15,8 +15,8 @@ const DataVisHeading = ({
   ...restProps
 }: IDataVisHeading) => {
   return (
-    <div {...restProps} className='flex items-center justify-between w-full gap-8'>
-      <div className='flex items-center justify-between gap-4'>
+    <div {...restProps} className='flex flex-col w-full gap-[22px]'>
+      <div className='flex items-center gap-4'>
         <span className={styles.title}>
           {title}
         </span>
@@ -24,7 +24,7 @@ const DataVisHeading = ({
           description={dataVisDescription} 
         />
       </div>
-      <div className='flex items-center justify-end gap-4'>
+      <div className='flex flex-col'>
         {children}
       </div>
     </div>

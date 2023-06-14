@@ -18,7 +18,7 @@ const DividendYieldChart = () => {
       title='Dividend Yield'
       dataVisDescription='Dividend Yield Chart ...'
     >
-      <span className='chartStatsNumber'>{focusValue}%</span>
+      <span className='mb-0 chartStatsNumber'>{focusValue}%</span>
       <LineYieldChart handleMouseFocus={handleMouseFocus} />
     </DataVisHeading>
   )

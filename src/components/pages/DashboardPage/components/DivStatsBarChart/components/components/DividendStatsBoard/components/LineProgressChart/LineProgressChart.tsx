@@ -1,4 +1,4 @@
-import { calcPercentageChange } from '@core'
+import { DataVisHeading, calcPercentageChange } from '@core'
 import React from 'react'
 import ProgressLegendItem from './components/ProgressLegendItem'
 
@@ -20,26 +20,31 @@ const LineProgressChart = ({
   const progressSizeStyle = { width: `${percentageDifference}%` }
   
   return (
-    <section style={{ width: 491 }}>
-      <div className='flex items-center justify-between gap-4'>
-        <span className='chartStatsNumber'>${lowerNumber}</span>
-        <span className='chartStatsNumberFaded'>${greaterNumber}</span>
-      </div>
-      <div className="progressLineChartBase">
-        <div className="progressLineChartProg" style={progressSizeStyle} />
-      </div>
-      <legend className='flex gap-16 mt-5'>
-        <ProgressLegendItem 
-          name="Payed" 
-          percentage={percentageDifference} 
-        />
-        <ProgressLegendItem 
-          name="Expected" 
-          percentage={restPercentageDifference} 
-          isFaded
-        />
-      </legend>
-    </section>
+    <DataVisHeading 
+      title="Pay-out Percentage" 
+      dataVisDescription="TODO"
+    >
+      <section style={{ width: 491 }}>
+        <div className='flex items-center justify-between gap-4'>
+          <span className='chartStatsNumber'>${lowerNumber}</span>
+          <span className='chartStatsNumberFaded'>${greaterNumber}</span>
+        </div>
+        <div className="progressLineChartBase">
+          <div className="progressLineChartProg" style={progressSizeStyle} />
+        </div>
+        <legend className='flex gap-16 mt-5'>
+          <ProgressLegendItem 
+            name="Payed" 
+            percentage={percentageDifference} 
+          />
+          <ProgressLegendItem 
+            name="Expected" 
+            percentage={restPercentageDifference} 
+            isFaded
+          />
+        </legend>
+      </section>
+    </DataVisHeading>
   )
 }
 

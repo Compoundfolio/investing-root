@@ -2,7 +2,7 @@
 
 import React, { memo } from 'react'
 import { ResponsiveTreeMap } from '@nivo/treemap'
-import { colors } from '@core'
+import { DataVisHeading, colors } from '@core'
 
 const data = {
 	"name": "nivo",
@@ -89,7 +89,7 @@ const data = {
 			]
 		},
 		{
-			"name": "colors", 
+			"name": "colors",
 			"color": "hsl(68, 70%, 50%)",
 			"children": [
 				{
@@ -428,47 +428,51 @@ const data = {
 
 const DividendMapChart = () => {
 	return (
-		<div style={{ width: 658+20, height: 355+20 }}>
-			<ResponsiveTreeMap
-				data={data}
-				identity="name"
-				value="loc"
-				valueFormat=" >-.2s"
-				margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-				labelSkipSize={12}
-				labelTextColor={{
-					from: 'color',
-					modifiers: [
-						[
-							'darker',
-							1.2
+		<DataVisHeading
+			title='Dividend Map'
+			dataVisDescription='TODO'
+		>
+			<div style={{ width: "100%", height: 355 + 20 }}>
+				<ResponsiveTreeMap
+					data={data}
+					identity="name"
+					value="loc"
+					valueFormat=" >-.2s"
+					labelSkipSize={12}
+					labelTextColor={{
+						from: 'color',
+						modifiers: [
+							[
+								'darker',
+								1.2
+							]
 						]
-					]
-				}}
-				orientLabel={false}
-				parentLabelSize={28}
-				parentLabelPadding={4}
-				parentLabelTextColor={{
-					from: 'color',
-					modifiers: [
-						[
-							'darker',
-							2
+					}}
+					orientLabel={false}
+					parentLabelSize={28}
+					parentLabelPadding={4}
+					parentLabelTextColor={{
+						from: 'color',
+						modifiers: [
+							[
+								'darker',
+								2
+							]
 						]
-					]
-				}}
-				nodeOpacity={0.3}
-				borderColor={{
-					from: 'color',
-					modifiers: [
-						[
-							'darker',
-							0.4
+					}}
+					nodeOpacity={0.3}
+					borderColor={{
+						from: 'color',
+						modifiers: [
+							[
+								'darker',
+								0.4
+							]
 						]
-					]
-				}}
-			/>
-		</div>
+					}}
+				/>
+			</div>
+		</DataVisHeading>
 	)
 }
 
