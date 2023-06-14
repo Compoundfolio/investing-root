@@ -56,7 +56,6 @@ const DivChartHeader = ({
     </Box>
 
     <ModalBlur
-      title="Dividends"
       isOpen={isFullScreenOpen}
       handleOpenChange={handleIsFullScreenOpen}
     >
