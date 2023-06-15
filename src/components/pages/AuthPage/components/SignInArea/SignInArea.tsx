@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleAuthButton } from './components'
+import { EmailAuthArea, GoogleAuthButton, OrDivider } from './components'
 
 const SignInArea = () => {
   return (
@@ -10,6 +10,8 @@ const SignInArea = () => {
           <small className="text-lg text-gray-400">Log in with Google</small>
         </div>
         <GoogleAuthButton />
+        <OrDivider />
+        <EmailAuthArea />
       </div>
     </section>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { AppLogo, colors } from '@core';
 import styles from './AuthPage.module.css';
 import clsx from 'clsx';
-import { SignInArea } from './components';
+import { PresentativeArea, SignInArea } from './components';
  
 const AuthPage = () => {
   // TODO: Rid off using style
@@ -16,7 +16,7 @@ const AuthPage = () => {
       </div>
       <div className="flex items-center justify-center w-20 h-full gradient" style={{ minHeight: "inherit", background: colors.lightGreen }} />
       <div className="z-10 flex items-center justify-center flex-1 h-full" style={{ minHeight: "inherit" }}>
-        <AppLogo />
+        <PresentativeArea />
       </div>
     </section>
   )
