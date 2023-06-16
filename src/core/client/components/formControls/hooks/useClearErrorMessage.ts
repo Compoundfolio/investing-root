@@ -4,20 +4,22 @@ interface IUseClearErrorMessage {
   value: unknown
   // TODO: Reuse form smwr.
   errorMessage?: string
+  name: string
   // TODO: Reuse form smwr.
-  setErrorMessage?: (errorMessage: string) => void
+  setErrorMessage?: (field: string, value: string | undefined) => void
 }
 
 /** Clears validation errors when user starts to type in */
 const useClearErrorMessage = ({
   value,
+  name,
   errorMessage,
   setErrorMessage,
 }: IUseClearErrorMessage) => {
 
   useEffect(() => {
     if (value && setErrorMessage && errorMessage) {
-      setErrorMessage('')
+      setErrorMessage(name, "")
     }
   }, [value])
 }

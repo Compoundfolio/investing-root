@@ -3,6 +3,7 @@
 import { ChangeEventHandler, HTMLInputTypeAttribute, memo, useState } from 'react'
 import { Label } from '../Label'
 import { useClearErrorMessage } from '../hooks'
+import { ControlErrorMessage } from '../ControlErrorMessage'
 
 // TODO: Make stuff ultra-reusable
 
@@ -18,7 +19,7 @@ interface IInput {
   type?: HTMLInputTypeAttribute
   autofocus?: boolean
   onChange: ChangeEventHandler<HTMLInputElement>
-  setErrorMessage?: (errorMessage: string) => void
+  setErrorMessage?: (field: string, value: string | undefined) => void
 }
 
 const Input = ({
@@ -45,6 +46,7 @@ const Input = ({
 
   useClearErrorMessage({
     value,
+    name,
     errorMessage,
     setErrorMessage,
   })
@@ -110,11 +112,7 @@ const Input = ({
           )}
         </button>
       )}
-      {errorMessage && (
-        <span className="absolute left-0 text-sm font-medium leading-6 text-red-600 -bottom-8">
-          {errorMessage}
-        </span>
-      )}
+      {errorMessage && <ControlErrorMessage errorMessage={errorMessage} />}
     </div>
   )
 }

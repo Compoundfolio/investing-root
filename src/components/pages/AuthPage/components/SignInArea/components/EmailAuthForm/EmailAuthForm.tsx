@@ -10,16 +10,23 @@ import validation from './validation'
 const EmailAuthForm = () => {
   const {
     values,
+    errors,
     handleChange,
     handleSubmit,
+    setFieldTouched,
+    setFieldError
   } = useFormik({
     validationSchema: validation,
+    validateOnChange: false,
+    validateOnBlur: false,
+    validateOnMount: false,
+    enableReinitialize: false,
     initialValues,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
+  
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -28,6 +35,8 @@ const EmailAuthForm = () => {
         name="email"
         labelText="Email"
         value={values.email}
+        errorMessage={errors.email}
+        setErrorMessage={setFieldError}
         onChange={handleChange}
       />
       <Input
@@ -36,6 +45,8 @@ const EmailAuthForm = () => {
         labelText="Unique password"
         type="password"
         value={values.password}
+        errorMessage={errors.password}
+        setErrorMessage={setFieldError}
         onChange={handleChange}
       />
       <button
