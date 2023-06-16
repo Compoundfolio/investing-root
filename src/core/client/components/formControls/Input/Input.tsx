@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLInputTypeAttribute, memo, useState } from 'react'
+import { ChangeEventHandler, HTMLInputTypeAttribute, memo, useState } from 'react'
 import { Label } from '../Label'
 import { useClearErrorMessage } from '../hooks'
 
@@ -16,7 +16,8 @@ interface IInput {
   errorMessage?: string
   required?: boolean
   type?: HTMLInputTypeAttribute
-  onChange: () => void
+  autofocus?: boolean
+  onChange: ChangeEventHandler<HTMLInputElement>
   setErrorMessage?: (errorMessage: string) => void
 }
 
@@ -28,6 +29,7 @@ const Input = ({
   errorMessage,
   required = false,
   type = "text",
+  autofocus = false,
   onChange,
   setErrorMessage,
   ...restProps
