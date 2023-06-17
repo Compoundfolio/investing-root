@@ -1,16 +1,15 @@
 import { useEffect } from "react"
+import { UseFormHookError, UseFormHookHelpers } from "src/core/types"
 
-interface IUseClearErrorMessage {
+export interface IUseClearErrorMessage {
   value: unknown
-  // TODO: Reuse form smwr.
-  errorMessage?: string
+  errorMessage?: UseFormHookError
   name: string
-  // TODO: Reuse form smwr.
-  setErrorMessage?: (field: string, value: string | undefined) => void
+  setErrorMessage?: UseFormHookHelpers['setFieldError']
 }
 
 /** Clears validation errors when user starts to type in */
-const useClearErrorMessage = ({
+export const useClearErrorMessage = ({
   value,
   name,
   errorMessage,
@@ -23,5 +22,3 @@ const useClearErrorMessage = ({
     }
   }, [value])
 }
-
-export default useClearErrorMessage

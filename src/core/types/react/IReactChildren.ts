@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
 
 interface IReactChildren {
-  children: ReactElement | string | ReactElement[] | number
+  children?: ReactElement | string | ReactElement[] | number
   className?: string
   title?: string
 }

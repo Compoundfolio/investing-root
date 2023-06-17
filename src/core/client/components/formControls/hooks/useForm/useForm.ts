@@ -1,9 +1,10 @@
-import { FormikConfig, FormikValues, useFormik } from "formik"
+import { useFormik } from "formik"
+import { UseFormHookConfig } from "src/core/types"
 
 interface IUseForm {
   validation: object
   initialValues: object
-  onSubmit: FormikConfig<FormikValues>['onSubmit'] // TODO: Reuse
+  onSubmit: UseFormHookConfig['onSubmit'] // TODO: Reuse
 }
 
 /** Formik's useFormik wrapper  */

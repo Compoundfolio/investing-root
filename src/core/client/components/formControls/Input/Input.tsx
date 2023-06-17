@@ -1,26 +1,15 @@
 "use client"
 
-import { ChangeEventHandler, HTMLInputTypeAttribute, memo, useState } from 'react'
+import { HTMLInputTypeAttribute, memo } from 'react'
 import { Label } from '../Label'
-import { useClearErrorMessage } from '../hooks'
+import { useControl } from '../hooks'
 import { ControlErrorMessage } from '../ControlErrorMessage'
 import { ShowPasswordButton, ShowPasswordIcon } from './components'
+import { Control } from 'src/core/types'
+import { usePassword } from './hooks'
 
-// TODO: Make stuff ultra-reusable
-
-// TODO: Form control HOC ???
-
-interface IInput {
-  value: string
-  name: string
-  labelText: string
-  placeholder?: string
-  errorMessage?: string
-  required?: boolean
+export interface IInput extends Control {
   type?: HTMLInputTypeAttribute
-  autofocus?: boolean
-  onChange: ChangeEventHandler<HTMLInputElement>
-  setErrorMessage?: (field: string, value: string | undefined) => void
 }
 
 const Input = ({
@@ -36,20 +25,21 @@ const Input = ({
   setErrorMessage,
   ...restProps
 }: IInput) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  function togglePasswordVisibility() {
-    setIsPasswordVisible((prevState) => !prevState);
-  }
-
-  const isPassword = type === "password"
-  const activePasswordType = isPasswordVisible ? "text" : "password"
-
-  useClearErrorMessage({
+  
+  useControl({
     value,
     name,
     errorMessage,
     setErrorMessage,
+  })
+
+  const {
+    isPasswordVisible,
+    isPassword,
+    activePasswordType,
+    togglePasswordVisibility
+  } = usePassword({ 
+    type,
   })
 
   return (
@@ -71,7 +61,7 @@ const Input = ({
       />
       {isPassword && (
         <ShowPasswordButton togglePasswordVisibility={togglePasswordVisibility}>
-          <ShowPasswordIcon isPasswordVisible={isPasswordVisible}  />
+          <ShowPasswordIcon isPasswordVisible={isPasswordVisible} />
         </ShowPasswordButton>
       )}
       {errorMessage && <ControlErrorMessage errorMessage={errorMessage} />}

@@ -7,3 +7,5 @@ export * from './react';
 export * from './transactions';
 export * from './dividends';
 export * from './common';
+export * from './forms';
+export * from './components';

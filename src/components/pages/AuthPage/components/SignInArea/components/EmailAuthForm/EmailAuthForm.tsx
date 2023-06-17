@@ -29,7 +29,6 @@ const EmailAuthForm = () => {
         name="email"
         labelText="Email"
         value={values.email}
-        // @ts-ignore
         errorMessage={errors.email}
         setErrorMessage={setFieldError}
         onChange={handleChange}
@@ -40,7 +39,6 @@ const EmailAuthForm = () => {
         labelText="Unique password"
         type="password"
         value={values.password}
-        // @ts-ignore
         errorMessage={errors.password}
         setErrorMessage={setFieldError}
         onChange={handleChange}
