@@ -1,9 +1,8 @@
 "use client"
 
 import { colors } from '@core'
-import { useFormik } from 'formik'
 import { memo } from 'react'
-import { Form, Input } from 'src/core/client'
+import { Form, Input, useForm } from 'src/core/client'
 import { initialValues } from './consts';
 import validation from './validation'
 
@@ -13,14 +12,9 @@ const EmailAuthForm = () => {
     errors,
     handleChange,
     handleSubmit,
-    setFieldTouched,
     setFieldError
-  } = useFormik({
-    validationSchema: validation,
-    validateOnChange: false,
-    validateOnBlur: false,
-    validateOnMount: false,
-    enableReinitialize: false,
+  } = useForm({
+    validation,
     initialValues,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -35,6 +29,7 @@ const EmailAuthForm = () => {
         name="email"
         labelText="Email"
         value={values.email}
+        // @ts-ignore
         errorMessage={errors.email}
         setErrorMessage={setFieldError}
         onChange={handleChange}
@@ -45,6 +40,7 @@ const EmailAuthForm = () => {
         labelText="Unique password"
         type="password"
         value={values.password}
+        // @ts-ignore
         errorMessage={errors.password}
         setErrorMessage={setFieldError}
         onChange={handleChange}

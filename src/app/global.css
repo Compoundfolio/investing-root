@@ -218,3 +218,7 @@ table thead tr {
 table tbody {
   display: block;
 }
+
+.color-red {
+  color: var(--color-pinkSoft)
+}

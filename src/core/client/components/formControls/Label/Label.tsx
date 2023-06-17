@@ -18,7 +18,7 @@ const Label = ({
       className="block text-sm font-medium leading-6 text-white"
       {...rest}
     >
-      {labelText} <span>{required ? " *" : " (Optional)"}</span>
+      {labelText} <span className='color-red'>{required ? " *" : " (Optional)"}</span>
     </label>
   )
 }
