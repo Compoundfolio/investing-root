@@ -11,6 +11,7 @@ const usePassword = ({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
   const togglePasswordVisibility = () => {
+    // e.preventDefault()
     setIsPasswordVisible(prevState => !prevState)
   }
 

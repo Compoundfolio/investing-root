@@ -11,7 +11,7 @@ const ControlErrorMessage = ({
 }: IControlErrorMessage) => {
   return (
     <span 
-      className="absolute left-0 text-sm font-medium leading-6 text-red-600 -bottom-8" 
+      className="absolute left-0 text-sm font-medium leading-6 color-red -bottom-8" 
       {...rest}
     >
       {errorMessage as string}

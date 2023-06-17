@@ -57,7 +57,7 @@ const Input = ({
         placeholder={placeholder}
         type={isPassword ? activePasswordType : type}
         onChange={onChange}
-        className="mt-2 block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset"
+        className={`mt-2 block w-full rounded-md border-0 px-2 py-1.5 placeholder:text-gray-400 ${isPassword && "pr-14"}`}
       />
       {isPassword && (
         <ShowPasswordButton togglePasswordVisibility={togglePasswordVisibility}>
