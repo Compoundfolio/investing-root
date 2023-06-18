@@ -5,7 +5,6 @@ import { Montserrat } from "next/font/google";
 import { DebugObserver } from "src/utils";
 import { RecoilRootWrapper } from "./rootWrappers";
 import clsx from 'clsx';
-
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ["300", "400", "500", "600", "700"],

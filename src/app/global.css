@@ -18,6 +18,7 @@
   --color-grayEB: #EBEBF5;
   --color-pinkSoft: #CF6679;
   --color-yellow: #F3BB38;
+  --color-black: black;
 }
 
 /* TODO: Pass another place */
@@ -148,7 +149,7 @@ button::after {
   position: absolute;
   border-radius: 50%;
   background-color: rgba(217, 217, 217, 0.3);
-  
+
   /* Center the ripple */
   top: 50%;
   left: 50%;
@@ -161,11 +162,13 @@ button:focus:not(:active)::after {
   display: block;
 }
 
-/* TODO: Create separate css file with disable styles */
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
+/* Tab style */
+:focus {
+  outline: var(--color-gold) auto 2px;
+}
+
+/* When mouse is detected, ALL focused elements have outline removed. */
+body.using-mouse :focus {
   outline: none;
 }
 
@@ -228,6 +231,5 @@ table tbody {
   display: block;
 }
 
-.color-red {
-  color: var(--color-pinkSoft)
-}
+.color-red { color: var(--color-pinkSoft); }
+.bg-color-darkGreen { background-color: var(--color-darkGreen); }
