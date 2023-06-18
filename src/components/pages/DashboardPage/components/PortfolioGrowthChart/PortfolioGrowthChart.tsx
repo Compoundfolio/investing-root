@@ -18,7 +18,7 @@ const properties = {
 
 const PortfolioGrowthChart = () => {
 
-  const data = useValueChartData() 
+  const data = useValueChartData()
 
   const [
     oldestDateItem,
@@ -39,9 +39,7 @@ const PortfolioGrowthChart = () => {
         enableGridX={false}
         enableGridY={false}
         enableArea={true}
-        // enablePoints={false}
-        // enablePointLabel={true}
-        // enableSlices={false}
+        enablePoints={false}
         axisLeft={null}
         axisBottom={{
           // TODO: Format

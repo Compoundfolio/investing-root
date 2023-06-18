@@ -2,7 +2,8 @@ import { colors } from 'src/core/theme';
 
 export const chartContainerStyled = {
   // width: "100%",
-  height: 115,
+  // height: 115,
+  height: "100%",
   "& div > div": {
     height: "inherit"
   },
