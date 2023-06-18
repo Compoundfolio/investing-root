@@ -1,9 +1,11 @@
+"use client"
+
 import React, { memo } from 'react'
 import { ILinkLazy } from './types'
 import Link from 'next/link'
 import clsx from 'clsx';
 import styles from './LinkLazy.module.css'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const LinkLazy = ({
   children,
@@ -13,9 +15,9 @@ const LinkLazy = ({
   // TODO: Add local env check
   if (!to.startsWith("/")) throw new Error("Link should starts with `/`")
 
-  const router = useRouter()
+  const pathname = usePathname()
 
-  const isActive = router.pathname === to
+  const isActive = pathname === to
 
   const props = {
     href: to,

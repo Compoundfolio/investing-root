@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { LinkLazy } from '@core'
 import navItems from './navItems'
 
@@ -16,4 +16,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default memo(Navigation)

@@ -24,7 +24,7 @@ const ModalBlur = ({
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+            className="absolute inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
           >
             <div className={`relative w-full h-full mx-auto ${maxWidthClass} p-12`}>
               <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
@@ -65,7 +65,7 @@ const ModalBlur = ({
               </div>
             </div>
           </div>
-          <div className={clsx(styles.backgroundFogBlur ,"fixed inset-0 z-40")} />
+          <div className={clsx(styles.backgroundFogBlur ,"absolute inset-0 z-40")} />
         </>
       )}
     </>

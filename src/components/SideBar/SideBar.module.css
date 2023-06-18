@@ -1,14 +1,16 @@
 .sideBarContainer {
   display: flex;
   flex-direction: column;
-  background: black;
   backdrop-filter: blur(75px);
   height: 100%;
   min-height: inherit;
-  padding: 40px 35px;
+  padding: 16px 10px;
   align-items: center;
   gap: 24px;
   position: sticky;
   top: 0;
   right: 0;
+  background: linear-gradient(179.35deg, rgba(0, 0, 0, 0.4) 0.78%, rgba(76, 89, 107, 0.4) 77.31%, rgba(0, 0, 0, 0) 99.93%);
+  box-shadow: 0px 0px 10px var(--color-black);
+  z-index: 9999;
 }
