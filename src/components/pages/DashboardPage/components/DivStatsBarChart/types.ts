@@ -1,6 +1,7 @@
 import { ShortMonthName } from "@core"
+import { IReactChildren } from 'src/core/types';
 
-export interface IDivStatsBarChart {
+export interface IDivStatsBarChart extends IReactChildren {
   openedInModal?: boolean
 }
 

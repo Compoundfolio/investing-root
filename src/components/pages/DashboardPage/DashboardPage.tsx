@@ -2,25 +2,29 @@ import { memo } from 'react';
 import NumbersBar from 'src/components/NumbersBar'
 import styles from './DashboardPage.module.css'
 import { PageTitle } from '@core'
-import { DivStatsBarChart, PortfolioAssetsList, PortfolioAssetsPieChart, PortfolioGrowthChart } from './components'
-import clsx from 'clsx';
+import {
+  DivStatsBarChart,
+  PortfolioAssetsList,
+  PortfolioAssetsPieChart,
+  PortfolioGrowthChart
+} from './components'
 
 const DashboardPage = () => {
   return (
     <section className={styles.dashboard_container}>
-      <section className={clsx(styles.dashboard_column, styles.fitContent)}>
-        {/* TODO: Remove hardcoded props */}
-        <PageTitle
-          title="Portfolio"
-          portfolioName="Dividend Growth F.I.R.E till 35th"
-        />
-        <PortfolioAssetsPieChart />
-        <DivStatsBarChart />
-      </section>
-      <section className={styles.dashboard_column}>
+      {/* TODO: Improve grid's adaptivity */}
+      <div className={styles.dashboard_column_visualizations_wrapper}>
+        <div className={styles.dashboard_column_visualizations__item_1}>
+          <PageTitle
+            title="Portfolio"
+            portfolioName="Dividend Growth F.I.R.E till 35th"
+          />
+          <PortfolioAssetsPieChart />
+        </div>
         <PortfolioAssetsList />
+        <DivStatsBarChart />
         <PortfolioGrowthChart />
-      </section>
+      </div>
       <NumbersBar />
     </section>
   )

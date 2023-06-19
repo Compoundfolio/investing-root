@@ -16,7 +16,7 @@ const properties = {
   animate: true,
 }
 
-const PortfolioGrowthChart = () => {
+const PortfolioGrowthChart = ({ ...restProps }) => {
 
   const data = useValueChartData()
 
@@ -33,7 +33,7 @@ const PortfolioGrowthChart = () => {
   ], [ data ])
 
   return (
-    <section style={chartContainerStyled} id="valueChart">
+    <section {...restProps} style={chartContainerStyled} id="valueChart">
       <ResponsiveLine
         {...properties}
         enableGridX={false}

@@ -14,7 +14,7 @@ function TWrapper({
   size,
 }: ITWrapper) {
   return (
-    <section className={clsx([styles.twrap, "flex flex-col justify-between"])}>
+    <section className={clsx([styles.twrap, "flex flex-col justify-between h-full"])}>
       <div className="flex flex-col">
         <h2 className={styles.tableName}>{title}</h2>
         {size > 0 && <span className={styles.tableSize}>[{size}]</span>}

@@ -2,7 +2,7 @@ import React from 'react'
 
 function TTable({ children }) {
   return (
-    <table>{children}</table>
+    <table style={{ height: "inherit" }}>{children}</table>
   )
 }
 

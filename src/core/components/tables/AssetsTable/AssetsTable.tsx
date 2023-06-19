@@ -23,9 +23,7 @@ const AssetsTable = ({
             <TCell th>Upcoming dividend</TCell>
           </TRow>
         </THead>
-        <TBody
-          height={500}
-        >
+        <TBody>
           {data.map(({ id, ticker, sharesAmount, averagePrice }) => (
             <TRow key={id}>
             {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}

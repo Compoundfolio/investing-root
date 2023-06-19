@@ -11,7 +11,8 @@ import { CustomAxisBottomTick, DivChartHeader, DivStats } from './components';
 import { IDivStatsBarChart } from './types';
 
 const DivStatsBarChart = ({
-  openedInModal = false
+  openedInModal = false,
+  ...restProps
 }: IDivStatsBarChart) => {
   const { dataSet } = useDivChartData()
 
@@ -30,7 +31,7 @@ const DivStatsBarChart = ({
   const estimatedSelectedYearDivs = 500.01
 
   return (
-    <section style={barChartContainerStyle({openedInModal})}>
+    <section {...restProps} style={barChartContainerStyle({openedInModal})}>
       {openedInModal ? (
         <DivStats />
       ) : (

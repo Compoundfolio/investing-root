@@ -9,7 +9,7 @@ interface ITBody extends IReactChildren {
 
 function TBody({
   children,
-  height = "100%",
+  height = "inherit",
   ...rest
 }: ITBody) {
   return (

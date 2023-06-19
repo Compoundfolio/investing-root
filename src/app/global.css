@@ -19,6 +19,8 @@
   --color-pinkSoft: #CF6679;
   --color-yellow: #F3BB38;
   --color-black: black;
+
+  --dashboard-visualizations-gap: 48px;
 }
 
 /* TODO: Pass another place */
