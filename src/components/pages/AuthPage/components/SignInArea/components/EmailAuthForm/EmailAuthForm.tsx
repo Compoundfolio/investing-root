@@ -28,6 +28,7 @@ const EmailAuthForm = () => {
         autofocus
         name="email"
         labelText="Email"
+        type="email"
         value={values.email}
         errorMessage={errors.email}
         setErrorMessage={setFieldError}

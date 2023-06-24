@@ -16,6 +16,8 @@ const Form = ({
     <form
       className={className}
       onSubmit={onSubmit}
+      noValidate
+      autoComplete="off"
     >
       {children}
     </form>

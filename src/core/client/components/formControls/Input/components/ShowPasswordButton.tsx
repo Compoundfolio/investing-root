@@ -13,7 +13,7 @@ const ShowPasswordButton = ({
   return (
     <button
       type="button"
-      className="absolute right-0 flex items-center px-4 text-gray-600 top-10"
+      className="absolute right-0 flex items-center px-4 text-gray-600 top-1/2"
       onClick={togglePasswordVisibility}
     >
       {children}

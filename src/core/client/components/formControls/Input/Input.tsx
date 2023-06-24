@@ -7,6 +7,8 @@ import { ControlErrorMessage } from '../ControlErrorMessage'
 import { ShowPasswordButton, ShowPasswordIcon } from './components'
 import { Control } from 'src/core/types'
 import { usePassword } from './hooks'
+import styles from './Input.module.css'
+import clsx from 'clsx';
 
 export interface IInput extends Control {
   type?: HTMLInputTypeAttribute
@@ -25,7 +27,7 @@ const Input = ({
   setErrorMessage,
   ...restProps
 }: IInput) => {
-  
+
   useControl({
     value,
     name,
@@ -38,7 +40,7 @@ const Input = ({
     isPassword,
     activePasswordType,
     togglePasswordVisibility
-  } = usePassword({ 
+  } = usePassword({
     type,
   })
 
@@ -53,11 +55,11 @@ const Input = ({
         value={value}
         id={name}
         name={name}
-        autoComplete={name}
         placeholder={placeholder}
         type={isPassword ? activePasswordType : type}
         onChange={onChange}
-        className={`mt-2 block w-full rounded-md border-0 px-2 py-1.5 placeholder:text-gray-400 ${isPassword && "pr-14"}`}
+        className={styles.input}
+        style={isPassword ? { paddingRight: 46 } : {}}
       />
       {isPassword && (
         <ShowPasswordButton togglePasswordVisibility={togglePasswordVisibility}>

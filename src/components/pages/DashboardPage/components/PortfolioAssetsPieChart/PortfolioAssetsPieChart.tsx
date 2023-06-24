@@ -5,9 +5,6 @@ import { memo, useMemo, useState, useRef } from 'react';
 import styles from './PortfolioAssetsPieChart.module.css'
 import { NormalizedPositions, colors } from '@core'
 import { useBrokeragesData } from 'src/store'
-import clsx from 'clsx';
-import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton'
-import DataSaverOffIcon from '@mui/icons-material/DataSaverOff'
 import { ChartTypeSwitcher } from './components';
 
 type DataItem = {
