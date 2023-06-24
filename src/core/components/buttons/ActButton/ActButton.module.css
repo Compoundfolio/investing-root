@@ -1,0 +1,20 @@
+.actButton {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-white);
+  padding-inline: 20px;
+  padding-block: 12px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.actButton--primary {
+  composes: actButton;
+  background-color: var(--color-primary);
+}
+
+.actButton--green {
+  composes: actButton;
+  background-color: var(--color-darkGreen);
+}

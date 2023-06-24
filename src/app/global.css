@@ -19,6 +19,7 @@
   --color-pinkSoft: #CF6679;
   --color-yellow: #F3BB38;
   --color-black: black;
+  --color-primary: #1290FF;
 
   --dashboard-visualizations-gap: 48px;
 }
@@ -171,6 +172,10 @@ button::after {
 
 button:focus:not(:active)::after {
   display: block;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 /* Tab style */

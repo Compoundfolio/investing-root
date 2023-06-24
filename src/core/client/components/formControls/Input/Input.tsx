@@ -8,7 +8,6 @@ import { ShowPasswordButton, ShowPasswordIcon } from './components'
 import { Control } from 'src/core/types'
 import { usePassword } from './hooks'
 import styles from './Input.module.css'
-import clsx from 'clsx';
 
 export interface IInput extends Control {
   type?: HTMLInputTypeAttribute

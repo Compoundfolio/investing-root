@@ -1,6 +1,6 @@
 "use client"
 
-import { colors } from '@core'
+import { ActButton, colors } from '@core'
 import { memo } from 'react'
 import { Form, Input, useForm } from 'src/core/client'
 import { initialValues } from './consts';
@@ -20,7 +20,7 @@ const EmailAuthForm = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  
+
   return (
     <Form onSubmit={handleSubmit}>
       <Input
@@ -44,13 +44,13 @@ const EmailAuthForm = () => {
         setErrorMessage={setFieldError}
         onChange={handleChange}
       />
-      <button
+      <ActButton
+        color="green"
         type="submit"
-        className="flex w-full justify-center rounded-md mt-14 bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500xx"
-        style={{ backgroundColor: colors.darkGreen }}
+        className="w-full"
       >
         Sign in
-      </button>
+      </ActButton>
     </Form>
   )
 }
