@@ -1,1 +1,1 @@
-export {default as MarketAPI} from './MarketAPI';
+export { default as MarketAPI } from "./MarketAPI"

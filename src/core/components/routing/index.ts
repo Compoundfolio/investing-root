@@ -1,1 +1,1 @@
-export { default as LinkLazy } from './LinkLazy';
+export { default as LinkLazy } from "./LinkLazy"

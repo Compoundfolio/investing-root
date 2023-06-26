@@ -1,7 +1,4 @@
-import { 
-  useClearErrorMessage, 
-  IUseClearErrorMessage,
-} from "./subHooks"
+import { useClearErrorMessage, IUseClearErrorMessage } from "./subHooks"
 
 interface IUseControl extends IUseClearErrorMessage {}
 
@@ -12,14 +9,12 @@ const useControl = ({
   errorMessage,
   setErrorMessage,
 }: IUseControl) => {
-
   useClearErrorMessage({
     value,
     name,
     errorMessage,
     setErrorMessage,
   })
-  
 }
 
 export default useControl

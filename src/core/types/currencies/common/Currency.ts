@@ -2,7 +2,7 @@
  * List of supported currencies
  */
 enum Currency {
-  USD = "USD"
+  USD = "USD",
 }
 
 export default Currency

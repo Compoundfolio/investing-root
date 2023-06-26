@@ -1,2 +1,2 @@
-export type { default as PortfolioAssetDividendData } from './PortfolioAssetDividendData'
-export type { default as PortfolioSpecificAssetData } from './PortfolioSpecificAssetData'
+export type { default as PortfolioAssetDividendData } from "./PortfolioAssetDividendData"
+export type { default as PortfolioSpecificAssetData } from "./PortfolioSpecificAssetData"

@@ -1,26 +1,29 @@
-import { useCallback } from "react";
-import { atom, selector, useRecoilState } from "recoil";
-import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage";
+import { useCallback } from "react"
+import { atom, selector, useRecoilState } from "recoil"
+import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage"
 
 const DEFAULT_VALUE: never[] = []
 
 const userBrokeragesAtom = atom<SupportedBrokerage[]>({
-  key: 'userBrokeragesAtomm',
+  key: "userBrokeragesAtomm",
   default: DEFAULT_VALUE,
-});
+})
 
 const userBrokeragesAtomSelector = selector<SupportedBrokerage[]>({
-  key: 'userBrokeragesAtomSelectorr',
+  key: "userBrokeragesAtomSelectorr",
   get: ({ get }) => get(userBrokeragesAtom),
   set: ({ set }, newValue) => set(userBrokeragesAtom, newValue ?? []),
-});
+})
 
 const useUserBrokeragesStore = () => {
   const [value, setValue] = useRecoilState(userBrokeragesAtom)
 
-  const uploadBrokeragesList = useCallback((BrokerageClasses: SupportedBrokerage[]) => {
-    setValue(BrokerageClasses)
-  }, [])
+  const uploadBrokeragesList = useCallback(
+    (BrokerageClasses: SupportedBrokerage[]) => {
+      setValue(BrokerageClasses)
+    },
+    []
+  )
 
   return {
     selectedBrokerages: value,

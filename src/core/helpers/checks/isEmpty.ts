@@ -9,7 +9,7 @@ const isEmpty = (target: any) => {
 
   if (target instanceof Array) {
     return !!target.length
-  } 
+  }
 }
 
 export default isEmpty

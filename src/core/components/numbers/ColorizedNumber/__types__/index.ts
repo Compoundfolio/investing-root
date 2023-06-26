@@ -1,1 +1,1 @@
-export type { default as IColorizedNumber } from './IColorizedNumber'
+export type { default as IColorizedNumber } from "./IColorizedNumber"

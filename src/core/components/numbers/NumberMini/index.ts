@@ -1,1 +1,1 @@
-export { default } from './NumberMini';
+export { default } from "./NumberMini"

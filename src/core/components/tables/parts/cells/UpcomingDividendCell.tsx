@@ -1,8 +1,8 @@
-import React, { memo, useMemo } from 'react'
-import TCell from '../TCell'
-import { ColorizedNumber, PayCircleStatus } from 'src/core/components';
-import styles from './UpcomingDividendCell.module.css';
-import { getPayStatusColor } from '@core/helpers';
+import React, { memo, useMemo } from "react"
+import TCell from "../TCell"
+import { ColorizedNumber, PayCircleStatus } from "src/core/components"
+import styles from "./UpcomingDividendCell.module.css"
+import { getPayStatusColor } from "@core/helpers"
 
 interface IUpcomingDividendCell {
   dividendAmount: number
@@ -13,13 +13,16 @@ const UpcomingDividendCell = ({
   dividendAmount,
   dividendPayDate,
 }: IUpcomingDividendCell) => {
-  const payStatusColor = useMemo(() => getPayStatusColor(dividendPayDate), [dividendPayDate])
+  const payStatusColor = useMemo(
+    () => getPayStatusColor(dividendPayDate),
+    [dividendPayDate]
+  )
 
   return (
     <TCell title={payStatusColor.status}>
-      <div className='flex items-center gap-2.5'>
-        <PayCircleStatus 
-          payDate={dividendPayDate} 
+      <div className="flex items-center gap-2.5">
+        <PayCircleStatus
+          payDate={dividendPayDate}
           payStatusColor={payStatusColor}
         />
         <span className={styles.dividendTableCell_payDate}>
@@ -28,10 +31,7 @@ const UpcomingDividendCell = ({
           Aug 20
         </span>
       </div>
-      <ColorizedNumber 
-        number={dividendAmount}
-        color={payStatusColor.color}
-      />
+      <ColorizedNumber number={dividendAmount} color={payStatusColor.color} />
     </TCell>
   )
 }

@@ -6,12 +6,12 @@ const getTickersListWithOpenPosition = (
 ): Ticker[] => {
   let tickers: Ticker[] = []
 
-  Object.entries(transactionsByTicker).forEach(([ ticker, transactions ]) => {
+  Object.entries(transactionsByTicker).forEach(([ticker, transactions]) => {
     if (getSharesAmount(transactions) > 0) {
       tickers.push(ticker as Ticker)
     }
-  });
-  
+  })
+
   return tickers
 }
 

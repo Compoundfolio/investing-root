@@ -3,7 +3,11 @@
   backdrop-filter: blur(75px);
   border-radius: 8px;
   border: 1px solid;
-  border-image-source: linear-gradient(136.52deg, #FFFFFF -42.6%, rgba(255, 255, 255, 0) 75.67%);
+  border-image-source: linear-gradient(
+    136.52deg,
+    #ffffff -42.6%,
+    rgba(255, 255, 255, 0) 75.67%
+  );
   padding-inline: 8px;
   padding-block: 4px;
   min-width: 128px;
@@ -13,7 +17,11 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  background: linear-gradient(93.15deg, #C4C4C4 -11.97%, rgba(255, 255, 255, 0) 174.23%);
+  background: linear-gradient(
+    93.15deg,
+    #c4c4c4 -11.97%,
+    rgba(255, 255, 255, 0) 174.23%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -2,7 +2,7 @@ enum OrderAssetType {
   /**
    * Stocks, ETFs, CEFs, REITs
    */
-  STOCK = "STOCK", 
+  STOCK = "STOCK",
   BOND = "BOND",
 }
 

@@ -1,7 +1,7 @@
-import { Exchange, Ticker } from 'src/core/types'
+import { Exchange, Ticker } from "src/core/types"
 
 export enum SymbolIdParts {
-  TICKER= 0,
+  TICKER = 0,
   EXCHANGE = 1,
 }
 

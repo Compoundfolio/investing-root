@@ -1,1 +1,1 @@
-export {default as RecoilRootWrapper} from './RecoilRootWrapper';
+export { default as RecoilRootWrapper } from "./RecoilRootWrapper"

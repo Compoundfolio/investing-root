@@ -1,6 +1,6 @@
-import React from 'react'
-import { IReactChildren } from 'src/core/types'
-import clsx from 'clsx';
+import React from "react"
+import { IReactChildren } from "src/core/types"
+import clsx from "clsx"
 
 interface ITCell extends IReactChildren {
   th?: boolean
@@ -8,20 +8,30 @@ interface ITCell extends IReactChildren {
   valign?: "top" | "middle" | "bottom"
 }
 
-function TCell({ 
-  children, 
+function TCell({
+  children,
   th = false,
   align = "left",
   valign = "middle",
   className,
-  title
+  title,
 }: ITCell) {
   const commonStyles = `text-${align} w-full align-${valign}`
 
   return th ? (
-    <th title={title} className={clsx(commonStyles, ["h-14", "p-5", className])}>{children}</th>
+    <th
+      title={title}
+      className={clsx(commonStyles, ["h-14", "p-5", className])}
+    >
+      {children}
+    </th>
   ) : (
-    <td title={title} className={clsx(commonStyles, ["px-5 py-2.5", className])}>{children}</td>
+    <td
+      title={title}
+      className={clsx(commonStyles, ["px-5 py-2.5", className])}
+    >
+      {children}
+    </td>
   )
 }
 

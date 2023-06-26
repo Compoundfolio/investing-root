@@ -1,18 +1,18 @@
 "use client"
 
-import { memo, useEffect } from 'react';
+import { memo, useEffect } from "react"
 import { BrokeragesSelectionZone, ReportsUploadArea } from "./components"
 import { useSelectedBrokeragesStore } from "./stores"
 import { useOpen } from "src/core/hooks"
-import ModalBlur from 'src/core/components/blocks/ModalBlur';
-import { useRouter } from 'next/navigation';
-import { ROUTES } from '../../../routing/routes';
+import ModalBlur from "src/core/components/blocks/ModalBlur"
+import { useRouter } from "next/navigation"
+import { ROUTES } from "../../../routing/routes"
 
 const BrokerageReportUploadPage = () => {
   const { selectedBrokerages } = useSelectedBrokeragesStore()
   const router = useRouter()
 
-  const [ 
+  const [
     isReportsUploadModalOpen,
     handleReportsCsvUploadModalOpen,
     setIsReportsUploadModalOpen,
@@ -31,8 +31,8 @@ const BrokerageReportUploadPage = () => {
 
   return (
     <>
-      {/* UserGreetingsModal (low prior TODO) */} 
-      <BrokeragesSelectionZone  />
+      {/* UserGreetingsModal (low prior TODO) */}
+      <BrokeragesSelectionZone />
       <ModalBlur
         isOpen={isReportsUploadModalOpen}
         handleOpenChange={handleReportsCsvUploadModalOpen}

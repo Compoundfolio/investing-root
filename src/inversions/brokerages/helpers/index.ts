@@ -1,2 +1,1 @@
-
-export { default as getAllDivsAfterTax } from './getAllDivsAfterTax'
+export { default as getAllDivsAfterTax } from "./getAllDivsAfterTax"

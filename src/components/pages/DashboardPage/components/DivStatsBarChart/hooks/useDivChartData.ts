@@ -6,13 +6,16 @@ const useDivChartData = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
-    const assets = brokerageEntities[0].getAssets()     
-    const positionsListing = Object.values({ ...assets?.openPositions, ...assets?.closedPositions })    
+    const assets = brokerageEntities[0].getAssets()
+    const positionsListing = Object.values({
+      ...assets?.openPositions,
+      ...assets?.closedPositions,
+    })
     return getDivChartDataSet(positionsListing)
-  }, [brokerageEntities])  
+  }, [brokerageEntities])
 
   return {
-    dataSet
+    dataSet,
   }
 }
 

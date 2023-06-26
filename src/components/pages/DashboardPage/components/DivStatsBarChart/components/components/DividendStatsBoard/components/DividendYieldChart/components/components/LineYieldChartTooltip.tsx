@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo } from "react"
 
 const LineYieldChartTooltip = ({ slice }) => {
   return (
@@ -8,16 +8,16 @@ const LineYieldChartTooltip = ({ slice }) => {
         height: "min-content",
       }}
     >
-      {slice.points.map(point => (
+      {slice.points.map((point) => (
         <div
           key={point.id}
           style={{
             color: point.serieColor,
-            padding: '3px 0',
+            padding: "3px 0",
           }}
         >
           {/* TODO: Mar 13 format */}
-          {point.data.xFormatted} 
+          {point.data.xFormatted}
         </div>
       ))}
     </div>

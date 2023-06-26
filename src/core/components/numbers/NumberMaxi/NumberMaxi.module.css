@@ -21,7 +21,7 @@
 }
 
 .numberMaxi_container_number {
-  font-family: 'Chakra Petch';
+  font-family: "Chakra Petch";
   font-weight: 400;
   font-size: 40px;
   line-height: 52px;
@@ -37,5 +37,5 @@
 
 .numberMaxi_container_number_floatPart {
   font-size: 20px;
-  color: var(--color-gray),
+  color: var(--color-gray);
 }

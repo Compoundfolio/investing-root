@@ -4,15 +4,11 @@ import { UseFormHookConfig } from "src/core/types"
 interface IUseForm {
   validation: object
   initialValues: object
-  onSubmit: UseFormHookConfig['onSubmit'] // TODO: Reuse
+  onSubmit: UseFormHookConfig["onSubmit"] // TODO: Reuse
 }
 
 /** Formik's useFormik wrapper  */
-const useForm = ({
-  validation,
-  initialValues,
-  onSubmit
-}: IUseForm) => {
+const useForm = ({ validation, initialValues, onSubmit }: IUseForm) => {
   return useFormik({
     validateOnChange: false,
     validateOnBlur: false,

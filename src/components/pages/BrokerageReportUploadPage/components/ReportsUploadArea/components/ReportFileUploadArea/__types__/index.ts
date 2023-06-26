@@ -1,1 +1,1 @@
-export type {default as IReportFileUploadArea} from './IReportFileUploadArea';
+export type { default as IReportFileUploadArea } from "./IReportFileUploadArea"

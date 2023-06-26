@@ -1,1 +1,1 @@
-export { default } from './PortfolioGrowthChart';
+export { default } from "./PortfolioGrowthChart"

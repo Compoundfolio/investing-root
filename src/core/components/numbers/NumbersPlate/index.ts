@@ -1,1 +1,1 @@
-export {default} from './NumbersPlate';
+export { default } from "./NumbersPlate"

@@ -9,8 +9,8 @@ type ObjWithDateDateKey = {
 }
 
 function oldDatesFirst(
-  obj1: ObjWithDateXKey | ObjWithDateDateKey, 
-  obj2: ObjWithDateXKey | ObjWithDateDateKey,
+  obj1: ObjWithDateXKey | ObjWithDateDateKey,
+  obj2: ObjWithDateXKey | ObjWithDateDateKey
 ) {
   const date1 = (obj1?.x ?? obj1?.date) as string
   const date2 = (obj2?.x ?? obj2?.date) as string

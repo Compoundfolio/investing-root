@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react"
 
 interface IShowPasswordIcon {
   isPasswordVisible: boolean
 }
 
-const ShowPasswordIcon = ({
-  isPasswordVisible = false
-}: IShowPasswordIcon) => {
+const ShowPasswordIcon = ({ isPasswordVisible = false }: IShowPasswordIcon) => {
   return isPasswordVisible ? (
     <svg
       xmlns="http://www.w3.org/2000/svg"

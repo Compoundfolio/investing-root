@@ -1,6 +1,6 @@
-import { ChangeEventHandler } from 'react'
-import { IReactChildren } from 'src/core/types'
-import { UseFormHookError, UseFormHookHelpers } from '../forms/formik'
+import { ChangeEventHandler } from "react"
+import { IReactChildren } from "src/core/types"
+import { UseFormHookError, UseFormHookHelpers } from "../forms/formik"
 
 interface Control extends IReactChildren {
   value: string
@@ -11,7 +11,7 @@ interface Control extends IReactChildren {
   required?: boolean
   autofocus?: boolean
   onChange: ChangeEventHandler<HTMLInputElement>
-  setErrorMessage?: UseFormHookHelpers['setFieldError']
+  setErrorMessage?: UseFormHookHelpers["setFieldError"]
 }
 
 export default Control

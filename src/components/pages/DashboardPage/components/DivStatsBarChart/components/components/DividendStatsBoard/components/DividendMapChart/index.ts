@@ -1,1 +1,1 @@
-export {default as DividendMapChart} from './DividendMapChart';
+export { default as DividendMapChart } from "./DividendMapChart"

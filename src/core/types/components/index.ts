@@ -1,1 +1,1 @@
-export type {default as Control} from './Control';
+export type { default as Control } from "./Control"

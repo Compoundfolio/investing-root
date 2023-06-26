@@ -17,7 +17,9 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: calc(100vh - 32px) calc(100vh - 32px - var(--dashboard-visualizations-gap));
+  grid-template-rows: calc(100vh - 32px) calc(
+      100vh - 32px - var(--dashboard-visualizations-gap)
+    );
   gap: var(--dashboard-visualizations-gap);
 }
 

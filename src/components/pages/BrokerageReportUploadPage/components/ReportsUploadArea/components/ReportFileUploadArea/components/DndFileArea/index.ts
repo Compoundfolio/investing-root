@@ -1,1 +1,1 @@
-export { default } from './DndFileArea'
+export { default } from "./DndFileArea"

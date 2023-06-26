@@ -1,1 +1,1 @@
-export {default} from './PresentativeArea';
+export { default } from "./PresentativeArea"

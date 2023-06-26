@@ -1,1 +1,1 @@
-export type * from './apiSpecific';
+export type * from "./apiSpecific"

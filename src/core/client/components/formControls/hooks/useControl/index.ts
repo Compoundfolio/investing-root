@@ -1,1 +1,1 @@
-export {default} from './useControl';
+export { default } from "./useControl"

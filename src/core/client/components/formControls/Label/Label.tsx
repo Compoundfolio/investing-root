@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo } from "react"
 
 interface ILabel {
   htmlFor: string
@@ -6,19 +6,15 @@ interface ILabel {
   required?: boolean
 }
 
-const Label = ({
-  htmlFor,
-  labelText,
-  required = false,
-  ...rest
-}: ILabel) => {
+const Label = ({ htmlFor, labelText, required = false, ...rest }: ILabel) => {
   return (
     <label
       htmlFor={htmlFor}
       className="block text-sm font-medium leading-6 text-white"
       {...rest}
     >
-      {labelText} <span className='color-red'>{required ? " *" : " (Optional)"}</span>
+      {labelText}{" "}
+      <span className="color-red">{required ? " *" : " (Optional)"}</span>
     </label>
   )
 }

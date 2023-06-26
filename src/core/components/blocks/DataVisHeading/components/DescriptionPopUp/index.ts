@@ -1,1 +1,1 @@
-export { default as DescriptionPopUp } from './DescriptionPopUp'
+export { default as DescriptionPopUp } from "./DescriptionPopUp"

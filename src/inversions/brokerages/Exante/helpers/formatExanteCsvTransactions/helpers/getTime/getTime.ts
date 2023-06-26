@@ -1,4 +1,4 @@
-import { StringDate } from 'src/core/types';
+import { StringDate } from "src/core/types"
 
 /**
  * Get EXANTE transaction type

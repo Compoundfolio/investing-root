@@ -1,12 +1,12 @@
-import { colors } from 'src/core/theme';
+import { colors } from "src/core/theme"
 
 export const chartContainerStyled = {
   height: "100%",
   "& div > div": {
-    height: "inherit"
+    height: "inherit",
   },
   // Vertical hover point line style
   "& line[fill=none]": {
-    stroke: `${colors.white} !important`
-  }
+    stroke: `${colors.white} !important`,
+  },
 }

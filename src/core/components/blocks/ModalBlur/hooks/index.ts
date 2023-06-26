@@ -1,1 +1,1 @@
-export {default as useModalCloseKeyShortcut} from './useModalCloseKeyShortcut';
+export { default as useModalCloseKeyShortcut } from "./useModalCloseKeyShortcut"

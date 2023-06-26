@@ -1,1 +1,1 @@
-export * from './userBrokerages';
+export * from "./userBrokerages"

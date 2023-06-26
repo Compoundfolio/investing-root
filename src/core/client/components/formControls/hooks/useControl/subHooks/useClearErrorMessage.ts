@@ -5,7 +5,7 @@ export interface IUseClearErrorMessage {
   value: unknown
   errorMessage?: UseFormHookError
   name: string
-  setErrorMessage?: UseFormHookHelpers['setFieldError']
+  setErrorMessage?: UseFormHookHelpers["setFieldError"]
 }
 
 /** Clears validation errors when user starts to type in */
@@ -15,7 +15,6 @@ export const useClearErrorMessage = ({
   errorMessage,
   setErrorMessage,
 }: IUseClearErrorMessage) => {
-
   useEffect(() => {
     if (value && setErrorMessage && errorMessage) {
       setErrorMessage(name, "")

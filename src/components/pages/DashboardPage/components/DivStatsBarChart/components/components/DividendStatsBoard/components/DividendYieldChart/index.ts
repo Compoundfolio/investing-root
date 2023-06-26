@@ -1,1 +1,1 @@
-export {default as DividendYieldChart} from './DividendYieldChart';
+export { default as DividendYieldChart } from "./DividendYieldChart"

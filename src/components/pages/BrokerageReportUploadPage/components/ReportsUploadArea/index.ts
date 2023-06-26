@@ -1,1 +1,1 @@
-export { default } from './ReportsUploadArea'
+export { default } from "./ReportsUploadArea"

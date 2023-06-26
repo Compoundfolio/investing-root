@@ -1,22 +1,25 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react"
 
 /**
  * Listens to *Ecs* key click and closes the opened modal
  */
 const useModalCloseKeyShortcut = (
   isOpen: boolean,
-  handleOpenChange: () => void,
+  handleOpenChange: () => void
 ) => {
-  const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    event.key == "Escape" && isOpen && handleOpenChange()
-  }, [isOpen]);
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      event.key == "Escape" && isOpen && handleOpenChange()
+    },
+    [isOpen]
+  )
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress)
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [handleKeyPress]);
+      document.removeEventListener("keydown", handleKeyPress)
+    }
+  }, [handleKeyPress])
 }
 
 export default useModalCloseKeyShortcut

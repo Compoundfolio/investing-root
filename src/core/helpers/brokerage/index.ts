@@ -1,1 +1,1 @@
-export {default as getBrokerageClassByBrandName} from './getBrokerageClassByBrandName';
+export { default as getBrokerageClassByBrandName } from "./getBrokerageClassByBrandName"

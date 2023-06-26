@@ -1,13 +1,13 @@
-import { memo } from 'react';
-import NumbersBar from 'src/components/NumbersBar'
-import styles from './DashboardPage.module.css'
-import { PageTitle } from '@core'
+import { memo } from "react"
+import NumbersBar from "src/components/NumbersBar"
+import styles from "./DashboardPage.module.css"
+import { PageTitle } from "@core"
 import {
   DivStatsBarChart,
   PortfolioAssetsList,
   PortfolioAssetsPieChart,
-  PortfolioGrowthChart
-} from './components'
+  PortfolioGrowthChart,
+} from "./components"
 
 const DashboardPage = () => {
   return (

@@ -1,7 +1,7 @@
-import { useTheme } from '@nivo/core'
-import React, { memo, useMemo } from 'react'
-import { AxisTickProps } from '@nivo/axes'
-import { colors, getMonthShortNameFromDate } from '@core'
+import { useTheme } from "@nivo/core"
+import React, { memo, useMemo } from "react"
+import { AxisTickProps } from "@nivo/axes"
+import { colors, getMonthShortNameFromDate } from "@core"
 
 const CustomAxisBottomTick = (tick: AxisTickProps<string>) => {
   const theme = useTheme()
@@ -11,7 +11,10 @@ const CustomAxisBottomTick = (tick: AxisTickProps<string>) => {
     return getMonthShortNameFromDate(date)
   }, [])
 
-  const extra = currentShortMonthName === tick.value ? { "data-currentShortMonthName": true } : {}
+  const extra =
+    currentShortMonthName === tick.value
+      ? { "data-currentShortMonthName": true }
+      : {}
 
   return (
     <g transform={`translate(${tick.x},${tick.y + 22})`}>

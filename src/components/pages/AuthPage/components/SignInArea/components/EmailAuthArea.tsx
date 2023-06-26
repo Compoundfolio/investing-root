@@ -1,4 +1,4 @@
-import EmailAuthForm from './EmailAuthForm'
+import EmailAuthForm from "./EmailAuthForm"
 
 const EmailAuthArea = () => {
   return (

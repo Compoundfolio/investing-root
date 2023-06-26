@@ -1,1 +1,1 @@
-export {default} from './SignInArea';
+export { default } from "./SignInArea"

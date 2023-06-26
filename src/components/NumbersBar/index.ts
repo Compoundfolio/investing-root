@@ -1,1 +1,1 @@
-export { default } from './NumbersBar';
+export { default } from "./NumbersBar"

@@ -1,16 +1,21 @@
 import { memo } from "react"
-import { AssetPreviewTCell, GainCell, NumbersDifferenceCell, TBody, TCell, THead, TRow, TTable, TWrapper, UpcomingDividendCell } from "../parts"
+import {
+  AssetPreviewTCell,
+  GainCell,
+  NumbersDifferenceCell,
+  TBody,
+  TCell,
+  THead,
+  TRow,
+  TTable,
+  TWrapper,
+  UpcomingDividendCell,
+} from "../parts"
 import { IAssetsTable } from "./types"
 
-const AssetsTable = ({
-  data = [],
-  onRowHover,
-}: IAssetsTable) => {
+const AssetsTable = ({ data = [], onRowHover }: IAssetsTable) => {
   return (
-    <TWrapper
-      title="Assets"
-      size={data.length}
-    >
+    <TWrapper title="Assets" size={data.length}>
       <TTable>
         <THead>
           <TRow>
@@ -26,26 +31,21 @@ const AssetsTable = ({
         <TBody>
           {data.map(({ id, ticker, sharesAmount, averagePrice }) => (
             <TRow key={id}>
-            {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}
-              <AssetPreviewTCell 
+              {/* <TRow key={id} onHover={() => onRowHover(ticker)}> */}
+              <AssetPreviewTCell
                 logoSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Charles_Schwab_Corporation_logo.svg/500px-Charles_Schwab_Corporation_logo.svg.png?20210616031939"
                 assetFullName="Schwab Income Fund"
-                ticker={ticker} 
-                sharesAmount={sharesAmount}              
+                ticker={ticker}
+                sharesAmount={sharesAmount}
               />
-              <NumbersDifferenceCell 
+              <NumbersDifferenceCell
                 topNumber={averagePrice}
                 bottomNumber={averagePrice}
                 isPercentages
               />
-              <GainCell
-                gainPercentage={17.44}
-              />
-              <GainCell
-                gainNumber={154.67}
-                gainPercentage={6.03}
-              />
-              <NumbersDifferenceCell 
+              <GainCell gainPercentage={17.44} />
+              <GainCell gainNumber={154.67} gainPercentage={6.03} />
+              <NumbersDifferenceCell
                 topNumber={sharesAmount}
                 bottomNumber={sharesAmount}
                 isPercentages

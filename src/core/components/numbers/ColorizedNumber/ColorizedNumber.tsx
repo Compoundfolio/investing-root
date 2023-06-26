@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
-import { IColorizedNumber } from './__types__'
-import { NumberMoveIcon } from '../../icons'
-import { getColorByGainNumber } from '@core/helpers'
+import React, { memo } from "react"
+import { IColorizedNumber } from "./__types__"
+import { NumberMoveIcon } from "../../icons"
+import { getColorByGainNumber } from "@core/helpers"
 
 const ColorizedNumber = ({
   number,
@@ -16,23 +16,22 @@ const ColorizedNumber = ({
   // TODO: Pass in other form
   const styles = {
     color: color ?? getColorByGainNumber(number),
-    fontFamily: 'Chakra Petch',
-    fontWeight: isPercentage
-      ? isExtraBold ? 700 : 500
-      : 400,
-    fontSize: isPercentage
-      ? 14
-      : 13,
+    fontFamily: "Chakra Petch",
+    fontWeight: isPercentage ? (isExtraBold ? 700 : 500) : 400,
+    fontSize: isPercentage ? 14 : 13,
   }
 
   return (
-    <div className='flex items-center gap-1'>
-      {isPercentage && <NumberMoveIcon color={color} isPositiveMove={number > 0} />}
+    <div className="flex items-center gap-1">
+      {isPercentage && (
+        <NumberMoveIcon color={color} isPositiveMove={number > 0} />
+      )}
       {/* TODO: Refactor */}
-      <span
-        style={styles}
-      >
-        {!isPercentage && numberSymbol}{!isPercentage && currency}{isPercentage ? Math.abs(number) : number}{isPercentage && "%"}
+      <span style={styles}>
+        {!isPercentage && numberSymbol}
+        {!isPercentage && currency}
+        {isPercentage ? Math.abs(number) : number}
+        {isPercentage && "%"}
       </span>
     </div>
   )

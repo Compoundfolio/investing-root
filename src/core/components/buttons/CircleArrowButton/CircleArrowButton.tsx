@@ -1,11 +1,11 @@
-import React from 'react'
-import CircleButton from '../CircleButton'
-import { ArrowIcon } from '../../icons'
-import { ICircleArrowButton } from './types'
+import React from "react"
+import CircleButton from "../CircleButton"
+import { ArrowIcon } from "../../icons"
+import { ICircleArrowButton } from "./types"
 
 const CircleArrowButton = ({
   onClick,
-  arrowIconOrientation
+  arrowIconOrientation,
 }: ICircleArrowButton) => {
   return (
     <CircleButton onClick={onClick}>

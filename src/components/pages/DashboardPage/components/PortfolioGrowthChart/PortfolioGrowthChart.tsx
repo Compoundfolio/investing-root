@@ -1,12 +1,12 @@
 "use client"
 
-import React, { memo, useMemo } from 'react'
-import { ResponsiveLine } from '@nivo/line'
-import { chartContainerStyled } from './styled'
-import { linearGradientDef } from '@nivo/core'
-import { colors } from '@core'
-import { ChartTooltip } from './components'
-import { useValueChartData } from './hooks';
+import React, { memo, useMemo } from "react"
+import { ResponsiveLine } from "@nivo/line"
+import { chartContainerStyled } from "./styled"
+import { linearGradientDef } from "@nivo/core"
+import { colors } from "@core"
+import { ChartTooltip } from "./components"
+import { useValueChartData } from "./hooks"
 
 const POSITIVE_COLOR = colors.darkGreen
 const NEGATIVE_COLOR = colors.pinkSoft
@@ -17,20 +17,18 @@ const properties = {
 }
 
 const PortfolioGrowthChart = ({ ...restProps }) => {
-
   const data = useValueChartData()
 
-  const [
-    oldestDateItem,
-    earliestDateItem,
-    minPriceValue,
-    maxPriceValue,
-  ] = useMemo(() => [
-    data[0],
-    data[data.length-1],
-    Math.min(...data.map(item => item.y)),
-    Math.max(...data.map(item => item.y)),
-  ], [ data ])
+  const [oldestDateItem, earliestDateItem, minPriceValue, maxPriceValue] =
+    useMemo(
+      () => [
+        data[0],
+        data[data.length - 1],
+        Math.min(...data.map((item) => item.y)),
+        Math.max(...data.map((item) => item.y)),
+      ],
+      [data]
+    )
 
   return (
     <section {...restProps} style={chartContainerStyled} id="valueChart">
@@ -43,30 +41,32 @@ const PortfolioGrowthChart = ({ ...restProps }) => {
         axisLeft={null}
         axisBottom={{
           // TODO: Format
-          tickValues: [ oldestDateItem.x, earliestDateItem.x ],
+          tickValues: [oldestDateItem.x, earliestDateItem.x],
         }}
-        data={[{
-          id: 'positive :)',
-          data,
-        }]}
+        data={[
+          {
+            id: "positive :)",
+            data,
+          },
+        ]}
         colors={[POSITIVE_COLOR, NEGATIVE_COLOR]}
         yScale={{
-          type: 'linear',
+          type: "linear",
           stacked: false,
           min: minPriceValue,
           max: maxPriceValue,
         }}
         defs={[
-          linearGradientDef('gradientA', [
+          linearGradientDef("gradientA", [
             { offset: 100, color: colors.darkGreen, opacity: 0.1 },
           ]),
-          linearGradientDef('gradientB', [
+          linearGradientDef("gradientB", [
             { offset: 100, color: colors.pinkSoft, opacity: 0.1 },
           ]),
         ]}
         fill={[
-          { match: { id: 'positive :)' }, id: 'gradientA' },
-          { match: { id: 'negative :(' }, id: 'gradientB' },
+          { match: { id: "positive :)" }, id: "gradientA" },
+          { match: { id: "negative :(" }, id: "gradientB" },
         ]}
         areaOpacity={0.65}
         useMesh={true}

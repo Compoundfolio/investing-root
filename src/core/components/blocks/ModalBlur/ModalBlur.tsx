@@ -1,10 +1,10 @@
 "use client"
 
-import { memo } from "react";
-import IModalBlur from "./__types__/IModalBlur";
-import styles from './ModalBlur.module.css';
+import { memo } from "react"
+import IModalBlur from "./__types__/IModalBlur"
+import styles from "./ModalBlur.module.css"
 // import { useModalCloseKeyShortcut } from "./hooks";
-import clsx from 'clsx';
+import clsx from "clsx"
 // import { ShortcutHelper } from "../../help";
 
 const ModalBlur = ({
@@ -23,19 +23,17 @@ const ModalBlur = ({
     <>
       {isOpen && (
         <>
-          <div
-            className="absolute inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
-          >
-            <div className={`relative w-full h-full mx-auto ${maxWidthClass} p-12`}>
+          <div className="absolute inset-0 z-50 flex justify-center h-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+            <div
+              className={`relative w-full h-full mx-auto ${maxWidthClass} p-12`}
+            >
               <div className="relative flex flex-col w-full h-full outline-none focus:outline-none">
                 {/*header*/}
                 {title && (
                   <div className="flex items-start justify-between py-5">
                     {/* TODO: Optional title? */}
                     <div className="flex items-center gap-6">
-                      <span className={styles.modalTitle}>
-                        {title}
-                      </span>
+                      <span className={styles.modalTitle}>{title}</span>
                     </div>
                   </div>
                 )}
@@ -65,11 +63,13 @@ const ModalBlur = ({
               </div>
             </div>
           </div>
-          <div className={clsx(styles.backgroundFogBlur ,"absolute inset-0 z-40")} />
+          <div
+            className={clsx(styles.backgroundFogBlur, "absolute inset-0 z-40")}
+          />
         </>
       )}
     </>
-  );
+  )
 }
 
 export default memo(ModalBlur)

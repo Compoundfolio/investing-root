@@ -1,17 +1,17 @@
-import { memo } from 'react'
-import styles from './UploadMetrixCards.module.css'
+import { memo } from "react"
+import styles from "./UploadMetrixCards.module.css"
 
 interface IUploadMetrixCards {
-  tradesAmount: number,
-  nonTradesAmount: number,
-} 
+  tradesAmount: number
+  nonTradesAmount: number
+}
 
 const UploadMetrixCards = ({
   tradesAmount,
   nonTradesAmount,
 }: IUploadMetrixCards) => {
   return (
-    <div className='flex w-full gap-4 mt-12'>
+    <div className="flex w-full gap-4 mt-12">
       {tradesAmount && (
         <section className={styles.card}>
           <span className={styles.number}>+ {tradesAmount}</span>

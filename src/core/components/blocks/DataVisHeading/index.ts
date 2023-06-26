@@ -1,1 +1,1 @@
-export {default} from "./DataVisHeading"
+export { default } from "./DataVisHeading"

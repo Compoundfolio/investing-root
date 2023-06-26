@@ -1,1 +1,1 @@
-export {default as SelectableBrokerage} from './SelectableBrokerage';
+export { default as SelectableBrokerage } from "./SelectableBrokerage"

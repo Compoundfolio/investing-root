@@ -1,2 +1,2 @@
-export {default} from './BrokerageReportUploadPage';
-export * from './consts';
+export { default } from "./BrokerageReportUploadPage"
+export * from "./consts"

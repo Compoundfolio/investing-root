@@ -1,1 +1,1 @@
-export {default as mergeToDictionary} from './mergeToDictionary';
+export { default as mergeToDictionary } from "./mergeToDictionary"

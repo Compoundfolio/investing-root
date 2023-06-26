@@ -1,13 +1,13 @@
 "use client"
 
-import { HTMLInputTypeAttribute, memo } from 'react'
-import { Label } from '../Label'
-import { useControl } from '../hooks'
-import { ControlErrorMessage } from '../ControlErrorMessage'
-import { ShowPasswordButton, ShowPasswordIcon } from './components'
-import { Control } from 'src/core/types'
-import { usePassword } from './hooks'
-import styles from './Input.module.css'
+import { HTMLInputTypeAttribute, memo } from "react"
+import { Label } from "../Label"
+import { useControl } from "../hooks"
+import { ControlErrorMessage } from "../ControlErrorMessage"
+import { ShowPasswordButton, ShowPasswordIcon } from "./components"
+import { Control } from "src/core/types"
+import { usePassword } from "./hooks"
+import styles from "./Input.module.css"
 
 export interface IInput extends Control {
   type?: HTMLInputTypeAttribute
@@ -26,7 +26,6 @@ const Input = ({
   setErrorMessage,
   ...restProps
 }: IInput) => {
-
   useControl({
     value,
     name,
@@ -38,18 +37,14 @@ const Input = ({
     isPasswordVisible,
     isPassword,
     activePasswordType,
-    togglePasswordVisibility
+    togglePasswordVisibility,
   } = usePassword({
     type,
   })
 
   return (
     <div className="relative mb-10" {...restProps}>
-      <Label
-        required={required}
-        htmlFor={name}
-        labelText={labelText}
-      />
+      <Label required={required} htmlFor={name} labelText={labelText} />
       <input
         value={value}
         id={name}

@@ -4,7 +4,7 @@ const mergeToDictionary = (headers: string[], rows: string[][]) => {
   }
 
   return rows.map((row: any) => {
-    let res = {} as any;
+    let res = {} as any
 
     headers.forEach((header: any, headerIndex: any) => {
       res[header] = row[headerIndex]

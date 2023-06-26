@@ -1,12 +1,9 @@
 "use client"
 
-import React, { memo } from 'react'
-import { ICircleButton } from './types'
+import React, { memo } from "react"
+import { ICircleButton } from "./types"
 
-const CircleButton = ({
-  children,
-  onClick,
-}: ICircleButton) => {
+const CircleButton = ({ children, onClick }: ICircleButton) => {
   return (
     <button
       onClick={onClick}

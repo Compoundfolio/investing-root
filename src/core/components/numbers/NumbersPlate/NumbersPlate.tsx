@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import './NumbersPlate.css'
+import React, { useMemo } from "react"
+import "./NumbersPlate.css"
 
 type PlateExtraNumber = {
   name: string
@@ -23,7 +23,6 @@ const NumbersPlate = ({
   extraNumbersGroup,
   wFull = false,
 }: INumbersPlate) => {
-
   // TODO: Share ?
   const coreNumber = useMemo(() => {
     if (type === "percentage") return `${value}%`
@@ -42,32 +41,34 @@ const NumbersPlate = ({
 
   return (
     <div className="numberBlock_wrapper" style={wrapperDynamicStyles}>
-      <div className='numberBlock_head'>
+      <div className="numberBlock_head">
         {extraNumbersGroup.flatMap(({ name, number }) => (
-          <div
-            className='numberBlock_head__item'
-            key={name}
-          >
+          <div className="numberBlock_head__item" key={name}>
             {wFull ? (
-              <div className='numberBlock_head__item_wrapper'>
-                <span className='numberBlock_head__item_name'>{name}</span>
-                <span className='numberBlock_head__item_number_withBg'>{number}</span>
+              <div className="numberBlock_head__item_wrapper">
+                <span className="numberBlock_head__item_name">{name}</span>
+                <span className="numberBlock_head__item_number_withBg">
+                  {number}
+                </span>
               </div>
-            ) : <>
-              <span className='numberBlock_head__item_name'>{`${name} //`}</span>
-              <span className='numberBlock_head__item_number'>{number}</span>
-            </>}
+            ) : (
+              <>
+                <span className="numberBlock_head__item_name">{`${name} //`}</span>
+                <span className="numberBlock_head__item_number">{number}</span>
+              </>
+            )}
           </div>
         ))}
       </div>
-      <div className='numberBlock_content'>
-        <span className='numberBlock_content__number' style={coreNumberDynamicStyles}>
+      <div className="numberBlock_content">
+        <span
+          className="numberBlock_content__number"
+          style={coreNumberDynamicStyles}
+        >
           {coreNumber}
         </span>
-        <div className='numberBlock_content__divider' />
-        <span className='numberBlock_content__description'>
-          {description}
-        </span>
+        <div className="numberBlock_content__divider" />
+        <span className="numberBlock_content__description">{description}</span>
       </div>
     </div>
   )

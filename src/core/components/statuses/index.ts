@@ -1,2 +1,1 @@
-
-export { default as PayCircleStatus } from './PayCircleStatus'
+export { default as PayCircleStatus } from "./PayCircleStatus"

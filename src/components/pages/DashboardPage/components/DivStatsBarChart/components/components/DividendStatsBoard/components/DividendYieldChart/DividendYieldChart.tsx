@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useCallback, useState } from 'react'
-import { LineYieldChart } from './components'
-import { DataVisHeading } from '@core'
+import React, { useCallback, useState } from "react"
+import { LineYieldChart } from "./components"
+import { DataVisHeading } from "@core"
 
 const current = 11.67
 
@@ -14,11 +14,11 @@ const DividendYieldChart = () => {
   }, [])
 
   return (
-    <DataVisHeading 
-      title='Dividend Yield'
-      dataVisDescription='Dividend Yield Chart ...'
+    <DataVisHeading
+      title="Dividend Yield"
+      dataVisDescription="Dividend Yield Chart ..."
     >
-      <span className='mb-0 chartStatsNumber'>{focusValue}%</span>
+      <span className="mb-0 chartStatsNumber">{focusValue}%</span>
       <LineYieldChart handleMouseFocus={handleMouseFocus} />
     </DataVisHeading>
   )

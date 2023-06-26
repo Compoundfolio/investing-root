@@ -1,1 +1,1 @@
-export type {default as IDndFileArea} from './IDndFileArea';
+export type { default as IDndFileArea } from "./IDndFileArea"

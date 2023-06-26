@@ -1,15 +1,13 @@
-import { Metadata } from 'next';
-import React from 'react'
-import DashboardPage from 'src/components/pages/DashboardPage/DashboardPage';
+import { Metadata } from "next"
+import React from "react"
+import DashboardPage from "src/components/pages/DashboardPage/DashboardPage"
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
-};
+  title: "Dashboard",
+}
 
 const Dashboard = () => {
-  return (
-    <DashboardPage />
-  )
+  return <DashboardPage />
 }
 
 export default Dashboard

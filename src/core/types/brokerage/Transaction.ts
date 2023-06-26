@@ -1,4 +1,3 @@
-
 import { Exchange, OrderOperation, Ticker } from "../assets"
 import { Currency } from "../currencies"
 import { StringDate } from "../dates"

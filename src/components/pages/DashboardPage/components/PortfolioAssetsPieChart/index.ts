@@ -1,1 +1,1 @@
-export {default} from './PortfolioAssetsPieChart';
+export { default } from "./PortfolioAssetsPieChart"

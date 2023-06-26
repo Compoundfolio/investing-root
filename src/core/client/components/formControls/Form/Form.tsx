@@ -1,17 +1,13 @@
 "use client"
 
-import { memo } from 'react'
-import { IReactChildren } from 'src/core/types'
+import { memo } from "react"
+import { IReactChildren } from "src/core/types"
 
 interface IForm extends IReactChildren {
   onSubmit: () => void
 }
 
-const Form = ({
-  children,
-  className,
-  onSubmit
-}: IForm) => {
+const Form = ({ children, className, onSubmit }: IForm) => {
   return (
     <form
       className={className}

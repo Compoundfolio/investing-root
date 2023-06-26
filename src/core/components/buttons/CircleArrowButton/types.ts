@@ -1,6 +1,6 @@
-import { IArrowIcon } from "../../icons";
+import { IArrowIcon } from "../../icons"
 
 export interface ICircleArrowButton {
-  onClick: () => void,
+  onClick: () => void
   arrowIconOrientation: IArrowIcon["orientation"]
 }

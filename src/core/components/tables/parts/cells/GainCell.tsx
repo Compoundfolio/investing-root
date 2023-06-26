@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
-import TCell from '../TCell'
-import { Currency } from 'src/core/types'
-import { ColorizedNumber } from 'src/core/components';
+import React, { memo } from "react"
+import TCell from "../TCell"
+import { Currency } from "src/core/types"
+import { ColorizedNumber } from "src/core/components"
 
 interface IGainCell {
   gainPercentage?: number
@@ -13,7 +13,7 @@ const GainCell = ({
   gainPercentage,
   gainNumber,
   // TODO: currency
-  currency
+  currency,
 }: IGainCell) => {
   return (
     <TCell>
@@ -24,11 +24,7 @@ const GainCell = ({
           isPercentage
         />
       )}
-      {gainNumber && (
-        <ColorizedNumber
-          number={gainNumber}
-        />
-      )}
+      {gainNumber && <ColorizedNumber number={gainNumber} />}
     </TCell>
   )
 }

@@ -1,1 +1,1 @@
-export type {default as IReactChildren} from './IReactChildren';
+export type { default as IReactChildren } from "./IReactChildren"

@@ -3,44 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --color-gray4C: #4C596B;
-  --color-gray: #C4C4C4;
+  --color-gray4C: #4c596b;
+  --color-gray: #c4c4c4;
   --color-white: #fff;
   --color-whiteEasy: rgba(255, 255, 255, 0.6);
   --color-green: rgba(15, 111, 114, 0.5);
-  --color-lightGreen: #18FEFE;
-  --color-darkLightGreen: #3CC8C8;
+  --color-lightGreen: #18fefe;
+  --color-darkLightGreen: #3cc8c8;
   --color-darkGray: #323740;
-  --color-darkGreen: #0F6F72;
-  --color-darkGreenEasy: #0F6F721A;
-  --color-gold: #FFD390;
-  --color-grayD9: #D9D9D9;
-  --color-grayEB: #EBEBF5;
-  --color-pinkSoft: #CF6679;
-  --color-yellow: #F3BB38;
+  --color-darkGreen: #0f6f72;
+  --color-darkGreenEasy: #0f6f721a;
+  --color-gold: #ffd390;
+  --color-grayD9: #d9d9d9;
+  --color-grayEB: #ebebf5;
+  --color-pinkSoft: #cf6679;
+  --color-yellow: #f3bb38;
   --color-black: black;
-  --color-primary: #1290FF;
+  --color-primary: #1290ff;
 
   --dashboard-visualizations-gap: 48px;
 }
 
-
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
   transition-delay: 3600s;
   transition-property: background-color, color;
 }
 
-
 /* TODO: Pass another place */
 @layer components {
   .chartStatsNumber {
-    font-family: 'Chakra Petch';
+    font-family: "Chakra Petch";
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 30px;
     color: var(--color-gold);
-    margin-bottom: 16px
+    margin-bottom: 16px;
   }
   .chartStatsNumberFaded {
     @apply chartStatsNumber;
@@ -58,7 +58,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     @apply progressLegendItem;
     opacity: 0.2;
   }
-  
 
   .progressLegendTitle {
     font-size: 14px;
@@ -66,7 +65,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     color: var(--color-grayEB);
     opacity: 0.3;
   }
-  
+
   .progressLegendValue {
     @apply progressLegendTitle;
     font-weight: 600;
@@ -99,7 +98,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   .lineChartMarkersText {
     color: var(--color-gold);
     font-size: 12px;
-    font-family: 'Chakra Petch';
+    font-family: "Chakra Petch";
     opacity: 0.5;
     position: absolute;
   }
@@ -123,8 +122,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     right: -26px;
     bottom: 11px;
   }
-
-  
 }
 
 html,
@@ -133,7 +130,12 @@ body {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  background: linear-gradient(75.27deg, rgba(15, 111, 114, 0.106) 75.87%, rgba(0, 0, 0, 0) 95.64%), #0E1317;
+  background: linear-gradient(
+      75.27deg,
+      rgba(15, 111, 114, 0.106) 75.87%,
+      rgba(0, 0, 0, 0) 95.64%
+    ),
+    #0e1317;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -247,5 +249,9 @@ table tbody {
   display: block;
 }
 
-.color-red { color: var(--color-pinkSoft); }
-.bg-color-darkGreen { background-color: var(--color-darkGreen); }
+.color-red {
+  color: var(--color-pinkSoft);
+}
+.bg-color-darkGreen {
+  background-color: var(--color-darkGreen);
+}

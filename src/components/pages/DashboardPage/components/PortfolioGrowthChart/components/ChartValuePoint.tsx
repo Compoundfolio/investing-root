@@ -2,7 +2,12 @@ import { memo } from "react"
 
 const ChartValuePoint = ({ size, color, borderWidth, borderColor }) => (
   <g>
-    <circle fill="#fff" r={size / 2} strokeWidth={borderWidth} stroke={borderColor} />
+    <circle
+      fill="#fff"
+      r={size / 2}
+      strokeWidth={borderWidth}
+      stroke={borderColor}
+    />
     <circle
       r={size / 5}
       strokeWidth={borderWidth}

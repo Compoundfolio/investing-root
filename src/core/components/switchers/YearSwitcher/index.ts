@@ -1,1 +1,1 @@
-export {default} from './YearSwitcher';
+export { default } from "./YearSwitcher"

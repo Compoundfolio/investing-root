@@ -1,0 +1,10 @@
+.yarn
+.next
+.gitignore
+
+dist
+node_modules
+
+*.json
+*.md
+*.yml.md

@@ -1,1 +1,1 @@
-export {default as LineProgressChart} from './LineProgressChart';
+export { default as LineProgressChart } from "./LineProgressChart"

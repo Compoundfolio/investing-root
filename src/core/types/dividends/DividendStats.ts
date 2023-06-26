@@ -1,4 +1,4 @@
-import Percentage from '../common/Percentage';
+import Percentage from "../common/Percentage"
 
 type DividendStats = {
   divYield: number

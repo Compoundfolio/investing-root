@@ -1,14 +1,19 @@
-import { formatToXyListFromDictionary, getIsoDatesDaysBetweenTwoDates, normalizeArrayOfObjectsBy, parseNumberToFixed2 } from "@core";
-import { ValueChartDataSet } from "../types";
+import {
+  formatToXyListFromDictionary,
+  getIsoDatesDaysBetweenTwoDates,
+  normalizeArrayOfObjectsBy,
+  parseNumberToFixed2,
+} from "@core"
+import { ValueChartDataSet } from "../types"
 
 export const getValueChartDataEntity = ([xDate, yPrices]) => ({
   x: xDate,
-  y: yPrices.reduce((prev, cur) => prev + cur.y, 0) // Get total value by specific date 
+  y: yPrices.reduce((prev, cur) => prev + cur.y, 0), // Get total value by specific date
 })
 
 export const fromNormalizedToObject = ([xDate, yPrice]) => ({
   x: xDate,
-  y: yPrice
+  y: yPrice,
 })
 
 export const sumYValues = (xyList: ValueChartDataSet): ValueChartDataSet => {
@@ -18,24 +23,27 @@ export const sumYValues = (xyList: ValueChartDataSet): ValueChartDataSet => {
   xyList.forEach(({ x, y }) => {
     summedXyValues.push({
       x,
-      y: parseNumberToFixed2(y + lastSummedXyYValue) // Get total value by specific date + prev date 
+      y: parseNumberToFixed2(y + lastSummedXyYValue), // Get total value by specific date + prev date
     })
 
     lastSummedXyYValue = y + lastSummedXyYValue
-  });
+  })
 
   return summedXyValues
 }
 
-export const fillValueChartWithEmptyDays = (firstBrokerageTransactionDate: Date) => {
+export const fillValueChartWithEmptyDays = (
+  firstBrokerageTransactionDate: Date
+) => {
   const todayDate = new Date()
   const FILL_BY = 0 as const
 
-  const isoDatesDaysFromFirstTransactionTillYesterday = getIsoDatesDaysBetweenTwoDates(
-    firstBrokerageTransactionDate, 
-    todayDate, 
-    FILL_BY
-  )  
+  const isoDatesDaysFromFirstTransactionTillYesterday =
+    getIsoDatesDaysBetweenTwoDates(
+      firstBrokerageTransactionDate,
+      todayDate,
+      FILL_BY
+    )
 
   return normalizeArrayOfObjectsBy(
     formatToXyListFromDictionary(isoDatesDaysFromFirstTransactionTillYesterday),

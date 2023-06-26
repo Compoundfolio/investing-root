@@ -1,1 +1,1 @@
-export {default as getExanteAssetListFromTransactions} from './getExanteAssetListFromTransactions';
+export { default as getExanteAssetListFromTransactions } from "./getExanteAssetListFromTransactions"

@@ -1,18 +1,16 @@
 import { useState } from "react"
-import { IInput } from '../Input';
+import { IInput } from "../Input"
 
 interface IUsePassword {
-  type: IInput['type']
+  type: IInput["type"]
 }
 
-const usePassword = ({
-  type,
-}: IUsePassword) => {
+const usePassword = ({ type }: IUsePassword) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
   const togglePasswordVisibility = () => {
     // e.preventDefault()
-    setIsPasswordVisible(prevState => !prevState)
+    setIsPasswordVisible((prevState) => !prevState)
   }
 
   const isPassword = type === "password"
@@ -22,7 +20,7 @@ const usePassword = ({
     isPasswordVisible,
     isPassword,
     activePasswordType,
-    togglePasswordVisibility
+    togglePasswordVisibility,
   }
 }
 

@@ -1,8 +1,10 @@
-import { Ticker } from '../common';
-import AssetPosition from './AssetPosition';
+import { Ticker } from "../common"
+import AssetPosition from "./AssetPosition"
 
-type NormalizedPositions = { 
-  [K: Ticker]: AssetPosition
-} | {}
+type NormalizedPositions =
+  | {
+      [K: Ticker]: AssetPosition
+    }
+  | {}
 
 export default NormalizedPositions

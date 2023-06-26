@@ -1,6 +1,6 @@
-import React, { ButtonHTMLAttributes } from 'react'
-import clsx from 'clsx'
-import styles from './ActButton.module.css'
+import React, { ButtonHTMLAttributes } from "react"
+import clsx from "clsx"
+import styles from "./ActButton.module.css"
 
 interface IActButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: "primary" | "green"
@@ -17,7 +17,7 @@ const ActButton = ({
       className={clsx(
         styles.actButton,
         styles[`actButton--${color}`],
-        className,
+        className
       )}
       {...restProps}
     >

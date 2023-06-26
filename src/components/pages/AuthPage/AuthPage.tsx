@@ -1,21 +1,30 @@
-import React from 'react'
-import { AppLogo, colors } from '@core';
-import styles from './AuthPage.module.css';
-import clsx from 'clsx';
-import { PresentativeArea, SignInArea } from './components';
- 
+import React from "react"
+import { AppLogo, colors } from "@core"
+import styles from "./AuthPage.module.css"
+import clsx from "clsx"
+import { PresentativeArea, SignInArea } from "./components"
+
 const AuthPage = () => {
   // TODO: Rid off using style
   return (
     <section className={clsx(styles.authContainer, "flex w-full h-full")}>
-      <div className="z-10 flex flex-col flex-1 h-full" style={{ minHeight: "inherit" }}>
+      <div
+        className="z-10 flex flex-col flex-1 h-full"
+        style={{ minHeight: "inherit" }}
+      >
         <div>
           <AppLogo withTitle />
         </div>
         <SignInArea />
       </div>
-      <div className="flex items-center justify-center w-20 h-full gradient" style={{ minHeight: "inherit", background: colors.lightGreen }} />
-      <div className="z-10 flex items-center justify-center flex-1 h-full" style={{ minHeight: "inherit" }}>
+      <div
+        className="flex items-center justify-center w-20 h-full gradient"
+        style={{ minHeight: "inherit", background: colors.lightGreen }}
+      />
+      <div
+        className="z-10 flex items-center justify-center flex-1 h-full"
+        style={{ minHeight: "inherit" }}
+      >
         <PresentativeArea />
       </div>
     </section>

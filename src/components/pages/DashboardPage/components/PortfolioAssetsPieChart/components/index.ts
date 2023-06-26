@@ -1,1 +1,1 @@
-export { default as ChartTypeSwitcher } from './ChartTypeSwitcher';
+export { default as ChartTypeSwitcher } from "./ChartTypeSwitcher"

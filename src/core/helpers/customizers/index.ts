@@ -1,1 +1,1 @@
-export {default as sumNormalizedArraysOfNumbers} from './sumNormalizedArraysOfNumbers';
+export { default as sumNormalizedArraysOfNumbers } from "./sumNormalizedArraysOfNumbers"

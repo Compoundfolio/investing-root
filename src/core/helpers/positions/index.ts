@@ -1,1 +1,1 @@
-export {default as getAllPositionsByBrokerageTransactions} from './getAllPositionsByBrokerageTransactions';
+export { default as getAllPositionsByBrokerageTransactions } from "./getAllPositionsByBrokerageTransactions"

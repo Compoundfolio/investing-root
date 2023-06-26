@@ -5,6 +5,6 @@ type PortfolioAssetDividendData = {
   averageDividendGrowthRate: number
   upcomingDividendDate: string
   upcomingDividendAmount: number
-} 
+}
 
 export default PortfolioAssetDividendData

@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo } from "react"
 
 const ChartTooltip = ({ slice }) => {
   return (
@@ -8,18 +8,17 @@ const ChartTooltip = ({ slice }) => {
         height: "min-content",
       }}
     >
-      {slice.points.map(point => (
+      {slice.points.map((point) => (
         <div
           key={point.id}
           style={{
             color: point.serieColor,
-            padding: '3px 0',
+            padding: "3px 0",
           }}
         >
           {/* TODO: Date */}
-          {point.data.xFormatted} 
-          <br />
-          ${point.data.yFormatted}
+          {point.data.xFormatted}
+          <br />${point.data.yFormatted}
         </div>
       ))}
     </div>

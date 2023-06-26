@@ -1,5 +1,9 @@
-import { PortfolioOpenClosePositions, Transaction, Dividends } from "src/core/types";
-import AbstractSideBrokerage from "./AbstractSideBrokerage";
+import {
+  PortfolioOpenClosePositions,
+  Transaction,
+  Dividends,
+} from "src/core/types"
+import AbstractSideBrokerage from "./AbstractSideBrokerage"
 
 export default class AbstractBrokerage {
   private static brokerage: AbstractSideBrokerage
@@ -8,7 +12,7 @@ export default class AbstractBrokerage {
     openPositions: {},
     closedPositions: {},
   }
-  
+
   private static taxedDividends: Dividends
 
   getBrandName!: () => string

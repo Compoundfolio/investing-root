@@ -1,1 +1,1 @@
-export {default as formatBrokerageTradeMarketGains} from './formatBrokerageTradeMarketGains';
+export { default as formatBrokerageTradeMarketGains } from "./formatBrokerageTradeMarketGains"

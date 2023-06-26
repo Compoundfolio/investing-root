@@ -1,1 +1,1 @@
-export { default as DividendStatsBoard } from './DividendStatsBoard'
+export { default as DividendStatsBoard } from "./DividendStatsBoard"

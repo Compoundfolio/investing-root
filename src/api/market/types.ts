@@ -1,5 +1,5 @@
-import { IsoDate, Ticker } from "@core";
-import { EHDEndOfDayPrice } from "ehd-js/src/types/model";
+import { IsoDate, Ticker } from "@core"
+import { EHDEndOfDayPrice } from "ehd-js/src/types/model"
 
 export type TickerAndPrice = { [K: Ticker]: number }
 

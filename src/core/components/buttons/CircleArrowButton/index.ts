@@ -1,1 +1,1 @@
-export {default} from './CircleArrowButton';
+export { default } from "./CircleArrowButton"

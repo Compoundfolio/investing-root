@@ -1,1 +1,1 @@
-export {default as getTransactionType} from './getTransactionType';
+export { default as getTransactionType } from "./getTransactionType"

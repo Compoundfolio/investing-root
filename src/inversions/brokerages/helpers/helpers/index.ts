@@ -1,1 +1,1 @@
-export {default as calculateDivAfterTax} from './calculateDivAfterTax';
+export { default as calculateDivAfterTax } from "./calculateDivAfterTax"

@@ -3,8 +3,8 @@ export type ValueChartDataSetEntity = {
   y: number
 }
 
-export type NormalizedValueChartDataSet = { 
-  [ K: ValueChartDataSetEntity["x"] ]: ValueChartDataSetEntity[]
-} 
+export type NormalizedValueChartDataSet = {
+  [K: ValueChartDataSetEntity["x"]]: ValueChartDataSetEntity[]
+}
 
 export type ValueChartDataSet = ValueChartDataSetEntity[]

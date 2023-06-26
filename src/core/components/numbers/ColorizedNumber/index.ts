@@ -1,1 +1,1 @@
-export { default } from './ColorizedNumber'
+export { default } from "./ColorizedNumber"

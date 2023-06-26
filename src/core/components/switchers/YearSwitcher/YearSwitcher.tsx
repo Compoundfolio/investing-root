@@ -1,8 +1,8 @@
 "use client"
 
-import React from 'react'
-import CircleArrowButton from '../../buttons/CircleArrowButton/CircleArrowButton'
-import styles from './YearSwitcher.module.css';
+import React from "react"
+import CircleArrowButton from "../../buttons/CircleArrowButton/CircleArrowButton"
+import styles from "./YearSwitcher.module.css"
 
 interface IUseYearSwitcher {
   year: number
@@ -16,16 +16,11 @@ const YearSwitcher = ({
   onYearForward,
 }: IUseYearSwitcher) => {
   return (
-    <div className='flex items-center gap-2'>
+    <div className="flex items-center gap-2">
       <div>
-        <CircleArrowButton
-          onClick={onYearBack}
-          arrowIconOrientation="right"
-        />
+        <CircleArrowButton onClick={onYearBack} arrowIconOrientation="right" />
       </div>
-      <span className={styles.yearSwitcher_year}>
-        {year}
-      </span>
+      <span className={styles.yearSwitcher_year}>{year}</span>
       <div>
         <CircleArrowButton
           onClick={onYearForward}

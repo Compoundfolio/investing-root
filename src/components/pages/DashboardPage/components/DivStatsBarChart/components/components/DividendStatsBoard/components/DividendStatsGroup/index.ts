@@ -1,1 +1,1 @@
-export { default as DividendStatsGroup } from './DividendStatsGroup'
+export { default as DividendStatsGroup } from "./DividendStatsGroup"

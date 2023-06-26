@@ -1,1 +1,1 @@
-export {default as ID} from './ID';
+export { default as ID } from "./ID"

@@ -1,1 +1,1 @@
-export * from './useBrokeragesData';
+export * from "./useBrokeragesData"

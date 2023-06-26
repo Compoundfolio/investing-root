@@ -1,11 +1,11 @@
-import { NumbersPlate } from '@core'
-import React from 'react'
+import { NumbersPlate } from "@core"
+import React from "react"
 
 /** Contains `plates` components with div stats */
 const DividendStatsGroup = () => {
   return (
-    <div className='flex flex-col gap-2.5 w-min'>
-      <div className='flex gap-2.5'>
+    <div className="flex flex-col gap-2.5 w-min">
+      <div className="flex gap-2.5">
         <NumbersPlate
           type="percentage"
           value="12.95"

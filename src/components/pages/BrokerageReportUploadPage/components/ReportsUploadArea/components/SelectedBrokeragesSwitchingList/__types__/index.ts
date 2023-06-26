@@ -1,1 +1,1 @@
-export type {default as ISelectedBrokeragesSwitchingList} from './ISelectedBrokeragesSwitchingList';
+export type { default as ISelectedBrokeragesSwitchingList } from "./ISelectedBrokeragesSwitchingList"

@@ -1,7 +1,7 @@
-import { memo } from 'react';
-import styles from './SideBar.module.css';
-import { AppLogo } from '@core';
-import { Navigation, UserAvatar } from './components';
+import { memo } from "react"
+import styles from "./SideBar.module.css"
+import { AppLogo } from "@core"
+import { Navigation, UserAvatar } from "./components"
 
 const SideBar = () => {
   return (

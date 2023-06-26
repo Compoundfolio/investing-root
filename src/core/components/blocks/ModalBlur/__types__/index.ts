@@ -1,1 +1,1 @@
-export type {default as IReactChildren} from './IModalBlur';
+export type { default as IReactChildren } from "./IModalBlur"

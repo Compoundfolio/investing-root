@@ -1,40 +1,48 @@
-import { atom, selector, useRecoilState } from "recoil";
-import { useCallback } from "react";
-import AbstractBrokerage from "src/inversions/brokerages/AbstractBrokerage";
-import { SupportedBrokerage } from 'src/components/pages/BrokerageReportUploadPage';
+import { atom, selector, useRecoilState } from "recoil"
+import { useCallback } from "react"
+import AbstractBrokerage from "src/inversions/brokerages/AbstractBrokerage"
+import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage"
 
 const DEFAULT_VALUE: never[] = []
 
 const selectedBrokeragesState = atom<SupportedBrokerage[]>({
-  key: 'selectedBrokerages',
+  key: "selectedBrokerages",
   default: DEFAULT_VALUE,
-});
+})
 
 const selectedBrokeragesListState = selector<SupportedBrokerage[]>({
-  key: 'selectedBrokeragesList',
+  key: "selectedBrokeragesList",
   get: ({ get }) => get(selectedBrokeragesState),
   set: ({ set }, newValue) => set(selectedBrokeragesState, newValue ?? []),
-});
+})
 
 const useSelectedBrokeragesStore = () => {
   const [value, setValue] = useRecoilState(selectedBrokeragesState)
 
-  const handleUpdateSelectedBrokerages = useCallback(({
-    Brokerage, 
-    isDelete = false,
-  }: {
-    Brokerage: SupportedBrokerage, 
-    isDelete?: boolean,
-  }) => {
-    setValue(prev => isDelete 
-      ? prev.filter(({ brandName }) => brandName !== Brokerage.brandName) ?? DEFAULT_VALUE
-      : [...prev, Brokerage]
-    )
-  }, [])
+  const handleUpdateSelectedBrokerages = useCallback(
+    ({
+      Brokerage,
+      isDelete = false,
+    }: {
+      Brokerage: SupportedBrokerage
+      isDelete?: boolean
+    }) => {
+      setValue((prev) =>
+        isDelete
+          ? prev.filter(({ brandName }) => brandName !== Brokerage.brandName) ??
+            DEFAULT_VALUE
+          : [...prev, Brokerage]
+      )
+    },
+    []
+  )
 
-  const isSelected = useCallback((Brokerage: SupportedBrokerage) => {
-    return !!value.find(({ brandName }) => brandName === Brokerage.brandName)
-  }, [value])
+  const isSelected = useCallback(
+    (Brokerage: SupportedBrokerage) => {
+      return !!value.find(({ brandName }) => brandName === Brokerage.brandName)
+    },
+    [value]
+  )
 
   return {
     selectedBrokerages: value,
@@ -46,5 +54,5 @@ const useSelectedBrokeragesStore = () => {
 export {
   selectedBrokeragesState,
   selectedBrokeragesListState,
-  useSelectedBrokeragesStore
+  useSelectedBrokeragesStore,
 }
