@@ -1,6 +1,6 @@
 "use client"
 
-import { ActButton, colors } from '@core'
+import { ActButton } from '@core'
 import { memo } from 'react'
 import { Form, Input, useForm } from 'src/core/client'
 import { initialValues } from './consts';
