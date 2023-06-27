@@ -5,22 +5,27 @@ import { memo } from "react"
 import { Form, Input, useForm } from "src/core/client"
 import { initialValues } from "./consts"
 import validation from "./validation"
-import { UseMutationOptions, useMutation } from "@tanstack/react-query"
-import { Api } from "src/inversions"
 import { useSignInWithEmail } from "src/api/restful"
 
 const EmailAuthForm = () => {
-  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
-    {
-      validation,
-      initialValues,
-      onSubmit: (values) => {
-        callSignIn({ data: values })
-      },
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    setFieldError
+  } = useForm({
+    validationSchema: validation,
+    initialValues,
+    onSubmit: (values) => {
+      
+      // values.
+      // callSignIn({ data: values })
     }
+  }
   )
 
-  const { callSignIn } = useSignInWithEmail({ data: {} })
+  const { mutate: callSignIn } = useSignInWithEmail({ data: {} })
 
   return (
     <Form onSubmit={handleSubmit}>

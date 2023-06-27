@@ -1,21 +1,13 @@
-import { UseMutationOptions, useMutation } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import requestSignInWithEmail from "../../requestSignInWithEmail"
 
-const signInOptions: UseMutationOptions = {
-  onSuccess: () => {},
-  onError: () => {},
-  mutationKey: ["useSignIn"],
-}
+export const useSignInWithEmailKey = "useSignIn" as const
 
 const useSignInWithEmail = ({ data }) => {
-  const { mutate, ...rest } = useMutation(
+  return useMutation(
     () => requestSignInWithEmail({ data }),
-    signInOptions
+    { mutationKey: [ useSignInWithEmailKey ] }
   )
-  return {
-    callSignIn: mutate,
-    ...rest,
-  }
 }
 
 export default useSignInWithEmail
