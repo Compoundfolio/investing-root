@@ -1,25 +1,26 @@
-// import axios from "axios"
-import type { Get, Post } from "./__types__"
+import type { HttpGetRequest, HttpPostRequest } from "./types"
 
-/** Abstraction for axios */
+/** Abstraction layer for HTTP requests */
 class Api {
-  static async GET(url: string) {
-    // return axios.get(url)
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // return data.results
+  static async GET<TResponse>({ url }: HttpGetRequest): Promise<TResponse> {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.results
   }
 
-  static async POST(url: string, data: unknown) {
-    // return axios.post(url, { data })
+  static async POST<TResponse>({
+    url,
+    data,
+  }: HttpPostRequest): Promise<TResponse> {
     const response = await fetch(url, {
-      method: "POST", // or 'PUT'
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
     const res = await response.json()
+    return res
   }
 }
 

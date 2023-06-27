@@ -17,10 +17,13 @@
 	},
 	"plugins": [
 		"@typescript-eslint",
-		"react"
+		"react",
+		"destructuring-newline"
 	],
+	
 	"rules": {
-		"max-len": ["error", { "code": 120 }],
+		"max-len": ["error", { "code": 1000 }],
+    "object-property-newline": 0,
 		"indent": [
 			"error",
 			"tab"
