@@ -18,12 +18,9 @@ const EmailAuthForm = () => {
     validationSchema: validation,
     initialValues,
     onSubmit: (values) => {
-      
-      // values.
-      // callSignIn({ data: values })
+      callSignIn({ data: values })
     }
-  }
-  )
+  })
 
   const { mutate: callSignIn } = useSignInWithEmail({ data: {} })
 

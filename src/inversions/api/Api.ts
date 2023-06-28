@@ -1,8 +1,8 @@
-import type { HttpGetRequest, HttpPostRequest } from "./types"
+import type { HttpGetRequest, HttpPostRequest, HttpRequestErrorResponse } from "./types"
 
 /** Abstraction layer for HTTP requests */
 class Api {
-  static async GET<TResponse>({ url }: HttpGetRequest): Promise<TResponse> {
+  static async GET<TResponse>({ url }: HttpGetRequest): Promise<TResponse | HttpRequestErrorResponse> {
     const response = await fetch(url)
     const data = await response.json()
     return data.results
@@ -11,7 +11,7 @@ class Api {
   static async POST<TResponse>({
     url,
     data,
-  }: HttpPostRequest): Promise<TResponse> {
+  }: HttpPostRequest): Promise<TResponse | HttpRequestErrorResponse> {
     const response = await fetch(url, {
       method: "POST",
       headers: {
