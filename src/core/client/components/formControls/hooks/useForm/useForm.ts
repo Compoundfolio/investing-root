@@ -1,5 +1,5 @@
-import { useFormik, FormikValues, FormikConfig } from 'formik'
-import { AtLeastOne } from 'src/core/types'
+import { useFormik, FormikValues, FormikConfig } from "formik"
+import { AtLeastOne } from "src/core/types"
 
 /** Reusable, initial forms setup */
 const commonFormsConfig = <
@@ -18,7 +18,6 @@ const useForm = <TFormValues extends FormikValues = FormikValues>({
   onSubmit,
   ...restProps
 }: FormikConfig<TFormValues>) => {
-
   const setup: FormikConfig<TFormValues> = {
     validationSchema,
     initialValues,

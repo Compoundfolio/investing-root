@@ -8,21 +8,17 @@ import validation from "./validation"
 import { useSignInWithEmail } from "src/api/restful"
 
 const EmailAuthForm = () => {
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldError
-  } = useForm({
-    validationSchema: validation,
-    initialValues,
-    onSubmit: (values) => {
-      callSignIn({ data: values })
+  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
+    {
+      validationSchema: validation,
+      initialValues,
+      onSubmit: (values) => {
+        callSignIn(values)
+      },
     }
-  })
+  )
 
-  const { mutate: callSignIn } = useSignInWithEmail({ data: {} })
+  const { mutate: callSignIn, isLoading, data } = useSignInWithEmail()
 
   return (
     <Form onSubmit={handleSubmit}>

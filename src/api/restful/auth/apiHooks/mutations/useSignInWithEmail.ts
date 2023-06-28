@@ -1,7 +1,6 @@
-import { useMutation } from "@tanstack/react-query"
-import requestSignInWithEmail, { ResponseType } from "../../requestSignInWithEmail"
+import requestSignInWithEmail from "../../requestSignInWithEmail"
 import { EmailAuthData } from "../../types"
-import { HttpRequestErrorResponse } from "src/inversions/api/types"
+import { createMutation } from "src/inversions/reactQuery"
 
 export const useSignInWithEmailKey = "useSignIn" as const
 
@@ -9,15 +8,14 @@ export interface IUseSignInWithEmail {
   data: EmailAuthData
 }
 
-const useSignInWithEmail = ({ data }: IUseSignInWithEmail) => {
-  return useMutation<
-    ResponseType,
-    HttpRequestErrorResponse,
-    IUseSignInWithEmail["data"]
-  >(
-    () => requestSignInWithEmail({ data }),
-    { mutationKey: [ useSignInWithEmailKey ] }
-  )
+const useSignInWithEmail = () => {
+  return createMutation<
+    IUseSignInWithEmail["data"],
+    Awaited<ReturnType<typeof requestSignInWithEmail>>
+  >({
+    requestCb: (props: IUseSignInWithEmail) => requestSignInWithEmail(props),
+    mutationKey: useSignInWithEmailKey,
+  })
 }
 
 export default useSignInWithEmail
