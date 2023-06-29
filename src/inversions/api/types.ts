@@ -1,5 +1,6 @@
 interface HttpRequest {
   url: string
+  withToken?: boolean
 }
 
 export interface HttpGetRequest extends HttpRequest {}

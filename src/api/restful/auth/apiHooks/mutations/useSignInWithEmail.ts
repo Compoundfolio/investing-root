@@ -1,20 +1,46 @@
-import requestSignInWithEmail from "../../requestSignInWithEmail"
-import { EmailAuthData } from "../../types"
-import { createMutation } from "src/inversions/reactQuery"
+import { UseMutationOptions } from "@tanstack/react-query"
+import { createUseMutation } from "src/inversions/queryMaker"
+import restfulApiUrls from "src/api/restful/urls"
+import { EmailAuthData, SignInWithEmailResponse } from "../../types"
+import { Api } from "src/inversions"
+import { HttpRequestErrorResponse } from '../../../../../inversions/api/types';
 
 export const useSignInWithEmailKey = "useSignIn" as const
 
-export interface IUseSignInWithEmail {
+interface IRequestSignInWithEmail {
   data: EmailAuthData
 }
+export const requestSignInWithEmail = async ({
+  data,
+}: IRequestSignInWithEmail) => {
+  return await Api.POST<SignInWithEmailResponse>({
+    url: restfulApiUrls.auth.SIGN_IN_WITH_EMAIL_URL,
+    data,
+  })
+}
 
-const useSignInWithEmail = () => {
-  return createMutation<
-    IUseSignInWithEmail["data"],
-    Awaited<ReturnType<typeof requestSignInWithEmail>>
+type MutationOptions = UseMutationOptions<
+  SignInWithEmailResponse,
+  HttpRequestErrorResponse,
+  IRequestSignInWithEmail["data"]
+>
+export interface IUseSignInWithEmail {
+  onSuccess: MutationOptions["onSuccess"]
+  onError: MutationOptions["onError"]
+}
+const useSignInWithEmail = ({
+  onSuccess,
+  onError,
+}: IUseSignInWithEmail) => {
+  return createUseMutation<
+    SignInWithEmailResponse,
+    HttpRequestErrorResponse,
+    IRequestSignInWithEmail["data"]
   >({
-    requestCb: (props: IUseSignInWithEmail) => requestSignInWithEmail(props),
-    mutationKey: useSignInWithEmailKey,
+    mutationFn: (data: IRequestSignInWithEmail["data"]) => requestSignInWithEmail({ data }),
+    mutationKey: [useSignInWithEmailKey],
+    onSuccess,
+    onError,
   })
 }
 

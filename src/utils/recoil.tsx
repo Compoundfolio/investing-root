@@ -2,9 +2,14 @@
 
 import { useRecoilSnapshot } from "recoil"
 import { useEffect } from "react"
+import { LocalStorageKeysDictionary } from "src/core/consts"
+import { usePathname, useRouter } from "next/navigation"
+import { ROUTES, ROUTES_GUEST } from "src/routing"
 
 export const DebugObserver = () => {
   const snapshot = useRecoilSnapshot()
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     console.debug("The following atoms were modified:")
@@ -43,6 +48,17 @@ export const DebugObserver = () => {
       document.body.removeEventListener("keydown", applyTabFocusStyles, false)
     }
   }, [])
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN);
+
+    if (isAuth) {
+      pathname === ROUTES_GUEST.AUTH && router.push(ROUTES.BROKERAGES_SELECTION)
+      return
+    }
+
+    pathname !== ROUTES_GUEST.AUTH && router.push(ROUTES_GUEST.AUTH)
+  }, []);
 
   return null
 }

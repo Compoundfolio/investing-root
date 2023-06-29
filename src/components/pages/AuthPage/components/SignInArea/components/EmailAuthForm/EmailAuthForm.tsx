@@ -6,6 +6,8 @@ import { Form, Input, useForm } from "src/core/client"
 import { initialValues } from "./consts"
 import validation from "./validation"
 import { useSignInWithEmail } from "src/api/restful"
+import { useRouter } from "next/navigation"
+import { ROUTES } from "src/routing"
 
 const EmailAuthForm = () => {
   const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
@@ -18,7 +20,19 @@ const EmailAuthForm = () => {
     }
   )
 
-  const { mutate: callSignIn, isLoading, data } = useSignInWithEmail()
+  // TODO: Isolate
+
+  const router = useRouter()
+
+  const { mutate: callSignIn, isLoading, data } = useSignInWithEmail({
+    onSuccess: ({ token }) => {
+      localStorage.setItem("token", token)
+      // TODO: Save token
+      router.push(ROUTES.BROKERAGES_SELECTION)
+    },
+    onError: (errors) => alert(errors)
+  })
+
 
   return (
     <Form onSubmit={handleSubmit}>
