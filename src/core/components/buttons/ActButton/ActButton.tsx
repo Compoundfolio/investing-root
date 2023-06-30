@@ -1,15 +1,18 @@
 import React, { ButtonHTMLAttributes } from "react"
 import clsx from "clsx"
 import styles from "./ActButton.module.css"
+import { Spinner } from "../../statuses"
 
 interface IActButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: "primary" | "green"
+  isLoading?: boolean
 }
 
 const ActButton = ({
   color = "primary",
   className,
   children,
+  isLoading = false,
   ...restProps
 }: IActButton) => {
   return (
@@ -19,9 +22,10 @@ const ActButton = ({
         styles[`actButton--${color}`],
         className
       )}
+      disabled={isLoading}
       {...restProps}
     >
-      {children}
+      {isLoading ? <Spinner /> : children}
     </button>
   )
 }

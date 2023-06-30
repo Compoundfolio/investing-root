@@ -5,9 +5,7 @@ import { memo } from "react"
 import { Form, Input, useForm } from "src/core/client"
 import { initialValues } from "./consts"
 import validation from "./validation"
-import { useSignInWithEmail } from "src/api/restful"
-import { useRouter } from "next/navigation"
-import { ROUTES } from "src/routing"
+import { useHandleAuthSubmit } from "./hooks"
 
 const EmailAuthForm = () => {
   const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
@@ -20,22 +18,7 @@ const EmailAuthForm = () => {
     }
   )
 
-  // TODO: Isolate
-
-  const router = useRouter()
-
-  const {
-    mutate: callSignIn,
-    isLoading,
-    data,
-  } = useSignInWithEmail({
-    onSuccess: ({ token }) => {
-      localStorage.setItem("token", token)
-      // TODO: Save token
-      router.push(ROUTES.BROKERAGES_SELECTION)
-    },
-    onError: (errors) => alert(errors),
-  })
+  const { mutate: callSignIn, isLoading } = useHandleAuthSubmit()
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -60,7 +43,12 @@ const EmailAuthForm = () => {
         setErrorMessage={setFieldError}
         onChange={handleChange}
       />
-      <ActButton color="green" type="submit" className="w-full">
+      <ActButton
+        color="green"
+        type="submit"
+        className="w-full"
+        isLoading={isLoading}
+      >
         Sign in
       </ActButton>
     </Form>
