@@ -50,7 +50,7 @@ export const DebugObserver = () => {
   }, [])
 
   useEffect(() => {
-    const isAuth = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN);
+    const isAuth = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
 
     if (isAuth) {
       pathname === ROUTES_GUEST.AUTH && router.push(ROUTES.BROKERAGES_SELECTION)
@@ -58,7 +58,7 @@ export const DebugObserver = () => {
     }
 
     pathname !== ROUTES_GUEST.AUTH && router.push(ROUTES_GUEST.AUTH)
-  }, []);
+  }, [])
 
   return null
 }

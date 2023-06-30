@@ -24,15 +24,18 @@ const EmailAuthForm = () => {
 
   const router = useRouter()
 
-  const { mutate: callSignIn, isLoading, data } = useSignInWithEmail({
+  const {
+    mutate: callSignIn,
+    isLoading,
+    data,
+  } = useSignInWithEmail({
     onSuccess: ({ token }) => {
       localStorage.setItem("token", token)
       // TODO: Save token
       router.push(ROUTES.BROKERAGES_SELECTION)
     },
-    onError: (errors) => alert(errors)
+    onError: (errors) => alert(errors),
   })
-
 
   return (
     <Form onSubmit={handleSubmit}>

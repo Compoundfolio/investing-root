@@ -3,7 +3,7 @@ import { createUseMutation } from "src/inversions/queryMaker"
 import restfulApiUrls from "src/api/restful/urls"
 import { EmailAuthData, SignInWithEmailResponse } from "../../types"
 import { Api } from "src/inversions"
-import { HttpRequestErrorResponse } from '../../../../../inversions/api/types';
+import { HttpRequestErrorResponse } from "../../../../../inversions/api/types"
 
 export const useSignInWithEmailKey = "useSignIn" as const
 
@@ -28,16 +28,14 @@ export interface IUseSignInWithEmail {
   onSuccess: MutationOptions["onSuccess"]
   onError: MutationOptions["onError"]
 }
-const useSignInWithEmail = ({
-  onSuccess,
-  onError,
-}: IUseSignInWithEmail) => {
+const useSignInWithEmail = ({ onSuccess, onError }: IUseSignInWithEmail) => {
   return createUseMutation<
     SignInWithEmailResponse,
     HttpRequestErrorResponse,
     IRequestSignInWithEmail["data"]
   >({
-    mutationFn: (data: IRequestSignInWithEmail["data"]) => requestSignInWithEmail({ data }),
+    mutationFn: (data: IRequestSignInWithEmail["data"]) =>
+      requestSignInWithEmail({ data }),
     mutationKey: [useSignInWithEmailKey],
     onSuccess,
     onError,
