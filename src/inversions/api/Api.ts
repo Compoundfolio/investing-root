@@ -1,7 +1,5 @@
 import type { HttpGetRequest, HttpPostRequest } from "./types"
-import { LocalStorageKeysDictionary } from '../../core/consts/localStorageKeys';
-
-// TODO: Reuse stuff ...
+import { withAuthenticationJWT } from './helpers';
 
 /** Abstraction layer for HTTP requests */
 class Api {
@@ -9,11 +7,10 @@ class Api {
     url,
     withToken = true
   }: HttpGetRequest): Promise<TResponse> {
-    const authToken = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        ...(withToken) && { "Authentication": `Bearer ${authToken}` },
+        ...withAuthenticationJWT(withToken),
       }
     })
     const data = await response.json()
@@ -25,12 +22,11 @@ class Api {
     data,
     withToken = true
   }: HttpPostRequest): Promise<TResponse> {
-    const authToken = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        ...(withToken) && { "Authentication": `Bearer ${authToken}` },
+        ...withAuthenticationJWT(withToken),
       },
       body: JSON.stringify(data),
     })
