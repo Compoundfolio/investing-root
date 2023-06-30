@@ -172,6 +172,10 @@ button::after {
   opacity: 0;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 button:focus:not(:active)::after {
   display: block;
 }

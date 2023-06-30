@@ -22,6 +22,7 @@ const ActButton = ({
         styles[`actButton--${color}`],
         className
       )}
+      aria-disabled={isLoading}
       disabled={isLoading}
       {...restProps}
     >

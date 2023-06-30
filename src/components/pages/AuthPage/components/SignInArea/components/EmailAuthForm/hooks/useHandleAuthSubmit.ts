@@ -8,7 +8,6 @@ const useHandleAuthSubmit = () => {
   return useSignInWithEmail({
     onSuccess: ({ token }) => {
       localStorage.setItem("token", token)
-      // TODO: Save token
       router.push(ROUTES.BROKERAGES_SELECTION)
     },
     onError: (errors) => alert(errors),
