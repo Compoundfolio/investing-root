@@ -1,2 +1,1 @@
-export { default as useSignInWithEmail } from "./useSignInWithEmail"
-export * from "./useSignInWithEmail"
+export * from './useAuthWithEmail'

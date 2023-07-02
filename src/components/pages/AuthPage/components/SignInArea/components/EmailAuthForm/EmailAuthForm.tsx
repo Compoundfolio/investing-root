@@ -9,24 +9,32 @@ import { useAuthTypeSwitch, useHandleAuthSubmit } from "./hooks"
 
 const EmailAuthForm = () => {
   const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    setFieldError,
+  } = useForm({
+    validationSchema: validation,
+    initialValues,
+    onSubmit: (values) => {
+      callSignIn({
+        data: values,
+        authType: emailAuthType
+      })
+    },
+  })
+
+  const {
     emailAuthType,
     authTypeSwitcherButtonName,
     handleEmailAuthTypeChange,
   } = useAuthTypeSwitch()
 
-  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm({
-    validationSchema: validation,
-    initialValues,
-    onSubmit: (values) => {
-      callSignIn(values)
-    },
-  })
-
   const {
-    mutate:
-    callSignIn,
+    mutate: callSignIn,
     isLoading,
-  } = useHandleAuthSubmit(emailAuthType)
+  } = useHandleAuthSubmit()
 
   return (
     <Form onSubmit={handleSubmit}>

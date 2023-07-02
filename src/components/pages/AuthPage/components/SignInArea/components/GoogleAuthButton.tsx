@@ -2,22 +2,8 @@
 
 import Image from "next/image"
 import React from "react"
-import { initFirebase } from "../../../../../../../firebase"
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-import { useRouter } from "next/navigation"
-import { useAuthState } from "react-firebase-hooks/auth"
 
 const GoogleAuthButton = () => {
-  const firebaseApp = initFirebase()
-  const provider = new GoogleAuthProvider()
-  const auth = getAuth(firebaseApp)
-  const [user] = useAuthState(auth)
-  const router = useRouter()
-
-  const signIn = async () => {
-    await signInWithPopup(auth, provider)
-  }
-
   return (
     <button
       onClick={signIn}
