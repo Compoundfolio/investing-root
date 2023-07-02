@@ -5,20 +5,28 @@ import { memo } from "react"
 import { Form, Input, useForm } from "src/core/client"
 import { initialValues } from "./consts"
 import validation from "./validation"
-import { useHandleAuthSubmit } from "./hooks"
+import { useAuthTypeSwitch, useHandleAuthSubmit } from "./hooks"
 
 const EmailAuthForm = () => {
-  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
-    {
-      validationSchema: validation,
-      initialValues,
-      onSubmit: (values) => {
-        callSignIn(values)
-      },
-    }
-  )
+  const {
+    emailAuthType,
+    authTypeSwitcherButtonName,
+    handleEmailAuthTypeChange,
+  } = useAuthTypeSwitch()
 
-  const { mutate: callSignIn, isLoading } = useHandleAuthSubmit()
+  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm({
+    validationSchema: validation,
+    initialValues,
+    onSubmit: (values) => {
+      callSignIn(values)
+    },
+  })
+
+  const {
+    mutate:
+    callSignIn,
+    isLoading,
+  } = useHandleAuthSubmit(emailAuthType)
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -51,6 +59,9 @@ const EmailAuthForm = () => {
       >
         Sign in
       </ActButton>
+      <button onClick={handleEmailAuthTypeChange}>
+        {authTypeSwitcherButtonName}
+      </button>
     </Form>
   )
 }

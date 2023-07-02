@@ -10,7 +10,7 @@ export const useSignInWithEmailKey = "useSignIn" as const
 interface IRequestSignInWithEmail {
   data: EmailAuthData
 }
-export const requestSignInWithEmail = async ({
+const requestSignInWithEmail = async ({
   data,
 }: IRequestSignInWithEmail) => {
   return await Api.POST<SignInWithEmailResponse>({
@@ -19,11 +19,13 @@ export const requestSignInWithEmail = async ({
   })
 }
 
+export type EmailAuthType = "signIn" | "signUp"
 type MutationOptions = UseMutationOptions<
   SignInWithEmailResponse,
   HttpRequestErrorResponse,
   IRequestSignInWithEmail["data"]
 >
+
 export interface IUseSignInWithEmail {
   onSuccess: MutationOptions["onSuccess"]
   onError: MutationOptions["onError"]
@@ -34,8 +36,7 @@ const useSignInWithEmail = ({ onSuccess, onError }: IUseSignInWithEmail) => {
     HttpRequestErrorResponse,
     IRequestSignInWithEmail["data"]
   >({
-    mutationFn: (data: IRequestSignInWithEmail["data"]) =>
-      requestSignInWithEmail({ data }),
+    mutationFn: (data: IRequestSignInWithEmail["data"]) => requestSignInWithEmail({ data }),
     mutationKey: [useSignInWithEmailKey],
     onSuccess,
     onError,

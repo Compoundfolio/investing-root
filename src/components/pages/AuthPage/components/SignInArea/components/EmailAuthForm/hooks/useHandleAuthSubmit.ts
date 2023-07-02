@@ -1,8 +1,8 @@
 import { useRouter } from "next/router"
-import { useSignInWithEmail } from "src/api/restful"
+import { EmailAuthType, useSignInWithEmail } from "src/api/restful"
 import { ROUTES } from "src/routing"
 
-const useHandleAuthSubmit = () => {
+const useHandleAuthSubmit = (authType: EmailAuthType) => {
   const router = useRouter()
 
   return useSignInWithEmail({

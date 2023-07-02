@@ -14,10 +14,6 @@ const GoogleAuthButton = () => {
   const [user] = useAuthState(auth)
   const router = useRouter()
 
-  // if (user) {
-  //   router.push("/brokerages-selection");
-  // }
-
   const signIn = async () => {
     await signInWithPopup(auth, provider)
   }
