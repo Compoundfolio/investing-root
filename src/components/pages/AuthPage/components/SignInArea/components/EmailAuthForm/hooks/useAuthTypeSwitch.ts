@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { EmailAuthType } from "src/api/restful"
+import { EmailAuthType } from "../types"
 
 const useAuthTypeSwitch = () => {
   const [emailAuthType, setEmailAuthType] = useState<EmailAuthType>("signUp")

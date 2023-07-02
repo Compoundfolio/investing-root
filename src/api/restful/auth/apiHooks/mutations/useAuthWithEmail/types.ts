@@ -1,14 +1,10 @@
-import { UseMutationOptions } from "@tanstack/react-query"
+import { EmailAuthType } from "src/components/pages/AuthPage/components/SignInArea/components/EmailAuthForm"
 import { EmailAuthData } from "../../../types"
+import { IMutationHookRequestFunctionProps } from "src/inversions/queryMaker"
 
-export interface IRequestSignInWithEmail {
+export interface IEmailAuthRequestRequestBody extends IMutationHookRequestFunctionProps {
   data: EmailAuthData
   authType: EmailAuthType
 }
 
-export type EmailAuthType = "signIn" | "signUp"
 
-export interface IUseSignInWithEmail<Response, ErrorResponse, Data> {
-  onSuccess: UseMutationOptions<Response, ErrorResponse, Data>["onSuccess"]
-  onError: UseMutationOptions<Response, ErrorResponse, Data>["onError"]
-}

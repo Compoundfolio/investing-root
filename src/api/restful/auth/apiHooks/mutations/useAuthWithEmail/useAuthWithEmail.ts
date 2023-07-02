@@ -1,16 +1,15 @@
-import { createUseMutation } from "src/inversions/queryMaker"
+import { MutationHook, createUseMutation } from "src/inversions/queryMaker"
 import restfulApiUrls from "src/api/restful/urls"
 import { SignInWithEmailResponse } from "../../../types"
-import { Api } from "src/inversions"
-import { HttpRequestErrorResponse } from "../../../../../../inversions/api/types"
-import { IRequestSignInWithEmail, IUseSignInWithEmail } from "./types"
+import { Api, HttpRequestErrorResponse } from "src/inversions"
+import { IEmailAuthRequestRequestBody } from "./types"
 
 export const signInWithEmailMutationKey = "useSignIn" as const
 
 const requestAuthWithEmail = async ({
   data,
   authType,
-}: IRequestSignInWithEmail) => {
+}: IEmailAuthRequestRequestBody) => {
   return await Api.POST<SignInWithEmailResponse>({
     url: authType === "signIn"
       ? restfulApiUrls.auth.SIGN_IN_WITH_EMAIL_URL
@@ -19,24 +18,19 @@ const requestAuthWithEmail = async ({
   })
 }
 
-const useAuthWithEmail = <
-  Response extends SignInWithEmailResponse,
-  ErrorResponse extends HttpRequestErrorResponse,
-  Data extends IRequestSignInWithEmail
->({
+const useAuthWithEmail: MutationHook<
+  SignInWithEmailResponse,
+  HttpRequestErrorResponse,
+  IEmailAuthRequestRequestBody
+> = ({
   onSuccess,
   onError,
-}: IUseSignInWithEmail<Response, ErrorResponse, Data>) => {
-  return createUseMutation<
-    Response,
-    ErrorResponse,
-    Data
-  >({
-    mutationFn: ({ data, authType }: Data) => requestAuthWithEmail({ data, authType }),
-    mutationKey: [signInWithEmailMutationKey],
-    onSuccess,
-    onError,
-  })
-}
+}) => createUseMutation({
+  mutationFn: requestAuthWithEmail,
+  mutationKey: [signInWithEmailMutationKey],
+  onSuccess,
+  onError,
+})
+
 
 export default useAuthWithEmail

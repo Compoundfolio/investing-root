@@ -1,5 +1,6 @@
 import type { HttpGetRequest, HttpPostRequest } from "./types"
 import { withAuthenticationJWT } from "./helpers"
+import { buildUrl } from "./consts"
 
 
 /** Abstraction layer for HTTP requests */
@@ -8,7 +9,7 @@ class Api {
     url,
     withToken = true,
   }: HttpGetRequest): Promise<TResponse> {
-    const response = await fetch(url, {
+    const response = await fetch(buildUrl(url), {
       method: "GET",
       headers: {
         ...withAuthenticationJWT(withToken),
@@ -23,7 +24,7 @@ class Api {
     data,
     withToken = true,
   }: HttpPostRequest): Promise<TResponse> {
-    const response = await fetch(url, {
+    const response = await fetch(buildUrl(url), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

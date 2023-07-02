@@ -1,13 +1,13 @@
-import { createUseMutation } from "src/inversions/queryMaker"
+import { MutationHook, createUseMutation } from "src/inversions/queryMaker"
 import restfulApiUrls from "src/api/restful/urls"
 import { SignInWithEmailResponse } from "../../../types"
 import { Api } from "src/inversions"
 import { HttpRequestErrorResponse } from "../../../../../../inversions/api/types"
-import { IRequestSignInWithEmail, IUseSignInWithEmail } from "./types"
+import { IRequestSignInWithEmail } from "./types"
 
-export const useSignInWithEmailKey = "useSignIn" as const
+export const signInWithEmailMutationKey = "useSignIn" as const
 
-const requestAuthWithGoggle = async ({
+const requestAuthWithGoogle = async ({
   data,
 }: IRequestSignInWithEmail) => {
   return await Api.POST<SignInWithEmailResponse>({
@@ -16,17 +16,20 @@ const requestAuthWithGoggle = async ({
   })
 }
 
-const useAuthWithGoogle = ({ onSuccess, onError }: IUseSignInWithEmail) => {
-  return createUseMutation<
-    SignInWithEmailResponse,
-    HttpRequestErrorResponse,
-    IRequestSignInWithEmail
-  >({
-    mutationFn: ({ data }: IRequestSignInWithEmail) => requestAuthWithGoggle({ data }),
-    mutationKey: [useSignInWithEmailKey],
-    onSuccess,
-    onError,
-  })
-}
+const useAuthWithGoogle: MutationHook<
+  SignInWithEmailResponse,
+  HttpRequestErrorResponse,
+  IRequestSignInWithEmail
+> = ({
+  onSuccess,
+  onError,
+}) => {
+    return createUseMutation({
+      mutationFn: ({ data, authType }) => requestAuthWithGoogle({ data, authType }),
+      mutationKey: [signInWithEmailMutationKey],
+      onSuccess,
+      onError,
+    })
+  }
 
 export default useAuthWithGoogle
