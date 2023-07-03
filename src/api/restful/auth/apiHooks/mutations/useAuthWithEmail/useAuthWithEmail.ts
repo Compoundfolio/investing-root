@@ -4,7 +4,7 @@ import { SignInWithEmailResponse } from "../../../types"
 import { Api, HttpRequestErrorResponse } from "src/inversions"
 import { IEmailAuthRequestRequestBody } from "./types"
 
-export const signInWithEmailMutationKey = "useSignIn" as const
+export const signInWithEmailMutationKey = "useAuthWithEmail" as const
 
 const requestAuthWithEmail = async ({
   data,

@@ -34,7 +34,7 @@ import { ROUTES } from "src/routing"
 // }
 
 
-export const signInWithEmailMutationKey = "useSignIn" as const
+export const authWithGoogleMutationKey = "useAuthWithGoogle" as const
 
 const requestAuthWithGoogle = async () => {
   const resp = await Api.GET<AuthWithGooglePreRedirectResponse>({
@@ -60,7 +60,7 @@ const useAuthWithGoogle: MutationHook<
   onError,
 }) => createUseMutation({
   mutationFn: requestAuthWithGoogle,
-  mutationKey: [signInWithEmailMutationKey],
+  mutationKey: [authWithGoogleMutationKey],
   onSuccess,
   onError,
 })
