@@ -8,6 +8,7 @@ import { ShowPasswordButton, ShowPasswordIcon } from "./components"
 import { Control } from "src/core/types"
 import { usePassword } from "./hooks"
 import styles from "./Input.module.css"
+import { colors } from "src/core/theme"
 
 export interface IInput extends Control {
   type?: HTMLInputTypeAttribute
@@ -53,7 +54,10 @@ const Input = ({
         type={isPassword ? activePasswordType : type}
         onChange={onChange}
         className={styles.input}
-        style={isPassword ? { paddingRight: 46 } : {}}
+        style={{
+          ...(isPassword) && { paddingRight: 46 },
+          ...(errorMessage) && { borderColor: colors.pinkSoft },
+        }}
       />
       {isPassword && (
         <ShowPasswordButton togglePasswordVisibility={togglePasswordVisibility}>

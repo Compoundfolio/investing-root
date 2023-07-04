@@ -13,18 +13,24 @@ interface IEmailAuthForm {
   authButtonTitle: string
 }
 
-const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
+const EmailAuthForm = ({
+  emailAuthType,
+  authButtonTitle,
+}: IEmailAuthForm) => {
   const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
     {
-      validationSchema: validation,
+      validationSchema: validation(emailAuthType),
       initialValues,
-      onSubmit: (values) => {
+      onSubmit: ({ email, password }) => {
         callSignIn({
-          data: values,
+          data: {
+            email,
+            password,
+          },
           authType: emailAuthType,
         })
       },
-    }
+    },
   )
 
   const { mutate: callSignIn, isLoading } = useHandleEmailAuthSubmit()
@@ -45,13 +51,25 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
       <Input
         required
         name="password"
-        labelText="Unique password"
+        labelText="Password"
         type="password"
         value={values.password}
         errorMessage={errors.password}
         setErrorMessage={setFieldError}
         onChange={handleChange}
       />
+      {emailAuthType === "signUp" && (
+        <Input
+          required
+          name="passwordConfirmation"
+          labelText="Password confirmation"
+          type="password"
+          value={values.passwordConfirmation}
+          errorMessage={errors.passwordConfirmation}
+          setErrorMessage={setFieldError}
+          onChange={handleChange}
+        />
+      )}
       <ActButton
         color="green"
         type="submit"

@@ -4,17 +4,13 @@ import Image from "next/image"
 import React from "react"
 import { useHandleGoogleAuthSubmit } from "../hooks"
 
-interface IGoogleAuthButton {
-  authTypeTitle: string
-}
-
-const GoogleAuthButton = ({ authTypeTitle }: IGoogleAuthButton) => {
+const GoogleAuthButton = () => {
   const { mutate: authWithGoogle } = useHandleGoogleAuthSubmit()
 
   return (
     <button
       onClick={() => authWithGoogle()}
-      className="justify-center w-full gap-2 px-8 py-3 text-black transition duration-150 bg-white rounded-lg hover:shadow hover:bg-gray-200"
+      className="justify-center gap-2 p-2 text-black transition duration-150 rounded-[30px] w-fit hover:shadow hover:bg-gray-50"
     >
       {/* TODO: Download image */}
       <Image
@@ -24,7 +20,6 @@ const GoogleAuthButton = ({ authTypeTitle }: IGoogleAuthButton) => {
         loading="lazy"
         alt="google logo"
       />
-      <span>{authTypeTitle} with Google</span>
     </button>
   )
 }

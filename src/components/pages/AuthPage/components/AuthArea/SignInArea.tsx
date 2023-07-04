@@ -3,6 +3,7 @@
 import React from "react"
 import { EmailAuthForm, GoogleAuthButton, OrDivider } from "./components"
 import { useAuthTypeSwitch } from "./hooks"
+import { colors } from "src/core/theme"
 
 // TODO: Make it server component somehow ???
 const SignInArea = () => {
@@ -19,25 +20,31 @@ const SignInArea = () => {
       style={{ minHeight: "inherit" }}
     >
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-4xl text-white">Welcome, investor!</h1>
-          <small className="text-lg text-gray-400">{authTitle} with</small>
-        </div>
-        <GoogleAuthButton authTypeTitle={authTitle} />
-        <OrDivider />
+        <h1 className="text-4xl text-center text-white mb-">Welcome, investor!</h1>
         <div>
           <div className="flex flex-col justify-center flex-1 min-h-full">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="flex flex-col gap-2 sm:mx-auto sm:w-full sm:max-w-sm">
               <EmailAuthForm
                 emailAuthType={emailAuthType}
                 authButtonTitle={authTitle}
               />
+              <OrDivider authTitle={authTitle} />
+              <div className="flex justify-center w-full gap-3">
+                <GoogleAuthButton />
+              </div>
             </div>
           </div>
         </div>
-        <button onClick={handleEmailAuthTypeChange}>
-          {authTypeSwitcherButtonName}
-        </button>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-white text-md">Already have an account?</span>
+          <button 
+            className="text-lg underline" 
+            style={{ color: colors.darkGreen }} 
+            onClick={handleEmailAuthTypeChange}
+          >
+            {authTitle}
+          </button>
+        </div>
       </div>
     </section>
   )

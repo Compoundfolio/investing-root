@@ -1,7 +1,7 @@
-import { ReactElement } from "react"
+import { ReactNode } from "react"
 
 interface IReactChildren {
-  children?: ReactElement | string | ReactElement[] | number
+  children?: ReactNode
   className?: string
   title?: string
 }

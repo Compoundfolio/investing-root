@@ -1,17 +1,18 @@
 import React, { memo } from "react"
 import { HIGHEST_PRIORITY_Z_INDEX_VALUE } from "../../theme/otherCssRelatedConsts"
+import clsx from 'clsx';
 
 interface IAppLogo {
-  width?: number
   withTitle?: boolean
+  className?: string
 }
 
-const AppLogo = ({ width = 48, withTitle = false }: IAppLogo) => {
+const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
   return (
     // {/* TODO: Kill style */}
     <div
       style={{ zIndex: HIGHEST_PRIORITY_Z_INDEX_VALUE }}
-      className="flex items-center gap-2.5"
+      className={clsx("flex items-center gap-2.5", className)}
     >
       <svg
         width="48"
