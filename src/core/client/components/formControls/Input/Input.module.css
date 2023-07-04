@@ -1,11 +1,11 @@
 .input {
   width: 100%;
-  padding: 11px 1px;
+  padding: 5.5px 11px;
   margin-block: 8px;
   background: rgba(18, 144, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;

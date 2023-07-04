@@ -43,7 +43,7 @@ const requestAuthWithGoogle = async () => {
   const redirectUrl = window.location.origin + ROUTES.BROKERAGES_SELECTION // TODO: Change to dashboard
 
   const authSrc =
-    `${process.env.NEXT_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${process.env.NEXT_GOOGLE_AUTH_CLIENT_ID}` +
+    `${process.env.NEXT_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${process.env.NEXT_GOOGLE_AUTH_CLIENT_ID}` + // <---- supar undefined
     `&response_type=code&scope=${encodeURIComponent("openid email")}` +
     `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
     `&state=${resp.state}`
