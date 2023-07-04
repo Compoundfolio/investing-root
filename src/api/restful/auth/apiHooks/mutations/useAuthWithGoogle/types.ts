@@ -1,6 +1,7 @@
-import { IMutationHookRequestFunctionProps } from "src/inversions/queryMaker";
+import { IMutationHookRequestFunctionProps } from "src/inversions/queryMaker"
 
-export interface IRequestSignInWithGoogle extends IMutationHookRequestFunctionProps {
+export interface IRequestSignInWithGoogle
+  extends IMutationHookRequestFunctionProps {
   data: any // TODO:
 }
 

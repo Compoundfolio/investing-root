@@ -20,7 +20,7 @@ const AppLogo = ({ width = 48, withTitle = false }: IAppLogo) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_1_3777)">
+        <g clipPath="url(#clip0_1_3777)">
           <rect
             width="48"
             height="48"
@@ -75,7 +75,7 @@ const AppLogo = ({ width = 48, withTitle = false }: IAppLogo) => {
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
@@ -110,7 +110,7 @@ const AppLogo = ({ width = 48, withTitle = false }: IAppLogo) => {
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
@@ -145,7 +145,7 @@ const AppLogo = ({ width = 48, withTitle = false }: IAppLogo) => {
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"

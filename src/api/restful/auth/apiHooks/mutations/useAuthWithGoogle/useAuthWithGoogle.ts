@@ -33,7 +33,6 @@ import { ROUTES } from "src/routing"
 //         })
 // }
 
-
 export const authWithGoogleMutationKey = "useAuthWithGoogle" as const
 
 const requestAuthWithGoogle = async () => {
@@ -43,27 +42,27 @@ const requestAuthWithGoogle = async () => {
 
   const redirectUrl = window.location.origin + ROUTES.BROKERAGES_SELECTION // TODO: Change to dashboard
 
-  const authSrc = `${process.env.NEXT_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${process.env.NEXT_GOOGLE_AUTH_CLIENT_ID}` +
+  const authSrc =
+    `${process.env.NEXT_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${process.env.NEXT_GOOGLE_AUTH_CLIENT_ID}` +
     `&response_type=code&scope=${encodeURIComponent("openid email")}` +
     `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
     `&state=${resp.state}`
 
   // TODO: I assume, it worth it to make redirection via Nex.js -provided tools
   window.location.href = authSrc
+
+  // TODO: Figure out, where {token} data are coming from here
 }
 
-const useAuthWithGoogle: MutationHook<
-  void,
-  HttpRequestErrorResponse
-> = ({
+const useAuthWithGoogle: MutationHook<any, HttpRequestErrorResponse> = ({
   onSuccess,
   onError,
-}) => createUseMutation({
-  mutationFn: requestAuthWithGoogle,
-  mutationKey: [authWithGoogleMutationKey],
-  onSuccess,
-  onError,
-})
-
+}) =>
+  createUseMutation({
+    mutationFn: requestAuthWithGoogle,
+    mutationKey: [authWithGoogleMutationKey],
+    onSuccess,
+    onError,
+  })
 
 export default useAuthWithGoogle

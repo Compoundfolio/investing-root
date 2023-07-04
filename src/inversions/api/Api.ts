@@ -2,7 +2,6 @@ import type { HttpGetRequest, HttpPostRequest } from "./types"
 import { withAuthenticationJWT } from "./helpers"
 import { buildUrl } from "./consts"
 
-
 /** Abstraction layer for HTTP requests */
 class Api {
   static async GET<TResponse>({

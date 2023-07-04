@@ -1,17 +1,16 @@
-import { useRouter } from "next/router"
-import { useAuthWithEmail } from "src/api/restful"
+import { useRouter } from "next/navigation"
 import { ROUTES } from "src/routing"
 
-const useHandleAuthSubmit = () => {
+const useCommonAuthSubmitOptions = () => {
   const router = useRouter()
 
-  return useAuthWithEmail({
+  return {
     onSuccess: ({ token }) => {
       localStorage.setItem("token", token)
       router.push(ROUTES.BROKERAGES_SELECTION)
     },
     onError: (errors) => alert(errors),
-  })
+  }
 }
 
-export default useHandleAuthSubmit
+export default useCommonAuthSubmitOptions

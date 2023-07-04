@@ -12,4 +12,8 @@ export interface IMutationHookRequestFunctionProps {
 export type MutationHook<Response, ErrorResponse, Data = void> = ({
   onSuccess,
   onError,
-}: IMutationHookProps<Response, ErrorResponse, Data>) => UseMutationResult<Response, ErrorResponse, Data>
+}: IMutationHookProps<Response, ErrorResponse, Data>) => UseMutationResult<
+  Response,
+  ErrorResponse,
+  Data
+>

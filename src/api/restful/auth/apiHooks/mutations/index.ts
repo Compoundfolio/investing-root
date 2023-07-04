@@ -1,2 +1,2 @@
-export * from './useAuthWithEmail'
-export * from './useAuthWithGoogle'
+export * from "./useAuthWithEmail"
+export * from "./useAuthWithGoogle"

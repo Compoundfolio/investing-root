@@ -3,7 +3,7 @@ import "./global.css"
 
 import { Montserrat } from "next/font/google"
 import { DebugObserver } from "src/utils"
-import { RecoilRootWrapper } from "./rootWrappers"
+import { ReactQueryProvider, RecoilRootWrapper } from "./rootWrappers"
 import clsx from "clsx"
 import { SideBar } from "@srcComponents"
 
@@ -26,13 +26,15 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body>
-        <RecoilRootWrapper>
-          <DebugObserver />
-          <main className={clsx([styles.main, montserrat.className])}>
-            <SideBar />
-            <div className={styles.container}>{children}</div>
-          </main>
-        </RecoilRootWrapper>
+        <ReactQueryProvider>
+          <RecoilRootWrapper>
+            <DebugObserver />
+            <main className={clsx([styles.main, montserrat.className])}>
+              <SideBar />
+              <div className={styles.container}>{children}</div>
+            </main>
+          </RecoilRootWrapper>
+        </ReactQueryProvider>
       </body>
     </html>
   )

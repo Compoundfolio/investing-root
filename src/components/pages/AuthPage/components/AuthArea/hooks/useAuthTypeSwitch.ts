@@ -5,17 +5,16 @@ const useAuthTypeSwitch = () => {
   const [emailAuthType, setEmailAuthType] = useState<EmailAuthType>("signUp")
 
   const handleEmailAuthTypeChange = () => {
-    setEmailAuthType(prev => prev === "signIn"
-      ? "signUp"
-      : "signIn"
-    )
+    setEmailAuthType((prev) => (prev === "signIn" ? "signUp" : "signIn"))
   }
 
-  const authTypeSwitcherButtonName = emailAuthType === "signIn"
-    ? "I don't have an account"
-    : "I have an account"
+  const authTypeSwitcherButtonName =
+    emailAuthType === "signIn" ? "I don't have an account" : "I have an account"
+
+  const authTitle = emailAuthType === "signIn" ? "Sign in" : "Sign up"
 
   return {
+    authTitle,
     emailAuthType,
     authTypeSwitcherButtonName,
     handleEmailAuthTypeChange,

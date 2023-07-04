@@ -11,9 +11,10 @@ const requestAuthWithEmail = async ({
   authType,
 }: IEmailAuthRequestRequestBody) => {
   return await Api.POST<SignInWithEmailResponse>({
-    url: authType === "signIn"
-      ? restfulApiUrls.auth.SIGN_IN_WITH_EMAIL_URL
-      : restfulApiUrls.auth.SIGN_UP_WITH_EMAIL_URL,
+    url:
+      authType === "signIn"
+        ? restfulApiUrls.auth.SIGN_IN_WITH_EMAIL_URL
+        : restfulApiUrls.auth.SIGN_UP_WITH_EMAIL_URL,
     data,
   })
 }
@@ -22,15 +23,12 @@ const useAuthWithEmail: MutationHook<
   SignInWithEmailResponse,
   HttpRequestErrorResponse,
   IEmailAuthRequestRequestBody
-> = ({
-  onSuccess,
-  onError,
-}) => createUseMutation({
-  mutationFn: requestAuthWithEmail,
-  mutationKey: [signInWithEmailMutationKey],
-  onSuccess,
-  onError,
-})
-
+> = ({ onSuccess, onError }) =>
+  createUseMutation({
+    mutationFn: requestAuthWithEmail,
+    mutationKey: [signInWithEmailMutationKey],
+    onSuccess,
+    onError,
+  })
 
 export default useAuthWithEmail

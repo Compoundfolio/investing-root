@@ -2,7 +2,7 @@ import React from "react"
 import { AppLogo, colors } from "@core"
 import styles from "./AuthPage.module.css"
 import clsx from "clsx"
-import { PresentativeArea, SignInArea } from "./components"
+import { PresentativeArea, AuthArea } from "./components"
 
 const AuthPage = () => {
   // TODO: Rid off using style
@@ -15,7 +15,7 @@ const AuthPage = () => {
         <div>
           <AppLogo withTitle />
         </div>
-        <SignInArea />
+        <AuthArea />
       </div>
       <div
         className="flex items-center justify-center w-20 h-full gradient"

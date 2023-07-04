@@ -5,36 +5,29 @@ import { memo } from "react"
 import { Form, Input, useForm } from "src/core/client"
 import { initialValues } from "./consts"
 import validation from "./validation"
-import { useAuthTypeSwitch, useHandleAuthSubmit } from "./hooks"
+import { EmailAuthType } from "../../types"
+import { useHandleEmailAuthSubmit } from "../../hooks"
 
-const EmailAuthForm = () => {
-  const {
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    setFieldError,
-  } = useForm({
-    validationSchema: validation,
-    initialValues,
-    onSubmit: (values) => {
-      callSignIn({
-        data: values,
-        authType: emailAuthType
-      })
-    },
-  })
+interface IEmailAuthForm {
+  emailAuthType: EmailAuthType
+  authButtonTitle: string
+}
 
-  const {
-    emailAuthType,
-    authTypeSwitcherButtonName,
-    handleEmailAuthTypeChange,
-  } = useAuthTypeSwitch()
+const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
+  const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
+    {
+      validationSchema: validation,
+      initialValues,
+      onSubmit: (values) => {
+        callSignIn({
+          data: values,
+          authType: emailAuthType,
+        })
+      },
+    }
+  )
 
-  const {
-    mutate: callSignIn,
-    isLoading,
-  } = useHandleAuthSubmit()
+  const { mutate: callSignIn, isLoading } = useHandleEmailAuthSubmit()
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -65,11 +58,8 @@ const EmailAuthForm = () => {
         className="w-full"
         isLoading={isLoading}
       >
-        Sign in
+        {authButtonTitle}
       </ActButton>
-      <button onClick={handleEmailAuthTypeChange}>
-        {authTypeSwitcherButtonName}
-      </button>
     </Form>
   )
 }

@@ -1,2 +1,2 @@
-export { default as SignInArea } from "./SignInArea"
+export { default as AuthArea } from "./AuthArea"
 export { default as PresentativeArea } from "./PresentativeArea"
