@@ -10,7 +10,7 @@ const SignInArea = () => {
   const {
     authTitle,
     emailAuthType,
-    authTypeSwitcherButtonName,
+    authTypeSwitcherTitle,
     handleEmailAuthTypeChange,
   } = useAuthTypeSwitch()
 
@@ -36,13 +36,13 @@ const SignInArea = () => {
           </div>
         </div>
         <div className="flex items-center justify-center gap-2">
-          <span className="text-white text-md">Already have an account?</span>
+          <span className="text-white text-md">{authTypeSwitcherTitle}</span>
           <button 
             className="text-lg underline" 
             style={{ color: colors.darkGreen }} 
             onClick={handleEmailAuthTypeChange}
           >
-            {authTitle}
+            {emailAuthType === "signIn" ? "Sign up" : "Sign in"}
           </button>
         </div>
       </div>
