@@ -6,10 +6,10 @@ const useCommonAuthSubmitOptions = () => {
 
   return {
     onSuccess: ({ token }) => {
-      localStorage.setItem("token", token)
       router.push(ROUTES.BROKERAGES_SELECTION)
+      localStorage.setItem("token", token)
     },
-    onError: (errors) => alert(errors),
+    onError: (error) => alert(error), // TODO: Err handling
   }
 }
 

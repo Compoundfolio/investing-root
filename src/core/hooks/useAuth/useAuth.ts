@@ -1,6 +1,6 @@
 const useAuth = () => {
   return {
-    isAuth: !!localStorage.getItem("token")
+    isAuth: !!localStorage.getItem("token"),
   }
 }
 

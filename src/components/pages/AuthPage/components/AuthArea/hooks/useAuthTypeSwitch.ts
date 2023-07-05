@@ -9,7 +9,9 @@ const useAuthTypeSwitch = () => {
   }
 
   const authTypeSwitcherTitle =
-    emailAuthType === "signIn" ? "Already have an account?" : "Don't have an account?"
+    emailAuthType === "signIn"
+      ? "Already have an account?"
+      : "Don't have an account?"
 
   const authTitle = emailAuthType === "signIn" ? "Sign in" : "Sign up"
 

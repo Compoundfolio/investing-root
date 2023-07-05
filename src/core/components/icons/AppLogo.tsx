@@ -1,6 +1,6 @@
 import React, { memo } from "react"
 import { HIGHEST_PRIORITY_Z_INDEX_VALUE } from "../../theme/otherCssRelatedConsts"
-import clsx from 'clsx';
+import clsx from "clsx"
 
 interface IAppLogo {
   withTitle?: boolean

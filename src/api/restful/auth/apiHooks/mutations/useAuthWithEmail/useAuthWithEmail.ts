@@ -9,8 +9,7 @@ export const signInWithEmailMutationKey = "useAuthWithEmail" as const
 const requestAuthWithEmail = async ({
   data,
   authType,
-}: IEmailAuthRequestRequestBody) => {  
-  alert(12333)
+}: IEmailAuthRequestRequestBody) => {
   return await Api.POST<SignInWithEmailResponse>({
     url:
       authType === "signIn"

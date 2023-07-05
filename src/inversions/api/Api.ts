@@ -1,5 +1,5 @@
 import type { HttpGetRequest, HttpPostRequest } from "./types"
-import { withAuthenticationJWT } from "./helpers"
+import { getHttpRequestResult, withAuthenticationJWT } from "./helpers"
 import { buildUrl } from "./consts"
 
 /** Abstraction layer for HTTP requests */
@@ -15,9 +15,7 @@ class Api {
       },
     })
 
-    const data = await response.json()
-
-    return data
+    return await getHttpRequestResult(response)
   }
 
   static async POST<TResponse>({
@@ -33,8 +31,8 @@ class Api {
       },
       body: JSON.stringify(data),
     })
-    const res = await response.json()
-    return res
+
+    return await getHttpRequestResult(response)
   }
 }
 

@@ -55,8 +55,8 @@ const Input = ({
         onChange={onChange}
         className={styles.input}
         style={{
-          ...(isPassword) && { paddingRight: 46 },
-          ...(errorMessage) && { borderColor: colors.pinkSoft },
+          ...(isPassword && { paddingRight: 46 }),
+          ...(errorMessage && { borderColor: colors.pinkSoft }),
         }}
       />
       {isPassword && (

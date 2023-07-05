@@ -13,17 +13,12 @@ interface IEmailAuthForm {
   authButtonTitle: string
 }
 
-const EmailAuthForm = ({
-  emailAuthType,
-  authButtonTitle,
-}: IEmailAuthForm) => {
+const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
   const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
     {
       validationSchema: validation(emailAuthType),
       initialValues,
       onSubmit: ({ email, password }) => {
-        alert(12);
-        
         callSignIn({
           data: {
             email,
@@ -32,12 +27,11 @@ const EmailAuthForm = ({
           authType: emailAuthType,
         })
       },
-    },
+    }
   )
 
   const { mutate: callSignIn, isLoading } = useHandleEmailAuthSubmit()
-  console.log(1,isLoading);
-  
+  console.log(1, isLoading)
 
   return (
     <Form onSubmit={handleSubmit}>
