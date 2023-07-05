@@ -12,7 +12,7 @@ const AuthPage = () => {
         className="z-10 flex flex-col flex-1 h-full"
         style={{ minHeight: "inherit" }}
       >
-        <AppLogo className="absolute" />
+        <AppLogo className="absolute top-8 left-8" />
         <AuthArea />
       </div>
       <div

@@ -19,8 +19,8 @@ const SignInArea = () => {
       className="flex flex-col items-center justify-center h-full"
       style={{ minHeight: "inherit" }}
     >
-      <div className="flex flex-col gap-8">
-        <h1 className="text-4xl text-center text-white mb-">Welcome, investor!</h1>
+      <div className="flex flex-col gap-12">
+        <h1 className="text-4xl text-center text-white mb-">{emailAuthType === "signIn" ? "Sign in to account" : "Create an account"}</h1>
         <div>
           <div className="flex flex-col justify-center flex-1 min-h-full">
             <div className="flex flex-col gap-2 sm:mx-auto sm:w-full sm:max-w-sm">
