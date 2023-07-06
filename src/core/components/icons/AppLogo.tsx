@@ -33,7 +33,7 @@ const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
             height="48"
             rx="8"
             fill="#000040"
-            fill-opacity="0.3"
+            fillOpacity="0.3"
           />
           <g filter="url(#filter0_d_1_3777)">
             <rect
@@ -74,7 +74,7 @@ const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
             width="93.7471"
             height="93.7471"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
@@ -109,7 +109,7 @@ const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
             width="90.3103"
             height="90.3103"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
@@ -144,7 +144,7 @@ const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
             width="86.8735"
             height="86.8736"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
@@ -180,8 +180,8 @@ const AppLogo = ({ withTitle = false, className = "" }: IAppLogo) => {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(23.3667 24.36) rotate(46.8573) scale(27.054 47.4568)"
           >
-            <stop offset="0.00697357" stop-color="#33394C" />
-            <stop offset="0.747806" stop-color="#0F6F72" stop-opacity="0.69" />
+            <stop offset="0.00697357" stopColor="#33394C" />
+            <stop offset="0.747806" stopColor="#0F6F72" stopOpacity="0.69" />
           </radialGradient>
           <clipPath id="clip0_1_3777">
             <rect width="48" height="48" rx="8" fill="white" />

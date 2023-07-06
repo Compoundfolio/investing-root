@@ -50,6 +50,8 @@ export const DebugObserver = () => {
   }, [])
 
   useEffect(() => {
+    if (![...Object.values(ROUTES), ...Object.values(ROUTES_GUEST)].includes(pathname as any)) return // <-- TODO: Refactor. Source of potential bugs ...
+
     const isAuth = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
 
     if (isAuth) {

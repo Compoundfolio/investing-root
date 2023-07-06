@@ -42,7 +42,7 @@ const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
           rx="0.757716"
           ry="0.822687"
           fill="#EBEBF5"
-          fill-opacity="0.3"
+          fillOpacity="0.3"
         />
       </svg>
       <span
