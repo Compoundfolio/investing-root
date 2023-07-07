@@ -21,7 +21,10 @@ const validation = (emailAuthType: EmailAuthType) =>
     ...(emailAuthType === "signUp" && {
       passwordConfirmation: string()
         .required("Please, confirm your password.")
-        .oneOf([ref("password")], "Your password confirmation should match the password"),
+        .oneOf(
+          [ref("password")],
+          "Your password confirmation should match the password"
+        ),
     }),
   })
 

@@ -10,7 +10,7 @@ export const getHttpRequestResult = async (response: Response) => {
   const res = await response.json()
 
   if (status.startsWith("4") || status.startsWith("5")) {
-    throw new Error(res?.message ?? res) // res will contain error
+    throw new Error(res) // res will contain error
   }
 
   return res

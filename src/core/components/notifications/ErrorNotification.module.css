@@ -1,0 +1,6 @@
+.errorNotification_wrap {
+  @apply flex gap-2.5 p-2;
+  background-color: rgba(255, 74, 122, 0.2);
+  border-left: 5px solid var(--color-pinkSoft);
+  border-radius: 2px;
+}

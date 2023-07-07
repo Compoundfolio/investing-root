@@ -30,11 +30,14 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
     }
   )
 
-  const { mutate: callSignIn, isLoading } = useHandleEmailAuthSubmit()
-  console.log(1, isLoading)
+  const { mutate: callSignIn, isLoading, error } = useHandleEmailAuthSubmit()
+  console.log(error)
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      onSubmit={handleSubmit}
+      postSubmitError={error as any} // TODO: Remove any
+    >
       <Input
         required
         autofocus

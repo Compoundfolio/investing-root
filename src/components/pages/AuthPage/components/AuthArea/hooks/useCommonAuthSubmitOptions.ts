@@ -13,7 +13,7 @@ const useCommonAuthSubmitOptions = () => {
     },
     onError: (error) => {
       console.log(error)
-      alert(error)
+      // alert(error)
     }, // TODO: Err handling
   }
 }

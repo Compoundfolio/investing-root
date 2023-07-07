@@ -10,3 +10,7 @@ export interface HttpPostRequest extends HttpRequest {
 }
 
 export type HttpRequestErrorResponse = string
+export type PostFormSubmitError = {
+  message: string
+  details: string
+}
