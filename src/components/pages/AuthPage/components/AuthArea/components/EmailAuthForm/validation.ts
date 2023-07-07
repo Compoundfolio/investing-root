@@ -8,7 +8,7 @@ const validation = (emailAuthType: EmailAuthType) =>
     email: string()
       .email("Invalid email format")
       .max(256, `Value shouldn't be longer then 256 chars`)
-      .required("Email is required"),
+      .required("Please, provide your email"),
 
     password: string()
       .min(8, "Password must be at least 8 characters long")
@@ -16,12 +16,12 @@ const validation = (emailAuthType: EmailAuthType) =>
       .matches(/[a-z]/, "Password requires at least 1 lowercase letter")
       .matches(/[A-Z]/, "Password requires at least 1 uppercase letter")
       .matches(/[^\w]/, "Password requires at least 1 symbol")
-      .required("Password is required"),
+      .required("Please, provide your password"),
 
     ...(emailAuthType === "signUp" && {
       passwordConfirmation: string()
-        .required("Password confirmation is required")
-        .oneOf([ref("password")], "Your passwords do not match"),
+        .required("Please, confirm your password.")
+        .oneOf([ref("password")], "Your password confirmation should match the password"),
     }),
   })
 
