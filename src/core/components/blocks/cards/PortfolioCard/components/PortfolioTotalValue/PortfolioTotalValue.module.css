@@ -1,0 +1,14 @@
+.portfolioCard__totalValue {
+  padding-inline: 12px;
+  padding-block: 4px;
+  background-color: var(--color-blueDark2D);
+  width: 100%;
+  text-align: center;
+  color: var(--color-white);
+  text-align: center;
+  font-family: Chakra Petch;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
