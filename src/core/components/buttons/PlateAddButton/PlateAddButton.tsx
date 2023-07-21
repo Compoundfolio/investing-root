@@ -1,11 +1,8 @@
-"use client"
-
 import React from 'react'
 import { AddIcon } from '../../icons'
 import styles from './PlateAddButton.module.css'
 
 interface IPlateAddButton {
-  /** @example "Add something" */
   title: string
   onClick: () => void
 }
