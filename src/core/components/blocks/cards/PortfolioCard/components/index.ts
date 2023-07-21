@@ -1,1 +1,2 @@
-export * from './PortfolioTotalValue';
+export * from './PortfolioTotalValue'
+export * from './PortfolioLogo'

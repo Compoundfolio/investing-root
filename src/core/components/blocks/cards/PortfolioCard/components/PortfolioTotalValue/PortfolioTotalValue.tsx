@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './PortfolioTotalValue.module.css'
 
 interface IPortfolioTotalValue {
   totalValueNumber: number
@@ -6,7 +7,9 @@ interface IPortfolioTotalValue {
 
 const PortfolioTotalValue = ({ totalValueNumber }: IPortfolioTotalValue) => {
   return (
-    <span>{totalValueNumber}</span>
+    <span className={styles.portfolioCard__totalValue}>
+      {totalValueNumber}
+    </span>
   )
 }
 
