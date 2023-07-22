@@ -11,7 +11,7 @@ const PortfolioCardStatsItem = ({
   value,
 }: IPortfolioCardStatsItem) => {
   return (
-    <div>
+    <div className='flex items-center gap-1.5'>
       <span>{title}</span>
       <span>{value}</span>
     </div>
