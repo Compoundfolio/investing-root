@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import style from "./PortfolioCard.module.css"
-import { PortfolioLogo, PortfolioTotalValue } from './components'
+import { PortfolioLogo, PortfolioStatsPreview, PortfolioTotalValue } from './components'
+import { PortfolioCardStatistic } from './components/PortfolioStatsPreview/types';
 
 interface IPortfolioCard {
   title: string
@@ -9,6 +10,13 @@ interface IPortfolioCard {
 const PortfolioCard = ({
   title,
 }: IPortfolioCard) => {
+
+  // TODO: Rid off
+  const HARDCODED_STATS: PortfolioCardStatistic[] = [
+    { title: "Total Return", value: 264 },
+    { title: "Annual Income", value: 60001 },
+  ]
+
   return (
     <article className={style.portfolioCard}>
       <PortfolioLogo
@@ -20,7 +28,9 @@ const PortfolioCard = ({
       <PortfolioTotalValue
         totalValueNumber={96592}
       />
-      {/* TODO: Stats */}
+      <PortfolioStatsPreview
+        stats={HARDCODED_STATS}
+      />
       {/* TODO: Brokerages list */}
       {/* TODO: Goal progress */}
     </article>
