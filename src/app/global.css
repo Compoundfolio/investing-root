@@ -152,39 +152,38 @@ a {
 }
 
 /* Button style */
+
 button {
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-button::after {
-  display: none;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(217, 217, 217, 0.3);
-
-  /* Center the ripple */
-  top: 50%;
-  left: 50%;
-
-  animation: ripple 1s;
-  opacity: 0;
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-button:focus:not(:active)::after {
-  display: block;
+  transform: translate3d(0, 0, 0);
 }
 
 button:hover {
   opacity: 0.9;
+}
+
+button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10,10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+
+button:active:after {
+  transform: scale(0,0);
+  opacity: .2;
+  transition: 0s;
 }
 
 /* Tab style */
@@ -195,17 +194,6 @@ button:hover {
 /* When mouse is detected, ALL focused elements have outline removed. */
 body.using-mouse :focus {
   outline: none;
-}
-
-@keyframes ripple {
-  from {
-    opacity: 1;
-    transform: scale(0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(10);
-  }
 }
 
 /*  */
