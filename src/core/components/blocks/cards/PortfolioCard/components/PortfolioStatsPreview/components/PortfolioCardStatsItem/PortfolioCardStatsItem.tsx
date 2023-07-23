@@ -1,5 +1,6 @@
 import React from 'react'
 import { PortfolioCardStatistic } from '../../types'
+import styles from "./PortfolioCardStatsItem.module.css"
 
 interface IPortfolioCardStatsItem {
   title: PortfolioCardStatistic['title']
@@ -12,8 +13,12 @@ const PortfolioCardStatsItem = ({
 }: IPortfolioCardStatsItem) => {
   return (
     <div className='flex items-center gap-1.5'>
-      <span>{title}</span>
-      <span>{value}</span>
+      <span className={styles.portfolioCard__stats_item__title}>
+        {title}:
+      </span>
+      <span className={styles.portfolioCard__stats_item__value}>
+        ${value}
+      </span>
     </div>
   )
 }

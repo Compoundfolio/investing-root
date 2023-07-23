@@ -1,1 +1,1 @@
-export * from './PortfolioCard';
+export { default as PortfolioCard } from './PortfolioCard';

@@ -8,7 +8,7 @@ interface IPortfolioTotalValue {
 const PortfolioTotalValue = ({ totalValueNumber }: IPortfolioTotalValue) => {
   return (
     <span className={styles.portfolioCard__totalValue}>
-      {totalValueNumber}
+      ${totalValueNumber}
     </span>
   )
 }

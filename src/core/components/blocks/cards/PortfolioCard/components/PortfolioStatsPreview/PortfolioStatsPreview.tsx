@@ -10,7 +10,7 @@ const PortfolioStatsPreview = ({
   stats,
 }: IPortfolioStatsPreview) => {
   return (
-    <section className='flex flex-col items-center gap-2 mt-3.5'>
+    <section className='flex flex-col items-center gap-2'>
       {stats.map(({ title, value }) => (
         <PortfolioCardStatsItem
           key={title}
