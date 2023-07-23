@@ -5,7 +5,8 @@ import { PortfoliosMenu } from './components'
 import { Divider, Portfolio } from '@core';
 
 // TODO: Rid of
-const HARD_CODED = [{ id: "dsf3", title: "My Dividend Growth FI" }, { id: "sdf3", title: "My Dividend Growth FI 2" }]
+// const HARD_CODED = [{ id: "dsf3", title: "My Dividend Growth FI" }, { id: "sdf3", title: "My Dividend Growth FI 2" }]
+const HARD_CODED = []
 
 const PortfoliosManagementPage = () => {
 

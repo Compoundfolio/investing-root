@@ -18,17 +18,24 @@ const PortfoliosMenu = ({
 
   const [ selectedPortfolioCard, setSelectedPortfolioCard ] = useState<Portfolio>()
 
+  const isNoPortfolios = portfolioList.length === 0
+
   const {
     createNewPortfolioCard,
   } = useCreatePortfolio({
     addPortfolio,
+    isNoPortfolios,
   })
 
   useEffect(() => {
     if (portfolioList.length === 1) {
       setSelectedPortfolioCard(portfolioList[0])
     }
-  }, [])
+  }, [portfolioList])
+
+  const containerClasses = portfolioList.length
+    ? 'flex items-center w-full gap-8'
+    : 'flex items-center w-full h-full justify-center'
 
   const setSelectedPortfolioCardById = useCallback((id: string) => {
     const portfolioToSelect = portfolioList.find(portfolio => portfolio.id === id)
@@ -38,16 +45,19 @@ const PortfoliosMenu = ({
   }, [portfolioList, selectedPortfolioCard])
 
   return (
-    <section className='flex items-center w-full gap-8'>
+    <section className={containerClasses}>
       <PlateAddButton
         title='Create Portfolio'
+        isNoPortfolios={isNoPortfolios}
         onClick={createNewPortfolioCard}
       />
-      <PortfolioCardList
-        portfolioEntityList={portfolioList}
-        selectedPortfolioCardId={selectedPortfolioCard?.id}
-        setSelectedPortfolioCardId={setSelectedPortfolioCardById}
-      />
+      {!!portfolioList.length && (
+        <PortfolioCardList
+          portfolioEntityList={portfolioList}
+          selectedPortfolioCardId={selectedPortfolioCard?.id}
+          setSelectedPortfolioCardId={setSelectedPortfolioCardById}
+        />
+      )}
     </section>
   )
 }

@@ -31,7 +31,9 @@ export default function RootLayout({
             <DebugObserver />
             <main className={clsx([styles.main, montserrat.className])}>
               <SideBar />
-              <div className={styles.container}>{children}</div>
+              <div className={styles.container} id="contentArea">
+                {children}
+              </div>
             </main>
           </RecoilRootWrapper>
         </ReactQueryProvider>

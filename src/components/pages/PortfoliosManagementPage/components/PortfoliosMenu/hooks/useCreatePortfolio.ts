@@ -1,13 +1,16 @@
 import { IPortfoliosMenu } from "../PortfoliosMenu"
 import { Portfolio } from '@core';
+import { causeGentleUiTransition } from "./helpers";
 
 interface IUseCreatePortfolio {
   addPortfolio: IPortfoliosMenu['addPortfolio']
+  isNoPortfolios: boolean
 }
 
 /** Handles the portfolio card creation logic */
 const useCreatePortfolio = ({
   addPortfolio,
+  isNoPortfolios,
 }: IUseCreatePortfolio) => {
   const emptyPortfolioTemplate: Portfolio = {
     id: `${Math.random()}`,
@@ -16,7 +19,11 @@ const useCreatePortfolio = ({
 
   const createNewPortfolioCard = () => {
     // TODO: Server request
-    addPortfolio(emptyPortfolioTemplate)
+    if (isNoPortfolios) {
+      causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
+    } else {
+      addPortfolio(emptyPortfolioTemplate)
+    }
   }
 
   return {

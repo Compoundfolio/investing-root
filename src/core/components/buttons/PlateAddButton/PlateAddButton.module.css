@@ -10,6 +10,11 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  transition: box-shadow ease-in-out 0.5s;
+}
+
+.plateButton__active:hover {
+  box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.20);
 }
 
 .plateButton__icon {
@@ -24,4 +29,22 @@
   font-style: normal;
   font-weight: 600;
   line-height: 24px;
+}
+
+.plateButton_subMessageTitle {
+  color: var(--color-gray4C);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.plateButton_messageTitle {
+  color: var(--color-white);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
 }
