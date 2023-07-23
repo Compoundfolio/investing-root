@@ -5,7 +5,7 @@ import clsx from "clsx"
 import { PresentativeArea, AuthArea } from "./components"
 
 const AuthPage = () => {
-  // TODO: Rid off using style
+  // TODO: Ride of using style
   return (
     <section className={clsx(styles.authContainer, "flex w-full h-full")}>
       <div

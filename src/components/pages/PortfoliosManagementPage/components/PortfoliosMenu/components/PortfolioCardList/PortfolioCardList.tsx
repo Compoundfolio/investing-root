@@ -2,12 +2,16 @@ import { Portfolio, PortfolioCard } from '@core'
 import React, { memo } from 'react'
 import styles from './PortfolioCardList.module.css'
 
-interface IPortfolioCardList {
-  portfolioEntityList: Portfolio[]
+export interface IPortfolioCardList {
+  portfolioEntityList: Portfolio[],
+  selectedPortfolioCardId: string | undefined
+  setSelectedPortfolioCardId: (id: string) => void
 }
 
 const PortfolioCardList = ({
   portfolioEntityList,
+  selectedPortfolioCardId,
+  setSelectedPortfolioCardId,
 }: IPortfolioCardList) => {
   return (
     <div className='relative w-full'>
@@ -15,9 +19,13 @@ const PortfolioCardList = ({
         My Portfolios [ {portfolioEntityList.length} ]
       </span>
       <div className={styles.portfolioCardList__cardsArea}>
-        {portfolioEntityList.map(({ title }) => (
+        {portfolioEntityList.map(({ title, id }) => (
           <PortfolioCard
+            key={id}
+            id={id}
             title={title}
+            isSelected={selectedPortfolioCardId === id}
+            setSelectedPortfolioCardId={setSelectedPortfolioCardId}
           />
         ))}
       </div>

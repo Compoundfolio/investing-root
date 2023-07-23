@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { memo } from 'react'
 
 interface IPortfolioBrokerageIcons {
   iconsList: string[]
@@ -25,4 +25,4 @@ const PortfolioBrokerageIcons = ({
   )
 }
 
-export default PortfolioBrokerageIcons
+export default memo(PortfolioBrokerageIcons)

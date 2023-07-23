@@ -1,4 +1,4 @@
-"use client" // TODO: Rid off use client
+"use client" // TODO: Ride of use client
 
 import {
   AssetPosition,

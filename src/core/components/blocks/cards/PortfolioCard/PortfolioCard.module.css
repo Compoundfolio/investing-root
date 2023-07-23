@@ -14,6 +14,10 @@
   z-index: 2;
 }
 
+.portfolioCard_active {
+  outline: 1px solid var(--color-primary) !important;
+}
+
 .portfolioCard__title {
   margin: 0px;
   color: var(--color-white);
@@ -24,4 +28,22 @@
   font-weight: 700;
   line-height: 16px;
   height: 32px;
+}
+
+.selectedLabel {
+  position: absolute;
+  bottom: -24px;
+  left: 33%;
+}
+
+.selectedLabel__text {
+  color: var(--color-primary);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: 3px;
+  border-bottom: 3px solid var(--color-primary);
+  margin: 0 auto;
+  padding-block: 6px;
 }
