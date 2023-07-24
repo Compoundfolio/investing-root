@@ -1,8 +1,8 @@
 "use client"
 
-import React, { memo, useState } from 'react'
-import { PortfoliosMenu } from './components'
-import { Divider, Portfolio } from '@core';
+import React, { memo } from 'react'
+import { PortfolioManagementArea, PortfoliosMenu } from './components'
+import { Divider } from '@core';
 import { usePortfolioList, useSelectedPortfolio } from './hooks';
 
 const PortfoliosManagementPage = () => {
@@ -27,8 +27,12 @@ const PortfoliosManagementPage = () => {
         addPortfolio={addPortfolio}
         selectPortfolioById={selectPortfolioById}
       />
-      <Divider />
-      {/* <PortfolioManagementArea /> */}
+      {selectedPortfolioCard && <>
+        <Divider />
+        <PortfolioManagementArea
+          portfolio={selectedPortfolioCard}
+        />
+      </>}
     </div>
   )
 }
