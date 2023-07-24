@@ -12,6 +12,7 @@ const useCreatePortfolio = ({
   addPortfolio,
   isNoPortfolios,
 }: IUseCreatePortfolio) => {
+
   const emptyPortfolioTemplate: Portfolio = {
     id: `${Math.random()}`,
     title: 'New Portfolio',
@@ -19,11 +20,10 @@ const useCreatePortfolio = ({
 
   const createNewPortfolioCard = () => {
     // TODO: Server request
-    if (isNoPortfolios) {
-      causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
-    } else {
-      addPortfolio(emptyPortfolioTemplate)
-    }
+
+    isNoPortfolios
+      ? causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
+      : addPortfolio(emptyPortfolioTemplate)
   }
 
   return {
