@@ -25,7 +25,7 @@ const OptionsList = ({
         <li key={option.id}>
           <button
             className={clsx(
-              styles.optionsList,
+              styles.optionsList__item,
               selectedOptionIds.includes(option.id) && styles.optionsList__item_active
             )}
             onClick={() => selectOption(option, selectedOptionIds.includes(option.id))}

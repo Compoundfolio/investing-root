@@ -60,6 +60,7 @@ const Input = ({
         style={{
           ...(isPassword && { paddingRight: 46 }),
           ...(errorMessage && { borderColor: colors.pinkSoft }),
+          ...(!setErrorMessage && { margin: 0 })
         }}
       />
       {isPassword && (

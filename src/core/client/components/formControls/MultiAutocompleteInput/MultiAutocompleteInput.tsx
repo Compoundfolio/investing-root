@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ChangeEvent, ChangeEventHandler, memo, useCallback, useState } from 'react'
+import React, { ChangeEvent, memo, useCallback, useState } from 'react'
 import OptionsList from './components/OptionsList/OptionsList'
 import { Input } from '../Input'
 import { FormControlBase } from '../FormControlBase'
@@ -10,17 +10,30 @@ import { removeObjectFromArrayOfObjects } from '@core/helpers'
 
 const MultiAutocompleteInput = ({
   selectedOptions,
-  options,
+  allPossibleOptions,
   name,
   placeholder,
   setSelectedOptions,
-  setOptions,
+  ...restProps
 }: IMultiAutocompleteInput) => {
   const [ searchValue, setSearchValue ] = useState<string>('')
+  const [ filteredOptionsBySearch, setFilteredOptionsBySearch ] = useState<Option[]>(allPossibleOptions)
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
-    setOptions(prev => prev.filter(option => option.label.toLowerCase().includes(e.target.value.toLowerCase())))
+    const value = e.target.value
+
+    setSearchValue(value)
+
+    if (!value) {
+      setFilteredOptionsBySearch(allPossibleOptions)
+      return
+    }
+
+    setFilteredOptionsBySearch(prev => prev.filter(option => {
+      return option.label.toLowerCase().trim().includes(
+        value.toLowerCase().trim()
+      )
+    }))
   }
 
   const selectOption = useCallback((option: Option, isDelete: boolean) => {
@@ -35,6 +48,7 @@ const MultiAutocompleteInput = ({
       value={searchValue}
       name={name}
       erroringField={false}
+      {...restProps}
     >
       <Input
         value={searchValue}
@@ -42,12 +56,13 @@ const MultiAutocompleteInput = ({
         onChange={handleSearchChange}
         name={name}
       />
-      {options}
-      <OptionsList
-        options={options}
-        selectedOptions={selectedOptions}
-        selectOption={selectOption}
-      />
+      {filteredOptionsBySearch && (
+        <OptionsList
+          options={filteredOptionsBySearch}
+          selectedOptions={selectedOptions}
+          selectOption={selectOption}
+        />
+      )}
     </FormControlBase>
   )
 }

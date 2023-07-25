@@ -4,21 +4,22 @@ import { Option } from '@core'
 import React, { useState } from 'react'
 import { MultiAutocompleteInput } from 'src/core/client'
 
-const BrokerageMultiSelector = () => {
-  const [ brokerageOptions, setBrokerageOptions ] = useState<Option[]>([])
-  const [ selectedOptions, setSelectedOptions ] = useState<Option[]>([])
+// TODO: Rid of
+const HARD_CODED_INITIAL_LIST: Option[] = [
+  { id: "fds222f", value: "Exante", label: "Exante" },
+  { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance" },
+]
 
-  const HARD_CODE: Option[] = [
-    { id: "fds222f", value: "Exante", label: "Exante" },
-    { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance" },
-  ]
+const BrokerageMultiSelector = () => {
+  const [ selectedOptions, setSelectedOptions ] = useState<Option[]>([])
 
   return (
     <MultiAutocompleteInput
+      style={{ width: 300 }}
+      allPossibleOptions={HARD_CODED_INITIAL_LIST}
       selectedOptions={selectedOptions}
-      options={HARD_CODE}
       name="selectedBrokerages"
-      placeholder={"Search your brokerages"}
+      placeholder="Search your brokerages"
       setSelectedOptions={setSelectedOptions}
     />
   )
