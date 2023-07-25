@@ -1,15 +1,13 @@
 "use client"
 
 import { HTMLInputTypeAttribute, memo } from "react"
-import { Label } from "../Label"
 import { useControl } from "../hooks"
-import { ControlErrorMessage } from "../ControlErrorMessage"
 import { ShowPasswordButton, ShowPasswordIcon } from "./components"
 import { Control } from "src/core/types"
 import { usePassword } from "./hooks"
 import styles from "./Input.module.css"
 import { colors } from "src/core/theme"
-import { ErrorIcon } from "@core/components"
+import { FormControlBase } from "../FormControlBase"
 
 export interface IInput extends Control {
   type?: HTMLInputTypeAttribute
@@ -45,8 +43,12 @@ const Input = ({
   })
 
   return (
-    <div className="relative mb-10" {...restProps}>
-      <Label required={required} htmlFor={name} labelText={labelText} />
+    <FormControlBase
+      value={value}
+      name={name}
+      labelText={labelText}
+      {...restProps}
+    >
       <input
         value={value}
         id={name}
@@ -60,20 +62,12 @@ const Input = ({
           ...(errorMessage && { borderColor: colors.pinkSoft }),
         }}
       />
-      {errorMessage && (
-        <ErrorIcon
-          width={16}
-          height={16}
-          className="absolute mt-1 -right-8 top-1/2"
-        />
-      )}
       {isPassword && (
         <ShowPasswordButton togglePasswordVisibility={togglePasswordVisibility}>
           <ShowPasswordIcon isPasswordVisible={isPasswordVisible} />
         </ShowPasswordButton>
       )}
-      {errorMessage && <ControlErrorMessage errorMessage={errorMessage} />}
-    </div>
+    </FormControlBase>
   )
 }
 

@@ -1,26 +1,39 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import styles from './OptionsList.module.css'
 import clsx from 'clsx';
+import { Option } from 'src/core/types';
+
+interface IOptionsList {
+  options: Option[]
+  selectedOptions: Option[]
+  selectOption: (option: Option, isDelete: boolean) => void
+}
 
 const OptionsList = ({
-  options,
-  isSelected = false,
-  selectOptionByValue,
-}) => {
+  options = [],
+  selectedOptions = [],
+  selectOption,
+}: IOptionsList) => {
+
+  const selectedOptionIds: Option['id'][] = useMemo(() => {
+    return selectedOptions?.flatMap(({ id }) => id) ?? []
+  }, [selectedOptions])
+
   return (
     <ul className={styles.optionsList}>
-      {options.map(({ id, value, label }) => {
-        <li
-          key={id}
-        >
+      {options.map((option: Option) => (
+        <li key={option.id}>
           <button
-            className={clsx(styles.optionsList, isSelected && styles.optionsList__item_active)}
-            onClick={() => selectOptionByValue(value)}
+            className={clsx(
+              styles.optionsList,
+              selectedOptionIds.includes(option.id) && styles.optionsList__item_active
+            )}
+            onClick={() => selectOption(option, selectedOptionIds.includes(option.id))}
           >
-            {label}
+            {option.label}
           </button>
         </li>
-      })}
+      ))}
     </ul>
   )
 }

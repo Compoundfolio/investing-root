@@ -5,7 +5,7 @@ import { UseFormHookError, UseFormHookHelpers } from "../forms/formik"
 interface Control extends IReactChildren {
   value: string
   name: string
-  labelText: string
+  labelText?: string
   placeholder?: string
   errorMessage?: UseFormHookError
   required?: boolean

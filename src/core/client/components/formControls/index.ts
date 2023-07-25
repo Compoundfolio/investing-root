@@ -1,5 +1,5 @@
 export * from "./hooks"
-
+export * from "./MultiAutocompleteInput"
 export * from "./Input"
 export * from "./Label"
 export * from "./ControlErrorMessage"

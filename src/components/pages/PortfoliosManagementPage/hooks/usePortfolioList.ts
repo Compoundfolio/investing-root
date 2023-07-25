@@ -1,4 +1,4 @@
-import { Portfolio } from "@core"
+import { Portfolio, removeObjectFromArrayOfObjects } from "@core"
 import { useState } from "react"
 
 const usePortfolioList = () => {
@@ -10,8 +10,7 @@ const usePortfolioList = () => {
 
   const deletePortfolio = (portfolio: Portfolio) => {
     setPortfolioList(currentPortfolioList => {
-      const index = currentPortfolioList.findIndex(existingPortfolio => existingPortfolio.id === portfolio.id)
-      return currentPortfolioList.toSpliced(index)
+      return removeObjectFromArrayOfObjects<Portfolio>(currentPortfolioList, portfolio, "id")
     })
   }
 
