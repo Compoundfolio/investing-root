@@ -15,6 +15,8 @@ const BrokerageMultiSelector = () => {
 
   return (
     <MultiAutocompleteInput
+      erroringField={false}
+      // TODO: Rid of
       style={{ width: 300 }}
       allPossibleOptions={HARD_CODED_INITIAL_LIST}
       selectedOptions={selectedOptions}

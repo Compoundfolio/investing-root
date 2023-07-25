@@ -14,7 +14,7 @@ const FormControlBase = ({
   labelText,
   errorMessage,
   required = false,
-  erroringField,
+  erroringField = true,
   children,
   className = "",
   setErrorMessage,

@@ -5,6 +5,7 @@ type ControlRequiredFields = Required<Pick<Control, "name" | "placeholder">>
 export interface IMultiAutocompleteInput extends ControlRequiredFields {
   selectedOptions: Option[]
   allPossibleOptions: Option[]
+  style?: React.CSSProperties
+  erroringField?: boolean
   setSelectedOptions: React.Dispatch<React.SetStateAction<Option[]>>
-  style: React.CSSProperties
 }

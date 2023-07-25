@@ -13,6 +13,7 @@ const MultiAutocompleteInput = ({
   allPossibleOptions,
   name,
   placeholder,
+  erroringField,
   setSelectedOptions,
   ...restProps
 }: IMultiAutocompleteInput) => {
@@ -47,7 +48,7 @@ const MultiAutocompleteInput = ({
     <FormControlBase
       value={searchValue}
       name={name}
-      erroringField={false}
+      erroringField={erroringField}
       {...restProps}
     >
       <Input
