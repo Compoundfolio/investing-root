@@ -2,11 +2,11 @@ import React from "react"
 import { colors } from "src/core/theme"
 
 export interface IArrowIcon {
-  orientation: "left" | "right"
+  orientation: "left" | "right" | "top" | "bottom"
 }
 
 const ArrowIcon = ({ orientation = "left" }: IArrowIcon) => {
-  const rotationClass = orientation === "right" ? "rotate-180" : ""
+  let rotationClass = orientation === "right" ? "rotate-180" : ""
   return (
     <svg
       width="10"

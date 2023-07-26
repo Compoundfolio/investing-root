@@ -15,18 +15,10 @@ const PortfolioManagementArea = ({
   const [ selectedBrokerageOptions, setSelectedBrokerageOptions ] = useState<Option[]>([])
 
   const {
-    shouldRenderChild,
+    shouldRenderChild: shouldRenderReportsUploadArea,
     contentAnimation,
     causeContentFadeEffect,
   } = useFadeInOutMountAnimation()
-
-  // useEffect(() => {
-  //   if ((selectedBrokerageOptions.length === 0) || (selectedBrokerageOptions.length === 1 && !shouldRenderChild)) {
-  //     alert(1)
-  //     causeContentFadeEffect()
-  //   }
-  // }, [selectedBrokerageOptions])
-console.log(shouldRenderChild, contentAnimation);
 
   return (
     <section className='flex justify-between w-full gap-16'>
@@ -35,9 +27,23 @@ console.log(shouldRenderChild, contentAnimation);
         setSelectedBrokerageOptions={setSelectedBrokerageOptions}
         selectionSideEffect={causeContentFadeEffect}
       />
-      {/* {!!selectedBrokerageOptions.length && shouldRenderChild && <> */}
-      {shouldRenderChild && <>
-        <TransactionsUploadArea contentAnimation={contentAnimation} />
+      {shouldRenderReportsUploadArea && <>
+        <TransactionsUploadArea
+          contentAnimation={contentAnimation}
+          selectedBrokerageOptions={selectedBrokerageOptions}
+        />
+        {/* <div style={contentAnimation}>
+         <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+          <p>Test</p>
+
+        </div> */}
+        {/* <div /> */}
         {/* <TransactionsUploadResults /> */}
       </>}
     </section>

@@ -5,8 +5,8 @@ type ReturnType = [boolean, () => void, Dispatch<SetStateAction<boolean>>]
 /**
  * Hook to handle open/show statuses
  */
-const useOpen = (): ReturnType => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+const useOpen = (defaultValue: boolean = false): ReturnType => {
+  const [isOpen, setIsOpen] = useState<boolean>(defaultValue)
 
   const handleOpenChange = useCallback(() => {
     setIsOpen((prev) => !prev)
