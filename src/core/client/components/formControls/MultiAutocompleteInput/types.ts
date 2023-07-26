@@ -8,4 +8,5 @@ export interface IMultiAutocompleteInput extends ControlRequiredFields {
   style?: React.CSSProperties
   erroringField?: boolean
   setSelectedOptions: React.Dispatch<React.SetStateAction<Option[]>>
+  selectionSideEffect: () => void
 }

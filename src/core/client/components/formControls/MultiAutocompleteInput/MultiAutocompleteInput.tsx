@@ -15,6 +15,7 @@ const MultiAutocompleteInput = ({
   placeholder,
   erroringField,
   setSelectedOptions,
+  selectionSideEffect,
   ...restProps
 }: IMultiAutocompleteInput) => {
   const [ searchValue, setSearchValue ] = useState<string>('')
@@ -38,10 +39,19 @@ const MultiAutocompleteInput = ({
   }
 
   const selectOption = useCallback((option: Option, isDelete: boolean) => {
-    setSelectedOptions(prev => isDelete
-      ? removeObjectFromArrayOfObjects<Option>(prev, option, "id")
-      : [...prev, option]
-    )
+    setSelectedOptions(prev => {
+      if (
+        selectionSideEffect &&
+        (prev.length === 0 && !isDelete) ||
+        (prev.length === 1 && isDelete)
+      ) {
+        selectionSideEffect()
+      }
+
+      return isDelete
+        ? removeObjectFromArrayOfObjects<Option>(prev, option, "id")
+        : [...prev, option]
+    })
   }, [])
 
   return (

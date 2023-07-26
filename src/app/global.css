@@ -45,6 +45,7 @@ select:-webkit-autofill {
     color: var(--color-gold);
     margin-bottom: 16px;
   }
+
   .chartStatsNumberFaded {
     @apply chartStatsNumber;
     opacity: 0.5;
@@ -57,6 +58,7 @@ select:-webkit-autofill {
     background: var(--color-gold);
     margin-top: 8px;
   }
+
   .progressLegendItemFaded {
     @apply progressLegendItem;
     opacity: 0.2;
@@ -84,6 +86,7 @@ select:-webkit-autofill {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     /* opacity: 0.25; */
   }
+
   .progressLineChartProg {
     @apply progressLineChartBase;
     background-color: var(--color-gold);
@@ -105,21 +108,25 @@ select:-webkit-autofill {
     opacity: 0.5;
     position: absolute;
   }
+
   .lineChartMarkersText-lt {
     @apply lineChartMarkersText;
     left: -22px;
     top: 11px;
   }
+
   .lineChartMarkersText-lb {
     @apply lineChartMarkersText;
     left: -22px;
     bottom: 11px;
   }
+
   .lineChartMarkersText-rt {
     @apply lineChartMarkersText;
     right: -33px;
     top: 11px;
   }
+
   .lineChartMarkersText-rb {
     @apply lineChartMarkersText;
     right: -26px;
@@ -133,11 +140,9 @@ body {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  background: linear-gradient(
-      75.27deg,
+  background: linear-gradient(75.27deg,
       rgba(15, 111, 114, 0.106) 75.87%,
-      rgba(0, 0, 0, 0) 95.64%
-    ),
+      rgba(0, 0, 0, 0) 95.64%),
     #0e1317;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -175,13 +180,13 @@ button:after {
   background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
   background-repeat: no-repeat;
   background-position: 50%;
-  transform: scale(10,10);
+  transform: scale(10, 10);
   opacity: 0;
   transition: transform .5s, opacity 1s;
 }
 
 button:active:after {
-  transform: scale(0,0);
+  transform: scale(0, 0);
   opacity: .2;
   transition: 0s;
 }
@@ -202,6 +207,7 @@ body.using-mouse :focus {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -229,6 +235,7 @@ body.using-mouse :focus {
     --size: 500px;
   }
 }
+
 /* This is just to transition when you change the viewport size. */
 /* * {
   transition: all 1 linear;
@@ -247,10 +254,34 @@ table tbody {
 .color-red {
   color: var(--color-pinkSoft);
 }
+
 .bg-color-darkGreen {
   background-color: var(--color-darkGreen);
 }
 
 .text-shadow-white {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Fade in & out animations for content pieces */
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
 }

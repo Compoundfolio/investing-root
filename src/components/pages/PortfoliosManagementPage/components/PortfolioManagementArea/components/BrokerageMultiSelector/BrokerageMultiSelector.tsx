@@ -1,7 +1,5 @@
-"use client"
-
 import { Option } from '@core'
-import React, { useState } from 'react'
+import React from 'react'
 import { MultiAutocompleteInput } from 'src/core/client'
 
 // TODO: Rid of
@@ -10,19 +8,28 @@ const HARD_CODED_INITIAL_LIST: Option[] = [
   { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance" },
 ]
 
-const BrokerageMultiSelector = () => {
-  const [ selectedOptions, setSelectedOptions ] = useState<Option[]>([])
+interface IBrokerageMultiSelector {
+  selectedBrokerageOptions: Option[]
+  setSelectedBrokerageOptions: React.Dispatch<React.SetStateAction<Option[]>>
+  selectionSideEffect: () => void
+}
 
+const BrokerageMultiSelector = ({
+  selectedBrokerageOptions,
+  setSelectedBrokerageOptions,
+  selectionSideEffect,
+}: IBrokerageMultiSelector) => {
   return (
     <MultiAutocompleteInput
       erroringField={false}
       // TODO: Rid of
       style={{ width: 300 }}
       allPossibleOptions={HARD_CODED_INITIAL_LIST}
-      selectedOptions={selectedOptions}
+      selectedOptions={selectedBrokerageOptions}
       name="selectedBrokerages"
       placeholder="Search your brokerages"
-      setSelectedOptions={setSelectedOptions}
+      setSelectedOptions={setSelectedBrokerageOptions}
+      selectionSideEffect={selectionSideEffect}
     />
   )
 }
