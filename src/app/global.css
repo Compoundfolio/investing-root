@@ -154,6 +154,7 @@ a {
 
 * {
   box-sizing: border-box;
+  color: var(--color-white);
 }
 
 /* Button style */

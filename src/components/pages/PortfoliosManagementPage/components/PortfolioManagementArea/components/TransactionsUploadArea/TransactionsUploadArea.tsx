@@ -1,8 +1,8 @@
-import { Collapsible, Option } from '@core'
+import { Collapsible, FileUploadArea, Option } from '@core'
 import React, { memo } from 'react'
 
 interface ITransactionsUploadArea {
-  contentAnimation: { animation: string}
+  contentAnimation: { animation: string }
   selectedBrokerageOptions: Option[]
 }
 
@@ -19,15 +19,9 @@ const TransactionsUploadArea = ({
           // title={<BrokerageTitleWithLogo />}
           title={selectedBrokerageOption.label}
         >
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          {/* <FileUploadArea /> */}
+          <FileUploadArea
+            title={selectedBrokerageOption.label}
+          />
         </Collapsible>
       ))}
     </div>
