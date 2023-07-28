@@ -1,9 +1,10 @@
 "use client"
 
-import { Option, Portfolio, useFadeInOutMountAnimation } from '@core'
-import React, { memo, useCallback, useEffect, useState } from 'react'
-import { BrokerageMultiSelector } from './components'
+import { ID, Option, Portfolio, useFadeInOutMountAnimation } from '@core'
+import React, { memo, useCallback, useState } from 'react'
+import { BrokerageMultiSelector, TransactionsUploadResults } from './components'
 import TransactionsUploadArea from './components/TransactionsUploadArea/TransactionsUploadArea'
+import { flushSync } from 'react-dom'
 
 interface IPortfolioManagementArea {
   portfolio: Portfolio
@@ -12,7 +13,8 @@ interface IPortfolioManagementArea {
 const PortfolioManagementArea = ({
   portfolio,
 }: IPortfolioManagementArea) => {
-  const [ selectedBrokerageOptions, setSelectedBrokerageOptions ] = useState<Option[]>([])
+  const [selectedBrokerageOptions, setSelectedBrokerageOptions] = useState<Option[]>([])
+  const [transactionsUploadStats, setTransactionsUploadStats] = useState<boolean>(false)
 
   const {
     shouldRenderChild: shouldRenderReportsUploadArea,
@@ -21,7 +23,9 @@ const PortfolioManagementArea = ({
   } = useFadeInOutMountAnimation()
 
   const handleFileUpload = useCallback((reportFile: File) => {
-    
+    setTimeout(() => {
+      setTransactionsUploadStats(true)
+    }, 5000)
   }, [])
 
   return (
@@ -37,19 +41,11 @@ const PortfolioManagementArea = ({
           selectedBrokerageOptions={selectedBrokerageOptions}
           handleFileUpload={handleFileUpload}
         />
-        {/* <div style={contentAnimation}>
-         <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-          <p>Test</p>
-
-        </div> */}
-        {/* <div /> */}
-        {/* <TransactionsUploadResults /> */}
+        {transactionsUploadStats ? (
+          <TransactionsUploadResults />
+        ) : (
+          <div />
+        )}
       </>}
     </section>
   )

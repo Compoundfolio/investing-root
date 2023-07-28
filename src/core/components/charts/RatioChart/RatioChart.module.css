@@ -1,0 +1,36 @@
+.ratioChart__title {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+.ratioChart__total {
+  font-family: Chakra Petch;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+}
+
+.ratioChart__totalDescription {
+  color: var(--color-gray4C);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+}
+
+.ratioChart__item {
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--color-darkGreen);
+  cursor: progress;
+}
+
+.ratioChart__item:hover {
+  border-inline: 1px solid var(--color-white);
+  border-radius: 0px;
+  opacity: 1 !important;
+}
