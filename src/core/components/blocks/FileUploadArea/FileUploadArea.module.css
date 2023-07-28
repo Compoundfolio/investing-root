@@ -1,12 +1,3 @@
-.fileUploadArea__title {
-  color: var(--color-darkGreen);
-  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 24px;
-}
-
 .fileUploadArea__wrapper {
   border: 1px dashed var(--color-darkGreen);
   border-radius: 12px;
@@ -14,9 +5,20 @@
   backdrop-filter: blur(5px);
   width: 164px;
   height: 164px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
+  padding: 16px;
+}
+
+
+.fileUploadArea__title {
+  color: var(--color-darkGreen);
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
 }
 
 .fileUploadArea__actButton {
@@ -29,4 +31,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fileUploadArea__plateSection {
+  border-radius: 4px;
+  background: rgba(15, 111, 114, 0.31);
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fileUploadArea__plateSection_hovered {
+  background: rgba(79, 79, 79, 0.07);
+  backdrop-filter: blur(75px);
 }

@@ -21,7 +21,9 @@ const UploadedFileRepresentation = ({
         <FileIcon />
       </div>
       <div className={styles.fileRepresentation__divider} />
-      <span>{fileName}</span>
+      <span className='break-words'>
+        {fileName}
+      </span>
     </div>
   )
 }

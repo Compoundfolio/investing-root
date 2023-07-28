@@ -24,7 +24,7 @@ const useFileUpload = (
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
-  const userFriendlyFileMbSize = file ? `${getMbFileSize(file)} MB` : ""
+  const userFriendlyFileMbSize = file ? `${getMbFileSize(file).toFixed(1)} MB` : ""
 
   return {
     file,
