@@ -8,7 +8,7 @@
   display: block;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 8px;
 }
 
 
@@ -36,7 +36,7 @@
 .fileUploadArea__plateSection {
   border-radius: 4px;
   background: rgba(15, 111, 114, 0.31);
-  padding: 16px;
+  padding: 8px;
   height: 100%;
   display: flex;
   justify-content: center;
