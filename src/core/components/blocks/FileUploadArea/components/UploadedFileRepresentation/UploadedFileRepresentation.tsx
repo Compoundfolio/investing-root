@@ -20,7 +20,6 @@ const UploadedFileRepresentation = ({
       <div className='flex items-center justify-center'>
         <FileIcon />
       </div>
-      {/* <div className={styles.fileRepresentation__divider} /> */}
       <span className='break-words'>
         {fileName}
       </span>

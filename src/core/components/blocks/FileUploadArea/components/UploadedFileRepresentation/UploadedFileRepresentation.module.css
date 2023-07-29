@@ -12,8 +12,3 @@
   gap: 8px;
   text-overflow: ellipsis;
 }
-
-.fileRepresentation__divider {
-  width: 100%;
-  border: 2px solid var(--color-darkGreen);
-}
