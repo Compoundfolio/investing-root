@@ -16,7 +16,7 @@ const RatioChart = ({
 }: IRatioChart) => {
 
   const total = useMemo(() => {
-    return dataSet.reduce((prevValue, currentValue) => prevValue + currentValue.value, 0)
+    return dataSet.reduce((prevValue, currentValue) => prevValue + currentValue.value, 0) ?? 0
   }, [dataSet])
 
   return (
@@ -38,8 +38,8 @@ const RatioChart = ({
         {dataSet.map(ratioDataEntity => (
           <div
             style={{
-              width: `calc(${calcPercentageChange(ratioDataEntity.value, total)}% - 2px)`,
-              opacity: calcPercentageChange(ratioDataEntity.value, total) / 100
+              width: `calc(${calcPercentageChange(ratioDataEntity?.value ?? 0, total)}% - 2px)`,
+              opacity: calcPercentageChange(ratioDataEntity?.value ?? 0, total) / 100
             }}
             className={styles.ratioChart__item}
             title={`${ratioDataEntity.name}: ${ratioDataEntity.value}`}

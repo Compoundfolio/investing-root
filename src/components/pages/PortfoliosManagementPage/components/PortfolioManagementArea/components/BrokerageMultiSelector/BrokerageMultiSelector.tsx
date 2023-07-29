@@ -1,11 +1,11 @@
-import { Option } from '@core'
+import { ExanteIcon, FreedomFinanceIcon, Option } from '@core'
 import React from 'react'
 import { MultiAutocompleteInput } from 'src/core/client'
 
 // TODO: Rid of
 const HARD_CODED_INITIAL_LIST: Option[] = [
-  { id: "fds222f", value: "Exante", label: "Exante" },
-  { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance" },
+  { id: "fds222f", value: "Exante", label: "Exante", icon: <ExanteIcon size={16} /> },
+  { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance", icon: <FreedomFinanceIcon size={16} /> },
 ]
 
 interface IBrokerageMultiSelector {
@@ -22,8 +22,6 @@ const BrokerageMultiSelector = ({
   return (
     <MultiAutocompleteInput
       erroringField={false}
-      // TODO: Rid of
-      style={{ width: 300 }}
       allPossibleOptions={HARD_CODED_INITIAL_LIST}
       selectedOptions={selectedBrokerageOptions}
       name="selectedBrokerages"

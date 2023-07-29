@@ -1,23 +1,25 @@
 import React from 'react'
 import { PortfolioCardStatsItem } from './components'
-import { PortfolioCardStatistic } from './types'
 
 interface IPortfolioStatsPreview {
-  stats: PortfolioCardStatistic[]
+  totalReturnPercentage: number
+  annualIncome: number
 }
 
 const PortfolioStatsPreview = ({
-  stats,
+  totalReturnPercentage = 0,
+  annualIncome = 0,
 }: IPortfolioStatsPreview) => {
   return (
     <section className='flex flex-col items-center gap-2'>
-      {stats.map(({ title, value }) => (
-        <PortfolioCardStatsItem
-          key={title}
-          title={title}
-          value={value}
-        />
-      ))}
+      <PortfolioCardStatsItem
+        title="Total return"
+        value={`${totalReturnPercentage}%`}
+      />
+      <PortfolioCardStatsItem
+        title="Annual income"
+        value={`$${annualIncome}`}
+      />
     </section>
   )
 }

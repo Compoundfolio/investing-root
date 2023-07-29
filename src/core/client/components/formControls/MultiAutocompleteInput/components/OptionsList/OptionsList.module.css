@@ -21,6 +21,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .optionsList__item_active {

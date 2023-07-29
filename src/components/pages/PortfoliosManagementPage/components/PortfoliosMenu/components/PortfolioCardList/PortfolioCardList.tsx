@@ -1,4 +1,4 @@
-import { Portfolio, PortfolioCard } from '@core'
+import { Portfolio, PortfolioCard, PortfolioCardContent } from '@core'
 import React, { memo } from 'react'
 import styles from './PortfolioCardList.module.css'
 
@@ -19,14 +19,20 @@ const PortfolioCardList = ({
         My Portfolios [ {portfolioEntityList.length} ]
       </span>
       <div className={styles.portfolioCardList__cardsArea}>
-        {portfolioEntityList.map(({ title, id }) => (
+        {portfolioEntityList.map(({ title, id, totalReturnValue, totalReturnPercentage, annualIncome }) => (
           <PortfolioCard
             key={id}
             id={id}
-            title={title}
             isSelected={selectedPortfolioCardId === id}
             setSelectedPortfolioCardId={setSelectedPortfolioCardId}
-          />
+          >
+            <PortfolioCardContent
+              title={title}
+              totalReturnValue={totalReturnValue}
+              totalReturnPercentage={totalReturnPercentage}
+              annualIncome={annualIncome}
+            />
+          </PortfolioCard>
         ))}
       </div>
       <div className={styles.portfolioCardList__backgroundBlock} />

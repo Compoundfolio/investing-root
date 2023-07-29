@@ -1,10 +1,9 @@
 import React from 'react'
-import { PortfolioCardStatistic } from '../../types'
 import styles from "./PortfolioCardStatsItem.module.css"
 
 interface IPortfolioCardStatsItem {
-  title: PortfolioCardStatistic['title']
-  value: PortfolioCardStatistic['value']
+  title: string
+  value: string | number
 }
 
 const PortfolioCardStatsItem = ({
@@ -17,7 +16,7 @@ const PortfolioCardStatsItem = ({
         {title}:
       </span>
       <span className={styles.portfolioCard__stats_item__value}>
-        ${value}
+        {value}
       </span>
     </div>
   )

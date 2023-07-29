@@ -30,6 +30,7 @@ const OptionsList = ({
             )}
             onClick={() => selectOption(option, selectedOptionIds.includes(option.id))}
           >
+            {option?.icon}
             {option.label}
           </button>
         </li>
