@@ -1,10 +1,17 @@
-import { RatioChart } from '@core'
-import React from 'react'
+import { Option, RatioChart } from '@core'
+import React, { memo, useCallback, useState } from 'react'
 import { RatioChartDataSet } from 'src/core/components/charts/RatioChart/types'
+import { TransactionCategory } from './types'
+
+interface ITransactionsUploadResults {
+  selectedBrokerageOptions: Option[]
+}
 
 const TransactionsUploadResults = ({ 
+  selectedBrokerageOptions,
+}: ITransactionsUploadResults) => {
 
-}) => {
+  const [ hoveredTransactionCategory, setHoveredTransactionCategory ] = useState<TransactionCategory>(null)
 
   const transactionsStats = [
     {
@@ -39,10 +46,12 @@ const TransactionsUploadResults = ({
           title={brokerageName}
           totalShortDescription="Defined transactions"
           dataSet={transactionsCategories}
+          hoveredTransactionCategory={hoveredTransactionCategory}
+          setHoveredTransactionCategory={setHoveredTransactionCategory}
         />
       ))}
     </section>
   )
 }
 
-export default TransactionsUploadResults
+export default memo(TransactionsUploadResults)

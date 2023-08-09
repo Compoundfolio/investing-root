@@ -19,7 +19,7 @@ const PortfolioCard = ({
   setSelectedPortfolioCardId,
 }: IPortfolioCard) => {
   return (
-    <article className='relative flex flex-col'>
+    <article className='relative flex flex-col shadow'>
       <button
         className={clsx(style.portfolioCard, isSelected && style.portfolioCard_active)}
         onClick={() => setSelectedPortfolioCardId(id)}

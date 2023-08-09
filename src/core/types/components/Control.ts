@@ -7,9 +7,11 @@ interface Control extends IReactChildren {
   name: string
   labelText?: string
   placeholder?: string
+  helpText?: string
   errorMessage?: UseFormHookError
   required?: boolean
   autofocus?: boolean
+  withMb?: boolean
   onChange: ChangeEventHandler<HTMLInputElement>
   setErrorMessage?: UseFormHookHelpers["setFieldError"]
 }

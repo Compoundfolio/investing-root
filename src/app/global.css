@@ -252,9 +252,8 @@ table tbody {
   display: block;
 }
 
-.color-red {
-  color: var(--color-pinkSoft);
-}
+.color-red { color: var(--color-pinkSoft); }
+.color-gray4C { color: var(--color-gray4C); }
 
 .bg-color-darkGreen {
   background-color: var(--color-darkGreen);

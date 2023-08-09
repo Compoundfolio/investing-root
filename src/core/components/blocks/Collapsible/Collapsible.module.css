@@ -4,14 +4,14 @@
   font-weight: 500;
   line-height: 20px;
   color: var(--color-white);
+  margin-bottom: 16px;
   padding: 8px;
   border-radius: 4px;
-}
-
-.collapsible__triggerButton:hover {
   background-color: rgba(79, 79, 79, 0.07);
 }
 
-.collapsible__contentWrapper {
-  padding: 8px;
+.collapsible__triggerButton:hover {
+  background-color: rgba(59, 59, 59, 0.07);
 }
+
+.collapsible__contentWrapper {}

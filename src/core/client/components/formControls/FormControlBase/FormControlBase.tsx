@@ -3,7 +3,7 @@
 import React, { memo } from 'react'
 import { useControl } from '../hooks'
 import { Label } from '../Label'
-import { ErrorIcon } from '@core/components'
+import { ErrorIcon, HelpText } from '@core/components'
 import { ControlErrorMessage } from '../ControlErrorMessage';
 import { IFormControlBase } from './types';
 import clsx from 'clsx';
@@ -17,6 +17,8 @@ const FormControlBase = ({
   erroringField = true,
   children,
   className = "",
+  helpText = "",
+  withMb = true,
   setErrorMessage,
   ...restProps
 }: IFormControlBase) => {
@@ -28,11 +30,10 @@ const FormControlBase = ({
     setErrorMessage,
   })
 
-  const wrapperClassName = erroringField ? "relative mb-10" : ""
-  const toShowError = erroringField && errorMessage
+  const wrapperClassName = erroringField && withMb ? `relative ${withMb ? "mb-10" : ""}` : ""
 
   return (
-    <div className={clsx(wrapperClassName, className)} {...restProps}>
+    <div className={clsx(wrapperClassName, className)} {...restProps as any}>
       {labelText && (
         <Label
           required={required}
@@ -41,15 +42,15 @@ const FormControlBase = ({
         />
       )}
       {children}
-      {toShowError && (
+      {errorMessage ? <>
         <ErrorIcon
           width={16}
           height={16}
           className="absolute mt-1 -right-8 top-1/2"
         />
-      )}
-      {toShowError && (
         <ControlErrorMessage errorMessage={errorMessage} />
+      </> : helpText && (
+        <HelpText helpText={helpText} />
       )}
     </div>
   )

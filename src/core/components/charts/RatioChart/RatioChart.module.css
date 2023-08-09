@@ -20,13 +20,14 @@
   font-style: normal;
   font-weight: 400;
   line-height: 12px;
+  margin-top: 4px;
 }
 
 .ratioChart__item {
+  position: relative;
   height: 8px;
   border-radius: 2px;
   background-color: var(--color-darkGreen);
-  cursor: progress;
 }
 
 .ratioChart__item:hover {

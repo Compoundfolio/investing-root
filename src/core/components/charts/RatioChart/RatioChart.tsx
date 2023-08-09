@@ -1,22 +1,26 @@
 import React, { memo, useMemo } from 'react'
-import { calcPercentageChange } from '@core/helpers'
 import styles from "./RatioChart.module.css"
 import { RatioChartDataSet } from './types'
+import { calcPercentageChange } from './helpers'
 
 interface IRatioChart {
   title: string
   totalShortDescription: string
   dataSet: RatioChartDataSet
+  hoveredTransactionCategory?: string | null
+  setHoveredTransactionCategory?: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const RatioChart = ({
   title,
   totalShortDescription,
   dataSet,
+  hoveredTransactionCategory,
+  setHoveredTransactionCategory,
 }: IRatioChart) => {
 
   const total = useMemo(() => {
-    return dataSet.reduce((prevValue, currentValue) => prevValue + currentValue.value, 0) ?? 0
+    return dataSet.reduce((prevValue, currentValue) => prevValue + currentValue.value, 0) || 0
   }, [dataSet])
 
   return (
@@ -37,13 +41,21 @@ const RatioChart = ({
       <div className='w-full flex gap-0.5'>
         {dataSet.map(ratioDataEntity => (
           <div
+            key={ratioDataEntity.name}
             style={{
               width: `calc(${calcPercentageChange(ratioDataEntity?.value ?? 0, total)}% - 2px)`,
               opacity: calcPercentageChange(ratioDataEntity?.value ?? 0, total) / 100
             }}
             className={styles.ratioChart__item}
-            title={`${ratioDataEntity.name}: ${ratioDataEntity.value}`}
-          />
+            onMouseMove={() => setHoveredTransactionCategory && setHoveredTransactionCategory(ratioDataEntity.name)}
+            onMouseLeave={() => setHoveredTransactionCategory && hoveredTransactionCategory && setHoveredTransactionCategory(null)}
+          >
+            {hoveredTransactionCategory === ratioDataEntity.name && (
+              <div className='absolute left-0 px-1 py-0.5 text-white top-6 bg-slate-800 text-xs'>
+                {ratioDataEntity.name}: {ratioDataEntity.value}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </article>

@@ -1,5 +1,5 @@
 import { ExanteIcon, FreedomFinanceIcon, Option } from '@core'
-import React from 'react'
+import React, { memo } from 'react'
 import { MultiAutocompleteInput } from 'src/core/client'
 
 // TODO: Rid of
@@ -32,4 +32,4 @@ const BrokerageMultiSelector = ({
   )
 }
 
-export default BrokerageMultiSelector
+export default memo(BrokerageMultiSelector)

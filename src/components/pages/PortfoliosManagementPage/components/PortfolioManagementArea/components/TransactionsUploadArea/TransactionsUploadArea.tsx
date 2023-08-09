@@ -1,5 +1,6 @@
-import { Collapsible, FileUploadArea, Option } from '@core'
+import { Collapsible, Option } from '@core'
 import React, { memo } from 'react'
+import FileUploadArea from '../../../../../../../core/components/blocks/FileUploadArea/FileUploadArea';
 
 interface ITransactionsUploadArea {
   contentAnimation: { animation: string }
@@ -12,9 +13,8 @@ const TransactionsUploadArea = ({
   selectedBrokerageOptions,
   handleFileUpload,
 }: ITransactionsUploadArea) => {
-
   return (
-    <div className='flex flex-col w-[400px] gap-6' style={contentAnimation}>
+    <div className='flex flex-col gap-6' style={contentAnimation}>
       {selectedBrokerageOptions.map(selectedBrokerageOption => (
         <Collapsible
           key={selectedBrokerageOption.id}

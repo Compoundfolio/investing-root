@@ -11,6 +11,10 @@ const calcPercentageChange = (
   targetNumber: number,
   isPresentative?: boolean
 ) => {
+  console.log(progress);
+  console.log(targetNumber);
+  console.log(isPresentative);
+  
   const percentageChange = (progress / targetNumber) * 100
 
   return isPresentative ? parseNumber(percentageChange)! : percentageChange

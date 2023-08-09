@@ -16,6 +16,7 @@ const MultiAutocompleteInput = ({
   erroringField,
   setSelectedOptions,
   selectionSideEffect,
+  className,
   ...restProps
 }: IMultiAutocompleteInput) => {
   const [ searchValue, setSearchValue ] = useState<string>('')
@@ -59,6 +60,7 @@ const MultiAutocompleteInput = ({
       value={searchValue}
       name={name}
       erroringField={erroringField}
+      className={className}
       {...restProps}
     >
       <Input

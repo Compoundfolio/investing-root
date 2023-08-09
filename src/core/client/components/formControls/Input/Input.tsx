@@ -22,6 +22,8 @@ const Input = ({
   required = false,
   type = "text",
   autofocus = false,
+  helpText = "",
+  withMb = true,
   onChange,
   setErrorMessage,
   ...restProps
@@ -44,9 +46,12 @@ const Input = ({
 
   return (
     <FormControlBase
+      required={required}
       value={value}
       name={name}
       labelText={labelText}
+      helpText={helpText}
+      withMb={withMb}
       {...restProps}
     >
       <input

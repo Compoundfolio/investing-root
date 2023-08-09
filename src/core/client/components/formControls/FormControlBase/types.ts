@@ -10,4 +10,6 @@ export interface IFormControlBase extends ControlCommonRequiredFields, IReactChi
   required?: Control["required"]
   labelText?: Control["labelText"]
   setErrorMessage?: Control["setErrorMessage"]
+  helpText?: Control["helpText"]
+  withMb?: boolean
 }
