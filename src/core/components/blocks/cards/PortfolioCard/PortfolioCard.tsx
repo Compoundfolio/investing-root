@@ -2,7 +2,6 @@
 
 import React, { memo } from 'react'
 import style from "./PortfolioCard.module.css"
-import { PortfolioBrokerageIcons, PortfolioLogo, PortfolioStatsPreview, PortfolioTotalValue } from './components'
 import clsx from 'clsx';
 import { IReactChildren } from 'src/core/types';
 

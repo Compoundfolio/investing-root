@@ -1,20 +1,25 @@
+"use client"
+
 import React from 'react'
-import { AddIcon } from '../../icons'
 import styles from './PlateAddButton.module.css'
 import clsx from 'clsx';
+import { AddIcon } from '@core';
+import { usePortfolioManagerContext } from '../../../../context/PortfolioManagerContextData';
 
 interface IPlateAddButton {
   title: string
-  isNoPortfolios: boolean
-  onClick: () => void
 }
 
 // TODO: Fix multi-click
 const PlateAddButton = ({
   title,
-  isNoPortfolios = false,
-  onClick,
 }: IPlateAddButton) => {
+
+  const {
+    isNoPortfolios,
+    createNewPortfolioCard,
+  } = usePortfolioManagerContext()
+
   return (
     <div className='flex flex-col items-center gap-8 text-center'>
       {isNoPortfolios && (
@@ -23,7 +28,7 @@ const PlateAddButton = ({
         </span>
       )}
       <button
-        onClick={onClick}
+        onClick={createNewPortfolioCard}
         className={clsx(styles.plateButton, isNoPortfolios && styles.plateButton__active)}
       >
         <AddIcon className={styles.plateButton__icon} />

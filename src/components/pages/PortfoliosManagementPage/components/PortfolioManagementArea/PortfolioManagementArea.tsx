@@ -1,23 +1,21 @@
 "use client"
 
-import { Option, Portfolio, useFadeInOutMountAnimation } from '@core'
+import { Option, useFadeInOutMountAnimation } from '@core'
 import React, { ChangeEvent, memo, useCallback, useState } from 'react'
 import { BrokerageMultiSelector, TransactionsUploadResults } from './components'
 import TransactionsUploadArea from './components/TransactionsUploadArea/TransactionsUploadArea'
 import styles from './PortfolioManagementArea.module.css'
 import { Input } from 'src/core/client'
 import { defaultPortfolioName } from './consts'
+import usePortfolioManagerContext from '../../context/PortfolioManagerContextData/hook';
 
-interface IPortfolioManagementArea {
-  portfolio: Portfolio
-}
+const PortfolioManagementArea = () => {
 
-const PortfolioManagementArea = ({
-  portfolio,
-}: IPortfolioManagementArea) => {
+  const { selectedPortfolioCard } = usePortfolioManagerContext()
+
   const [selectedBrokerageOptions, setSelectedBrokerageOptions] = useState<Option[]>([])
   const [transactionsUploadStats, setTransactionsUploadStats] = useState<boolean>(false)
-  const [portfolioName, setPortfolioName] = useState<string>(portfolio.title || defaultPortfolioName)
+  const [portfolioName, setPortfolioName] = useState<string>(selectedPortfolioCard?.title || defaultPortfolioName)
 
   const {
     shouldRenderChild: shouldRenderReportsUploadArea,
@@ -63,7 +61,7 @@ const PortfolioManagementArea = ({
       </div>
       <div className={styles.container}>
         {transactionsUploadStats && (
-          <TransactionsUploadResults 
+          <TransactionsUploadResults
             selectedBrokerageOptions={selectedBrokerageOptions}
           />
         )}

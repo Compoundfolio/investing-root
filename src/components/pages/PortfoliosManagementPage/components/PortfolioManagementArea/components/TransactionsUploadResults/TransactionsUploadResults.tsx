@@ -1,7 +1,8 @@
-import { Option, RatioChart } from '@core'
+import { ActButton, Option, RatioChart } from '@core'
 import React, { memo, useCallback, useState } from 'react'
 import { RatioChartDataSet } from 'src/core/components/charts/RatioChart/types'
 import { TransactionCategory } from './types'
+import { ActButtonGroup } from './components'
 
 interface ITransactionsUploadResults {
   selectedBrokerageOptions: Option[]
@@ -39,18 +40,21 @@ const TransactionsUploadResults = ({
   ]
 
   return (
-    <section className='flex flex-col gap-8'>
-      {transactionsStats.map(({ id, brokerageName, transactionsCategories }) => (
-        <RatioChart
-          key={id}
-          title={brokerageName}
-          totalShortDescription="Defined transactions"
-          dataSet={transactionsCategories}
-          hoveredTransactionCategory={hoveredTransactionCategory}
-          setHoveredTransactionCategory={setHoveredTransactionCategory}
-        />
-      ))}
-    </section>
+    <aside className='flex flex-col justify-between h-full'>
+      <section className='flex flex-col gap-8'>
+        {transactionsStats.map(({ id, brokerageName, transactionsCategories }) => (
+          <RatioChart
+            key={id}
+            title={brokerageName}
+            totalShortDescription="Defined transactions"
+            dataSet={transactionsCategories}
+            hoveredTransactionCategory={hoveredTransactionCategory}
+            setHoveredTransactionCategory={setHoveredTransactionCategory}
+          />
+        ))}
+      </section>
+      <ActButtonGroup />
+    </aside>
   )
 }
 

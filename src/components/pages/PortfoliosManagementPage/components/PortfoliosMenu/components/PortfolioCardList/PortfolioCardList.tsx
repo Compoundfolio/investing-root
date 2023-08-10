@@ -1,39 +1,15 @@
-import { Portfolio, PortfolioCard, PortfolioCardContent } from '@core'
 import React, { memo } from 'react'
 import styles from './PortfolioCardList.module.css'
+import { List, ListTitle } from './components'
 
-export interface IPortfolioCardList {
-  portfolioEntityList: Portfolio[],
-  selectedPortfolioCardId: string | undefined
-  setSelectedPortfolioCardId: (id: string) => void
-}
-
-const PortfolioCardList = ({
-  portfolioEntityList,
-  selectedPortfolioCardId,
-  setSelectedPortfolioCardId,
-}: IPortfolioCardList) => {
+const PortfolioCardList = () => {
   return (
     <div className='relative w-full'>
       <span className={styles.portfolioCardList__portfoliosAmount}>
-        My Portfolios [ {portfolioEntityList.length} ]
+        <ListTitle />
       </span>
       <div className={styles.portfolioCardList__cardsArea}>
-        {portfolioEntityList.map(({ title, id, totalReturnValue, totalReturnPercentage, annualIncome }) => (
-          <PortfolioCard
-            key={id}
-            id={id}
-            isSelected={selectedPortfolioCardId === id}
-            setSelectedPortfolioCardId={setSelectedPortfolioCardId}
-          >
-            <PortfolioCardContent
-              title={title}
-              totalReturnValue={totalReturnValue}
-              totalReturnPercentage={totalReturnPercentage}
-              annualIncome={annualIncome}
-            />
-          </PortfolioCard>
-        ))}
+        <List />
       </div>
       <div className={styles.portfolioCardList__backgroundBlock} />
     </div>
