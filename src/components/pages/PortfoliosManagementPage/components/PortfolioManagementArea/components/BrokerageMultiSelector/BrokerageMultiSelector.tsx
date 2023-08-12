@@ -5,7 +5,7 @@ import { MultiAutocompleteInput } from 'src/core/client'
 // TODO: Rid of
 const HARD_CODED_INITIAL_LIST: Option[] = [
   { id: "fds222f", value: "Exante", label: "Exante", icon: <ExanteIcon size={16} /> },
-  { id: "f4sf324", value: "Freedom Finance", label: "Freedom Finance", icon: <FreedomFinanceIcon size={16} /> },
+  { id: "f4sf3243", value: "Freedom Finance", label: "Freedom Finance", icon: <FreedomFinanceIcon size={16} /> },
 ]
 
 interface IBrokerageMultiSelector {

@@ -8,10 +8,17 @@ interface IUseSelectedPortfolio {
 const useSelectedPortfolio = ({
   portfolioList
 }: IUseSelectedPortfolio) => {
-  const [ selectedPortfolioCard, setSelectedPortfolioCard ] = useState<Portfolio>()
+  const [ selectedPortfolioCard, setSelectedPortfolioCard ] = useState<Portfolio | null>(null)
 
   /** Selects the portfolio, makes it active in portfolio management area */
-  const selectPortfolioById = useCallback((id: string) => {
+  const selectPortfolioById = useCallback((id: string | null) => {
+    // Deselect
+    if (id === null) {
+      setSelectedPortfolioCard(id)
+      return
+    }
+
+    // Select
     const portfolioToSelect = portfolioList.find(portfolio => portfolio.id === id)
     if (portfolioToSelect && portfolioToSelect.id !== selectedPortfolioCard?.id) {
       setSelectedPortfolioCard(portfolioToSelect)

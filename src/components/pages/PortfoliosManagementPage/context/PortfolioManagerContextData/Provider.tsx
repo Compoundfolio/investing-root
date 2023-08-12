@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 import PortfolioManagerContext, { PortfolioManagerContextData } from './context'
 import { usePortfolioList, useSelectedPortfolio } from './hooks'
 
@@ -26,13 +26,18 @@ export const PortfolioManagerContextProvider = ({ children }: IWaiverContextProv
     portfolioList,
   })
 
+  const deleteSelectedPortfolio = useMemo(() => () => {
+    deletePortfolio(selectedPortfolioCard!)()
+    selectPortfolioById(null)
+  }, [selectedPortfolioCard])
+
   const context: PortfolioManagerContextData = {
     portfolioList,
     isNoPortfolios,
     selectedPortfolioCard,
     addPortfolio,
     savePortfolioChanges,
-    deletePortfolio,
+    deletePortfolio: deleteSelectedPortfolio,
     selectPortfolioById,
     createNewPortfolioCard
   }

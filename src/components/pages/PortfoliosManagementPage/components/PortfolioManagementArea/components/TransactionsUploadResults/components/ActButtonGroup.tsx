@@ -2,26 +2,25 @@
 
 import { ActButton } from '@core'
 import React from 'react'
+import usePortfolioManagerContext from '../../../../../context/PortfolioManagerContextData/hook';
 
-interface IActButtonGroup {
-  saveSelectedPortfolio: () => void
-  deleteSelectedPortfolio: () => void
-}
+const ActButtonGroup = () => {
 
-const ActButtonGroup = ({
-  saveSelectedPortfolio,
-  deleteSelectedPortfolio,
-}: IActButtonGroup) => {
+  const {
+    savePortfolioChanges,
+    deletePortfolio,
+  } = usePortfolioManagerContext()
+
   return (
     <div className="flex gap-4">
       <ActButton
-        onClick={saveSelectedPortfolio}
+        onClick={savePortfolioChanges}
         color='primary'
       >
         Apply changes
       </ActButton>
       <ActButton
-        onClick={deleteSelectedPortfolio}
+        onClick={deletePortfolio}
         color='lowPrior'
       >
         Delete portfolio

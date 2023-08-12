@@ -27,7 +27,7 @@ const usePortfolioList = () => {
     setPortfolioList(prev => [...prev, portfolio])
   }, [])
 
-  const deletePortfolio = useCallback((portfolio: Portfolio) => {
+  const deletePortfolio = useCallback((portfolio: Portfolio) => () => {
     setPortfolioList(currentPortfolioList => {
       return removeObjectFromArrayOfObjects<Portfolio>(currentPortfolioList, portfolio, "id")
     })

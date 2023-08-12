@@ -4,7 +4,7 @@ import styles from "./ActButton.module.css"
 import { Spinner } from "../../statuses"
 
 interface IActButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color: "primary" | "green"
+  color: "primary" | "green" | "lowPrior"
   isLoading?: boolean
 }
 

@@ -5,8 +5,8 @@
   padding-inline: 20px;
   padding-block: 12px;
   display: block;
-  margin: 0 auto;
   border-radius: 8px;
+  width: 100%;
 }
 
 .actButton--primary {
@@ -17,4 +17,9 @@
 .actButton--green {
   composes: actButton;
   background-color: var(--color-darkGreen);
+}
+
+.actButton--lowPrior {
+  composes: actButton;
+  background-color: var(--color-blueDark28);
 }

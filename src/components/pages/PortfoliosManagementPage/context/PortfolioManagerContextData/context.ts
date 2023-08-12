@@ -1,24 +1,26 @@
+"use client"
+
 import { Portfolio } from "@core"
 import { createContext } from "react"
 
 export interface PortfolioManagerContextData {
   portfolioList: Portfolio[];
   isNoPortfolios: boolean;
-  selectedPortfolioCard: Portfolio | undefined;
+  selectedPortfolioCard: Portfolio | null;
   addPortfolio: (portfolio: Portfolio) => void;
   savePortfolioChanges: () => void;
-  deletePortfolio: (portfolio: Portfolio) => void;
-  selectPortfolioById: (id: string) => void;
+  deletePortfolio: () => void;
+  selectPortfolioById: (id: string | null) => void;
   createNewPortfolioCard: () => void;
 }
 
 export const INITIAL_STATE: PortfolioManagerContextData = {
   portfolioList: [],
-  selectedPortfolioCard: undefined,
+  selectedPortfolioCard: null,
   isNoPortfolios: true,
   addPortfolio: (portfolio: Portfolio) => {},
   savePortfolioChanges: () => {},
-  deletePortfolio: (portfolio: Portfolio) => {},
+  deletePortfolio: () => {},
   selectPortfolioById: (id: string) => {},
   createNewPortfolioCard: () => {},
 }

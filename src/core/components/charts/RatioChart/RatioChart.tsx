@@ -1,7 +1,8 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import styles from "./RatioChart.module.css"
 import { RatioChartDataSet } from './types'
 import { calcPercentageChange } from './helpers'
+import clsx from 'clsx';
 
 interface IRatioChart {
   title: string
@@ -23,6 +24,11 @@ const RatioChart = ({
     return dataSet.reduce((prevValue, currentValue) => prevValue + currentValue.value, 0) || 0
   }, [dataSet])
 
+  const ratioItemStyle = useCallback(({ value }) => ({
+    width: `calc(${calcPercentageChange(value ?? 0, total)}% - 2px)`,
+    opacity: calcPercentageChange(value ?? 0, total) / 100,
+  }), [total])
+
   return (
     <article className='w-full'>
       <div className='flex items-center justify-between gap-8 mb-4'>
@@ -42,11 +48,11 @@ const RatioChart = ({
         {dataSet.map(ratioDataEntity => (
           <div
             key={ratioDataEntity.name}
-            style={{
-              width: `calc(${calcPercentageChange(ratioDataEntity?.value ?? 0, total)}% - 2px)`,
-              opacity: calcPercentageChange(ratioDataEntity?.value ?? 0, total) / 100
-            }}
-            className={styles.ratioChart__item}
+            style={ratioItemStyle(ratioDataEntity)}
+            className={clsx(
+              styles.ratioChart__item,
+              hoveredTransactionCategory === ratioDataEntity.name && styles.ratioChart__item__hovered,
+            )}
             onMouseMove={() => setHoveredTransactionCategory && setHoveredTransactionCategory(ratioDataEntity.name)}
             onMouseLeave={() => setHoveredTransactionCategory && hoveredTransactionCategory && setHoveredTransactionCategory(null)}
           >
