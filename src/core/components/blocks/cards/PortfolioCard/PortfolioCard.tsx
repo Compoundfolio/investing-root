@@ -6,9 +6,9 @@ import clsx from 'clsx';
 import { IReactChildren } from 'src/core/types';
 
 interface IPortfolioCard extends IReactChildren {
-  id: string
+  id?: string
   isSelected: boolean
-  setSelectedPortfolioCardId: (id: string) => void
+  setSelectedPortfolioCardId?: (id: string) => void
 }
 
 const PortfolioCard = ({
@@ -17,15 +17,18 @@ const PortfolioCard = ({
   children,
   setSelectedPortfolioCardId,
 }: IPortfolioCard) => {
+
+  const isSelectableViaInteraction = !!setSelectedPortfolioCardId && !!id
+
   return (
     <article className='relative flex flex-col shadow'>
       <button
         className={clsx(style.portfolioCard, isSelected && style.portfolioCard_active)}
-        onClick={() => setSelectedPortfolioCardId(id)}
+        onClick={() => isSelectableViaInteraction && setSelectedPortfolioCardId(id)}
       >
         {children}
       </button>
-      {isSelected && (
+      {isSelected && isSelectableViaInteraction && (
         <div className={style.selectedLabel}>
           <span className={style.selectedLabel__text}>
             Selected

@@ -39,7 +39,7 @@ const ModalBlur = ({
                 )}
                 {/*body*/}
                 {/* <div className="relative flex flex-col justify-center w-full h-full text-white "> */}
-                <div className="relative flex flex-col justify-between w-full h-full text-white ">
+                <div className="relative flex flex-col items-center justify-center w-full h-full text-white ">
                   <div className={styles.shortcut_wrapper}>
                     {/* <ShortcutHelper
                       keyShortcuts={[{ keyName: "Esc", eventKey: "Escape" }]}

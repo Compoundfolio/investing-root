@@ -1,14 +1,16 @@
 "use client"
 
-import { ActButton } from '@core'
+import { ActButton, AreYouSureModal, PortfolioCard, PortfolioCardContent, useOpen } from '@core'
 import React from 'react'
 import usePortfolioManagerContext from '../../../../../context/PortfolioManagerContextData/hook';
 
 const ActButtonGroup = () => {
 
+  const [ isAgreeModalOpen, handleIsAgreeModalOpen ] = useOpen()
+
   const {
+    selectedPortfolioCard,
     savePortfolioChanges,
-    deletePortfolio,
   } = usePortfolioManagerContext()
 
   return (
@@ -20,11 +22,25 @@ const ActButtonGroup = () => {
         Apply changes
       </ActButton>
       <ActButton
-        onClick={deletePortfolio}
+        onClick={handleIsAgreeModalOpen}
         color='lowPrior'
       >
         Delete portfolio
       </ActButton>
+      <AreYouSureModal
+        isOpen={isAgreeModalOpen}
+        title="Permanently delete this portfolio?"
+        handleModalOpenStatus={handleIsAgreeModalOpen}
+      >
+        <PortfolioCard isSelected={true}>
+          <PortfolioCardContent
+            title={selectedPortfolioCard?.title!}
+            totalReturnValue={selectedPortfolioCard?.totalReturnValue!}
+            totalReturnPercentage={selectedPortfolioCard?.totalReturnPercentage!}
+            annualIncome={selectedPortfolioCard?.annualIncome!}
+          />
+        </PortfolioCard>
+      </AreYouSureModal>
     </div>
   )
 }

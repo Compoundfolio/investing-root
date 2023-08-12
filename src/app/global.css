@@ -25,6 +25,8 @@
   --color-primary: #1290ff;
 
   --dashboard-visualizations-gap: 48px;
+
+  --average-transition-duration: 0.25s;
 }
 
 input:-webkit-autofill,
@@ -157,12 +159,24 @@ a {
   color: var(--color-white);
 }
 
+h2 {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 /* Button style */
 
 button {
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
+}
+
+/* Disable click animation if the button disabled */
+button:disabled:after {
+  background-image: none !important;
 }
 
 button:hover {
