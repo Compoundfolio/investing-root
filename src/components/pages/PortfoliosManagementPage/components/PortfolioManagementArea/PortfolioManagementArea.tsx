@@ -1,6 +1,6 @@
 "use client"
 
-import { Option, useFadeInOutMountAnimation } from '@core'
+import { Option, SectionHead, useFadeInOutMountAnimation } from '@core'
 import React, { ChangeEvent, memo, useCallback, useState } from 'react'
 import { BrokerageMultiSelector, TransactionsUploadResults } from './components'
 import TransactionsUploadArea from './components/TransactionsUploadArea/TransactionsUploadArea'
@@ -8,6 +8,7 @@ import styles from './PortfolioManagementArea.module.css'
 import { Input } from 'src/core/client'
 import { defaultPortfolioName } from './consts'
 import usePortfolioManagerContext from '../../context/PortfolioManagerContextData/hook';
+import clsx from 'clsx';
 
 const PortfolioManagementArea = () => {
 
@@ -35,7 +36,7 @@ const PortfolioManagementArea = () => {
 
   return (
     <section className='flex justify-between w-full gap-20'>
-      <div className={styles.container}>
+      <div className={clsx(styles.container, "gap-16")}>
         <Input
           value={portfolioName}
           labelText="Portfolio name"
@@ -51,6 +52,9 @@ const PortfolioManagementArea = () => {
         />
       </div>
       <div className={styles.container}>
+        <SectionHead
+          title="Transactions upload"
+        />
         {shouldRenderReportsUploadArea && (
           <TransactionsUploadArea
             contentAnimation={contentAnimation}
@@ -60,6 +64,9 @@ const PortfolioManagementArea = () => {
         )}
       </div>
       <div className={styles.container}>
+        <SectionHead
+          title="Results"
+        />
         {transactionsUploadStats && (
           <TransactionsUploadResults
             selectedBrokerageOptions={selectedBrokerageOptions}

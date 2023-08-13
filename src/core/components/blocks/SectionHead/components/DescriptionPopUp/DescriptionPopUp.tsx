@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import styles from "./DescriptionPopUp.module.css"
 import clsx from "clsx"
@@ -10,13 +8,14 @@ interface IDescriptionPopUp {
 
 const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
   return (
-    <div className="relative flex group cursor-help">
+    <div className="relative flex group">
       <svg
         width="20"
         height="21"
         viewBox="0 0 20 21"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="cursor-pointer group-hover:opacity-50"
       >
         <path
           fill-rule="evenodd"
@@ -47,7 +46,7 @@ const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
       </svg>
       <span
         className={clsx(
-          "absolute px-4 py-2 m-4 mx-auto text-sm text-gray-100 transition-opacity -translate-x-1/2 translate-y-full bg-gray-800 rounded-md opacity-0 group-hover:opacity-100",
+          "top-0 left-8 absolute w-96 transition hidden group-hover:block",
           styles.tooltipBlock
         )}
       >

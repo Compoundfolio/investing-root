@@ -2,7 +2,7 @@
 
 import React, { memo } from "react"
 import { ResponsiveTreeMap } from "@nivo/treemap"
-import { DataVisHeading, colors } from "@core"
+import { SectionHead, colors } from "@core"
 
 const data = {
   name: "nivo",
@@ -428,7 +428,7 @@ const data = {
 
 const DividendMapChart = () => {
   return (
-    <DataVisHeading title="Dividend Map" dataVisDescription="TODO">
+    <SectionHead title="Dividend Map" dataVisDescription="TODO">
       <div style={{ width: "100%", height: 355 + 20 }}>
         <ResponsiveTreeMap
           data={data}
@@ -454,7 +454,7 @@ const DividendMapChart = () => {
           }}
         />
       </div>
-    </DataVisHeading>
+    </SectionHead>
   )
 }
 

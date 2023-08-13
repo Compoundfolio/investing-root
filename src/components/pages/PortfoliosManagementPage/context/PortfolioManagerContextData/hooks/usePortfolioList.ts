@@ -2,19 +2,20 @@ import { Portfolio, removeObjectFromArrayOfObjects } from "@core"
 import { useCallback, useState } from "react"
 import { causeGentleUiTransition } from "./helpers"
 
-const emptyPortfolioTemplate = {
-  id: `${Math.random()}`,
-  title: 'New Portfolio',
-  brokerages: [],
-  totalReturnValue: 0,
-  totalReturnPercentage: 0,
-  annualIncome: 0
-}
 
 const usePortfolioList = () => {
   const [ portfolioList, setPortfolioList ] = useState<Portfolio[]>([])
 
   const isNoPortfolios = portfolioList.length === 0
+
+  const emptyPortfolioTemplate = {
+    id: `${Math.random()}`,
+    title: 'New Portfolio',
+    brokerages: [],
+    totalReturnValue: 0,
+    totalReturnPercentage: 0,
+    annualIncome: 0
+  }
 
   const createNewPortfolioCard = useCallback(() => {
     // TODO: Server request

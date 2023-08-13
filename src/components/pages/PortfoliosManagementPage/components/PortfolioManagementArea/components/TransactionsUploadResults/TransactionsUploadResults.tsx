@@ -1,5 +1,5 @@
-import { ActButton, Option, RatioChart } from '@core'
-import React, { memo, useCallback, useState } from 'react'
+import { Option, RatioChart } from '@core'
+import React, { memo, useState } from 'react'
 import { RatioChartDataSet } from 'src/core/components/charts/RatioChart/types'
 import { TransactionCategory } from './types'
 import { ActButtonGroup } from './components'

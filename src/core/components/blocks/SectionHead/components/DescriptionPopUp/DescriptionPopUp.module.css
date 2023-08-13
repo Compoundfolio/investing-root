@@ -1,0 +1,11 @@
+.tooltipBlock {
+  border-radius: 8px;
+  background: #041414;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.048px;
+  z-index: 9999;
+  padding: 12px;
+  box-shadow: 0px 8px 16px -2px var(--color-blueDark28);
+}

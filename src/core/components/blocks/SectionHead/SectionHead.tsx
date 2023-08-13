@@ -1,28 +1,28 @@
 import React from "react"
-import styles from "./DataVisHeading.module.css"
+import styles from "./SectionHead.module.css"
 import { DescriptionPopUp } from "./components"
 import { IReactChildren } from "src/core/types"
 
 export interface IDataVisHeading extends IReactChildren {
   title: string
-  dataVisDescription: string
+  dataVisDescription?: string
 }
-
-const DataVisHeading = ({
+ 
+const SectionHead = ({
   title,
   dataVisDescription,
   children,
   ...restProps
 }: IDataVisHeading) => {
   return (
-    <div {...restProps} className="flex flex-col w-full gap-[22px]">
+    <div {...restProps} className={`flex flex-col w-full gap-8 ${!children && "mb-8"}`}>
       <div className="flex items-center gap-4">
         <span className={styles.title}>{title}</span>
-        <DescriptionPopUp description={dataVisDescription} />
+        {dataVisDescription && <DescriptionPopUp description={dataVisDescription} />}
       </div>
-      <div className="flex flex-col">{children}</div>
+      {children && <div className="flex flex-col">{children}</div>}
     </div>
   )
 }
 
-export default DataVisHeading
+export default SectionHead
