@@ -1,4 +1,4 @@
-import { Control, Option } from "src/core/types";
+import { Control, Option } from "src/core/types"
 
 type ControlRequiredFields = Required<Pick<Control, "name" | "placeholder">>
 

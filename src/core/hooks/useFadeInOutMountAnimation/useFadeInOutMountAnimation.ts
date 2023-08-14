@@ -1,36 +1,36 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 const useDelayUnmount = (isMounted: boolean, delayTime: number) => {
-  const [shouldRender, setShouldRender] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false)
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId
 
     if (isMounted && !shouldRender) {
-      setShouldRender(true);
+      setShouldRender(true)
     } else if (!isMounted && shouldRender) {
-      timeoutId = setTimeout(() => setShouldRender(false), delayTime);
+      timeoutId = setTimeout(() => setShouldRender(false), delayTime)
     }
 
-    return () => clearTimeout(timeoutId);
-  }, [isMounted, delayTime, shouldRender]);
+    return () => clearTimeout(timeoutId)
+  }, [isMounted, delayTime, shouldRender])
 
-  return shouldRender;
+  return shouldRender
 }
 
 const useFadeInOutMountAnimation = (delay: number = 1000) => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  
-  const shouldRenderChild = useDelayUnmount(isMounted, delay);
+  const [isMounted, setIsMounted] = useState<boolean>(false)
 
-  const beforeMountFadeIn = { animation: `inAnimation ${delay}ms ease-in` };
-  const unmountFadeOut = { animation: `outAnimation ${delay + 10}ms ease-in` };
+  const shouldRenderChild = useDelayUnmount(isMounted, delay)
+
+  const beforeMountFadeIn = { animation: `inAnimation ${delay}ms ease-in` }
+  const unmountFadeOut = { animation: `outAnimation ${delay + 10}ms ease-in` }
 
   const causeContentFadeEffect = () => {
-    setIsMounted(prev => !prev);
-  };
+    setIsMounted((prev) => !prev)
+  }
 
   return {
     shouldRenderChild,

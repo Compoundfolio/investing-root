@@ -27,7 +27,6 @@ const Input = ({
   setErrorMessage,
   ...restProps
 }: IInput) => {
-
   const {
     isPasswordVisible,
     isPassword,
@@ -58,7 +57,7 @@ const Input = ({
         style={{
           ...(isPassword && { paddingRight: 46 }),
           ...(errorMessage && { borderColor: colors.pinkSoft }),
-          ...(!setErrorMessage && { margin: 0 })
+          ...(!setErrorMessage && { margin: 0 }),
         }}
       />
       {isPassword && (

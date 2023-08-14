@@ -1,1 +1,1 @@
-export {default as MainAreaWrapper} from './MainAreaWrapper';
+export { default as MainAreaWrapper } from "./MainAreaWrapper"

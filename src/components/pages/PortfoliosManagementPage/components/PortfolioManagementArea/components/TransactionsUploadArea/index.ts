@@ -1,1 +1,1 @@
-export { default } from './TransactionsUploadArea'
+export { default } from "./TransactionsUploadArea"

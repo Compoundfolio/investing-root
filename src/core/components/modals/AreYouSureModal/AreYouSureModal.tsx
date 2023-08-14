@@ -1,6 +1,6 @@
-import React from 'react'
-import { ModalBlur } from '../../blocks'
-import { ActArea } from './components'
+import React from "react"
+import { ModalBlur } from "../../blocks"
+import { ActArea } from "./components"
 
 const AreYouSureModal = ({
   isOpen,
@@ -9,8 +9,12 @@ const AreYouSureModal = ({
   handleModalOpenStatus,
 }) => {
   return (
-    <ModalBlur noMaxWidth={false} isOpen={isOpen} handleOpenChange={handleModalOpenStatus}>
-      <div className='flex flex-col items-center gap-12'>
+    <ModalBlur
+      noMaxWidth={false}
+      isOpen={isOpen}
+      handleOpenChange={handleModalOpenStatus}
+    >
+      <div className="flex flex-col items-center gap-12">
         <h2>{title}</h2>
         {children}
         <ActArea closeModal={handleModalOpenStatus} />

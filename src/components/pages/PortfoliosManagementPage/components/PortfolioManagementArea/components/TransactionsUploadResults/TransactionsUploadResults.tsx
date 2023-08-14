@@ -1,18 +1,18 @@
-import { Option, PortfolioBrokerage, RatioChart } from '@core'
-import React, { memo, useState } from 'react'
-import { RatioChartDataSet } from 'src/core/components/charts/RatioChart/types'
-import { TransactionCategory } from './types'
-import { ActButtonGroup } from './components'
+import { Option, PortfolioBrokerage, RatioChart } from "@core"
+import React, { memo, useState } from "react"
+import { RatioChartDataSet } from "src/core/components/charts/RatioChart/types"
+import { TransactionCategory } from "./types"
+import { ActButtonGroup } from "./components"
 
 interface ITransactionsUploadResults {
   selectedBrokerageOptions: PortfolioBrokerage[]
 }
 
-const TransactionsUploadResults = ({ 
+const TransactionsUploadResults = ({
   selectedBrokerageOptions,
 }: ITransactionsUploadResults) => {
-
-  const [ hoveredTransactionCategory, setHoveredTransactionCategory ] = useState<TransactionCategory>(null)
+  const [hoveredTransactionCategory, setHoveredTransactionCategory] =
+    useState<TransactionCategory>(null)
 
   const transactionsStats = [
     {
@@ -36,22 +36,24 @@ const TransactionsUploadResults = ({
         { value: 1, name: "Deposits" },
         { value: 25, name: "Withdrawals" },
       ] satisfies RatioChartDataSet,
-    }
+    },
   ]
 
   return (
-    <aside className='flex flex-col justify-between h-full'>
-      <section className='flex flex-col gap-8'>
-        {transactionsStats.map(({ id, brokerageName, transactionsCategories }) => (
-          <RatioChart
-            key={id}
-            title={brokerageName}
-            totalShortDescription="Defined transactions"
-            dataSet={transactionsCategories}
-            hoveredTransactionCategory={hoveredTransactionCategory}
-            setHoveredTransactionCategory={setHoveredTransactionCategory}
-          />
-        ))}
+    <aside className="flex flex-col justify-between h-full">
+      <section className="flex flex-col gap-8">
+        {transactionsStats.map(
+          ({ id, brokerageName, transactionsCategories }) => (
+            <RatioChart
+              key={id}
+              title={brokerageName}
+              totalShortDescription="Defined transactions"
+              dataSet={transactionsCategories}
+              hoveredTransactionCategory={hoveredTransactionCategory}
+              setHoveredTransactionCategory={setHoveredTransactionCategory}
+            />
+          )
+        )}
       </section>
       <ActButtonGroup />
     </aside>

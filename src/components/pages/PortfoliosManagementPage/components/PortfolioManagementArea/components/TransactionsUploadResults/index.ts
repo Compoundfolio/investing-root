@@ -1,1 +1,1 @@
-export {default as TransactionsUploadResults} from './TransactionsUploadResults';
+export { default as TransactionsUploadResults } from "./TransactionsUploadResults"

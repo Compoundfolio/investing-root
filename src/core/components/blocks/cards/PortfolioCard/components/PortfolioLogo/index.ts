@@ -1,1 +1,1 @@
-export {default as PortfolioLogo} from './PortfolioLogo';
+export { default as PortfolioLogo } from "./PortfolioLogo"

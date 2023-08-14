@@ -14,7 +14,9 @@ const Label = ({ htmlFor, labelText, required = false, ...rest }: ILabel) => {
       {...rest}
     >
       {labelText}{" "}
-      <span className={required ? "color-red" : "color-gray4C"}>{required ? " *" : " (Optional)"}</span>
+      <span className={required ? "color-red" : "color-gray4C"}>
+        {required ? " *" : " (Optional)"}
+      </span>
     </label>
   )
 }

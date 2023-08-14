@@ -1,8 +1,6 @@
-import React from 'react'
+import React from "react"
 
-const ExanteIcon = ({
-  size = 32
-}) => {
+const ExanteIcon = ({ size = 32 }) => {
   return (
     <svg
       width={size}

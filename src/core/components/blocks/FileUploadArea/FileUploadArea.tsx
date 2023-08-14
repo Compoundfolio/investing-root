@@ -1,12 +1,12 @@
 "use client"
 
-import React, { InputHTMLAttributes } from 'react'
-import { useFileUpload, useHoverViewMode } from './hooks'
-import styles from './FileUploadArea.module.css'
-import { UploadedFileRepresentation } from './components'
-import clsx from 'clsx';
-import { AddIcon } from '../../icons'
-import { colors } from 'src/core/theme'
+import React, { InputHTMLAttributes } from "react"
+import { useFileUpload, useHoverViewMode } from "./hooks"
+import styles from "./FileUploadArea.module.css"
+import { UploadedFileRepresentation } from "./components"
+import clsx from "clsx"
+import { AddIcon } from "../../icons"
+import { colors } from "src/core/theme"
 
 export interface IFileUploadArea {
   title: string
@@ -19,7 +19,6 @@ const FileUploadArea = ({
   handleFileUpload,
   acceptFiles,
 }: IFileUploadArea) => {
-
   const {
     file,
     userFriendlyFileMbSize,
@@ -29,11 +28,8 @@ const FileUploadArea = ({
     getInputProps,
   } = useFileUpload(handleFileUpload)
 
-  const {
-    isActButtonsShowed,
-    showOnHoverView,
-    hideOnHoverView
-  } = useHoverViewMode(!!file)
+  const { isActButtonsShowed, showOnHoverView, hideOnHoverView } =
+    useHoverViewMode(!!file)
 
   return (
     <button
@@ -46,12 +42,15 @@ const FileUploadArea = ({
         <section
           className={clsx(
             styles.fileUploadArea__plateSection,
-            isActButtonsShowed && styles.fileUploadArea__plateSection_hovered,
+            isActButtonsShowed && styles.fileUploadArea__plateSection_hovered
           )}
         >
           {isActButtonsShowed ? (
             <div>
-              <button className={styles.fileUploadArea__actButton} onClick={reuploadFile}>
+              <button
+                className={styles.fileUploadArea__actButton}
+                onClick={reuploadFile}
+              >
                 Reupload
               </button>
             </div>
@@ -63,16 +62,14 @@ const FileUploadArea = ({
           )}
         </section>
       ) : (
-        <div className='flex flex-col items-center justify-center w-full h-full'>
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <input
             accept={acceptFiles}
             ref={fileUploadInputNodeRef}
             {...getInputProps()}
           />
           <AddIcon color={colors.darkGreen} />
-          <p className={styles.fileUploadArea__title}>
-            {title}
-          </p>
+          <p className={styles.fileUploadArea__title}>{title}</p>
         </div>
       )}
     </button>

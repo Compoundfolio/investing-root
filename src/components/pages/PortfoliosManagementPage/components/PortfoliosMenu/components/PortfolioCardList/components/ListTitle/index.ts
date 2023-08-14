@@ -1,1 +1,1 @@
-export {default as ListTitle} from './ListTitle';
+export { default as ListTitle } from "./ListTitle"

@@ -5,7 +5,7 @@ import useSelectedPortfolio from "./useSelectedPortfolio"
 import { PortfolioManagerContextData } from "../context"
 
 const usePortfolioList = (): PortfolioManagerContextData => {
-  const [ portfolioList, setPortfolioList ] = useState<Portfolio[]>([])
+  const [portfolioList, setPortfolioList] = useState<Portfolio[]>([])
 
   const {
     selectedPortfolioCard,
@@ -19,11 +19,11 @@ const usePortfolioList = (): PortfolioManagerContextData => {
 
   const emptyPortfolioTemplate = {
     id: `${Math.random()}`,
-    title: 'New Portfolio',
+    title: "New Portfolio",
     brokerages: [],
     totalReturnValue: 0,
     totalReturnPercentage: 0,
-    annualIncome: 0
+    annualIncome: 0,
   }
 
   const createNewPortfolioCard = useCallback(() => {
@@ -34,19 +34,29 @@ const usePortfolioList = (): PortfolioManagerContextData => {
   }, [isNoPortfolios, emptyPortfolioTemplate])
 
   const addPortfolio = useCallback((portfolio: Portfolio) => {
-    setPortfolioList(prev => [...prev, portfolio])
+    setPortfolioList((prev) => [...prev, portfolio])
   }, [])
 
-  const deletePortfolio = useCallback((portfolio: Portfolio) => () => {
-    setPortfolioList(currentPortfolioList => {
-      return removeObjectFromArrayOfObjects<Portfolio>(currentPortfolioList, portfolio, "id")
-    })
-  }, [])
+  const deletePortfolio = useCallback(
+    (portfolio: Portfolio) => () => {
+      setPortfolioList((currentPortfolioList) => {
+        return removeObjectFromArrayOfObjects<Portfolio>(
+          currentPortfolioList,
+          portfolio,
+          "id"
+        )
+      })
+    },
+    []
+  )
 
-  const deleteSelectedPortfolio = useMemo(() => () => {
-    deletePortfolio(selectedPortfolioCard!)()
-    selectPortfolioById(null)
-  }, [selectedPortfolioCard])
+  const deleteSelectedPortfolio = useMemo(
+    () => () => {
+      deletePortfolio(selectedPortfolioCard!)()
+      selectPortfolioById(null)
+    },
+    [selectedPortfolioCard]
+  )
 
   const savePortfolioChanges = useCallback(() => {
     // TODO: Server request

@@ -1,1 +1,1 @@
-export {default as PortfolioBrokerageIcons} from './PortfolioBrokerageIcons';
+export { default as PortfolioBrokerageIcons } from "./PortfolioBrokerageIcons"

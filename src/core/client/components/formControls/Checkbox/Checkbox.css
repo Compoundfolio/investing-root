@@ -96,7 +96,7 @@ span.checkboxDescriptionText {
 
 /* Hover, Focus */
 .pure-material-checkbox:hover > input {
-  opacity: 0.10;
+  opacity: 0.1;
   box-shadow: 0 0 4px black;
 }
 

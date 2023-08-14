@@ -1,1 +1,1 @@
-export {default as PortfolioTotalValue} from './PortfolioTotalValue';
+export { default as PortfolioTotalValue } from "./PortfolioTotalValue"

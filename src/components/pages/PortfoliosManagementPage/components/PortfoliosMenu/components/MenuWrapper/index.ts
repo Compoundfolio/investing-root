@@ -1,1 +1,1 @@
-export {default} from './MenuWrapper';
+export { default } from "./MenuWrapper"

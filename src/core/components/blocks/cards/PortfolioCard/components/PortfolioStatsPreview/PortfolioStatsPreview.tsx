@@ -1,5 +1,5 @@
-import React from 'react'
-import { PortfolioCardStatsItem } from './components'
+import React from "react"
+import { PortfolioCardStatsItem } from "./components"
 
 interface IPortfolioStatsPreview {
   totalReturnPercentage: number
@@ -11,7 +11,7 @@ const PortfolioStatsPreview = ({
   annualIncome = 0,
 }: IPortfolioStatsPreview) => {
   return (
-    <section className='flex flex-col items-center gap-2'>
+    <section className="flex flex-col items-center gap-2">
       <PortfolioCardStatsItem
         title="Total return"
         value={`${totalReturnPercentage}%`}

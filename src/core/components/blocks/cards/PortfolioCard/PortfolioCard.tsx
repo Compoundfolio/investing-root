@@ -1,9 +1,9 @@
 "use client"
 
-import React, { memo } from 'react'
+import React, { memo } from "react"
 import style from "./PortfolioCard.module.css"
-import clsx from 'clsx';
-import { IReactChildren } from 'src/core/types';
+import clsx from "clsx"
+import { IReactChildren } from "src/core/types"
 
 interface IPortfolioCard extends IReactChildren {
   id?: string
@@ -17,22 +17,24 @@ const PortfolioCard = ({
   children,
   setSelectedPortfolioCardId,
 }: IPortfolioCard) => {
-
   const isSelectableViaInteraction = !!setSelectedPortfolioCardId && !!id
 
   return (
-    <article className='relative flex flex-col shadow'>
+    <article className="relative flex flex-col shadow">
       <button
-        className={clsx(style.portfolioCard, isSelected && style.portfolioCard_active)}
-        onClick={() => isSelectableViaInteraction && setSelectedPortfolioCardId(id)}
+        className={clsx(
+          style.portfolioCard,
+          isSelected && style.portfolioCard_active
+        )}
+        onClick={() =>
+          isSelectableViaInteraction && setSelectedPortfolioCardId(id)
+        }
       >
         {children}
       </button>
       {isSelected && isSelectableViaInteraction && (
         <div className={style.selectedLabel}>
-          <span className={style.selectedLabel__text}>
-            Selected
-          </span>
+          <span className={style.selectedLabel__text}>Selected</span>
         </div>
       )}
     </article>

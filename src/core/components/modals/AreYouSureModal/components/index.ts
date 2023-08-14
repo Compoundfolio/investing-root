@@ -1,1 +1,1 @@
-export * from './ActArea';
+export * from "./ActArea"

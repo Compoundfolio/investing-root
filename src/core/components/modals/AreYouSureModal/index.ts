@@ -1,1 +1,1 @@
-export {default as AreYouSureModal} from './AreYouSureModal';
+export { default as AreYouSureModal } from "./AreYouSureModal"

@@ -1,15 +1,15 @@
 "use client"
 
-import React, { useEffect } from 'react'
-import { useFadeInOutMountAnimation, useOpen } from 'src/core/hooks'
-import { IReactChildren } from 'src/core/types'
-import { CollapseIcon } from '../../icons'
+import React, { useEffect } from "react"
+import { useFadeInOutMountAnimation, useOpen } from "src/core/hooks"
+import { IReactChildren } from "src/core/types"
+import { CollapseIcon } from "../../icons"
 import style from "./Collapsible.module.css"
-import clsx from 'clsx';
+import clsx from "clsx"
 
 interface ICollapsible extends IReactChildren {
   openByDefault?: boolean
-  title: Required<IReactChildren['title']>
+  title: Required<IReactChildren["title"]>
 }
 
 const Collapsible = ({
@@ -17,8 +17,7 @@ const Collapsible = ({
   title,
   children,
 }: ICollapsible) => {
-
-  const [ isOpen, handleOpenChange ] = useOpen(openByDefault)
+  const [isOpen, handleOpenChange] = useOpen(openByDefault)
 
   // const {
   //   shouldRenderChild,
@@ -31,9 +30,12 @@ const Collapsible = ({
   // }, [isOpen])
 
   return (
-    <article className='flex flex-col w-full'>
+    <article className="flex flex-col w-full">
       <button
-        className={clsx(style.collapsible__triggerButton, 'flex items-center justify-between w-full')}
+        className={clsx(
+          style.collapsible__triggerButton,
+          "flex items-center justify-between w-full"
+        )}
         onClick={handleOpenChange}
       >
         {title}
@@ -45,9 +47,7 @@ const Collapsible = ({
         </div>
       )} */}
       {isOpen && (
-        <div className={style.collapsible__contentWrapper}>
-          {children}
-        </div>
+        <div className={style.collapsible__contentWrapper}>{children}</div>
       )}
     </article>
   )

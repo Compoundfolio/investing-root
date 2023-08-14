@@ -1,1 +1,1 @@
-export {default as ActArea} from './ActArea';
+export { default as ActArea } from "./ActArea"

@@ -1,7 +1,7 @@
 "use client"
 
-import React, { memo } from 'react'
-import { MenuWrapper, PortfolioCardList } from './components'
+import React, { memo } from "react"
+import { MenuWrapper, PortfolioCardList } from "./components"
 
 const PortfoliosMenu = () => {
   return (

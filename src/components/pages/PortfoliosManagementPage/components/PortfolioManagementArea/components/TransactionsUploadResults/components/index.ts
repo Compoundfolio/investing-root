@@ -1,1 +1,1 @@
-export {default as ActButtonGroup} from './ActButtonGroup';
+export { default as ActButtonGroup } from "./ActButtonGroup"

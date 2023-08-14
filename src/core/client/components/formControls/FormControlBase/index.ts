@@ -1,1 +1,1 @@
-export {default as FormControlBase} from './FormControlBase';
+export { default as FormControlBase } from "./FormControlBase"

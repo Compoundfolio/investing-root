@@ -6,5 +6,4 @@ const usePortfolioManagerContext = (): PortfolioManagerContextData => {
   return context
 }
 
-
 export default usePortfolioManagerContext

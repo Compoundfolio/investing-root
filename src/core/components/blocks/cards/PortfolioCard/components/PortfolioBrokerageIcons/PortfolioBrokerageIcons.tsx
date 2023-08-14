@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import React, { memo } from 'react'
+import Image from "next/image"
+import React, { memo } from "react"
 
 interface IPortfolioBrokerageIcons {
   iconsList: string[]
@@ -7,12 +7,10 @@ interface IPortfolioBrokerageIcons {
 
 const iconSize = 24
 
-const PortfolioBrokerageIcons = ({
-  iconsList,
-}: IPortfolioBrokerageIcons) => {
+const PortfolioBrokerageIcons = ({ iconsList }: IPortfolioBrokerageIcons) => {
   return (
-    <section className='absolute flex flex-col items-center gap-2 top-2 left-2'>
-      {iconsList.map(iconSrc => (
+    <section className="absolute flex flex-col items-center gap-2 top-2 left-2">
+      {iconsList.map((iconSrc) => (
         <Image
           key={iconSrc}
           src={iconSrc}

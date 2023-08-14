@@ -1,21 +1,29 @@
-import React from 'react'
-import { IReactChildren } from 'src/core/types'
+import React from "react"
+import { IReactChildren } from "src/core/types"
 
 interface IAddIcon extends IReactChildren {
   color?: string
 }
 
 const AddIcon = ({ color, className }: IAddIcon) => {
-
-  const colorStyle = color ? {
-    fill: color
-  } : {
-    fill: "white",
-    fillOpacity: "0.1",
-  }
+  const colorStyle = color
+    ? {
+        fill: color,
+      }
+    : {
+        fill: "white",
+        fillOpacity: "0.1",
+      }
 
   return (
-    <svg className={className} width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={className}
+      width="56"
+      height="56"
+      viewBox="0 0 56 56"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="add-circle" clipPath="url(#clip0_411_12226)">
         <g id="Vector" filter="url(#filter0_d_411_12226)">
           <path
@@ -25,15 +33,40 @@ const AddIcon = ({ color, className }: IAddIcon) => {
         </g>
       </g>
       <defs>
-        <filter id="filter0_d_411_12226" x="0.666016" y="4.66675" width="54.666" height="54.6667" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <filter
+          id="filter0_d_411_12226"
+          x="0.666016"
+          y="4.66675"
+          width="54.666"
+          height="54.6667"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
           <feOffset dy="4" />
           <feGaussianBlur stdDeviation="2" />
           <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_411_12226" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_411_12226" result="shape" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_411_12226"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_411_12226"
+            result="shape"
+          />
         </filter>
         <clipPath id="clip0_411_12226">
           <rect width="56" height="56" fill="white" />

@@ -1,1 +1,1 @@
-export {default as MultiAutocompleteInput} from './MultiAutocompleteInput';
+export { default as MultiAutocompleteInput } from "./MultiAutocompleteInput"

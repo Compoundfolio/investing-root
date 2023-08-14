@@ -1,2 +1,1 @@
-
-export {default as memo} from './OptionsList';
+export { default as memo } from "./OptionsList"
