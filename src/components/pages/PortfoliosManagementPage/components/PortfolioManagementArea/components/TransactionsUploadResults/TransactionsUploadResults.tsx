@@ -1,11 +1,11 @@
-import { Option, RatioChart } from '@core'
+import { Option, PortfolioBrokerage, RatioChart } from '@core'
 import React, { memo, useState } from 'react'
 import { RatioChartDataSet } from 'src/core/components/charts/RatioChart/types'
 import { TransactionCategory } from './types'
 import { ActButtonGroup } from './components'
 
 interface ITransactionsUploadResults {
-  selectedBrokerageOptions: Option[]
+  selectedBrokerageOptions: PortfolioBrokerage[]
 }
 
 const TransactionsUploadResults = ({ 

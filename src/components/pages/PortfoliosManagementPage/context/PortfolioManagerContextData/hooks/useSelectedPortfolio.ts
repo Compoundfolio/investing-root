@@ -30,11 +30,16 @@ const useSelectedPortfolio = ({
     if (portfolioList.length === 1) {
       setSelectedPortfolioCard(portfolioList[0])
     }
-  }, [portfolioList])
+    // const lastAddedPortfolio = portfolioList.at(-1)
+    // if (lastAddedPortfolio) {
+    //   setSelectedPortfolioCard(lastAddedPortfolio)
+    // }
+  }, [portfolioList.length])
 
   return {
     selectedPortfolioCard,
     selectPortfolioById,
+    updateSelectedPortfolio: setSelectedPortfolioCard,
   }
 }
 

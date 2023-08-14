@@ -1,7 +1,7 @@
 "use client"
 
 import { Portfolio } from "@core"
-import { createContext } from "react"
+import { Dispatch, SetStateAction, createContext } from "react"
 
 export interface PortfolioManagerContextData {
   portfolioList: Portfolio[];
@@ -9,9 +9,10 @@ export interface PortfolioManagerContextData {
   selectedPortfolioCard: Portfolio | null;
   addPortfolio: (portfolio: Portfolio) => void;
   savePortfolioChanges: () => void;
-  deletePortfolio: () => void;
+  deleteSelectedPortfolio: () => void;
   selectPortfolioById: (id: string | null) => void;
   createNewPortfolioCard: () => void;
+  updateSelectedPortfolio: Dispatch<SetStateAction<Portfolio | null>>
 }
 
 export const INITIAL_STATE: PortfolioManagerContextData = {
@@ -20,9 +21,10 @@ export const INITIAL_STATE: PortfolioManagerContextData = {
   isNoPortfolios: true,
   addPortfolio: (portfolio: Portfolio) => {},
   savePortfolioChanges: () => {},
-  deletePortfolio: () => {},
+  deleteSelectedPortfolio: () => {},
   selectPortfolioById: (id: string) => {},
   createNewPortfolioCard: () => {},
+  updateSelectedPortfolio: (portfolio: Portfolio | null) => {}
 }
 
 const PortfolioManagerContext = createContext<PortfolioManagerContextData>(INITIAL_STATE)

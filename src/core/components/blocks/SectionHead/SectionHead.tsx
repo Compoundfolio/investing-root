@@ -1,11 +1,11 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import styles from "./SectionHead.module.css"
 import { DescriptionPopUp } from "./components"
 import { IReactChildren } from "src/core/types"
 
 export interface IDataVisHeading extends IReactChildren {
   title: string
-  dataVisDescription?: string
+  dataVisDescription?: ReactNode
 }
  
 const SectionHead = ({

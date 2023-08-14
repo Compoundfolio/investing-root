@@ -1,10 +1,19 @@
 import { Portfolio, removeObjectFromArrayOfObjects } from "@core"
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { causeGentleUiTransition } from "./helpers"
+import useSelectedPortfolio from "./useSelectedPortfolio"
+import { PortfolioManagerContextData } from "../context"
 
-
-const usePortfolioList = () => {
+const usePortfolioList = (): PortfolioManagerContextData => {
   const [ portfolioList, setPortfolioList ] = useState<Portfolio[]>([])
+
+  const {
+    selectedPortfolioCard,
+    selectPortfolioById,
+    updateSelectedPortfolio,
+  } = useSelectedPortfolio({
+    portfolioList,
+  })
 
   const isNoPortfolios = portfolioList.length === 0
 
@@ -34,6 +43,11 @@ const usePortfolioList = () => {
     })
   }, [])
 
+  const deleteSelectedPortfolio = useMemo(() => () => {
+    deletePortfolio(selectedPortfolioCard!)()
+    selectPortfolioById(null)
+  }, [selectedPortfolioCard])
+
   const savePortfolioChanges = useCallback(() => {
     // TODO: Server request
   }, [])
@@ -41,10 +55,13 @@ const usePortfolioList = () => {
   return {
     portfolioList,
     isNoPortfolios,
+    selectedPortfolioCard,
+    selectPortfolioById,
     addPortfolio,
     savePortfolioChanges,
-    deletePortfolio,
+    deleteSelectedPortfolio,
     createNewPortfolioCard,
+    updateSelectedPortfolio,
   }
 }
 

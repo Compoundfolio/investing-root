@@ -40,20 +40,20 @@ const MultiAutocompleteInput = ({
   }
 
   const selectOption = useCallback((option: Option, isDelete: boolean) => {
-    setSelectedOptions(prev => {
-      if (
-        selectionSideEffect &&
-        (prev.length === 0 && !isDelete) ||
-        (prev.length === 1 && isDelete)
-      ) {
-        selectionSideEffect()
-      }
+    if (
+      selectionSideEffect &&
+      (selectedOptions.length === 0 && !isDelete) ||
+      (selectedOptions.length === 1 && isDelete)
+    ) {
+      selectionSideEffect()
+    }
 
-      return isDelete
-        ? removeObjectFromArrayOfObjects<Option>(prev, option, "id")
-        : [...prev, option]
-    })
-  }, [])
+    const options = isDelete
+      ? removeObjectFromArrayOfObjects<Option>(selectedOptions, option, "id")
+      : [...selectedOptions, option]
+    
+    setSelectedOptions(options, isDelete)
+  }, [selectedOptions])
 
   return (
     <FormControlBase

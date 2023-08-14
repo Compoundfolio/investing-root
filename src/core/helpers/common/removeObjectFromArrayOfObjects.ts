@@ -9,6 +9,10 @@ const removeObjectFromArrayOfObjects = <T>(
   removeBy: keyof T
 ): T[] => {
   const index = arrayOfObjects.findIndex(existingPortfolio => existingPortfolio[removeBy] === objectToRemove[removeBy])
+  console.log(arrayOfObjects);
+  console.log(objectToRemove);
+  console.log(arrayOfObjects.toSpliced(index, 1));
+  
   return arrayOfObjects.toSpliced(index, 1)
 }
 

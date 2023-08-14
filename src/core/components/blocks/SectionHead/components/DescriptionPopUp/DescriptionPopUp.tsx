@@ -1,9 +1,9 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import styles from "./DescriptionPopUp.module.css"
 import clsx from "clsx"
 
 interface IDescriptionPopUp {
-  description: string
+  description: ReactNode
 }
 
 const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {

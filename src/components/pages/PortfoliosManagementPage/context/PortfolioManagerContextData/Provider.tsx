@@ -2,7 +2,7 @@
 
 import { ReactNode, useMemo } from 'react'
 import PortfolioManagerContext, { PortfolioManagerContextData } from './context'
-import { usePortfolioList, useSelectedPortfolio } from './hooks'
+import { usePortfolioList } from './hooks'
 
 interface IWaiverContextProvider {
   children: ReactNode
@@ -10,37 +10,7 @@ interface IWaiverContextProvider {
 
 export const PortfolioManagerContextProvider = ({ children }: IWaiverContextProvider) => {
 
-  const {
-    portfolioList,
-    isNoPortfolios,
-    addPortfolio,
-    savePortfolioChanges,
-    deletePortfolio,
-    createNewPortfolioCard,
-  } = usePortfolioList()
-
-  const {
-    selectedPortfolioCard,
-    selectPortfolioById,
-  } = useSelectedPortfolio({
-    portfolioList,
-  })
-
-  const deleteSelectedPortfolio = useMemo(() => () => {
-    deletePortfolio(selectedPortfolioCard!)()
-    selectPortfolioById(null)
-  }, [selectedPortfolioCard])
-
-  const context: PortfolioManagerContextData = {
-    portfolioList,
-    isNoPortfolios,
-    selectedPortfolioCard,
-    addPortfolio,
-    savePortfolioChanges,
-    deletePortfolio: deleteSelectedPortfolio,
-    selectPortfolioById,
-    createNewPortfolioCard
-  }
+  const context = usePortfolioList()
 
   return (
     <PortfolioManagerContext.Provider value={context}>

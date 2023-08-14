@@ -1,17 +1,17 @@
-import { ExanteIcon, FreedomFinanceIcon, Option, SectionHead } from '@core'
-import React, { memo } from 'react'
+import { ExanteIcon, FreedomFinanceIcon, Option, Portfolio, PortfolioBrokerage, SectionHead } from '@core'
+import React, { memo, useCallback, useMemo } from 'react'
 import { MultiAutocompleteInput } from 'src/core/client'
 import { brokerageSelectionAreaDescription } from './consts'
 
 // TODO: Rid of
-const HARD_CODED_INITIAL_LIST: Option[] = [
+const allPossibleOptions: Option[] = [
   { id: "fds222f", value: "Exante", label: "Exante", icon: <ExanteIcon size={16} /> },
   { id: "f4sf3243", value: "Freedom Finance", label: "Freedom Finance", icon: <FreedomFinanceIcon size={16} /> },
 ]
 
 interface IBrokerageMultiSelector {
-  selectedBrokerageOptions: Option[]
-  setSelectedBrokerageOptions: React.Dispatch<React.SetStateAction<Option[]>>
+  selectedBrokerageOptions: PortfolioBrokerage[] | undefined
+  setSelectedBrokerageOptions: React.Dispatch<React.SetStateAction<Portfolio | null>>
   selectionSideEffect: () => void
 }
 
@@ -20,6 +20,40 @@ const BrokerageMultiSelector = ({
   setSelectedBrokerageOptions,
   selectionSideEffect,
 }: IBrokerageMultiSelector) => {
+
+  const selectedOptions: Option[] = useMemo(() => {
+    const listOfSelectedBrokerageNames = selectedBrokerageOptions?.map(({ title }) => title)
+    const selectedOptions = allPossibleOptions?.filter(({ value }) => listOfSelectedBrokerageNames?.includes(value))
+    return selectedOptions
+  }, [ selectedBrokerageOptions, allPossibleOptions ])
+
+  const f = useCallback((options: Option[], isDelete: boolean) => {
+    if (!options.length) {
+      setSelectedBrokerageOptions(prev => ({ ...prev!, brokerages: [] }))
+      return
+    }
+
+    const listOfSelectedBrokerageIds = options?.map(({ id }) => id)
+    const newBrokerage: PortfolioBrokerage = {
+      id: options?.at(-1)?.id!,
+      title: options?.at(-1)?.value!,
+      logoSrcLink: options?.at(-1)?.icon! as string,
+      uploadedTransactionList: [],
+    }
+
+    console.log()
+
+    setSelectedBrokerageOptions(prev => ({
+      ...prev!,
+      brokerages: prev?.brokerages
+        ? isDelete
+          ? prev?.brokerages.filter(brokerage => listOfSelectedBrokerageIds.includes(brokerage.id))!
+          : [ ...prev?.brokerages, newBrokerage ]
+        : [ newBrokerage ],
+    }))
+  }, [])
+
+
   return (
     <SectionHead
       title="Brokerages selection"
@@ -27,11 +61,11 @@ const BrokerageMultiSelector = ({
     >
       <MultiAutocompleteInput
         erroringField={false}
-        allPossibleOptions={HARD_CODED_INITIAL_LIST}
-        selectedOptions={selectedBrokerageOptions}
+        allPossibleOptions={allPossibleOptions}
+        selectedOptions={selectedOptions}
         name="selectedBrokerages"
         placeholder="Search your brokerages"
-        setSelectedOptions={setSelectedBrokerageOptions}
+        setSelectedOptions={f}
         selectionSideEffect={selectionSideEffect}
       />
     </SectionHead>
