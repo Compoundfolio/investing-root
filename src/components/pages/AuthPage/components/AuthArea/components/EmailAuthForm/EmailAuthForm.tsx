@@ -31,7 +31,6 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
   )
 
   const { mutate: callSignIn, isLoading, error } = useHandleEmailAuthSubmit()
-  console.log(error)
 
   return (
     <Form

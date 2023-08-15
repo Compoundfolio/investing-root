@@ -1,0 +1,19 @@
+.summary_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.summary_item__title {
+  color: var(--color-gray);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.summary_item__value {
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Chakra Petch;
+}

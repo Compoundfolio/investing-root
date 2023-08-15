@@ -1,25 +1,26 @@
 "use client"
 
 import {
-  Option,
+  ModalBlur,
   PortfolioBrokerage,
   SectionHead,
+  TransactionsManagementView,
   updateObjectFromArrayOfObjects,
   useFadeInOutMountAnimation,
 } from "@core"
-import React, { ChangeEvent, memo, useCallback, useState } from "react"
+import React, { ChangeEvent, memo, useCallback } from "react"
 import { BrokerageMultiSelector, TransactionsUploadResults } from "./components"
 import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
 import { Input } from "src/core/client"
-import { defaultPortfolioName } from "./consts"
 import usePortfolioManagerContext from "../../context/PortfolioManagerContextData/hook"
 import clsx from "clsx"
 import { Portfolio } from "../../../../../core/types/assets/common/Portfolio"
+import { useOpen } from 'src/core/hooks';
 
 const PortfolioManagementArea = () => {
-  const { selectedPortfolioCard, updateSelectedPortfolio } =
-    usePortfolioManagerContext()
+  const { selectedPortfolioCard, updateSelectedPortfolio } = usePortfolioManagerContext()
+  const [ isTransactionsModalOpen, handleTransactionsModalOpen ] = useOpen()
 
   const {
     shouldRenderChild: shouldRenderReportsUploadArea,
@@ -66,7 +67,7 @@ const PortfolioManagementArea = () => {
     []
   )
 
-  return (
+  return <>
     <section className="flex justify-between w-full gap-20">
       <div className={clsx(styles.container, "gap-16")}>
         <Input
@@ -102,7 +103,14 @@ const PortfolioManagementArea = () => {
         )}
       </div>
     </section>
-  )
+    <ModalBlur
+      noMaxWidth={false}
+      isOpen={isTransactionsModalOpen}
+      handleOpenChange={handleTransactionsModalOpen}
+    >
+      <TransactionsManagementView  />
+    </ModalBlur>
+  </>
 }
 
 export default memo(PortfolioManagementArea)
