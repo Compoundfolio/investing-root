@@ -1,1 +1,1 @@
-export {default as RatioChart} from './RatioChart';
+export { default as RatioChart } from "./RatioChart"

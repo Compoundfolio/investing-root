@@ -1,1 +1,1 @@
-export {default as useFadeInOutMountAnimation} from './useFadeInOutMountAnimation';
+export { default as useFadeInOutMountAnimation } from "./useFadeInOutMountAnimation"

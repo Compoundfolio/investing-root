@@ -6,9 +6,9 @@ import { getMbFileSize } from "@core/helpers"
 const fileOriginalState = null
 
 const useFileUpload = (
-  handleFileUpload: IFileUploadArea["handleFileUpload"],
+  handleFileUpload: IFileUploadArea["handleFileUpload"]
 ) => {
-  const [ file, setFile ] = useState<File | null>(fileOriginalState)
+  const [file, setFile] = useState<File | null>(fileOriginalState)
 
   const fileUploadInputNodeRef = useRef<HTMLInputElement | null>(null)
 
@@ -24,7 +24,9 @@ const useFileUpload = (
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop })
 
-  const userFriendlyFileMbSize = file ? `${getMbFileSize(file).toFixed(1)} MB` : ""
+  const userFriendlyFileMbSize = file
+    ? `${getMbFileSize(file).toFixed(1)} MB`
+    : ""
 
   return {
     file,

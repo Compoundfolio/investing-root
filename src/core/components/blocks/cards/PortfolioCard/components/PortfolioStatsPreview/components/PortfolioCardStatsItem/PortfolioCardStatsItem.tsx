@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import styles from "./PortfolioCardStatsItem.module.css"
 
 interface IPortfolioCardStatsItem {
@@ -6,18 +6,11 @@ interface IPortfolioCardStatsItem {
   value: string | number
 }
 
-const PortfolioCardStatsItem = ({
-  title,
-  value,
-}: IPortfolioCardStatsItem) => {
+const PortfolioCardStatsItem = ({ title, value }: IPortfolioCardStatsItem) => {
   return (
-    <div className='flex items-center gap-1.5'>
-      <span className={styles.portfolioCard__stats_item__title}>
-        {title}:
-      </span>
-      <span className={styles.portfolioCard__stats_item__value}>
-        {value}
-      </span>
+    <div className="flex items-center gap-1.5">
+      <span className={styles.portfolioCard__stats_item__title}>{title}:</span>
+      <span className={styles.portfolioCard__stats_item__value}>{value}</span>
     </div>
   )
 }

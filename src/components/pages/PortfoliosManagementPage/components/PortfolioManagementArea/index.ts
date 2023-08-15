@@ -1,1 +1,1 @@
-export {default as PortfolioManagementArea} from './PortfolioManagementArea';
+export { default as PortfolioManagementArea } from "./PortfolioManagementArea"

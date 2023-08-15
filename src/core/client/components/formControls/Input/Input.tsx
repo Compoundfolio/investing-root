@@ -1,7 +1,6 @@
 "use client"
 
 import { HTMLInputTypeAttribute, memo } from "react"
-import { useControl } from "../hooks"
 import { ShowPasswordButton, ShowPasswordIcon } from "./components"
 import { Control } from "src/core/types"
 import { usePassword } from "./hooks"
@@ -28,13 +27,6 @@ const Input = ({
   setErrorMessage,
   ...restProps
 }: IInput) => {
-  useControl({
-    value,
-    name,
-    errorMessage,
-    setErrorMessage,
-  })
-
   const {
     isPasswordVisible,
     isPassword,
@@ -65,7 +57,7 @@ const Input = ({
         style={{
           ...(isPassword && { paddingRight: 46 }),
           ...(errorMessage && { borderColor: colors.pinkSoft }),
-          ...(!setErrorMessage && { margin: 0 })
+          ...(!setErrorMessage && { margin: 0 }),
         }}
       />
       {isPassword && (

@@ -1,1 +1,1 @@
-export {default as PortfoliosMenu} from './PortfoliosMenu';
+export { default as PortfoliosMenu } from "./PortfoliosMenu"

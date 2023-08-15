@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from "react"
 import { LineYieldChart } from "./components"
-import { DataVisHeading } from "@core"
+import { SectionHead } from "@core"
 
 const current = 11.67
 
@@ -14,13 +14,13 @@ const DividendYieldChart = () => {
   }, [])
 
   return (
-    <DataVisHeading
+    <SectionHead
       title="Dividend Yield"
       dataVisDescription="Dividend Yield Chart ..."
     >
       <span className="mb-0 chartStatsNumber">{focusValue}%</span>
       <LineYieldChart handleMouseFocus={handleMouseFocus} />
-    </DataVisHeading>
+    </SectionHead>
   )
 }
 

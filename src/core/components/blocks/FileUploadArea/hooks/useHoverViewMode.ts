@@ -1,8 +1,6 @@
 import { useCallback, useState } from "react"
 
-const useHoverViewMode = (
-  isFileUploaded: boolean,
-) => {
+const useHoverViewMode = (isFileUploaded: boolean) => {
   const [isActButtonsShowed, setIsActButtonsShowed] = useState<boolean>(false)
 
   const showOnHoverView = useCallback(() => {
@@ -16,7 +14,7 @@ const useHoverViewMode = (
   return {
     isActButtonsShowed,
     showOnHoverView,
-    hideOnHoverView
+    hideOnHoverView,
   }
 }
 

@@ -1,1 +1,1 @@
-export {default as PortfolioCardStatsItem} from './PortfolioCardStatsItem';
+export { default as PortfolioCardStatsItem } from "./PortfolioCardStatsItem"

@@ -5,8 +5,16 @@
   padding-inline: 20px;
   padding-block: 12px;
   display: block;
-  margin: 0 auto;
   border-radius: 8px;
+  width: 100%;
+  transition: background-color var(--average-transition-duration) linear;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.1) inset;
+}
+
+.actButton--disabled {
+  background-color: var(--color-gray4C) !important;
+  opacity: 0.5 !important;
 }
 
 .actButton--primary {
@@ -17,4 +25,9 @@
 .actButton--green {
   composes: actButton;
   background-color: var(--color-darkGreen);
+}
+
+.actButton--lowPrior {
+  composes: actButton;
+  background-color: var(--color-blueDark28);
 }

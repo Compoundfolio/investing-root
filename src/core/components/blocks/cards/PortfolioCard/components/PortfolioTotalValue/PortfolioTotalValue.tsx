@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './PortfolioTotalValue.module.css'
+import React from "react"
+import styles from "./PortfolioTotalValue.module.css"
 
 interface IPortfolioTotalValue {
   totalValueNumber: number

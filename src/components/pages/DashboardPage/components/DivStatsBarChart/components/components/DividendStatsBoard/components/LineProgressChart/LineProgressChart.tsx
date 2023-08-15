@@ -1,4 +1,4 @@
-import { DataVisHeading, calcPercentageChange } from "@core"
+import { SectionHead, calcPercentageChange } from "@core"
 import React from "react"
 import ProgressLegendItem from "./components/ProgressLegendItem"
 
@@ -23,7 +23,7 @@ const LineProgressChart = ({
   const progressSizeStyle = { width: `${percentageDifference}%` }
 
   return (
-    <DataVisHeading title="Pay-out Percentage" dataVisDescription="TODO">
+    <SectionHead title="Pay-out Percentage" dataVisDescription="TODO">
       <section style={{ width: 491 }}>
         <div className="flex items-center justify-between gap-4">
           <span className="chartStatsNumber">${lowerNumber}</span>
@@ -41,7 +41,7 @@ const LineProgressChart = ({
           />
         </legend>
       </section>
-    </DataVisHeading>
+    </SectionHead>
   )
 }
 

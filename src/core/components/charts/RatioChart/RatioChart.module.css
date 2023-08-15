@@ -30,7 +30,8 @@
   background-color: var(--color-darkGreen);
 }
 
-.ratioChart__item:hover {
+.ratioChart__item:hover,
+.ratioChart__item__hovered {
   border-inline: 1px solid var(--color-white);
   border-radius: 0px;
   opacity: 1 !important;

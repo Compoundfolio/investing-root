@@ -1,1 +1,1 @@
-export {default as UploadedFileRepresentation} from './UploadedFileRepresentation';
+export { default as UploadedFileRepresentation } from "./UploadedFileRepresentation"

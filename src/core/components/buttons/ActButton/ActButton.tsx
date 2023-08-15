@@ -4,8 +4,9 @@ import styles from "./ActButton.module.css"
 import { Spinner } from "../../statuses"
 
 interface IActButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color: "primary" | "green"
+  color: "primary" | "green" | "lowPrior"
   isLoading?: boolean
+  width?: string
 }
 
 const ActButton = ({
@@ -13,6 +14,8 @@ const ActButton = ({
   className,
   children,
   isLoading = false,
+  disabled,
+  width,
   ...restProps
 }: IActButton) => {
   return (
@@ -20,10 +23,12 @@ const ActButton = ({
       className={clsx(
         styles.actButton,
         styles[`actButton--${color}`],
+        disabled && styles[`actButton--disabled`],
         className
       )}
-      aria-disabled={isLoading}
-      disabled={isLoading}
+      style={{ ...(width && { width }) }}
+      aria-disabled={isLoading || disabled}
+      disabled={isLoading || disabled}
       {...restProps}
     >
       {isLoading ? <Spinner /> : children}

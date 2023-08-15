@@ -2,7 +2,9 @@ import { Control, IReactChildren } from "src/core/types"
 
 type ControlCommonRequiredFields = Required<Pick<Control, "value" | "name">>
 
-export interface IFormControlBase extends ControlCommonRequiredFields, IReactChildren {
+export interface IFormControlBase
+  extends ControlCommonRequiredFields,
+    IReactChildren {
   /** Field, which may be filled out with errors */
   erroringField?: boolean
   children: Required<IReactChildren["children"]>
@@ -12,4 +14,5 @@ export interface IFormControlBase extends ControlCommonRequiredFields, IReactChi
   setErrorMessage?: Control["setErrorMessage"]
   helpText?: Control["helpText"]
   withMb?: boolean
+  value: any
 }

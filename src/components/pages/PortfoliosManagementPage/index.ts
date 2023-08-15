@@ -1,1 +1,1 @@
-export {default} from './PortfoliosManagementPage'
+export { default } from "./PortfoliosManagementPage"

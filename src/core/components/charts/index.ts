@@ -1,1 +1,1 @@
-export * from './RatioChart';
+export * from "./RatioChart"

@@ -1,1 +1,1 @@
-export {default as BrokerageMultiSelector} from './BrokerageMultiSelector';
+export { default as BrokerageMultiSelector } from "./BrokerageMultiSelector"

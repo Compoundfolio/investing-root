@@ -19,12 +19,14 @@
   --color-pinkSoft: #cf6679;
   --color-yellow: #f3bb38;
   --color-black: black;
-  --color-blueDark28: #111F28;
-  --color-blueDark2D: #11222D;
+  --color-blueDark28: #111f28;
+  --color-blueDark2D: #11222d;
   --color-greenDark26: #122126;
   --color-primary: #1290ff;
 
   --dashboard-visualizations-gap: 48px;
+
+  --average-transition-duration: 0.25s;
 }
 
 input:-webkit-autofill,
@@ -140,9 +142,11 @@ body {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  background: linear-gradient(75.27deg,
+  background: linear-gradient(
+      75.27deg,
       rgba(15, 111, 114, 0.106) 75.87%,
-      rgba(0, 0, 0, 0) 95.64%),
+      rgba(0, 0, 0, 0) 95.64%
+    ),
     #0e1317;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -157,12 +161,24 @@ a {
   color: var(--color-white);
 }
 
+h2 {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 /* Button style */
 
 button {
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
+}
+
+/* Disable click animation if the button disabled */
+button:disabled:after {
+  background-image: none !important;
 }
 
 button:hover {
@@ -183,12 +199,12 @@ button:after {
   background-position: 50%;
   transform: scale(10, 10);
   opacity: 0;
-  transition: transform .5s, opacity 1s;
+  transition: transform 0.5s, opacity 1s;
 }
 
 button:active:after {
   transform: scale(0, 0);
-  opacity: .2;
+  opacity: 0.2;
   transition: 0s;
 }
 
@@ -252,8 +268,12 @@ table tbody {
   display: block;
 }
 
-.color-red { color: var(--color-pinkSoft); }
-.color-gray4C { color: var(--color-gray4C); }
+.color-red {
+  color: var(--color-pinkSoft);
+}
+.color-gray4C {
+  color: var(--color-gray4C);
+}
 
 .bg-color-darkGreen {
   background-color: var(--color-darkGreen);
