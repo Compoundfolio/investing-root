@@ -1,4 +1,4 @@
-import { Option, PortfolioBrokerage, RatioChart } from "@core"
+import { PortfolioBrokerage, RatioChart } from "@core"
 import React, { memo, useState } from "react"
 import { RatioChartDataSet } from "src/core/components/charts/RatioChart/types"
 import { TransactionCategory } from "./types"
@@ -39,20 +39,22 @@ const TransactionsUploadResults = ({
     },
   ]
 
+  const brokeragesWithUploadedReports = selectedBrokerageOptions.filter(({ uploadedTransactionList }) => !!uploadedTransactionList.length)
+
   return (
     <aside className="flex flex-col justify-between h-full">
       <section className="flex flex-col gap-8">
-        {transactionsStats.map(
-          ({ id, brokerageName, transactionsCategories }) => (
-            <RatioChart
-              key={id}
-              title={brokerageName}
+        {brokeragesWithUploadedReports.map(({ title }) => {
+            const brokerage = transactionsStats.find(({ brokerageName }) => brokerageName === title)!
+            return <RatioChart
+              key={brokerage.id}
+              title={brokerage.brokerageName}
               totalShortDescription="Defined transactions"
-              dataSet={transactionsCategories}
+              dataSet={brokerage.transactionsCategories}
               hoveredTransactionCategory={hoveredTransactionCategory}
               setHoveredTransactionCategory={setHoveredTransactionCategory}
             />
-          )
+        }
         )}
       </section>
       <ActButtonGroup />

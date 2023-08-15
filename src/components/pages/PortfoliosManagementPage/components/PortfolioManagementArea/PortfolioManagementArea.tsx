@@ -95,8 +95,7 @@ const PortfolioManagementArea = () => {
       </div>
       <div className={styles.container}>
         <SectionHead title="Results" />
-        {!!selectedPortfolioCard?.brokerages[0]?.uploadedTransactionList
-          .length && (
+        {!!selectedPortfolioCard?.brokerages[0]?.uploadedTransactionList.length && (
           <TransactionsUploadResults
             selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}
           />
