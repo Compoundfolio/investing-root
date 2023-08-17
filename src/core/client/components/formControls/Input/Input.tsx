@@ -44,6 +44,7 @@ const Input = ({
       labelText={labelText}
       helpText={helpText}
       withMb={withMb}
+      errorMessage={errorMessage}
       {...restProps}
     >
       <input

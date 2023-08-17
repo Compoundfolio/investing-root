@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  ActButton,
   ModalBlur,
   PortfolioBrokerage,
   SectionHead,
@@ -78,6 +79,12 @@ const PortfolioManagementArea = () => {
           helpText="Shouldn't be longer then 30 symbols."
           withMb={false}
         />
+        <ActButton
+          color="primary"
+          onClick={handleTransactionsModalOpen}
+        >
+          Manage transactions
+        </ActButton>
         <BrokerageMultiSelector
           selectedBrokerageOptions={selectedPortfolioCard?.brokerages}
           setSelectedBrokerageOptions={updateSelectedPortfolio}

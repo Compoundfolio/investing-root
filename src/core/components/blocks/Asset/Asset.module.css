@@ -1,0 +1,25 @@
+.asset_ticker {
+  color: var(--color-blueDark28);
+  text-align: center;
+  font-family: Chakra Petch;
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 8px; 
+}
+
+.asset_title {
+  color: var(--color-darkLightGreen);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.asset_details {
+  color: var(--color-gray);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
