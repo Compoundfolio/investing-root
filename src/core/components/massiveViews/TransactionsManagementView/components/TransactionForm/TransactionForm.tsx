@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useMemo, useState } from 'react'
-import { Form, Input, useForm } from 'src/core/client'
+import { Form, Input, Select, useForm } from 'src/core/client'
 import { ActButton } from 'src/core/components/buttons'
-import { defaultFormValues } from './const'
+import { assetTypes, defaultFormValues } from './const'
 import { IReactChildren } from 'src/core/types'
 import validation from './validation'
 import { TransactionShortPreview } from '../TransactionShortPreview'
@@ -48,7 +48,13 @@ const TransactionForm = ({
       className='flex flex-col w-[410px] gap-2'
       onSubmit={handleSubmit}
     >
-      <Input
+      <Select
+        value={values.assetType}
+        options={assetTypes}
+        name="assetType"
+        onChange={handleChange}
+      />
+      {/* <Input
         required
         name="assetType"
         labelText="Asset type"
@@ -57,7 +63,7 @@ const TransactionForm = ({
         errorMessage={errors.assetType}
         setErrorMessage={setFieldError}
         onChange={handleChange}
-      />
+      /> */}
       <Input
         required
         name="assetSearchNameOrTicker"

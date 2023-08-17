@@ -1,0 +1,35 @@
+.select {
+  width: 100%;
+  padding: 5.5px 11px;
+  margin-block: 8px;
+  background: rgba(18, 144, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+  color: #ffffff;
+  /* @apply placeholder:text-gray-400; */
+}
+
+.select_optionList {
+  background-color: var(--color-blueDark28);
+  border-radius: 0px 0px 12px 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(18, 144, 255, 0.03);
+  box-shadow: 0px -7px 10px -8px rgba(255, 255, 255, 0.30);
+  z-index: 99999;
+  position: absolute;
+  left: 0px;
+  top: 40px;
+}
+
+.select_optionList_item {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-inline: 16px;
+  padding-block: 12px;
+  z-index: 99999;
+}
