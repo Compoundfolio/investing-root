@@ -10,7 +10,7 @@ const Label = ({ htmlFor, labelText, required = false, ...rest }: ILabel) => {
   return (
     <label
       htmlFor={htmlFor}
-      className="block inline-block mb-2 text-sm font-medium leading-6 text-white"
+      className="inline-block text-sm font-medium leading-6 text-white"
       {...rest}
     >
       {labelText}{" "}

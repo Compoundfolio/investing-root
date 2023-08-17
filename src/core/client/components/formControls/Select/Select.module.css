@@ -1,35 +1,49 @@
 .select {
   width: 100%;
-  padding: 5.5px 11px;
+  padding: 5.5px 12px;
   margin-block: 8px;
   background: rgba(18, 144, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 14px;
   line-height: 28px;
-  color: #ffffff;
-  /* @apply placeholder:text-gray-400; */
+  cursor: pointer;
+}
+
+.select_active {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0px -7px -10px -8px rgba(255, 255, 255, 0.30);
+
 }
 
 .select_optionList {
-  background-color: var(--color-blueDark28);
+  background-color: var(--color-blueDark28) !important;
   border-radius: 0px 0px 12px 12px;
   border-right: 1px solid rgba(255, 255, 255, 0.10);
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   border-left: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(18, 144, 255, 0.03);
-  box-shadow: 0px -7px 10px -8px rgba(255, 255, 255, 0.30);
-  z-index: 99999;
+  box-shadow: 0px -7px -10px -8px rgba(255, 255, 255, 0.30);
   position: absolute;
-  left: 0px;
+  left: -1px;
   top: 40px;
+  /* +2px - border */
+  width: calc(100% + 2px);
 }
 
 .select_optionList_item {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-inline: 16px;
-  padding-block: 12px;
-  z-index: 99999;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding-inline: 12px;
+  padding-block: 4px;
+}
+
+.select_optionList_item:hover {
+  background-color: var(--color-darkGray);
+}
+
+.select_optionList_item__active {
+  background-color: var(--color-primary);
 }

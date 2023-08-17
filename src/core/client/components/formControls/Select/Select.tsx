@@ -1,44 +1,39 @@
 "use client"
 
 import { memo, useCallback } from "react"
-import { Control, Option } from "src/core/types"
+import { Control, Option, UseFormHookHelpers } from "src/core/types"
 import styles from "./Select.module.css"
-import { colors } from "src/core/theme"
 import { FormControlBase } from "../FormControlBase"
 import clsx from 'clsx';
 import { useOpen } from 'src/core/hooks';
+import { CollapseIcon } from "@core/components"
 
-export interface ISelect extends Omit<Control, "value"> {
+export interface ISelect extends Omit<Control, "value" | "onChange" | "placeholder"> {
   value: Option
   options: Option[]
+  setFieldValue: UseFormHookHelpers["setFieldValue"]
 }
 
 const Select = ({
   value,
   name,
   labelText,
-  placeholder,
   errorMessage,
   required = false,
   autofocus = false,
   helpText = "",
   withMb = true,
   options,
-  onChange,
+  setFieldValue,
   setErrorMessage,
   ...restProps
 }: ISelect) => {
-  const [isOptionOpened, handleOptionsOpenedChange] = useOpen()
+  const [isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened] = useOpen()
 
   const handleChange = useCallback((option: Option) => {
-    onChange && onChange({
-      // @ts-ignore
-      id: option.id,
-      value: option.value,
-      label: option.label,
-    })
-    isOptionOpened && handleOptionsOpenedChange()
-  }, [onChange, isOptionOpened])
+    setFieldValue(name, option)
+    setIsOptionOpened(false)
+  }, [isOptionOpened])
 
   return (
     <FormControlBase
@@ -51,58 +46,42 @@ const Select = ({
       errorMessage={errorMessage}
       {...restProps}
     >
-      {/* <select
-       value={value}
-       id={name}
-       name={name}
-       placeholder={placeholder}
-       onChange={onChange}
-       className={styles.select}
-       style={{
-         ...(errorMessage && { borderColor: colors.pinkSoft }),
-         ...(!setErrorMessage && { margin: 0 }),
-       }}
-      >
-        {options?.map(option => (
-          <option key={option.id} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select> */}
-
-
-      <div className={clsx("relative", styles.select)}>
-        <button className="relative w-full text-gray-900 cursor-default focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      <div className={clsx("relative", styles.select, isOptionOpened && styles.select_active)}>
+        <button type="button" onClick={handleOptionsOpenedChange} className="relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default">
           <span className="flex items-center">
-            <span className="block ml-3 truncate">{value.label}</span>
+            <span className="block truncate">{value.label}</span>
           </span>
+          <CollapseIcon rotate180={isOptionOpened} />
         </button>
-        <ul className={clsx("absolute let-0 top-10 z-10 w-full overflow-auto focus:outline-none", styles.select_optionList)}>
-          {options.map((option) => (
-            <li
-              key={option.id}
-            >
-              <button
-                className={clsx(
-                  option.id === value.id ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                  'w-full relative cursor-default select-none py-2 pl-3 pr-9',
-                  styles
-                )}
-                onClick={() => handleChange(option)}
+        {isOptionOpened && (
+          <ul className={clsx("absolute let-0 top-10 z-10 w-full overflow-auto focus:outline-none", styles.select_optionList)}>
+            {options.map((option) => (
+              <li
+                key={option.id}
               >
-                <div className="flex items-center">
-                  <span
-                    className={clsx(option.id === value.id ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
-                  >
-                    {option.label}
-                  </span>
-                </div>
-              </button>
-            </li>
-          ))}
-        </ul>
+                <button
+                  type="button"
+                  className={clsx(
+                    option.id === value.id && styles.select_optionList_item__active,
+                    'w-full relative select-none cursor-pointer',
+                    styles.select_optionList_item
+                  )}
+                  onClick={() => handleChange(option)}
+                >
+                  <div className="flex items-center">
+                    <span
+                      className={clsx(option.id === value.id ? 'font-semibold' : 'font-normal', 'block truncate')}
+                    >
+                      {option.label}
+                    </span>
+                  </div>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {/* TODO: Empty options message */}
       </div>
-
     </FormControlBase>
   )
 }

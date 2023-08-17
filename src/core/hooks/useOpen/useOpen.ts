@@ -9,8 +9,6 @@ const useOpen = (defaultValue: boolean = false): ReturnType => {
   const [isOpen, setIsOpen] = useState<boolean>(defaultValue)
 
   const handleOpenChange = useCallback(() => {
-    console.log(12)
-
     setIsOpen((prev) => !prev)
   }, [])
 

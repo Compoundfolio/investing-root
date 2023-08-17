@@ -17,9 +17,9 @@ const TransactionForm = ({
   children,
   isEditMode = false,
 }: ITransactionForm) => {
-  const [ asset, setAsset ] = useState<Asset>()
+  const [asset, setAsset] = useState<Asset>()
 
-  const { values, errors, handleChange, handleSubmit, setFieldError, resetForm } = useForm(
+  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm } = useForm(
     {
       validationSchema: validation(),
       initialValues: defaultFormValues,
@@ -31,7 +31,7 @@ const TransactionForm = ({
         //   },
         //   authType: emailAuthType,
         // })
-        
+
         if (false) {
           resetForm()
         }
@@ -40,7 +40,7 @@ const TransactionForm = ({
   )
 
   const transactionTotal = useMemo(() => {
-    return ( Number(values.amount || 0) * Number(values.price || 0) ) - Number(values.fee || 0)
+    return (Number(values.amount || 0) * Number(values.price || 0)) - Number(values.fee || 0)
   }, [values.amount, values.price, values.fee])
 
   return (
@@ -49,10 +49,13 @@ const TransactionForm = ({
       onSubmit={handleSubmit}
     >
       <Select
+        required
+        labelText="Asset type"
+        withMb={false}
         value={values.assetType}
         options={assetTypes}
         name="assetType"
-        onChange={handleChange}
+        setFieldValue={setFieldValue}
       />
       {/* <Input
         required
@@ -125,14 +128,14 @@ const TransactionForm = ({
         assetTitle={asset?.title}
         assetTicker={asset?.ticker}
         assetExchange={asset?.exchange}
-        assetExchangeCountry={asset?.exchangeCountry} 
-        transactionTotal={transactionTotal} 
+        assetExchangeCountry={asset?.exchangeCountry}
+        transactionTotal={transactionTotal}
       />
       <ActButton
         color="primary"
         type="submit"
         className="w-full"
-        // isLoading={isLoading}
+      // isLoading={isLoading}
       >
         {isEditMode ? "Update transaction" : "Add transaction"}
       </ActButton>
