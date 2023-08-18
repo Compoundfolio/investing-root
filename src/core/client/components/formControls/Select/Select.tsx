@@ -47,7 +47,7 @@ const Select = ({
       {...restProps}
     >
       <div className={clsx("relative", styles.select, isOptionOpened && styles.select_active)}>
-        <button type="button" onClick={handleOptionsOpenedChange} className="relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default">
+        <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>
           <span className="flex items-center">
             <span className="block truncate">{value.label}</span>
           </span>

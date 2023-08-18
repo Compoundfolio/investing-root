@@ -1,6 +1,5 @@
 .select {
   width: 100%;
-  padding: 5.5px 12px;
   margin-block: 8px;
   background: rgba(18, 144, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -9,6 +8,11 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 28px;
+  cursor: pointer;
+}
+
+.select_button {
+  padding: 5.5px 12px;
   cursor: pointer;
 }
 
