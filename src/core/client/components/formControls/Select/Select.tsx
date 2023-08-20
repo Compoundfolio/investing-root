@@ -102,6 +102,7 @@ const Select = ({
             isLoading={isSearching}
             resetInputValue={resetSearch}
             withMb={withMb}
+            sharpBottomBorderRadius={showOptions}
           />
         ) : (
           <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>
