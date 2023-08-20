@@ -17,3 +17,7 @@
   font-weight: 500;
   font-family: Chakra Petch;
 }
+
+.summary_item__value__gray {
+  color: var(--color-gray4C);
+}

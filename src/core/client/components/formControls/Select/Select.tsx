@@ -1,20 +1,36 @@
 "use client"
 
-import { memo, useCallback } from "react"
+import { memo, useCallback, useMemo } from "react"
 import { Control, Option, UseFormHookHelpers } from "src/core/types"
 import styles from "./Select.module.css"
 import { FormControlBase } from "../FormControlBase"
 import clsx from 'clsx';
 import { useOpen } from 'src/core/hooks';
 import { CollapseIcon } from "@core/components"
+import { Input } from "../Input"
+import { IUseSearch, useSearch } from "./hooks"
 
-export interface ISelect extends Omit<Control, "value" | "onChange" | "placeholder"> {
+interface SelectType extends Omit<Control, "value" | "onChange" | "placeholder"> {
   value: Option
   options: Option[]
+  search?: boolean
   setFieldValue: UseFormHookHelpers["setFieldValue"]
 }
 
+interface SearchType extends Omit<Control, "value" | "onChange" | "placeholder"> {
+  search: boolean
+  placeholder: string
+  serverSearchRequest: IUseSearch['serverSearchRequest']
+  onSearchSelection: (selectedOption: Option) => void
+}
+
+export type TSelect = SelectType & SearchType
+
+// TODO: Overload
+
 const Select = ({
+  /** Makes select into autocomplete field */
+  search = false,
   value,
   name,
   labelText,
@@ -24,16 +40,45 @@ const Select = ({
   helpText = "",
   withMb = true,
   options,
+  placeholder,
   setFieldValue,
   setErrorMessage,
+  serverSearchRequest,
+  onSearchSelection,
   ...restProps
-}: ISelect) => {
-  const [isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened] = useOpen()
+}: TSelect) => {
+  const [ isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened ] = useOpen()
+
+  const {
+    isSearching,
+    searchValue,
+    searchOptions,
+    handleSearchValueChange,
+    resetSearch,
+    setSearchValue,
+  } = useSearch({
+    serverSearchRequest,
+    setIsOptionOpened,
+  })
 
   const handleChange = useCallback((option: Option) => {
-    setFieldValue(name, option)
+    if (search) {
+      setSearchValue(option.label)
+      onSearchSelection && onSearchSelection(option)
+    } else {
+      setFieldValue(name, option)
+    }
+
     setIsOptionOpened(false)
-  }, [isOptionOpened])
+  }, [search, isOptionOpened])
+
+  const optionsList = searchOptions.length
+    ? searchOptions
+    : options
+
+  const showOptions = search
+    ? !isSearching && isOptionOpened
+    : !!searchValue || isOptionOpened
 
   return (
     <FormControlBase
@@ -46,23 +91,36 @@ const Select = ({
       errorMessage={errorMessage}
       {...restProps}
     >
-      <div className={clsx("relative", styles.select, isOptionOpened && styles.select_active)}>
-        <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>
-          <span className="flex items-center">
-            <span className="block truncate">{value.label}</span>
-          </span>
-          <CollapseIcon rotate180={isOptionOpened} />
-        </button>
-        {isOptionOpened && (
+      <div className={clsx("relative", !search && styles.select, isOptionOpened && styles.select_active)}>
+        {search ? (
+          <Input
+            search={search}
+            value={searchValue}
+            name={name}
+            onChange={handleSearchValueChange}
+            placeholder={placeholder}
+            isLoading={isSearching}
+            resetInputValue={resetSearch}
+            withMb={withMb}
+          />
+        ) : (
+          <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>
+            <span className="flex items-center">
+              <span className="block truncate">{value.label}</span>
+            </span>
+            <CollapseIcon rotate180={showOptions} />
+          </button>
+        )}
+        {showOptions && (
           <ul className={clsx("absolute let-0 top-10 z-10 w-full overflow-auto focus:outline-none", styles.select_optionList)}>
-            {options.map((option) => (
+            {!!optionsList.length ? optionsList.map((option) => (
               <li
                 key={option.id}
               >
                 <button
                   type="button"
                   className={clsx(
-                    option.id === value.id && styles.select_optionList_item__active,
+                    option.id === value?.id && styles.select_optionList_item__active,
                     'w-full relative select-none cursor-pointer',
                     styles.select_optionList_item
                   )}
@@ -70,17 +128,21 @@ const Select = ({
                 >
                   <div className="flex items-center">
                     <span
-                      className={clsx(option.id === value.id ? 'font-semibold' : 'font-normal', 'block truncate')}
+                      className={clsx(option.id === value?.id ? 'font-semibold' : 'font-normal', 'block truncate')}
                     >
                       {option.label}
                     </span>
                   </div>
                 </button>
               </li>
-            ))}
+            )): (
+              // TODO: Empty options message
+              <div>
+                Nothing fund :pensive:
+              </div>
+            )}
           </ul>
         )}
-        {/* TODO: Empty options message */}
       </div>
     </FormControlBase>
   )

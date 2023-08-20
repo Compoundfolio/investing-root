@@ -28,7 +28,7 @@ const TransactionShortPreview = ({
   const availableBuyingPowerLeft = availableBuyingPower - transactionTotal
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between mt-4 mb-4'>
       <Asset
         title={assetTitle}
         ticker={assetTicker}

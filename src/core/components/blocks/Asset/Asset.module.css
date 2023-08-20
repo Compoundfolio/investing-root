@@ -1,3 +1,13 @@
+.asset_undefinedLogo {
+  background: linear-gradient(180deg, var(--color-grayD9) 0%, var(--color-green) 100%);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .asset_ticker {
   color: var(--color-blueDark28);
   text-align: center;

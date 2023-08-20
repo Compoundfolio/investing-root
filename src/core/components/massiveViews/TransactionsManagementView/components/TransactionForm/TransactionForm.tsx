@@ -1,25 +1,30 @@
 "use client"
 
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Form, Input, Select, useForm } from 'src/core/client'
 import { ActButton } from 'src/core/components/buttons'
 import { assetTypes, defaultFormValues } from './const'
-import { IReactChildren } from 'src/core/types'
 import validation from './validation'
 import { TransactionShortPreview } from '../TransactionShortPreview'
 import { Asset } from './types'
+import { AssetSearchOptionData, useAssetSearch } from './hooks'
+import { Option } from 'src/core/types'
 
-interface ITransactionForm extends IReactChildren {
+interface ITransactionForm {
   isEditMode: boolean
 }
 
 const TransactionForm = ({
-  children,
   isEditMode = false,
 }: ITransactionForm) => {
-  const [asset, setAsset] = useState<Asset>()
+  const [asset, setAsset] = useState<AssetSearchOptionData>()
 
-  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm } = useForm(
+  const onAssetSelectionFromSearch = useCallback((option: Option<AssetSearchOptionData>) => {
+    setAsset(option.data)
+    setFieldValue("price", option.data?.currentMarketPrice)
+  }, [])
+
+  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm, isSubmitting } = useForm(
     {
       validationSchema: validation(),
       initialValues: defaultFormValues,
@@ -43,11 +48,14 @@ const TransactionForm = ({
     return (Number(values.amount || 0) * Number(values.price || 0)) - Number(values.fee || 0)
   }, [values.amount, values.price, values.fee])
 
+  const { serverSearchRequest } = useAssetSearch()
+
   return (
     <Form
       className='flex flex-col w-[410px] gap-2'
       onSubmit={handleSubmit}
     >
+      {/* @ts-ignore */}
       <Select
         required
         labelText="Asset type"
@@ -57,27 +65,22 @@ const TransactionForm = ({
         name="assetType"
         setFieldValue={setFieldValue}
       />
-      {/* <Input
-        required
-        name="assetType"
-        labelText="Asset type"
-        withMb={false}
-        value={values.assetType}
-        errorMessage={errors.assetType}
-        setErrorMessage={setFieldError}
-        onChange={handleChange}
-      /> */}
-      <Input
-        required
-        name="assetSearchNameOrTicker"
-        labelText="Asset name or ticker"
-        placeholder='Search your asset name or ticker'
-        withMb={false}
-        value={values.assetSearchNameOrTicker}
-        errorMessage={errors.assetSearchNameOrTicker}
-        setErrorMessage={setFieldError}
-        onChange={handleChange}
-      />
+      {values.assetType.value === "PUBLICLY_TRADED" && (
+        // @ts-ignore
+        <Select
+          search
+          required
+          errorMessage={errors.assetSearchNameOrTicker}
+          withMb={false}
+          labelText="Asset type"
+          name="assetSearchNameOrTicker"
+          placeholder="Start to search for ticker or asset name"
+          serverSearchRequest={serverSearchRequest}
+          onSearchSelection={onAssetSelectionFromSearch}
+          setFieldValue={setFieldValue}
+          setErrorMessage={setFieldError}
+        />
+      )}
       <div className='flex gap-4'>
         <Input
           required
@@ -135,7 +138,7 @@ const TransactionForm = ({
         color="primary"
         type="submit"
         className="w-full"
-      // isLoading={isLoading}
+        isLoading={isSubmitting}
       >
         {isEditMode ? "Update transaction" : "Add transaction"}
       </ActButton>
