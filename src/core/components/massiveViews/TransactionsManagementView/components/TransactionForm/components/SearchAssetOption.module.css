@@ -1,0 +1,21 @@
+.assetOption_type {
+  color: var(--color-gold) !important;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 50px;
+}
+
+.assetOption_currentMarketCost {
+  width: 85px;
+  text-align: center;
+  color: var(--color-);
+  text-align: right;
+  font-family: Chakra Petch;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

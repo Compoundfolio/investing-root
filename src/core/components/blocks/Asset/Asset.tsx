@@ -27,7 +27,7 @@ const Asset = ({
         <span className={styles.asset_title}>{title}</span>
         <span className={styles.asset_details}>
           {ticker
-            ? <><b>{ticker}</b> - {exchange} - {exchangeCountry}</>
+            ? <>{ticker} - {exchange} - {exchangeCountry}</>
             : "Asset not selected"
           }
           

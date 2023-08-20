@@ -9,6 +9,7 @@ import { TransactionShortPreview } from '../TransactionShortPreview'
 import { Asset } from './types'
 import { AssetSearchOptionData, useAssetSearch } from './hooks'
 import { Option } from 'src/core/types'
+import { SearchAssetOption } from './components'
 
 interface ITransactionForm {
   isEditMode: boolean
@@ -20,6 +21,8 @@ const TransactionForm = ({
   const [asset, setAsset] = useState<AssetSearchOptionData>()
 
   const onAssetSelectionFromSearch = useCallback((option: Option<AssetSearchOptionData>) => {
+    console.warn(option.data);
+    
     setAsset(option.data)
     setFieldValue("price", option.data?.currentMarketPrice)
   }, [])
@@ -79,7 +82,9 @@ const TransactionForm = ({
           onSearchSelection={onAssetSelectionFromSearch}
           setFieldValue={setFieldValue}
           setErrorMessage={setFieldError}
-        />
+        >
+          <SearchAssetOption asset={asset}/>
+        </Select>
       )}
       <div className='flex gap-4'>
         <Input

@@ -1,7 +1,7 @@
 "use client"
 
 import { memo, useCallback, useMemo } from "react"
-import { Control, Option, UseFormHookHelpers } from "src/core/types"
+import { Control, Option, UseFormHookHelpers, IReactChildren } from 'src/core/types';
 import styles from "./Select.module.css"
 import { FormControlBase } from "../FormControlBase"
 import clsx from 'clsx';
@@ -17,7 +17,7 @@ interface SelectType extends Omit<Control, "value" | "onChange" | "placeholder">
   setFieldValue: UseFormHookHelpers["setFieldValue"]
 }
 
-interface SearchType extends Omit<Control, "value" | "onChange" | "placeholder"> {
+interface SearchType extends Omit<Control, "value" | "onChange" | "placeholder">, IReactChildren {
   search: boolean
   placeholder: string
   serverSearchRequest: IUseSearch['serverSearchRequest']
@@ -41,13 +41,14 @@ const Select = ({
   withMb = true,
   options,
   placeholder,
+  children,
   setFieldValue,
   setErrorMessage,
   serverSearchRequest,
   onSearchSelection,
   ...restProps
 }: TSelect) => {
-  const [ isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened ] = useOpen()
+  const [isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened] = useOpen()
 
   const {
     isSearching,
@@ -113,7 +114,13 @@ const Select = ({
           </button>
         )}
         {showOptions && (
-          <ul className={clsx("absolute let-0 top-10 z-10 w-full overflow-auto focus:outline-none", styles.select_optionList)}>
+          <ul
+            className={clsx(
+              "absolute let-0 top-10 z-10 overflow-auto focus:outline-none",
+              styles.select_optionList,
+              search && styles.select_optionList__search
+            )}
+          >
             {!!optionsList.length ? optionsList.map((option) => (
               <li
                 key={option.id}
@@ -127,20 +134,19 @@ const Select = ({
                   )}
                   onClick={() => handleChange(option)}
                 >
-                  <div className="flex items-center">
+                  {children ?? (
                     <span
                       className={clsx(option.id === value?.id ? 'font-semibold' : 'font-normal', 'block truncate')}
                     >
                       {option.label}
                     </span>
-                  </div>
+                  )}
                 </button>
               </li>
-            )): (
-              // TODO: Empty options message
-              <div>
-                Nothing fund :pensive:
-              </div>
+            )) : (
+              <li className={styles.select_optionList_nothingFoundMessage}>
+                Nothing found 🤔
+              </li>
             )}
           </ul>
         )}
