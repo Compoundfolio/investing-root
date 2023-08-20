@@ -15,7 +15,7 @@ const AssetOperationSummary = ({
   availableBuyingPowerLeft,
 }: IAssetOperationSummary) => {
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 w-[180px]'>
       <p className={styles.summary_item}>
         <span className={styles.summary_item__title}>Available cash:</span>
         <span className={clsx(styles.summary_item__value, availableBuyingPowerLeft < 1 && styles.summary_item__value__gray)}>

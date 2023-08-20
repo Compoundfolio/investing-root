@@ -17,6 +17,7 @@ export interface IInput extends Control {
   isLoading?: boolean
   sharpBottomBorderRadius?: boolean
   resetInputValue?: () => void
+  min?: number
 }
 
 const Input = ({
@@ -32,6 +33,7 @@ const Input = ({
   name,
   labelText,
   placeholder,
+  min,
   errorMessage,
   resetInputValue,
   onChange,
@@ -66,6 +68,7 @@ const Input = ({
         type={isPassword ? activePasswordType : type}
         onChange={onChange}
         className={styles.input}
+        {...(min && { min })}
         style={{
           ...(isPassword && { paddingRight: 46 }),
           ...(search && { paddingLeft: 32, paddingRight: 42 }),

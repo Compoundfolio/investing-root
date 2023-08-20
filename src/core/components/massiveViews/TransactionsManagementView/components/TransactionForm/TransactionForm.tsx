@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { MouseEvent, useCallback, useMemo, useState } from 'react'
 import { Form, Input, Select, useForm } from 'src/core/client'
 import { ActButton } from 'src/core/components/buttons'
 import { assetTypes, defaultFormValues } from './const'
@@ -9,7 +9,8 @@ import { TransactionShortPreview } from '../TransactionShortPreview'
 import { Asset } from './types'
 import { AssetSearchOptionData, useAssetSearch } from './hooks'
 import { Option } from 'src/core/types'
-import { SearchAssetOption } from './components'
+import { SearchAssetOption, TransactionOperationSwitcher } from './components'
+import { parseNumberToFixed2 } from '@core/helpers'
 
 interface ITransactionForm {
   isEditMode: boolean
@@ -22,12 +23,12 @@ const TransactionForm = ({
 
   const onAssetSelectionFromSearch = useCallback((option: Option<AssetSearchOptionData>) => {
     console.warn(option.data);
-    
+
     setAsset(option.data)
     setFieldValue("price", option.data?.currentMarketPrice)
   }, [])
 
-  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm, isSubmitting } = useForm(
+  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm, isSubmitting } = useForm<typeof defaultFormValues>(
     {
       validationSchema: validation(),
       initialValues: defaultFormValues,
@@ -47,15 +48,26 @@ const TransactionForm = ({
     }
   )
 
+  const isBuy = values.operationType === "BUY"
+
   const transactionTotal = useMemo(() => {
-    return (Number(values.amount || 0) * Number(values.price || 0)) - Number(values.fee || 0)
-  }, [values.amount, values.price, values.fee])
+    const positionPrice = (Number(values.amount || 0) * Number(values.price || 0))
+    return isBuy
+      ? positionPrice + Number(values.fee || 0)
+      : positionPrice - Number(values.fee || 0)
+  }, [values.amount, values.price, values.fee, isBuy])
+
+  const totalNumber = parseNumberToFixed2(isBuy ? transactionTotal : -transactionTotal)!
 
   const { serverSearchRequest } = useAssetSearch()
 
+  const handleOperationTypeChange = (e: MouseEvent<HTMLButtonElement>) => {
+    setFieldValue("operationType", e.currentTarget.name)
+  }
+
   return (
     <Form
-      className='flex flex-col w-[410px] gap-2'
+      className='flex flex-col w-[410px] gap-4'
       onSubmit={handleSubmit}
     >
       {/* @ts-ignore */}
@@ -83,9 +95,15 @@ const TransactionForm = ({
           setFieldValue={setFieldValue}
           setErrorMessage={setFieldError}
         >
-          <SearchAssetOption asset={asset}/>
+          <SearchAssetOption asset={asset} />
         </Select>
       )}
+      <TransactionOperationSwitcher
+        required
+        name="operationType"
+        operationType={values.operationType}
+        changeOperationType={handleOperationTypeChange}
+      />
       <div className='flex gap-4'>
         <Input
           required
@@ -97,6 +115,7 @@ const TransactionForm = ({
           errorMessage={errors.amount}
           setErrorMessage={setFieldError}
           onChange={handleChange}
+          min={0}
         />
         <Input
           required
@@ -108,6 +127,7 @@ const TransactionForm = ({
           errorMessage={errors.price}
           setErrorMessage={setFieldError}
           onChange={handleChange}
+          min={0}
         />
         <Input
           required
@@ -119,6 +139,7 @@ const TransactionForm = ({
           errorMessage={errors.fee}
           setErrorMessage={setFieldError}
           onChange={handleChange}
+          min={0}
         />
       </div>
       <Input
@@ -137,7 +158,7 @@ const TransactionForm = ({
         assetTicker={asset?.ticker}
         assetExchange={asset?.exchange}
         assetExchangeCountry={asset?.exchangeCountry}
-        transactionTotal={transactionTotal}
+        transactionTotal={totalNumber}
       />
       <ActButton
         color="primary"

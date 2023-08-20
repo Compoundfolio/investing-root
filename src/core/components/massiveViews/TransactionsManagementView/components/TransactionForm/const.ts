@@ -37,9 +37,9 @@ export const assetTypes: Option[] = [
 export const defaultFormValues = {
   assetType: assetTypes[0],
   assetSearchNameOrTicker: "",
-  operationType: "buy",
+  operationType: "BUY",
   amount: "",
   price: "",
   fee: "",
   date: "",
-}
+} as const
