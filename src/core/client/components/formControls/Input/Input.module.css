@@ -11,5 +11,6 @@
   line-height: 28px;
   color: #ffffff;
   color-scheme: dark;
+  cursor: text;
   @apply placeholder:text-gray-400;
 }

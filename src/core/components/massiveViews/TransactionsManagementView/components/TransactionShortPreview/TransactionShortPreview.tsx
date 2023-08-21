@@ -9,6 +9,8 @@ interface ITransactionShortPreview {
   assetTicker: Ticker | undefined,
   assetExchange: Exchange | undefined,
   assetExchangeCountry: string | undefined,
+  availableBuyingPower: number
+  availableBuyingPowerLeft: number
 }
 
 const TransactionShortPreview = ({
@@ -17,16 +19,9 @@ const TransactionShortPreview = ({
   assetTicker,
   assetExchange,
   assetExchangeCountry,
+  availableBuyingPower,
+  availableBuyingPowerLeft,
 }: ITransactionShortPreview) => {
-
-  // TODO:
-  const getAvailableBuyingPower = () => 10000
-
-  const availableBuyingPower = getAvailableBuyingPower()
-
-  // TODO: Handle case, when availableBuyingPowerLeft becomes negative
-  const availableBuyingPowerLeft = availableBuyingPower - transactionTotal
-
   return (
     <div className='flex justify-between mt-2 mb-4'>
       <Asset

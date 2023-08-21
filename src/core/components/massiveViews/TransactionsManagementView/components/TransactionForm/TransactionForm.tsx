@@ -6,11 +6,11 @@ import { ActButton } from 'src/core/components/buttons'
 import { assetTypes, defaultFormValues } from './const'
 import validation from './validation'
 import { TransactionShortPreview } from '../TransactionShortPreview'
-import { Asset } from './types'
 import { AssetSearchOptionData, useAssetSearch } from './hooks'
 import { Option } from 'src/core/types'
 import { SearchAssetOption, TransactionOperationSwitcher } from './components'
 import { parseNumberToFixed2 } from '@core/helpers'
+import { InModalWarning } from 'src/core/components/blocks'
 
 interface ITransactionForm {
   isEditMode: boolean
@@ -57,7 +57,15 @@ const TransactionForm = ({
       : positionPrice - Number(values.fee || 0)
   }, [values.amount, values.price, values.fee, isBuy])
 
+  // TODO: server request
+  const getAvailableBuyingPower = () => 10000
+
+  const availableBuyingPower = getAvailableBuyingPower()
+
   const totalNumber = parseNumberToFixed2(isBuy ? transactionTotal : -transactionTotal)!
+  const availableBuyingPowerLeft = availableBuyingPower - transactionTotal
+  const isBuyingPowerLeftNegative = availableBuyingPowerLeft < 0
+
 
   const { serverSearchRequest } = useAssetSearch()
 
@@ -159,12 +167,23 @@ const TransactionForm = ({
         assetExchange={asset?.exchange}
         assetExchangeCountry={asset?.exchangeCountry}
         transactionTotal={totalNumber}
+        availableBuyingPower={availableBuyingPower}
+        availableBuyingPowerLeft={availableBuyingPowerLeft}
       />
+      {isBuyingPowerLeftNegative && (
+        <InModalWarning
+          message={`
+            Transaction's total value ($${transactionTotal}) is bigger then available cash balance ($${availableBuyingPower}).
+            Please check, does the transaction data is correct or add more cash to obtain this transaction.
+          `}
+        />
+      )}
       <ActButton
         color="primary"
         type="submit"
         className="w-full"
         isLoading={isSubmitting}
+        disabled={isBuyingPowerLeftNegative}
       >
         {isEditMode ? "Update transaction" : "Add transaction"}
       </ActButton>

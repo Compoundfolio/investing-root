@@ -1,0 +1,9 @@
+.inModalWarning {
+  width: 100%;
+  padding-inline: 12px;
+  padding-block: 8px;
+  background-color: var(--color-blueDark2D);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--color-grayD9);
+}
