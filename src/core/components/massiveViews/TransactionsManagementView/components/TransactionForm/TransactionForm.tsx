@@ -1,73 +1,97 @@
 "use client"
 
-import React, { MouseEvent, useCallback, useMemo, useState } from 'react'
+import React, { MouseEvent, useCallback, useState } from 'react'
 import { Form, Input, Select, useForm } from 'src/core/client'
 import { ActButton } from 'src/core/components/buttons'
 import { assetTypes, defaultFormValues } from './const'
 import validation from './validation'
 import { TransactionShortPreview } from '../TransactionShortPreview'
-import { AssetSearchOptionData, useAssetSearch } from './hooks'
-import { Option } from 'src/core/types'
+import { AssetSearchOptionData, useAssetSearch, useFormFetch, useTransactionNumbersCalc } from './hooks'
+import { Currency, Option, PortfolioTransaction } from 'src/core/types'
 import { SearchAssetOption, TransactionOperationSwitcher } from './components'
-import { parseNumberToFixed2 } from '@core/helpers'
 import { InModalWarning } from 'src/core/components/blocks'
+import { uniqueId } from 'lodash'
 
 interface ITransactionForm {
-  isEditMode: boolean
+  transactionToEdit: PortfolioTransaction | null
+  handleTransactionEdit: (transaction: PortfolioTransaction) => void
+  handleTransactionAdd: (transaction: PortfolioTransaction) => void
 }
 
 const TransactionForm = ({
-  isEditMode = false,
+  transactionToEdit,
+  handleTransactionEdit,
+  handleTransactionAdd,
 }: ITransactionForm) => {
-  const [asset, setAsset] = useState<AssetSearchOptionData>()
+  const [asset, setAsset] = useState<AssetSearchOptionData | null>()
 
-  const onAssetSelectionFromSearch = useCallback((option: Option<AssetSearchOptionData>) => {
-    console.warn(option.data);
-
-    setAsset(option.data)
-    setFieldValue("price", option.data?.currentMarketPrice)
-  }, [])
-
-  const { values, errors, handleChange, setFieldValue, handleSubmit, setFieldError, resetForm, isSubmitting } = useForm<typeof defaultFormValues>(
+  const {
+    values,
+    errors,
+    handleChange,
+    setFieldValue,
+    handleSubmit,
+    setFieldError,
+    isSubmitting,
+    setSubmitting,
+    setValues,
+  } = useForm<typeof defaultFormValues>(
     {
       validationSchema: validation(),
       initialValues: defaultFormValues,
       onSubmit: (values) => {
-        // callSignIn({
-        //   data: {
-        //     email,
-        //     password,
-        //   },
-        //   authType: emailAuthType,
-        // })
+        setSubmitting(true)
 
-        if (false) {
-          resetForm()
-        }
+        const mutateTransactionList = transactionToEdit
+          ? handleTransactionEdit
+          : handleTransactionAdd
+
+        asset && mutateTransactionList({
+          id: transactionToEdit?.id ?? uniqueId(),
+          title: asset?.title,
+          ticker: asset?.ticker,
+          exchange: asset?.exchange,
+          exchangeCountry: asset?.exchangeCountry,
+          assetType: values.assetType,
+          operationType: values.operationType as ("BUY" | "SELL"),
+          assetSearchNameOrTicker: values.assetSearchNameOrTicker,
+          amount: values.amount,
+          price: values.price,
+          fee: values.fee,
+          date: values.date,
+          currency: Currency.USD, // TODO: Currency support
+          total: transactionTotal
+        })
+
+        setValues(defaultFormValues)
+        setAsset(null)
+        setSubmitting(false)
       },
     }
   )
 
-  const isBuy = values.operationType === "BUY"
+  useFormFetch({
+    transactionToEdit,
+    setAsset,
+    setValues,
+  })
 
-  const transactionTotal = useMemo(() => {
-    const positionPrice = (Number(values.amount || 0) * Number(values.price || 0))
-    return isBuy
-      ? positionPrice + Number(values.fee || 0)
-      : positionPrice - Number(values.fee || 0)
-  }, [values.amount, values.price, values.fee, isBuy])
-
-  // TODO: server request
-  const getAvailableBuyingPower = () => 10000
-
-  const availableBuyingPower = getAvailableBuyingPower()
-
-  const totalNumber = parseNumberToFixed2(isBuy ? transactionTotal : -transactionTotal)!
-  const availableBuyingPowerLeft = availableBuyingPower - transactionTotal
-  const isBuyingPowerLeftNegative = availableBuyingPowerLeft < 0
-
+  const {
+    transactionTotal,
+    totalNumber,
+    availableBuyingPower,
+    availableBuyingPowerLeft,
+    isBuyingPowerLeftNegative
+  } = useTransactionNumbersCalc({
+    values,
+  })
 
   const { serverSearchRequest } = useAssetSearch()
+
+  const onAssetSelectionFromSearch = useCallback((option: Option<AssetSearchOptionData>) => {
+    setAsset(option.data)
+    setFieldValue("price", option.data?.currentMarketPrice)
+  }, [setAsset, setFieldValue])
 
   const handleOperationTypeChange = (e: MouseEvent<HTMLButtonElement>) => {
     setFieldValue("operationType", e.currentTarget.name)
@@ -103,13 +127,13 @@ const TransactionForm = ({
           setFieldValue={setFieldValue}
           setErrorMessage={setFieldError}
         >
-          <SearchAssetOption asset={asset} />
+          <SearchAssetOption asset={asset!} />
         </Select>
       )}
       <TransactionOperationSwitcher
         required
         name="operationType"
-        operationType={values.operationType}
+        operationType={values.operationType as ("BUY" | "SELL")}
         changeOperationType={handleOperationTypeChange}
       />
       <div className='flex gap-4'>
@@ -185,7 +209,7 @@ const TransactionForm = ({
         isLoading={isSubmitting}
         disabled={isBuyingPowerLeftNegative}
       >
-        {isEditMode ? "Update transaction" : "Add transaction"}
+        {transactionToEdit ? "Update transaction" : "Add transaction"}
       </ActButton>
     </Form>
   )

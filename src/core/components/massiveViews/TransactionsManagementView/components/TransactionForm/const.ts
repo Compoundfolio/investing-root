@@ -38,8 +38,8 @@ export const defaultFormValues = {
   assetType: assetTypes[0],
   assetSearchNameOrTicker: "",
   operationType: "BUY",
-  amount: "",
-  price: "",
-  fee: "",
+  amount: 0,
+  price: 0,
+  fee: 0,
   date: "",
-} as const
+}

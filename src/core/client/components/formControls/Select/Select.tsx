@@ -65,6 +65,7 @@ const Select = ({
   const handleChange = useCallback((option: Option) => {
     if (search) {
       setSearchValue(option.label)
+      setFieldValue(name, option.label)
       onSearchSelection && onSearchSelection(option)
     } else {
       setFieldValue(name, option)

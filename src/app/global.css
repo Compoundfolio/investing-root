@@ -305,3 +305,7 @@ table tbody {
     opacity: 0;
   }
 }
+
+.font-chakra {
+  font-family: Chakra Petch;
+}

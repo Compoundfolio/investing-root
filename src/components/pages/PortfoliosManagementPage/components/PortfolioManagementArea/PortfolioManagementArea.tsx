@@ -111,7 +111,7 @@ const PortfolioManagementArea = () => {
       </div>
     </section>
     <ModalBlur
-      noMaxWidth={false}
+      noMaxWidth
       isOpen={isTransactionsModalOpen}
       handleOpenChange={handleTransactionsModalOpen}
     >

@@ -7,6 +7,8 @@ export { default as CollapseIcon } from "./CollapseIcon"
 export { default as CancelIcon } from "./CancelIcon"
 export { default as FileIcon } from "./FileIcon"
 export { default as SearchIcon } from "./SearchIcon"
+export { default as EditIcon } from "./EditIcon"
+export { default as DeleteIcon } from "./DeleteIcon"
 
 export * from "./ArrowIcon"
 export * from "./brokerage"

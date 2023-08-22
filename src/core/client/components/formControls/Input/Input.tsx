@@ -11,7 +11,8 @@ import CircleButton from 'src/core/components/buttons/CircleButton/CircleButton'
 import { CancelIcon, SearchIcon, Spinner } from "@core/components"
 import { cancelStyle, resetSearchStyle, searchIconStyle } from "./consts"
 
-export interface IInput extends Control {
+export interface IInput extends Omit<Control, "value"> {
+  value: string | number
   type?: HTMLInputTypeAttribute
   search?: boolean
   isLoading?: boolean
