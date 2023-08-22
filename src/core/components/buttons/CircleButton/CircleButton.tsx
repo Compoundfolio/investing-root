@@ -11,7 +11,7 @@ const CircleButton = ({ children, onClick, style = {}, noShadow = false }: ICirc
       type="button"
       style={style}
       onClick={onClick}
-      className={clsx("inline-block p-3 text-xs font-medium leading-normal text-white uppercase transition duration-150 ease-in-out rounded-full shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg")}
+      className={clsx("inline-block p-1 text-xs font-medium leading-normal text-white uppercase transition duration-150 ease-in-out rounded-full hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg")}
     >
       {children}
     </button>

@@ -2,19 +2,21 @@ import { memo } from 'react'
 import { Asset } from 'src/core/components/blocks'
 import { TWrapper, TTable, THead, TRow, TCell, TBody, ActionCell } from 'src/core/components/tables'
 import { colors } from 'src/core/theme'
-import { PortfolioTransaction } from 'src/core/types'
+import { ID, PortfolioTransaction } from 'src/core/types'
 
 interface ITransactionTable {
+  selectedTransactionId?: ID
   transactionList: PortfolioTransaction[]
   onEdit: (transaction: PortfolioTransaction) => void
   onDelete: (transaction: PortfolioTransaction) => void
 }
 
 const TransactionTable = ({
+  selectedTransactionId,
   transactionList,
   onEdit,
   onDelete,
-}: ITransactionTable) => {
+}: ITransactionTable) => {  
   return (
     <TWrapper title="Assets" size={transactionList.length}>
       <TTable>
@@ -33,7 +35,10 @@ const TransactionTable = ({
         </THead>
         <TBody>
           {transactionList?.length ? transactionList.map((transaction) => (
-            <TRow key={transaction.id}>
+            <TRow
+              key={transaction.id}
+              isSelected={transaction.id == selectedTransactionId}
+            >
               <TCell>
                 <Asset
                   title={transaction.title}

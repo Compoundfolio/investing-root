@@ -11,7 +11,7 @@ interface ITWrapper extends IReactChildren {
 function TWrapper({ children, title, size }: ITWrapper) {
   return (
     <section
-      className={clsx([styles.twrap, "flex flex-col justify-between h-full"])}
+      className={clsx([styles.twrap, "w-full flex flex-col justify-between h-full"])}
     >
       <div className="flex flex-col">
         <h2 className={styles.tableName}>{title}</h2>

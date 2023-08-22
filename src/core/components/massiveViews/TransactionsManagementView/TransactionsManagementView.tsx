@@ -37,6 +37,7 @@ const TransactionsManagementView = () => {
         handleTransactionAdd={handleTransactionAdd}
       />
       <TransactionTable
+        selectedTransactionId={transactionToEdit?.id}
         transactionList={transactionList}
         onEdit={setTransactionToEdit}
         onDelete={handleTransactionDelete}

@@ -17,7 +17,7 @@ const Asset = ({
   exchangeCountry,
 }: IAsset) => {
   return (
-    <div className='flex items-center gap-4 h-fit'>
+    <div className='flex items-center gap-4 h-fit w-max'>
       <div className={styles.asset_undefinedLogo}>
         <span className={styles.asset_ticker}>
           {ticker}

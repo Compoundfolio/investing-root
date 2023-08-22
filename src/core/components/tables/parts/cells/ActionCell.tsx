@@ -17,7 +17,7 @@ const ActionCell = ({
   tableItem,
 }: IActionCell) => {
   return (
-    <TCell className='flex items-center gap-1'>
+    <TCell className='flex items-center justify-center gap-1'>
       {onEdit && (
         <CircleButton onClick={() => onEdit(tableItem)}>
           <EditIcon />

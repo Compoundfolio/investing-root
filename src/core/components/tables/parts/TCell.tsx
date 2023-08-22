@@ -22,7 +22,7 @@ function TCell({
   title,
 }: ITCell) {
   const commonStyles = clsx(
-    `text-${align} w-full align-${valign}`,
+    `text-${align} w-auto align-${valign}`,
     number && "font-chakra",
     bold && "font-semibold",
     styles.tcell,

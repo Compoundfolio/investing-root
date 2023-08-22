@@ -149,6 +149,7 @@ body {
     ),
     #0e1317;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
