@@ -2,6 +2,7 @@
 
 import {
   ActButton,
+  EmptySelectedPortfolioAreaState,
   ModalBlur,
   PortfolioBrokerage,
   SectionHead,
@@ -69,7 +70,7 @@ const PortfolioManagementArea = () => {
   )
 
   return <>
-    <section className="flex justify-between w-full gap-20">
+    <section className="relative flex justify-between w-full gap-20">
       <div className={clsx(styles.container, "gap-16")}>
         <Input
           value={selectedPortfolioCard?.title ?? ""}
@@ -109,10 +110,11 @@ const PortfolioManagementArea = () => {
           />
         )}
       </div>
+      {selectedPortfolioCard?.id && <EmptySelectedPortfolioAreaState />}
     </section>
     <ModalBlur
       noMaxWidth
-      isOpen={isTransactionsModalOpen}
+      isOpen={isTransactionsModalOpen && !!selectedPortfolioCard?.id}
       handleOpenChange={handleTransactionsModalOpen}
     >
       <TransactionsManagementView  />
