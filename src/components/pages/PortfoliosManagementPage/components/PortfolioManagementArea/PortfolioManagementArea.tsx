@@ -12,7 +12,7 @@ import {
   useFadeInOutMountAnimation,
 } from "@core"
 import React, { ChangeEvent, memo, useCallback } from "react"
-import { BrokerageMultiSelector, TransactionsUploadResults } from "./components"
+import { BrokerageMultiSelector, PortfolioNameArea, TransactionsUploadResults } from "./components"
 import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
 import { Input } from "src/core/client"
@@ -76,20 +76,23 @@ const PortfolioManagementArea = () => {
     <section className="relative flex justify-between w-full h-full gap-20">
       <div className={clsx(styles.container, "gap-16")}>
         {isAnyPortfolioSelected ? <>
-          <Input
+          <PortfolioNameArea
+            name={selectedPortfolioCard.title}
+          />
+          {/* <Input
             value={selectedPortfolioCard?.title ?? ""}
             labelText="Portfolio name"
             onChange={handlePortfolioNameChange}
             name="portfolioName"
             helpText="Shouldn't be longer then 30 symbols."
             withMb={false}
-          />
-          <ActButton
+          /> */}
+          {/* <ActButton
             color="primary"
             onClick={handleTransactionsModalOpen}
           >
             Manage transactions
-          </ActButton>
+          </ActButton> */}
           <BrokerageMultiSelector
             selectedBrokerageOptions={selectedPortfolioCard?.brokerages}
             setSelectedBrokerageOptions={updateSelectedPortfolio}
