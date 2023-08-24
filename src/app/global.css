@@ -160,6 +160,8 @@ a {
 * {
   box-sizing: border-box;
   color: var(--color-white);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 h2 {
