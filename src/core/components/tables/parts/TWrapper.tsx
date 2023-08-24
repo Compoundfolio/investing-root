@@ -2,7 +2,7 @@ import React from "react"
 import { IReactChildren } from "src/core/types"
 import styles from "./TWrapper.module.css"
 import clsx from "clsx"
-import { colors } from "src/core/theme"
+import { EmptyTableState } from "../../blocks"
 
 interface ITWrapper extends IReactChildren {
   title: string
@@ -19,17 +19,7 @@ function TWrapper({ children, title, size }: ITWrapper) {
         {size > 0 && <span className={styles.tableSize}>[{size}]</span>}
       </div>
       {children}
-      {size == 0 && (
-          <section
-          className='flex items-center justify-center w-full p-20 text-gray-400'
-          style={{
-            borderTop: `1px ${colors.gray4C} solid`,
-            borderBottom: `1px ${colors.gray4C} solid`,
-          }}
-        >
-          List is empty 🤔
-        </section>
-      )}
+      {size == 0 && <EmptyTableState />}
     </section>
   )
 }

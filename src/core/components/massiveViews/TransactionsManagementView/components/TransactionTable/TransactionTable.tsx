@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import { Asset } from 'src/core/components/blocks'
 import { TWrapper, TTable, THead, TRow, TCell, TBody, ActionCell } from 'src/core/components/tables'
-import { colors } from 'src/core/theme'
 import { ID, PortfolioTransaction } from 'src/core/types'
 
 interface ITransactionTable {
