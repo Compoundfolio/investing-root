@@ -34,7 +34,7 @@ const TransactionTable = ({
           </TRow>
         </THead>
         <TBody>
-          {transactionList?.length ? transactionList.map((transaction) => (
+          {transactionList?.map((transaction) => (
             <TRow
               key={transaction.id}
               isSelected={transaction.id == selectedTransactionId}
@@ -60,17 +60,7 @@ const TransactionTable = ({
                 onDelete={onDelete}
               />
             </TRow>
-          )) : (
-            <span
-              className='flex items-center justify-center p-20 mt-6 text-gray-400'
-              style={{
-                borderTop: `1px ${colors.gray4C} solid`,
-                borderBottom: `1px ${colors.gray4C} solid`,
-              }}
-            >
-              List is empty 🤔
-            </span>
-          )}
+          ))}
         </TBody>
       </TTable>
     </TWrapper>

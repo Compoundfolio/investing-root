@@ -7,7 +7,7 @@ interface ITBody extends IReactChildren {
   height?: number | string
 }
 
-function TBody({ children, height = "inherit", ...rest }: ITBody) {
+function TBody({ children, height, ...rest }: ITBody) {
   return (
     <tbody style={{ height }} className={styles.tbody} {...rest}>
       {children}

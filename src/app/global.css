@@ -261,12 +261,12 @@ body.using-mouse :focus {
 
 /* TODO: Remove */
 table thead tr {
-  display: block;
-  height: auto;
+  /* display: block;
+  height: auto; */
 }
 
 table tbody {
-  display: block;
+  /* display: block; */
 }
 
 .color-red {
