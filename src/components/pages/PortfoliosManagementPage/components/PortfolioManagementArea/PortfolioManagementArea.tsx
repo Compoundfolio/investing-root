@@ -6,6 +6,7 @@ import {
   ModalBlur,
   PortfolioBrokerage,
   SectionHead,
+  SkeletonRectangle,
   TransactionsManagementView,
   updateObjectFromArrayOfObjects,
   useFadeInOutMountAnimation,
@@ -22,7 +23,9 @@ import { useOpen } from 'src/core/hooks';
 
 const PortfolioManagementArea = () => {
   const { selectedPortfolioCard, updateSelectedPortfolio } = usePortfolioManagerContext()
-  const [ isTransactionsModalOpen, handleTransactionsModalOpen ] = useOpen()
+  const [isTransactionsModalOpen, handleTransactionsModalOpen] = useOpen()
+
+  const isAnyPortfolioSelected = !!selectedPortfolioCard?.id
 
   const {
     shouldRenderChild: shouldRenderReportsUploadArea,
@@ -39,18 +42,18 @@ const PortfolioManagementArea = () => {
         ...prev!,
         brokerages: prev?.brokerages.length
           ? updateObjectFromArrayOfObjects<PortfolioBrokerage>(
-              prev.brokerages,
-              { ...brokerage, uploadedTransactionList },
-              "id"
-            )
+            prev.brokerages,
+            { ...brokerage, uploadedTransactionList },
+            "id"
+          )
           : [
-              {
-                id: Math.random(),
-                title: brokerage.title,
-                logoSrcLink: brokerage.logoSrcLink,
-                uploadedTransactionList,
-              } satisfies PortfolioBrokerage,
-            ],
+            {
+              id: Math.random(),
+              title: brokerage.title,
+              logoSrcLink: brokerage.logoSrcLink,
+              uploadedTransactionList,
+            } satisfies PortfolioBrokerage,
+          ],
       }))
     },
     [selectedPortfolioCard]
@@ -60,64 +63,77 @@ const PortfolioManagementArea = () => {
     (e: ChangeEvent<HTMLInputElement>) => {
       updateSelectedPortfolio(
         (prev) =>
-          ({
-            ...prev!,
-            title: e.target.value,
-          } satisfies Portfolio)
+        ({
+          ...prev!,
+          title: e.target.value,
+        } satisfies Portfolio)
       )
     },
     []
   )
 
   return <>
-    <section className="relative flex justify-between w-full gap-20">
+    <section className="relative flex justify-between w-full h-full gap-20">
       <div className={clsx(styles.container, "gap-16")}>
-        <Input
-          value={selectedPortfolioCard?.title ?? ""}
-          labelText="Portfolio name"
-          onChange={handlePortfolioNameChange}
-          name="portfolioName"
-          helpText="Shouldn't be longer then 30 symbols."
-          withMb={false}
-        />
-        <ActButton
-          color="primary"
-          onClick={handleTransactionsModalOpen}
-        >
-          Manage transactions
-        </ActButton>
-        <BrokerageMultiSelector
-          selectedBrokerageOptions={selectedPortfolioCard?.brokerages}
-          setSelectedBrokerageOptions={updateSelectedPortfolio}
-          selectionSideEffect={causeContentFadeEffect}
-        />
-      </div>
-      <div className={styles.container}>
-        <SectionHead title="Transactions upload" />
-        {shouldRenderReportsUploadArea && (
-          <TransactionsUploadArea
-            contentAnimation={contentAnimation}
-            selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}
-            createHandleFileUpload={createHandleFileUpload}
+        {isAnyPortfolioSelected ? <>
+          <Input
+            value={selectedPortfolioCard?.title ?? ""}
+            labelText="Portfolio name"
+            onChange={handlePortfolioNameChange}
+            name="portfolioName"
+            helpText="Shouldn't be longer then 30 symbols."
+            withMb={false}
           />
+          <ActButton
+            color="primary"
+            onClick={handleTransactionsModalOpen}
+          >
+            Manage transactions
+          </ActButton>
+          <BrokerageMultiSelector
+            selectedBrokerageOptions={selectedPortfolioCard?.brokerages}
+            setSelectedBrokerageOptions={updateSelectedPortfolio}
+            selectionSideEffect={causeContentFadeEffect}
+          />
+        </> : (
+          <SkeletonRectangle />
         )}
       </div>
       <div className={styles.container}>
-        <SectionHead title="Results" />
-        {!!selectedPortfolioCard?.brokerages[0]?.uploadedTransactionList.length && (
-          <TransactionsUploadResults
-            selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}
-          />
+        {isAnyPortfolioSelected ? <>
+          <SectionHead title="Transactions upload" />
+          {shouldRenderReportsUploadArea && (
+            <TransactionsUploadArea
+              contentAnimation={contentAnimation}
+              selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}
+              createHandleFileUpload={createHandleFileUpload}
+            />
+          )}
+        </> : (
+          <SkeletonRectangle />
         )}
       </div>
-      {selectedPortfolioCard?.id && <EmptySelectedPortfolioAreaState />}
+      <div className={styles.container}>
+        {isAnyPortfolioSelected ? <>
+          <SectionHead title="Transactions upload" />
+          <SectionHead title="Results" />
+          {!!selectedPortfolioCard?.brokerages[0]?.uploadedTransactionList.length && (
+            <TransactionsUploadResults
+              selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}
+            />
+          )}
+        </> : (
+          <SkeletonRectangle />
+        )}
+      </div>
+      {!isAnyPortfolioSelected && <EmptySelectedPortfolioAreaState />}
     </section>
     <ModalBlur
       noMaxWidth
-      isOpen={isTransactionsModalOpen && !!selectedPortfolioCard?.id}
+      isOpen={isTransactionsModalOpen && isAnyPortfolioSelected}
       handleOpenChange={handleTransactionsModalOpen}
     >
-      <TransactionsManagementView  />
+      <TransactionsManagementView />
     </ModalBlur>
   </>
 }

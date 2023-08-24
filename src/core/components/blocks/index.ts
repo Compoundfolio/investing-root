@@ -8,3 +8,4 @@ export { default as InModalWarning } from "./InModalWarning"
 
 export * from "./emptyStates"
 export * from "./cards"
+export * from "./skeletons"

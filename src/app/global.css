@@ -310,3 +310,8 @@ table tbody {
 .font-chakra {
   font-family: Chakra Petch;
 }
+
+.skeletonPrimitive {
+  border-radius: 16px;
+  background: rgba(17, 31, 40, 0.25);
+}
