@@ -3,41 +3,48 @@
 import React from "react"
 import { ActButton } from "src/core/components/buttons"
 import { useOpen } from "src/core/hooks"
-import { portfolioDeleteAgreement } from "./consts"
-import usePortfolioManagerContext from "../../../../../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/hook"
 import { Checkbox } from "src/core/client"
+import { IReactChildren } from "src/core/types"
 
-interface IActArea {
+interface IActArea extends IReactChildren {
+  isSureAgreement?: string
   closeModal: () => void
+  callAction: () => void
 }
 
-const ActArea = ({ closeModal }: IActArea) => {
+const ActArea = ({
+  children,
+  isSureAgreement,
+  callAction,
+  closeModal,
+}: IActArea) => {
   const [isUserSure, handleIsUserSure] = useOpen()
 
-  const { deleteSelectedPortfolio } = usePortfolioManagerContext()
-
-  const agreeToDeletePortfolio = () => {
-    deleteSelectedPortfolio()
+  const agreeToCallAction = () => {
+    callAction()
     closeModal()
   }
 
   return (
     <>
-      <Checkbox
-        name="portfolioDeleteAgreement"
-        checked={isUserSure}
-        description={portfolioDeleteAgreement}
-        withMb={false}
-        onChange={handleIsUserSure}
-      />
+      {children}
+      {isSureAgreement && (
+        <Checkbox
+          name="portfolioDeleteAgreement"
+          checked={isUserSure}
+          description={isSureAgreement}
+          withMb={false}
+          onChange={handleIsUserSure}
+        />
+      )}
       <div className="flex gap-4">
         <ActButton
-          onClick={agreeToDeletePortfolio}
+          onClick={agreeToCallAction}
           color="primary"
           width="200px"
-          disabled={!isUserSure}
+          disabled={!isUserSure && !!isSureAgreement}
         >
-          Delete portfolio
+          Save
         </ActButton>
         <ActButton onClick={closeModal} color="lowPrior" width="200px">
           Cancel

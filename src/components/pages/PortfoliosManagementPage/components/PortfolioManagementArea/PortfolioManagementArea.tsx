@@ -6,29 +6,46 @@ import {
   EmptySelectedPortfolioAreaState,
   ModalBlur,
   PortfolioBrokerage,
-  PortfolioCard,
-  PortfolioCardContent,
   SectionHead,
   SkeletonRectangle,
   TransactionsManagementView,
   updateObjectFromArrayOfObjects,
   useFadeInOutMountAnimation,
 } from "@core"
-import React, { ChangeEvent, memo, useCallback } from "react"
-import { BrokerageMultiSelector, PortfolioNameArea, TransactionsUploadResults } from "./components"
+import React, { ChangeEvent, memo, useCallback, useState } from "react"
+import { BrokerageMultiSelector, PortfolioNameArea, PortfolioNameChanger, TransactionsUploadResults } from "./components"
 import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
 import usePortfolioManagerContext from "../../context/PortfolioManagerContextData/hook"
 import clsx from "clsx"
 import { Portfolio } from "../../../../../core/types/assets/common/Portfolio"
 import { useOpen } from 'src/core/hooks';
+import { portfolioDeleteAgreement } from "./consts"
+import { Input } from "src/core/client"
+import { usePortfolioName } from "./hooks"
 
 const PortfolioManagementArea = () => {
-  const { selectedPortfolioCard, updateSelectedPortfolio } = usePortfolioManagerContext()
-  const [isTransactionsModalOpen, handleTransactionsModalOpen] = useOpen()
-  const [isDeletePortfolioModalOpen, handleIsDeletePortfolioModalOpen] = useOpen()
+
+  const {
+    selectedPortfolioCard,
+    updateSelectedPortfolio,
+    deleteSelectedPortfolio,
+  } = usePortfolioManagerContext()
+
+  const {
+    newPortfolioName,
+    handleTitleChange,
+    savePortfolioTitleChange,
+  } = usePortfolioName(
+    updateSelectedPortfolio,
+    selectedPortfolioCard,
+  )
 
   const isAnyPortfolioSelected = !!selectedPortfolioCard?.id
+
+  const [isTransactionsModalOpen, handleTransactionsModalOpen] = useOpen()
+  const [isDeletePortfolioModalOpen, handleIsDeletePortfolioModalOpen] = useOpen()
+  const [isPortfolioNameChangeModalOpen, handleIsPortfolioNameChangeModalOpen] = useOpen()
 
   const {
     shouldRenderChild: shouldRenderReportsUploadArea,
@@ -62,19 +79,6 @@ const PortfolioManagementArea = () => {
     [selectedPortfolioCard]
   )
 
-  const handlePortfolioNameChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      updateSelectedPortfolio(
-        (prev) =>
-        ({
-          ...prev!,
-          title: e.target.value,
-        } satisfies Portfolio)
-      )
-    },
-    []
-  )
-
   return <>
     <section className="relative flex justify-between w-full h-full gap-20">
       <div className={clsx(styles.container, "gap-16")}>
@@ -82,23 +86,9 @@ const PortfolioManagementArea = () => {
           <PortfolioNameArea
             name={selectedPortfolioCard.title}
             openTransactionsManagementModal={handleTransactionsModalOpen}
-            openPortfolioRenameModal={() => {}}
+            openPortfolioRenameModal={handleIsPortfolioNameChangeModalOpen}
             openPortfolioDeleteApprovalModal={handleIsDeletePortfolioModalOpen}
           />
-          {/* <Input
-            value={selectedPortfolioCard?.title ?? ""}
-            labelText="Portfolio name"
-            onChange={handlePortfolioNameChange}
-            name="portfolioName"
-            helpText="Shouldn't be longer then 30 symbols."
-            withMb={false}
-          /> */}
-          {/* <ActButton
-            color="primary"
-            onClick={handleTransactionsModalOpen}
-          >
-            Manage transactions
-          </ActButton> */}
           <BrokerageMultiSelector
             selectedBrokerageOptions={selectedPortfolioCard?.brokerages}
             setSelectedBrokerageOptions={updateSelectedPortfolio}
@@ -137,6 +127,7 @@ const PortfolioManagementArea = () => {
       </div>
       {!isAnyPortfolioSelected && <EmptySelectedPortfolioAreaState />}
     </section>
+
     <ModalBlur
       noMaxWidth
       isOpen={isTransactionsModalOpen && isAnyPortfolioSelected}
@@ -145,20 +136,27 @@ const PortfolioManagementArea = () => {
       <TransactionsManagementView />
     </ModalBlur>
     <AreYouSureModal
-      isOpen={isDeletePortfolioModalOpen}
       title="Permanently delete this portfolio?"
+      isOpen={isDeletePortfolioModalOpen}
+      selectedPortfolioCard={selectedPortfolioCard}
+      sureAgreement={portfolioDeleteAgreement}
       handleModalOpenStatus={handleIsDeletePortfolioModalOpen}
+      actionToCall={deleteSelectedPortfolio}
+    />
+    <AreYouSureModal
+      title="Update portfolio name"
+      subTitle="Shouldn't be longer then 30 symbols."
+      portfolioChangedTitle={newPortfolioName}
+      isOpen={isPortfolioNameChangeModalOpen}
+      selectedPortfolioCard={selectedPortfolioCard}
+      handleModalOpenStatus={handleIsPortfolioNameChangeModalOpen}
+      actionToCall={savePortfolioTitleChange}
     >
-      <PortfolioCard isSelected={true}>
-        <PortfolioCardContent
-          title={selectedPortfolioCard?.title!}
-          totalReturnValue={selectedPortfolioCard?.totalReturnValue!}
-          totalReturnPercentage={
-            selectedPortfolioCard?.totalReturnPercentage!
-          }
-          annualIncome={selectedPortfolioCard?.annualIncome!}
-        />
-      </PortfolioCard>
+      <PortfolioNameChanger
+        currentPortfolioTitle={selectedPortfolioCard?.title!}
+        newPortfolioName={newPortfolioName}
+        handleTitleChange={handleTitleChange}
+      />
     </AreYouSureModal>
   </>
 }

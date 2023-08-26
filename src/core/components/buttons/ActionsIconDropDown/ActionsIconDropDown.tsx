@@ -26,14 +26,14 @@ const ActionsIconDropDown = ({ title, actions, bottomActions, children }: IActio
         <ActIcon />
       </CircleButton>
       {isShowPopUp && (
-        <PopUp widthFit noPadding className='left-11'>
+        <PopUp widthFit noPadding className='left-10'>
           <section>
             <div className={styles.actionsIconDropDown_title}>{title}</div>
             <Divider color={colors.gray4C} />
-            {actions.map(action => <Action action={action} />)}
+            {actions.map(action => <Action key={action.title} action={action} />)}
             {bottomActions && <>
               <Divider color={colors.gray4C} />
-              {bottomActions.map(bottomAction => <Action action={bottomAction} />)}
+              {bottomActions.map(bottomAction => <Action key={bottomAction.title} action={bottomAction} />)}
             </>}
           </section>
           {children}

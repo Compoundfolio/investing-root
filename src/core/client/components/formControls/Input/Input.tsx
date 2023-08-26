@@ -19,6 +19,7 @@ export interface IInput extends Omit<Control, "value"> {
   sharpBottomBorderRadius?: boolean
   resetInputValue?: () => void
   min?: number
+  contentCentered?: boolean
 }
 
 const Input = ({
@@ -28,6 +29,7 @@ const Input = ({
   withMb = true,
   isLoading = false,
   sharpBottomBorderRadius = false,
+  contentCentered = false,
   type = "text",
   helpText = "",
   value,
@@ -75,7 +77,8 @@ const Input = ({
           ...(search && { paddingLeft: 32, paddingRight: 42 }),
           ...(errorMessage && { borderColor: colors.pinkSoft }),
           ...(!setErrorMessage && { margin: 0 }),
-          ...(sharpBottomBorderRadius && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 })
+          ...(sharpBottomBorderRadius && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }),
+          ...(contentCentered && { textAlign: "center" }),
         }}
       />
       {isPassword && (

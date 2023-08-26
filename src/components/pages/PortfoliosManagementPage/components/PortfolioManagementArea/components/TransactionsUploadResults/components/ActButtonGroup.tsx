@@ -2,44 +2,26 @@
 
 import {
   ActButton,
-  AreYouSureModal,
-  PortfolioCard,
-  PortfolioCardContent,
-  useOpen,
 } from "@core"
 import React from "react"
 import usePortfolioManagerContext from "../../../../../context/PortfolioManagerContextData/hook"
+import { useRouter } from "next/router"
+import { ROUTES } from "src/routing"
 
 const ActButtonGroup = () => {
-  const [isAgreeModalOpen, handleIsAgreeModalOpen] = useOpen()
+  const { savePortfolioChanges } = usePortfolioManagerContext()
+  const router = useRouter()
 
-  const { selectedPortfolioCard, savePortfolioChanges } =
-    usePortfolioManagerContext()
+  const saveAndGoDashboard = () => {
+    savePortfolioChanges()
+    router.push(ROUTES.DASHBOARD)
+  }
 
   return (
     <div className="flex gap-4">
-      <ActButton onClick={savePortfolioChanges} color="primary">
-        Apply changes
+      <ActButton onClick={saveAndGoDashboard} color="primary">
+        Save changes and go to the dashboard
       </ActButton>
-      <ActButton onClick={handleIsAgreeModalOpen} color="lowPrior">
-        Delete portfolio
-      </ActButton>
-      <AreYouSureModal
-        isOpen={isAgreeModalOpen}
-        title="Permanently delete this portfolio?"
-        handleModalOpenStatus={handleIsAgreeModalOpen}
-      >
-        <PortfolioCard isSelected={true}>
-          <PortfolioCardContent
-            title={selectedPortfolioCard?.title!}
-            totalReturnValue={selectedPortfolioCard?.totalReturnValue!}
-            totalReturnPercentage={
-              selectedPortfolioCard?.totalReturnPercentage!
-            }
-            annualIncome={selectedPortfolioCard?.annualIncome!}
-          />
-        </PortfolioCard>
-      </AreYouSureModal>
     </div>
   )
 }

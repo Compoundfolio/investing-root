@@ -20,7 +20,7 @@ const Action = ({
 
   return (
     <button type='button' onClick={onClick} className='flex items-center w-full gap-2 p-2'>
-      {actIcon}
+      <div className='flex w-[17.5px] h-[17.5px] items-center justify-center'>{actIcon}</div>
       <span className={styles.action_title}>{title}</span>
     </button>
   )
