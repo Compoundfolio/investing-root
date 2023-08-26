@@ -14,10 +14,10 @@ interface IActArea {
 const ActArea = ({ closeModal }: IActArea) => {
   const [isUserSure, handleIsUserSure] = useOpen()
 
-  const { deletePortfolio } = usePortfolioManagerContext()
+  const { deleteSelectedPortfolio } = usePortfolioManagerContext()
 
   const agreeToDeletePortfolio = () => {
-    deletePortfolio()
+    deleteSelectedPortfolio()
     closeModal()
   }
 

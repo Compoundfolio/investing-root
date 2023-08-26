@@ -2,9 +2,12 @@
 
 import {
   ActButton,
+  AreYouSureModal,
   EmptySelectedPortfolioAreaState,
   ModalBlur,
   PortfolioBrokerage,
+  PortfolioCard,
+  PortfolioCardContent,
   SectionHead,
   SkeletonRectangle,
   TransactionsManagementView,
@@ -15,7 +18,6 @@ import React, { ChangeEvent, memo, useCallback } from "react"
 import { BrokerageMultiSelector, PortfolioNameArea, TransactionsUploadResults } from "./components"
 import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
-import { Input } from "src/core/client"
 import usePortfolioManagerContext from "../../context/PortfolioManagerContextData/hook"
 import clsx from "clsx"
 import { Portfolio } from "../../../../../core/types/assets/common/Portfolio"
@@ -24,6 +26,7 @@ import { useOpen } from 'src/core/hooks';
 const PortfolioManagementArea = () => {
   const { selectedPortfolioCard, updateSelectedPortfolio } = usePortfolioManagerContext()
   const [isTransactionsModalOpen, handleTransactionsModalOpen] = useOpen()
+  const [isDeletePortfolioModalOpen, handleIsDeletePortfolioModalOpen] = useOpen()
 
   const isAnyPortfolioSelected = !!selectedPortfolioCard?.id
 
@@ -78,6 +81,9 @@ const PortfolioManagementArea = () => {
         {isAnyPortfolioSelected ? <>
           <PortfolioNameArea
             name={selectedPortfolioCard.title}
+            openTransactionsManagementModal={handleTransactionsModalOpen}
+            openPortfolioRenameModal={() => {}}
+            openPortfolioDeleteApprovalModal={handleIsDeletePortfolioModalOpen}
           />
           {/* <Input
             value={selectedPortfolioCard?.title ?? ""}
@@ -138,6 +144,22 @@ const PortfolioManagementArea = () => {
     >
       <TransactionsManagementView />
     </ModalBlur>
+    <AreYouSureModal
+      isOpen={isDeletePortfolioModalOpen}
+      title="Permanently delete this portfolio?"
+      handleModalOpenStatus={handleIsDeletePortfolioModalOpen}
+    >
+      <PortfolioCard isSelected={true}>
+        <PortfolioCardContent
+          title={selectedPortfolioCard?.title!}
+          totalReturnValue={selectedPortfolioCard?.totalReturnValue!}
+          totalReturnPercentage={
+            selectedPortfolioCard?.totalReturnPercentage!
+          }
+          annualIncome={selectedPortfolioCard?.annualIncome!}
+        />
+      </PortfolioCard>
+    </AreYouSureModal>
   </>
 }
 

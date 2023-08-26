@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react"
-import styles from "./DescriptionPopUp.module.css"
-import clsx from "clsx"
+import { PopUp } from "src/core/components/help"
 
 interface IDescriptionPopUp {
   description: ReactNode
@@ -44,14 +43,9 @@ const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
           fillOpacity="0.3"
         />
       </svg>
-      <span
-        className={clsx(
-          "top-0 left-8 absolute w-96 transition hidden group-hover:block",
-          styles.tooltipBlock
-        )}
-      >
+      <PopUp showOnHover>
         {description}
-      </span>
+      </PopUp>
     </div>
   )
 }

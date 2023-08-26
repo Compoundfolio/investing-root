@@ -20,12 +20,12 @@ const ActionCell = ({
     <TCell className='flex items-center justify-center gap-1'>
       {onEdit && (
         <CircleButton onClick={() => onEdit(tableItem)}>
-          <EditIcon />
+          <EditIcon isPartOfIconButton />
         </CircleButton>
       )}
       {onDelete && (
         <CircleButton onClick={() => onDelete(tableItem)} >
-          <DeleteIcon />
+          <DeleteIcon isPartOfIconButton />
         </CircleButton>
       )}
     </TCell>

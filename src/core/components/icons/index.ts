@@ -10,7 +10,7 @@ export { default as SearchIcon } from "./SearchIcon"
 export { default as EditIcon } from "./EditIcon"
 export { default as DeleteIcon } from "./DeleteIcon"
 export { default as ActIcon } from "./ActIcon"
-
+export { default as ManualIcon } from "./ManualIcon"
 
 export * from "./ArrowIcon"
 export * from "./brokerage"
