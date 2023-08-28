@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  ActButton,
   AreYouSureModal,
   EmptySelectedPortfolioAreaState,
   ModalBlur,
@@ -12,16 +11,14 @@ import {
   updateObjectFromArrayOfObjects,
   useFadeInOutMountAnimation,
 } from "@core"
-import React, { ChangeEvent, memo, useCallback, useState } from "react"
+import React, { memo, useCallback } from "react"
 import { BrokerageMultiSelector, PortfolioNameArea, PortfolioNameChanger, TransactionsUploadResults } from "./components"
 import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
 import usePortfolioManagerContext from "../../context/PortfolioManagerContextData/hook"
 import clsx from "clsx"
-import { Portfolio } from "../../../../../core/types/assets/common/Portfolio"
 import { useOpen } from 'src/core/hooks';
-import { portfolioDeleteAgreement } from "./consts"
-import { Input } from "src/core/client"
+import { portfolioDeleteAgreement, uploadAreaDescription, uploadResultDescription } from "./consts"
 import { usePortfolioName } from "./hooks"
 
 const PortfolioManagementArea = () => {
@@ -100,7 +97,7 @@ const PortfolioManagementArea = () => {
       </div>
       <div className={styles.container}>
         {isAnyPortfolioSelected ? <>
-          <SectionHead title="Transactions upload" />
+          <SectionHead title="Transactions upload" dataVisDescription={uploadAreaDescription} />
           {shouldRenderReportsUploadArea && (
             <TransactionsUploadArea
               contentAnimation={contentAnimation}
@@ -114,8 +111,7 @@ const PortfolioManagementArea = () => {
       </div>
       <div className={styles.container}>
         {isAnyPortfolioSelected ? <>
-          <SectionHead title="Transactions upload" />
-          <SectionHead title="Results" />
+          <SectionHead title="Results" dataVisDescription={uploadResultDescription} />
           {!!selectedPortfolioCard?.brokerages[0]?.uploadedTransactionList.length && (
             <TransactionsUploadResults
               selectedBrokerageOptions={selectedPortfolioCard?.brokerages!}

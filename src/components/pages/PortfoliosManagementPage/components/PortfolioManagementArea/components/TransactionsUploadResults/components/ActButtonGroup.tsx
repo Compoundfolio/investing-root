@@ -5,7 +5,7 @@ import {
 } from "@core"
 import React from "react"
 import usePortfolioManagerContext from "../../../../../context/PortfolioManagerContextData/hook"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { ROUTES } from "src/routing"
 
 const ActButtonGroup = () => {
