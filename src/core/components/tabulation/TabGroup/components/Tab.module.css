@@ -1,0 +1,38 @@
+.tabGroup_tab {
+  color: var(--color-gray4C);
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 20px;
+  padding-block: 8px;
+  width: fit-content;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 145%;
+  letter-spacing: 0.028px;
+}
+
+.tabGroup_tab_entityAmount {
+  text-align: center;
+  font-family: Chakra Petch;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.024px;
+  background: rgba(76, 89, 107, 0.13);
+  border-radius: 4px;
+  padding-block: 3px;
+  
+}
+
+.tabGroup_tab__active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 700;
+}
+
+.tabGroup_tab__active_entityAmount {
+  background: rgba(18, 144, 255, 0.17);
+}
