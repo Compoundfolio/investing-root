@@ -2,6 +2,7 @@ import { Exchange, Ticker } from "../assets";
 import { Option } from "../common";
 import { Currency } from "../currencies";
 import { ID } from "../ids";
+import TransactionHandlingType from "./TransactionHandlingType";
 
 type PortfolioTransaction = {
   id: ID
@@ -18,6 +19,7 @@ type PortfolioTransaction = {
   total: number;
   currency: Currency;
   date: string;
+  handlingType: TransactionHandlingType
 }
 
 export default PortfolioTransaction

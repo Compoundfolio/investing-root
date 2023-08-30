@@ -10,20 +10,28 @@ const TransactionsManagementView = () => {
   const [ transactionToEdit, setTransactionToEdit ] = useState<PortfolioTransaction | null>(null)
 
   const handleTransactionDelete = useCallback((transaction: PortfolioTransaction) => {
-    // Optimistically remove transaction
+    // Optimistically removes transactions
     setTransactionList(prev => removeObjectFromArrayOfObjects(prev, transaction, "id"))
     // TODO: Server request
   }, [])
 
+  const handleMultipleTransactionsDelete = useCallback((transactionIdsToDelete: PortfolioTransaction['id'][]) => {
+    // Optimistically removes transaction
+    setTransactionList(prev => prev.filter((transaction: PortfolioTransaction) => {
+      return transactionIdsToDelete.includes(transaction.id)
+    }))
+    // TODO: Server request
+  }, [])
+
   const handleTransactionEdit = (transaction: PortfolioTransaction) => {
-    // Optimistically update transaction
+    // Optimistically updates transaction
     setTransactionList(prev => updateObjectFromArrayOfObjects(prev, transaction, "id"))
     setTransactionToEdit(null)
     // TODO: Server request
   }
 
   const handleTransactionAdd = (transaction: PortfolioTransaction) => {
-    // Optimistically add transaction
+    // Optimistically adds transaction
     setTransactionList(prev => ([ transaction, ...prev ]))
     setTransactionToEdit(null)
     // TODO: Server request
@@ -41,6 +49,7 @@ const TransactionsManagementView = () => {
         transactionList={transactionList}
         onEdit={setTransactionToEdit}
         onDelete={handleTransactionDelete}
+        handleMultipleTransactionsDelete={handleMultipleTransactionsDelete}
       />
     </div>
   )

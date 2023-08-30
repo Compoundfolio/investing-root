@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallback, useState } from 'react'
 import { Tab as TabType } from './types'
 import { Tab } from './components'

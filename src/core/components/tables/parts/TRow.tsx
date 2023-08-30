@@ -2,15 +2,32 @@ import styles from "./TRow.module.css"
 import React from "react"
 import IReactChildren from "../../../types/react/IReactChildren"
 import clsx from "clsx"
+import { Checkbox } from 'src/core/client';
 
 interface ITRow extends IReactChildren {
-  onHover?: () => void
   isSelected?: boolean
+  isChecked?: boolean
+  onHover?: () => void
+  onCheck?: () => void
 }
 
-function TRow({ children, onHover, isSelected }: ITRow) {
+function TRow({
+  children,
+  isSelected,
+  isChecked,
+  onCheck,
+  onHover,
+}: ITRow) {
   return (
     <tr onMouseEnter={onHover} className={clsx([styles.tr, "h-14"], isSelected && styles.tr_selected)}>
+      {onCheck && (
+        <Checkbox
+          name="tableRowCheck"
+          checked={isChecked!}
+          withMb={false}
+          onChange={onCheck}
+        />
+      )}
       {children}
     </tr>
   )

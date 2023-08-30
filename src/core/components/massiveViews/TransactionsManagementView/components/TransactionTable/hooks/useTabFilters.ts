@@ -1,4 +1,5 @@
 import { Tab } from "src/core/components/tabulation/TabGroup/types"
+import { TransactionHandlingType } from "src/core/types"
 
 interface IUseTabFilters {
   allTransactionsAmount: number
@@ -6,7 +7,7 @@ interface IUseTabFilters {
   handlyAddedTransactionsAmount: number
   editedTransactionsAmount: number
   deletedTransactionsAmount: number
-  filterTransactions: () => (transactionFilter: TransactionFilter) => void
+  filterTransactions: (transactionFilter: TransactionHandlingType) => Tab['onClick']
 }
 
 const useTabFilters = ({

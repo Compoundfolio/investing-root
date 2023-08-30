@@ -6,7 +6,7 @@ import "./Checkbox.css"
 
 export interface ICheckbox extends Omit<Control, "value"> {
   checked: boolean
-  description: string
+  description?: string
 }
 
 const Checkbox = ({

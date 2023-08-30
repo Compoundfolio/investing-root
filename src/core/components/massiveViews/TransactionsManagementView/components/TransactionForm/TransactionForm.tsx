@@ -60,7 +60,8 @@ const TransactionForm = ({
           fee: values.fee,
           date: values.date,
           currency: Currency.USD, // TODO: Currency support
-          total: transactionTotal
+          total: transactionTotal,
+          handlingType: transactionToEdit ? "HANDLY_EDITED" : "HANDLY_ADDED"
         })
 
         setValues(defaultFormValues)

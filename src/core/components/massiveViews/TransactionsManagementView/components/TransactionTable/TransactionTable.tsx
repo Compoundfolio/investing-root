@@ -1,15 +1,19 @@
+"use client"
+
 import { memo } from 'react'
 import { Asset } from 'src/core/components/blocks'
 import { TWrapper, TTable, THead, TRow, TCell, TBody, ActionCell } from 'src/core/components/tables'
 import { TabGroup } from 'src/core/components/tabulation'
 import { ID, PortfolioTransaction } from 'src/core/types'
-import { useTabFilters } from './hooks'
+import { useCheckTableRows, useTabFilters, useFiltersByTransactionHandleType } from './hooks'
+import { CheckedTransactionsHandlingArea } from './components'
 
 interface ITransactionTable {
   selectedTransactionId?: ID
   transactionList: PortfolioTransaction[]
   onEdit: (transaction: PortfolioTransaction) => void
   onDelete: (transaction: PortfolioTransaction) => void
+  handleMultipleTransactionsDelete: (ids: PortfolioTransaction['id'][]) => void
 }
 
 const TransactionTable = ({
@@ -17,16 +21,57 @@ const TransactionTable = ({
   transactionList,
   onEdit,
   onDelete,
+  handleMultipleTransactionsDelete,
 }: ITransactionTable) => {
 
-  const { tabs } = useTabFilters()
+  const {
+    isAllSelected,
+    checkedTransactionIds,
+    checkAll,
+    checkOneTransaction,
+  } = useCheckTableRows({ transactionList })
+
+  const {
+    allTransactionsAmount,
+    uploadedTransactionsAmount,
+    handlyAddedTransactionsAmount,
+    editedTransactionsAmount,
+    deletedTransactionsAmount,
+    filterTransactions,
+  } = useFiltersByTransactionHandleType({ transactionList })
+
+  const tabs = useTabFilters({
+    allTransactionsAmount,
+    uploadedTransactionsAmount,
+    handlyAddedTransactionsAmount,
+    editedTransactionsAmount,
+    deletedTransactionsAmount,
+    filterTransactions,
+  })
 
   return (
-    <TWrapper title="Assets" size={transactionList.length}>
+    <TWrapper title="Transactions" size={transactionList.length}>
       <TabGroup tabs={tabs} />
+      <section className='flex items-center justify-between'>
+        <div>
+          {!!checkedTransactionIds.length && <>
+            <CheckedTransactionsHandlingArea
+              checkedTransactionIds={checkedTransactionIds}
+              handleMultipleTransactionsDelete={handleMultipleTransactionsDelete}
+            />
+          </>}
+        </div>
+        <div>
+          {/* Date range filter */}
+          {/* AssetSearch */}
+        </div>
+      </section>
       <TTable>
         <THead>
-          <TRow>
+          <TRow
+            isChecked={isAllSelected}
+            onCheck={checkAll}
+          >
             <TCell th>Asset</TCell>
             <TCell th>Operation Type</TCell>
             <TCell th>Asset Type</TCell>
@@ -43,6 +88,8 @@ const TransactionTable = ({
             <TRow
               key={transaction.id}
               isSelected={transaction.id == selectedTransactionId}
+              isChecked={checkedTransactionIds.includes(transaction.id)}
+              onCheck={checkOneTransaction(transaction.id)}
             >
               <TCell>
                 <Asset

@@ -5,16 +5,13 @@
  */
 const removeObjectFromArrayOfObjects = <T>(
   arrayOfObjects: T[],
-  objectToRemove: T,
+  objectToRemove: any,
   removeBy: keyof T
 ): T[] => {
-  const index = arrayOfObjects.findIndex(
-    (existingPortfolio) =>
-      existingPortfolio[removeBy] === objectToRemove[removeBy]
-  )
-  console.log(arrayOfObjects)
-  console.log(objectToRemove)
-  console.log(arrayOfObjects.toSpliced(index, 1))
+  // TODO: Make local env check
+  if (objectToRemove[removeBy] === undefined) throw new Error("Wrong `removeObjectFromArrayOfObjects` function usage ")
+
+  const index = arrayOfObjects.findIndex((existingPortfolio) => existingPortfolio[removeBy] === objectToRemove[removeBy])
 
   return arrayOfObjects.toSpliced(index, 1)
 }
