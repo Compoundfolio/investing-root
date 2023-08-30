@@ -1,7 +1,9 @@
 import { memo } from 'react'
 import { Asset } from 'src/core/components/blocks'
 import { TWrapper, TTable, THead, TRow, TCell, TBody, ActionCell } from 'src/core/components/tables'
+import { TabGroup } from 'src/core/components/tabulation'
 import { ID, PortfolioTransaction } from 'src/core/types'
+import { useTabFilters } from './hooks'
 
 interface ITransactionTable {
   selectedTransactionId?: ID
@@ -15,9 +17,13 @@ const TransactionTable = ({
   transactionList,
   onEdit,
   onDelete,
-}: ITransactionTable) => {  
+}: ITransactionTable) => {
+
+  const { tabs } = useTabFilters()
+
   return (
     <TWrapper title="Assets" size={transactionList.length}>
+      <TabGroup tabs={tabs} />
       <TTable>
         <THead>
           <TRow>
