@@ -1,7 +1,7 @@
 "use client"
 
-import { ReactNode, useMemo } from "react"
-import PortfolioManagerContext, { PortfolioManagerContextData } from "./context"
+import { ReactNode } from "react"
+import PortfolioManagerContext from "./context"
 import { usePortfolioList } from "./hooks"
 
 interface IWaiverContextProvider {

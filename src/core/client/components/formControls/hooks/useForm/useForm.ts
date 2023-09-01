@@ -1,3 +1,5 @@
+"use client"
+
 import { useFormik, FormikValues, FormikConfig } from "formik"
 import { AtLeastOne } from "src/core/types"
 

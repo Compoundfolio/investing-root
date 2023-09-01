@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { ActButton } from 'src/core/components/buttons'
 import { ID } from 'src/core/types'

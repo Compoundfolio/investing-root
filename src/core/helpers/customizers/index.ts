@@ -1,2 +1,2 @@
 export { default as sumNormalizedArraysOfNumbers } from "./sumNormalizedArraysOfNumbers"
-export * from "./map"
+export { default as by } from "./map"
