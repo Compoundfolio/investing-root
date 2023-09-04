@@ -21,12 +21,14 @@ function TRow({
   return (
     <tr onMouseEnter={onHover} className={clsx([styles.tr, "h-14"], isSelected && styles.tr_selected)}>
       {onCheck && (
-        <Checkbox
-          name="tableRowCheck"
-          checked={isChecked!}
-          withMb={false}
-          onChange={onCheck}
-        />
+        <td valign="middle">
+          <Checkbox
+            name="tableRowCheck"
+            checked={isChecked!}
+            withMb={false}
+            onChange={onCheck}
+          />
+        </td>
       )}
       {children}
     </tr>

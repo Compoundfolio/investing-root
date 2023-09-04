@@ -34,3 +34,13 @@
   font-weight: 400;
   line-height: normal;
 }
+
+.handlingType {
+  border-left: 3px solid;
+  padding-left: 16px;
+}
+
+.handlingType-UPLOADED { border-color: var(--color-primary); }
+.handlingType-HANDLY_ADDED { border-color: var(--color-darkLightGreen); }
+.handlingType-HANDLY_EDITED { border-color: var(--color-darkGreen); }
+.handlingType-DELETED { border-color: var(--color-gray4C); }

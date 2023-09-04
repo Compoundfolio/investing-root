@@ -1,5 +1,5 @@
 .tabGroup_tab {
-  color: var(--color-gray4C);
+  color: var(--color-gray4C) !important;
   border-bottom: 2px solid transparent;
   display: flex;
   align-items: center;
@@ -14,7 +14,12 @@
   letter-spacing: 0.028px;
 }
 
+.tabGroup_tab > span {
+  color: var(--color-gray4C) !important;
+}
+
 .tabGroup_tab_entityAmount {
+  margin-left: 6px;
   text-align: center;
   font-family: Chakra Petch;
   font-size: 12px;
@@ -23,16 +28,25 @@
   letter-spacing: 0.024px;
   background: rgba(76, 89, 107, 0.13);
   border-radius: 4px;
-  padding-block: 3px;
-  
+  padding-inline: 6px;
+}
+
+.tabGroup_tab:hover,
+.tabGroup_tab__active:hover  {
+  border-bottom-color: var(--color-gray4C) !important;
 }
 
 .tabGroup_tab__active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
-  font-weight: 700;
+  color: var(--color-primary) !important;
+  border-bottom-color: var(--color-primary) !important;
+  font-weight: 500;
+}
+
+.tabGroup_tab__active > span {
+  color: var(--color-primary) !important;
 }
 
 .tabGroup_tab__active_entityAmount {
+  color: var(--color-primary) !important;
   background: rgba(18, 144, 255, 0.17);
 }

@@ -1,12 +1,8 @@
 .tr {
   cursor: pointer;
-}
-
-.tr:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(75px);
+  vertical-align: middle;
 }
 
 .tr_selected {
-  background-color: #3cc8c80d;;
+  background-color: #3cc8c80d;
 }

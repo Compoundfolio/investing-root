@@ -97,6 +97,7 @@ const TransactionTable = ({
                   ticker={transaction.ticker}
                   exchange={transaction.exchange}
                   exchangeCountry={transaction.exchangeCountry}
+                  handlingType={transaction.handlingType}
                 />
               </TCell>
               <TCell>{transaction.operationType}</TCell>

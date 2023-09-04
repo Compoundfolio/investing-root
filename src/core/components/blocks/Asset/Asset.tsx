@@ -1,12 +1,14 @@
 import React, { memo } from 'react'
-import { Exchange, Ticker } from 'src/core/types'
+import { Exchange, Ticker, TransactionHandlingType } from 'src/core/types'
 import styles from "./Asset.module.css"
+import clsx from 'clsx';
 
 interface IAsset {
   title: string | undefined
   ticker: Ticker | undefined
   exchange: Exchange | undefined
   exchangeCountry: string | undefined // TODO: add Country -kind type
+  handlingType?: TransactionHandlingType
 }
 
 // TODO: Skeleton
@@ -15,9 +17,15 @@ const Asset = ({
   ticker,
   exchange,
   exchangeCountry,
+  handlingType,
 }: IAsset) => {
   return (
-    <div className='flex items-center gap-4 h-fit w-max'>
+    <div
+      className={clsx(
+        'flex items-center gap-4 h-fit w-max',
+        handlingType && [styles.handlingType, styles[`handlingType-${handlingType}`]]
+      )}
+    >
       <div className={styles.asset_undefinedLogo}>
         <span className={styles.asset_ticker}>
           {ticker}
@@ -30,7 +38,6 @@ const Asset = ({
             ? <>{ticker} - {exchange} - {exchangeCountry}</>
             : "Asset not selected"
           }
-          
         </span>
       </div>
     </div>

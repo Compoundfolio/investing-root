@@ -12,7 +12,7 @@ const useCheckTableRows = ({
   const [checkedTransactionIds, setCheckedTransactionIds] = useState<PortfolioTransaction['id'][]>([])
 
   const isAllSelected = useMemo(() => {
-    return checkedTransactionIds.length === transactionList.length
+    return checkedTransactionIds.length > 0 && checkedTransactionIds.length === transactionList.length
   }, [checkedTransactionIds.length, transactionList.length])
 
   const transactionIdList = useMemo(() => transactionList.map(by("id")), [transactionList.length])
