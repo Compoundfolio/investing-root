@@ -7,6 +7,7 @@ import { FormControlBase } from "../FormControlBase"
 import { IMultiAutocompleteInput } from "./types"
 import { Option } from "src/core/types"
 import { removeObjectFromArrayOfObjects } from "@core/helpers"
+import { useOpen } from "src/core/hooks"
 
 const MultiAutocompleteInput = ({
   selectedOptions,
@@ -20,8 +21,8 @@ const MultiAutocompleteInput = ({
   ...restProps
 }: IMultiAutocompleteInput) => {
   const [searchValue, setSearchValue] = useState<string>("")
-  const [filteredOptionsBySearch, setFilteredOptionsBySearch] =
-    useState<Option[]>(allPossibleOptions)
+  const [filteredOptionsBySearch, setFilteredOptionsBySearch] = useState<Option[]>(allPossibleOptions)
+  const [isOptionsListMayOpen, _, setIsOptionsListMayOpen] = useOpen()
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -73,13 +74,15 @@ const MultiAutocompleteInput = ({
         value={searchValue}
         placeholder={placeholder}
         onChange={handleSearchChange}
+        onClick={() => setIsOptionsListMayOpen(true)}
         name={name}
       />
-      {filteredOptionsBySearch && (
+      {filteredOptionsBySearch && isOptionsListMayOpen && (
         <OptionsList
           options={filteredOptionsBySearch}
           selectedOptions={selectedOptions}
           selectOption={selectOption}
+          closeOptionsList={() => setIsOptionsListMayOpen(false)}
         />
       )}
     </FormControlBase>

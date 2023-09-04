@@ -13,6 +13,7 @@ interface Control extends IReactChildren {
   autofocus?: boolean
   withMb?: boolean
   onChange: ChangeEventHandler<unknown> | (() => void)
+  onClick?: () => void
   setErrorMessage?: UseFormHookHelpers["setFieldError"]
 }
 
