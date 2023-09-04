@@ -1,12 +1,21 @@
-import React from 'react'
+"use client"
+
+import React, { useRef } from 'react'
 import clsx from 'clsx';
 import styles from './PopUp.module.css'
 import { IReactChildren } from 'src/core/types';
+import { useOverlayUiUnmountTriggers } from 'src/core/hooks';
 
 interface IPopUp extends IReactChildren {
-  showOnHover?: boolean
+  showOnHover: true
   noPadding?: boolean
   widthFit?: boolean
+  close?: () => void
+}
+
+interface IPopUpWhichHides extends Omit<IPopUp, 'showOnHover'> {
+  showOnHover?: boolean
+  close: () => void
 }
 
 const PopUp = ({
@@ -15,11 +24,17 @@ const PopUp = ({
   noPadding = false,
   widthFit = false,
   className,
-}: IPopUp) => {
+  close,
+}: IPopUp | IPopUpWhichHides) => {
   const extraClasses = showOnHover && "hidden group-hover:block"
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOverlayUiUnmountTriggers({ ref, hideOverlapComponent: close })
 
   return (
     <div
+      ref={ref}
       className={clsx(
         `top-0 left-8 absolute w-96 transition`,
         extraClasses,

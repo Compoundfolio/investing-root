@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import { ActIcon, Divider, IReactChildren, PopUp, colors, useOpen } from '@core'
 import CircleButton from '../CircleButton'
 import { PopUpAction } from './types'
@@ -18,7 +18,11 @@ interface IActionsIconDropDown extends IReactChildren {
 }
 
 const ActionsIconDropDown = ({ title, actions, bottomActions, children }: IActionsIconDropDown) => {
-  const [ isShowPopUp, handleIsShowPopUp ] = useOpen()
+  const [isShowPopUp, handleIsShowPopUp, setIsShowPopUp] = useOpen()
+
+  const closeModal = useCallback(() => {
+    setIsShowPopUp(false)
+  }, [])
 
   return (
     <div className='relative'>
@@ -26,14 +30,33 @@ const ActionsIconDropDown = ({ title, actions, bottomActions, children }: IActio
         <ActIcon />
       </CircleButton>
       {isShowPopUp && (
-        <PopUp widthFit noPadding className='left-10'>
+        <PopUp
+          widthFit
+          noPadding
+          className='left-10'
+          close={closeModal}
+        >
           <section>
-            <div className={styles.actionsIconDropDown_title}>{title}</div>
+            <div className={styles.actionsIconDropDown_title}>
+              {title}
+            </div>
             <Divider color={colors.gray4C} />
-            {actions.map(action => <Action key={action.title} action={action} />)}
+            {actions.map(action => (
+              <Action
+                key={action.title}
+                action={action}
+                closeModal={closeModal}
+              />
+            ))}
             {bottomActions && <>
               <Divider color={colors.gray4C} />
-              {bottomActions.map(bottomAction => <Action key={bottomAction.title} action={bottomAction} />)}
+              {bottomActions.map(bottomAction => (
+                <Action
+                  key={bottomAction.title}
+                  action={bottomAction}
+                  closeModal={closeModal}
+                />
+              ))}
             </>}
           </section>
           {children}
