@@ -18,7 +18,7 @@ const nextConfig = {
     return config
   },
   // Prefer loading of ES Modules over CommonJS
-  experimental: { esmExternals: "loose" },
+  experimental: { esmExternals: "loose", appDir: true },
 }
 
 module.exports = nextConfig

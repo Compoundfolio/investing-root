@@ -31,9 +31,12 @@
   padding-inline: 6px;
 }
 
-.tabGroup_tab:hover,
-.tabGroup_tab__active:hover  {
+.tabGroup_tab:hover {
   border-bottom-color: var(--color-gray4C) !important;
+}
+
+.tabGroup_tab__active:hover {
+  border-bottom-color: var(--color-primary) !important;
 }
 
 .tabGroup_tab__active {

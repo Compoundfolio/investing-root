@@ -14,7 +14,7 @@ const CheckedTransactionsHandlingArea = ({
   handleMultipleTransactionsDelete,
 }: ICheckedTransactionsHandlingArea) => {
   return (
-    <section className='flex items-center gap-4'>
+    <section className='flex items-center gap-4 mb-8'>
       <span>{checkedTransactionIds.length} Selected</span>
       <ActButton
         color='primary'

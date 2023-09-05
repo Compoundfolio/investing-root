@@ -47,9 +47,11 @@ const Checkbox = ({
             ...(!setErrorMessage && { margin: 0 }),
           }}
         />
-        <span className="flex" style={{ display: "flex" }}>
-          <span className="checkboxDescriptionText">{description}</span>
-        </span>
+        {description && (
+          <span className="flex" style={{ display: "flex" }}>
+            <span className="checkboxDescriptionText">{description}</span>
+          </span>
+        )}
       </label>
     </FormControlBase>
   )

@@ -19,6 +19,8 @@
     "Withdrowal"
   ],
   "css.lint.validProperties": [
-    "composes",
+    "composes"
   ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
