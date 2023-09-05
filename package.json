@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-firebase-hooks": "^5.1.1",
+    "react-tailwindcss-datepicker": "^1.6.6",
     "recoil": "^0.7.6",
     "reflect-metadata": "^0.1.13",
     "typescript": "^5.1.6",

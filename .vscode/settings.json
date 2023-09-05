@@ -5,6 +5,7 @@
     "compaundfolio",
     "Compoundfolio",
     "customizers",
+    "Datepicker",
     "exante",
     "Formik",
     "handly",
@@ -14,6 +15,7 @@
     "nextauth",
     "Petch",
     "smth",
+    "tailwindcss",
     "tanstack",
     "uuidv",
     "Withdrowal"

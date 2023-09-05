@@ -7,6 +7,7 @@ import { TabGroup } from 'src/core/components/tabulation'
 import { ID, PortfolioTransaction } from 'src/core/types'
 import { useCheckTableRows, useTabFilters, useFiltersByTransactionHandleType } from './hooks'
 import { CheckedTransactionsHandlingArea } from './components'
+import { DateRangePicker, useDateRangePickerState } from 'src/core/client'
 
 interface ITransactionTable {
   selectedTransactionId?: ID
@@ -49,6 +50,11 @@ const TransactionTable = ({
     filterTransactions,
   })
 
+  const {
+    dateRangeValue,
+    handleDateRangeChange
+   } = useDateRangePickerState()
+
   return (
     <TWrapper title="Transactions" size={transactionList.length}>
       <TabGroup tabs={tabs} />
@@ -62,7 +68,11 @@ const TransactionTable = ({
           </>}
         </div>
         <div>
-          {/* Date range filter */}
+          <DateRangePicker
+            name="dateRangeFilter"
+            value={dateRangeValue}
+            onChange={handleDateRangeChange}
+          />
           {/* AssetSearch */}
         </div>
       </section>
