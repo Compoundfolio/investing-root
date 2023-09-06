@@ -6,7 +6,7 @@ import { EmptyTableState } from "../../blocks"
 
 interface ITWrapper extends IReactChildren {
   title: string
-  size: number
+  size?: number
 }
 
 function TWrapper({ children, title, size }: ITWrapper) {
@@ -16,7 +16,7 @@ function TWrapper({ children, title, size }: ITWrapper) {
     >
       <div className="flex flex-col">
         <h2 className={styles.tableName}>{title}</h2>
-        {size > 0 && <span className={styles.tableSize}>[{size}]</span>}
+        {size !== undefined && size > 0 && <span className={styles.tableSize}>[{size}]</span>}
       </div>
       {children}
       {size == 0 && <EmptyTableState />}

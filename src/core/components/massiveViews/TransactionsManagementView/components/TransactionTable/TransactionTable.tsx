@@ -56,7 +56,7 @@ const TransactionTable = ({
    } = useDateRangePickerState()
 
   return (
-    <TWrapper title="Transactions" size={transactionList.length}>
+    <TWrapper title="Transactions">
       <TabGroup tabs={tabs} />
       <section className='flex items-center justify-between'>
         <div>

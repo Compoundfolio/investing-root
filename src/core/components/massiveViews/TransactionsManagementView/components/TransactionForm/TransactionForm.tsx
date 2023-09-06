@@ -35,6 +35,7 @@ const TransactionForm = ({
     isSubmitting,
     setSubmitting,
     setValues,
+    resetForm,
   } = useForm<typeof defaultFormValues>(
     {
       validationSchema: validation(),
@@ -64,6 +65,7 @@ const TransactionForm = ({
           handlingType: transactionToEdit ? "HANDLY_EDITED" : "HANDLY_ADDED"
         })
 
+        resetForm()
         setValues(defaultFormValues)
         setAsset(null)
         setSubmitting(false)

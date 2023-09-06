@@ -74,6 +74,10 @@ const Select = ({
     setIsOptionOpened(false)
   }, [search, isOptionOpened])
 
+  const handleOpenOptionList = () => {
+    setIsOptionOpened(true)
+  }
+
   const optionsList = searchOptions.length
     ? searchOptions
     : options
@@ -105,6 +109,7 @@ const Select = ({
             resetInputValue={resetSearch}
             withMb={withMb}
             sharpBottomBorderRadius={showOptions}
+            onClick={handleOpenOptionList}
           />
         ) : (
           <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>

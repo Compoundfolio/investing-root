@@ -25,6 +25,7 @@
     "@types/react-dom": "18.0.9",
     "@types/typescript": "^2.0.0",
     "date-fns": "^2.29.3",
+    "dayjs": "^1.11.9",
     "ehd-js": "^0.0.5",
     "eslint": "8.28.0",
     "firebase": "^9.21.0",
@@ -62,6 +63,10 @@
     "postcss": "^8.4.20",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2"
+  },
+  "peerDependencies": {
+    "react-dom": "^18.2.0",
+    "dayjs": "^1.11.6"
   },
   "standard": {
     "globals": [

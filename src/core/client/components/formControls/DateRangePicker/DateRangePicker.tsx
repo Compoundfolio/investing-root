@@ -57,6 +57,7 @@ const DateRangePicker = ({
       errorMessage={errorMessage}
     >
       <Datepicker
+        primaryColor="blue"
         inputClassName={inputClassName}
         containerClassName={containerClassName}
         toggleClassName={toggleClassName}
