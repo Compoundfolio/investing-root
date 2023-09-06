@@ -27,9 +27,9 @@ export const useAssetSearch = () => {
 
     return new Promise(resolve => setTimeout(() => {
       resolve([
-        { id: "nf4jnfjnf4", value: "Test", label: "Test asset", data: dataHardCode },
-        { id: "nf4jnfjnsdff4", value: "Test 2", label: "Test asset 2", data: dataHardCode },
-        { id: "nf4jnfjnf21", value: "Test 2", label: "Test asset 3", data: dataHardCode },
+        { id: "nf4jnfjnf4", value: "Apple Inc.", label: "Apple Inc.", data: dataHardCode, icon: "https://cdn.snowball-analytics.com/asset-logos/AAPL-NASDAQ-USD.png" },
+        { id: "nf4jnfjnsdff4", value: "Home Depot", label: "Home Depot", data: dataHardCode, icon: "https://cdn.snowball-analytics.com/asset-logos/HD-NYSE-USD.png" },
+        { id: "nf4jnfjnf21", value: "Target Corporation", label: "Target Corporation", data: dataHardCode, icon: "https://cdn.snowball-analytics.com/asset-logos/TGT-NYSE-USD.png" },
       ] satisfies Option<AssetSearchOptionData>[])
     }, 1000))
   }

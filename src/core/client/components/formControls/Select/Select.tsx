@@ -1,6 +1,6 @@
 "use client"
 
-import { memo, useCallback, useMemo } from "react"
+import { ChangeEvent, memo, useCallback } from "react"
 import { Control, Option, UseFormHookHelpers, IReactChildren } from 'src/core/types';
 import styles from "./Select.module.css"
 import { FormControlBase } from "../FormControlBase"
@@ -78,13 +78,15 @@ const Select = ({
     setIsOptionOpened(true)
   }
 
-  const optionsList = searchOptions.length
+  const optionsList = (searchOptions.length
     ? searchOptions
-    : options
+    : options) ?? []
 
   const showOptions = search
     ? !isSearching && isOptionOpened
     : !!searchValue || isOptionOpened
+
+  const emptyDataMessage = search && !searchValue ? "Start searching 🔍" : "Nothing found 🤔"
 
   return (
     <FormControlBase
@@ -103,7 +105,7 @@ const Select = ({
             search={search}
             value={searchValue}
             name={name}
-            onChange={handleSearchValueChange}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchValueChange(e, optionsList.length)}
             placeholder={placeholder}
             isLoading={isSearching}
             resetInputValue={resetSearch}
@@ -119,7 +121,7 @@ const Select = ({
             <CollapseIcon rotate180={showOptions} />
           </button>
         )}
-        {showOptions && (
+        {showOptions && !isSearching && (
           <ul
             className={clsx(
               "absolute let-0 top-10 z-10 overflow-auto focus:outline-none",
@@ -127,7 +129,7 @@ const Select = ({
               search && styles.select_optionList__search
             )}
           >
-            {!!optionsList.length ? optionsList.map((option) => (
+            {!!optionsList?.length ? optionsList?.map((option) => (
               <li
                 key={option.id}
               >
@@ -151,7 +153,7 @@ const Select = ({
               </li>
             )) : (
               <li className={styles.select_optionList_nothingFoundMessage}>
-                Nothing found 🤔
+                {emptyDataMessage}
               </li>
             )}
           </ul>

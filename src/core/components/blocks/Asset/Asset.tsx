@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Exchange, Ticker, TransactionHandlingType } from 'src/core/types'
 import styles from "./Asset.module.css"
 import clsx from 'clsx';
+import Image from 'next/image';
 
 interface IAsset {
   title: string | undefined
@@ -9,6 +10,7 @@ interface IAsset {
   exchange: Exchange | undefined
   exchangeCountry: string | undefined // TODO: add Country -kind type
   handlingType?: TransactionHandlingType
+  assetLogoUrl?: string
 }
 
 // TODO: Skeleton
@@ -18,6 +20,7 @@ const Asset = ({
   exchange,
   exchangeCountry,
   handlingType,
+  assetLogoUrl,
 }: IAsset) => {
   return (
     <div
@@ -26,11 +29,20 @@ const Asset = ({
         handlingType && [styles.handlingType, styles[`handlingType-${handlingType}`]]
       )}
     >
-      <div className={styles.asset_undefinedLogo}>
-        <span className={styles.asset_ticker}>
-          {ticker}
-        </span>
-      </div>
+      {assetLogoUrl ? (
+        <Image
+          width={24}
+          height={24}
+          src={assetLogoUrl}
+          alt={`${title} logo`}
+        />
+      ) : (
+        <div className={styles.asset_undefinedLogo}>
+          <span className={styles.asset_ticker}>
+            {ticker}
+          </span>
+        </div>
+      )}
       <div className='flex flex-col gap-1'>
         <span className={styles.asset_title}>{title}</span>
         <span className={styles.asset_details}>

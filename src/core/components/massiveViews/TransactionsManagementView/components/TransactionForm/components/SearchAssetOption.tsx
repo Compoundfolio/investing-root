@@ -15,6 +15,7 @@ const SearchAssetOption = ({ asset }: ISearchAssetOption) => {
         ticker={asset?.ticker}
         exchange={asset?.exchange}
         exchangeCountry={asset?.exchangeCountry}
+        // assetLogoUrl={asset?.}
       />
       <div className='flex items-center gap-4'>
         <span className={styles.assetOption_type}>{asset?.type}</span>

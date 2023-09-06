@@ -15,7 +15,12 @@ export const useSearch = ({
   const [ options, setOptions ] = useState<Option[]>([])
   const [ isSearching, setIsSearching ] = useState<boolean>(false)
 
-  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>, optionsListLength: number) => {
+    // Hide not found message
+    !optionsListLength && setIsOptionOpened(false)
+
+    console.warn(1111,optionsListLength)
+
     const value = e.target.value.trimStart()
 
     setSearchValue(value)
