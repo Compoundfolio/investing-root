@@ -20,9 +20,11 @@ export interface IInput extends Omit<Control, "value"> {
   resetInputValue?: () => void
   min?: number
   contentCentered?: boolean
+  withShadow?: boolean
 }
 
 const Input = ({
+  withShadow = false,
   search = false,
   required = false,
   autofocus = false,
@@ -72,6 +74,7 @@ const Input = ({
         onChange={onChange}
         className={styles.input}
         {...(min && { min })}
+        // TODO: Get rid of style
         style={{
           ...(isPassword && { paddingRight: 46 }),
           ...(search && { paddingLeft: 32, paddingRight: 42 }),
@@ -79,6 +82,7 @@ const Input = ({
           ...(!setErrorMessage && { margin: 0 }),
           ...(sharpBottomBorderRadius && { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }),
           ...(contentCentered && { textAlign: "center" }),
+          ...(withShadow && { boxShadow: "0px 1px 0px 0px rgba(255, 255, 255, 0.10) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" })
         }}
       />
       {isPassword && (

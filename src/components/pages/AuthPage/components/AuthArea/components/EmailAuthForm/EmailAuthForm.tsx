@@ -7,13 +7,21 @@ import { initialValues } from "./consts"
 import validation from "./validation"
 import { EmailAuthType } from "../../types"
 import { useHandleEmailAuthSubmit } from "../../hooks"
+import styles from "./EmailAuthForm.module.css"
 
 interface IEmailAuthForm {
   emailAuthType: EmailAuthType
+  authTypeSwitcherTitle: string
   authButtonTitle: string
+  handleEmailAuthTypeChange: () => void
 }
 
-const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
+const EmailAuthForm = ({
+  emailAuthType,
+  authButtonTitle,
+  authTypeSwitcherTitle,
+  handleEmailAuthTypeChange,
+}: IEmailAuthForm) => {
   const { values, errors, handleChange, handleSubmit, setFieldError } = useForm(
     {
       validationSchema: validation(emailAuthType),
@@ -38,6 +46,7 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
       postSubmitError={error as any} // TODO: Remove any
     >
       <Input
+        withShadow
         required
         autofocus
         name="email"
@@ -49,6 +58,7 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
         onChange={handleChange}
       />
       <Input
+        withShadow
         required
         name="password"
         labelText="Password"
@@ -60,6 +70,7 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
       />
       {emailAuthType === "signUp" && (
         <Input
+          withShadow
           required
           name="passwordConfirmation"
           labelText="Password confirmation"
@@ -70,13 +81,24 @@ const EmailAuthForm = ({ emailAuthType, authButtonTitle }: IEmailAuthForm) => {
           onChange={handleChange}
         />
       )}
+      <div className="flex items-center gap-2 mb-10">
+        <span className={styles.emailAuthForm_authModePart}>
+          {authTypeSwitcherTitle}
+        </span>
+        <button
+          className={styles.emailAuthForm_authModeSwitch}
+          onClick={handleEmailAuthTypeChange}
+        >
+          {emailAuthType === "signIn" ? "Sign up" : "Sign in"}
+        </button>
+      </div>
       <ActButton
         color="green"
         type="submit"
-        className="w-full"
+        className={styles.emailAuthForm_submitButton}
         isLoading={isLoading}
       >
-        {authButtonTitle}
+        Get Started!
       </ActButton>
     </Form>
   )

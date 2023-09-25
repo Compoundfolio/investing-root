@@ -2,7 +2,9 @@
 
 import Image from "next/image"
 import React from "react"
+import styles from "./GoogleAuthButton.module.css"
 import { useHandleGoogleAuthSubmit } from "../hooks"
+import clsx from 'clsx';
 
 const GoogleAuthButton = () => {
   const { mutate: authWithGoogle } = useHandleGoogleAuthSubmit()
@@ -10,7 +12,10 @@ const GoogleAuthButton = () => {
   return (
     <button
       onClick={() => authWithGoogle()}
-      className="justify-center gap-2 p-2 text-black transition duration-150 rounded-[30px] w-fit hover:shadow hover:bg-gray-50"
+      className={clsx(
+        styles.authButton,
+        "justify-center gap-2 p-2 text-black transition duration-500 rounded-[30px] w-fit"
+      )}
     >
       {/* TODO: Download image */}
       <Image
@@ -19,6 +24,7 @@ const GoogleAuthButton = () => {
         src="https://www.svgrepo.com/show/475656/google-color.svg"
         loading="lazy"
         alt="google logo"
+        className={styles.authButton_icon}
       />
     </button>
   )

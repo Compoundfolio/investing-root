@@ -4,6 +4,8 @@ import React from "react"
 import { EmailAuthForm, GoogleAuthButton, OrDivider } from "./components"
 import { useAuthTypeSwitch } from "./hooks"
 import { colors } from "src/core/theme"
+import styles from './SignInArea.module.css'
+import { AppLogo } from "@core"
 
 // TODO: Make it server component somehow ???
 const SignInArea = () => {
@@ -14,40 +16,34 @@ const SignInArea = () => {
     handleEmailAuthTypeChange,
   } = useAuthTypeSwitch()
 
+  const formTitle = emailAuthType === "signIn"
+    ? "Sign in to account"
+    : "Create an account"
+
   return (
     <section
       className="flex flex-col items-center justify-center h-full"
       style={{ minHeight: "inherit" }}
     >
-      <div className="flex flex-col gap-12 w-[300px]">
-        <h1 className="text-4xl text-white mb-">
-          {emailAuthType === "signIn"
-            ? "Sign in to account"
-            : "Create an account"}
+      <div className="flex flex-col items-center gap-10">
+        <h1 className={styles.auth_title}>
+          {formTitle}
         </h1>
         <div>
           <div className="flex flex-col justify-center flex-1 min-h-full">
-            <div className="flex flex-col gap-2 sm:mx-auto sm:w-full sm:max-w-sm">
-              <EmailAuthForm
-                emailAuthType={emailAuthType}
-                authButtonTitle={authTitle}
-              />
-              <OrDivider authTitle={authTitle} />
+            <div className="flex flex-col">
               <div className="flex justify-center w-full gap-3">
                 <GoogleAuthButton />
               </div>
+              <OrDivider authTitle={authTitle} />
+              <EmailAuthForm
+                emailAuthType={emailAuthType}
+                authButtonTitle={authTitle}
+                authTypeSwitcherTitle={authTypeSwitcherTitle}
+                handleEmailAuthTypeChange={handleEmailAuthTypeChange}
+              />
             </div>
           </div>
-        </div>
-        <div className="flex items-center justify-center gap-2">
-          <span className="text-white text-md">{authTypeSwitcherTitle}</span>
-          <button
-            className="text-lg underline"
-            style={{ color: colors.darkGreen }}
-            onClick={handleEmailAuthTypeChange}
-          >
-            {emailAuthType === "signIn" ? "Sign up" : "Sign in"}
-          </button>
         </div>
       </div>
     </section>

@@ -1,0 +1,7 @@
+.divider_textContent {
+  color: var(--color-gray4C);
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  width: 150%;
+}
