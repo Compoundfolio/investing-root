@@ -4,14 +4,17 @@ import styles from "./AuthPage.module.css"
 import clsx from "clsx"
 import { AuthArea } from "./components"
 import Image from "next/image"
+import { ShadowLeft, ShadowRight } from "./shadows"
 
 const AuthPage = () => {
   // TODO: Ride of using style
   return (
     <section className={clsx(styles.authContainer, "flex w-full h-full")}>
-      <div className="z-10 flex flex-col items-center flex-1 h-full gap-10">
+      <div className="relative z-10 flex flex-col items-center flex-1 w-full h-full gap-10">
+        <ShadowLeft />
         <AppLogo withTitle />
         <AuthArea />
+        <ShadowRight />
       </div>
       <Image
         width={1000}
