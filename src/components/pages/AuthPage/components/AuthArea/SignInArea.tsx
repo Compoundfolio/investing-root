@@ -22,7 +22,7 @@ const SignInArea = () => {
 
   return (
     <section
-      className="flex flex-col items-center justify-center h-full"
+      className="z-20 flex flex-col items-center justify-center h-full"
       style={{ minHeight: "inherit" }}
     >
       <div className="flex flex-col items-center gap-10">

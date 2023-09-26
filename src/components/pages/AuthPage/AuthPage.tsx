@@ -12,7 +12,7 @@ const AuthPage = () => {
     <section className={clsx(styles.authContainer, "flex w-full h-full")}>
       <div className="relative z-10 flex flex-col items-center flex-1 w-full h-full gap-10">
         <ShadowLeft />
-        <AppLogo withTitle />
+        <AppLogo withTitle className="z-20" />
         <AuthArea />
         <ShadowRight />
       </div>

@@ -15,11 +15,11 @@
 
 @media only screen and (max-width: 1000px) {
   .shadowLeft {
-    left: -200px;
+    left: -300px;
   }
 
   .shadowRight {
-    right: -200px;
+    right: -300px;
   }
 }
 
@@ -30,5 +30,15 @@
 
   .shadowRight {
     right: -250px;
+  }
+}
+
+@media only screen and (max-width: 405px) {
+  .shadowLeft {
+    left: -425px;
+  }
+
+  .shadowRight {
+    right: -425px;
   }
 }
