@@ -31,13 +31,9 @@ const WtfAmI = () => {
       })
       .then((body) => {
         onSuccess(body)
-        // localStorage.setItem("token", body.token)
-        // alert(body)
-        // document.getElementById("token").textContent = JSON.stringify(body)
       })
       .catch((error) => {
         console.error(error)
-        // alert("Request failed with an error, check developer console for details")
       })
   }, [])
   return (
@@ -47,9 +43,8 @@ const WtfAmI = () => {
         <h1 className="text-white text-shadow-white">
           Connecting to your google account
         </h1>
-        {/* TODO: Rename */}
         <small className="text-gray-400">
-          It may take between <b>5s</b> to <b>30s</b> ...
+          It may take from <b>5s</b> to <b>30s</b>
         </small>
       </div>
     </div>

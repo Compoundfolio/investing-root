@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation"
-import { ROUTES } from "src/routing"
+import { ROUTES, ROUTES_GUEST } from "src/routing"
 
 const useCommonAuthSubmitOptions = () => {
   const router = useRouter()
@@ -7,8 +7,10 @@ const useCommonAuthSubmitOptions = () => {
   return {
     onSuccess: (params) => {
       if (params?.token) {
-        router.push(ROUTES.BROKERAGES_SELECTION)
+        // TODO: Uncomment after MVV stage
+        // router.push(ROUTES.BROKERAGES_SELECTION)
         localStorage.setItem("token", params.token)
+        router.push(ROUTES_GUEST.AUTH)
       }
     },
     onError: (error) => {

@@ -59,10 +59,10 @@ export const DebugObserver = () => {
 
     const isAuth = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
 
-    if (isAuth) {
-      pathname === ROUTES_GUEST.AUTH && router.push(ROUTES.BROKERAGES_SELECTION)
-      return
-    }
+    // if (isAuth) {
+    //   pathname === ROUTES_GUEST.AUTH && router.push(ROUTES.BROKERAGES_SELECTION)
+    //   return
+    // }
 
     pathname !== ROUTES_GUEST.AUTH && router.push(ROUTES_GUEST.AUTH)
   }, [])

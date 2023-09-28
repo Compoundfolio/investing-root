@@ -4,9 +4,10 @@ import styles from "./ActButton.module.css"
 import { Spinner } from "../../statuses"
 
 interface IActButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  color: "primary" | "green" | "lowPrior"
+  color?: "primary" | "green" | "lowPrior"
   isLoading?: boolean
   width?: string
+  bigActButton?: boolean
 }
 
 const ActButton = ({
@@ -16,6 +17,7 @@ const ActButton = ({
   isLoading = false,
   disabled,
   width,
+  bigActButton,
   ...restProps
 }: IActButton) => {
   return (
@@ -24,7 +26,8 @@ const ActButton = ({
         styles.actButton,
         styles[`actButton--${color}`],
         disabled && styles[`actButton--disabled`],
-        className
+        className,
+        bigActButton && styles.actButtonBig
       )}
       style={{ ...(width && { width }) }}
       aria-disabled={isLoading || disabled}

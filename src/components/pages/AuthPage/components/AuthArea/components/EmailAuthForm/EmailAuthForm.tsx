@@ -92,12 +92,7 @@ const EmailAuthForm = ({
           {emailAuthType === "signIn" ? "Sign up" : "Sign in"}
         </button>
       </div>
-      <ActButton
-        color="green"
-        type="submit"
-        className={styles.emailAuthForm_submitButton}
-        isLoading={isLoading}
-      >
+      <ActButton type="submit" bigActButton isLoading={isLoading}>
         Get Started!
       </ActButton>
     </Form>
