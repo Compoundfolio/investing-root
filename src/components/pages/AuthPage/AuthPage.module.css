@@ -6,12 +6,16 @@
 
 .authContainer_globeImg {
   position: fixed;
-  /* margin: auto;
+  margin: auto;
   bottom: 0;
   left: 0;
-  right: 0; */
+  right: 0;
   /* transition: 0.5s all; */
-  animation: globeAnimation 1s linear;
+  /* animation: globeAnimation 4s cubic-bezier(0.37, 0, 0.63, 1); */
+  animation-fill-mode: forwards;
+  will-change: transition;
+  /* width: 500px; */
+  height: auto;
 
   /* top: 50%;
   right: 50%;
@@ -29,17 +33,14 @@
 }
 
 @keyframes globeAnimation {
-  0% {
+  /* 0% {
     margin: auto;
     bottom: 0;
     left: 0;
     right: 0;
-  }
+  } */
 
   100% {
-    margin: auto;
-    bottom: 50%;
-    left: 50%;
-    right: 50%;
+    transform: translateY(-100%);
   }
 }

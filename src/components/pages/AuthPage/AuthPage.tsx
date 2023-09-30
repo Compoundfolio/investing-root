@@ -19,7 +19,7 @@ const AuthPage = () => {
       <Image
         width={1000}
         height={500}
-        src="/img/authPage/globePart.png"
+        src="/img/authPage/globeShape.png"
         alt="Globe image"
         className={clsx(styles.authContainer_globeImg)}
       />

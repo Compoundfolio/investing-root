@@ -305,3 +305,7 @@ table tbody {
   border-color: var(--color-gray4C);
   margin-top: 2px;
 }
+
+a {
+  cursor: pointer;
+}

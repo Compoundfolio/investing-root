@@ -3,6 +3,7 @@
   top: 0;
   width: auto;
   height: inherit;
+  z-index: -1;
 }
 
 .shadowLeft {
