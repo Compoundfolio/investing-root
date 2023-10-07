@@ -4,6 +4,23 @@
   width: auto;
   height: inherit;
   z-index: -1;
+  animation: globeAnimation 4s cubic-bezier(0.37, 0, 0.63, 1);
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+@keyframes globeAnimation {
+  0% {
+    /* transform: scaleX(0); */
+    transform: scale(3);
+    /* opacity: 0.5; */
+  }
+
+  100% {
+    /* transform: scaleX(1); */
+    transform: scale(1);
+    /* opacity: 1; */
+  }
 }
 
 .shadowLeft {

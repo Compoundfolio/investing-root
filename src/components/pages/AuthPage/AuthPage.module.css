@@ -11,9 +11,8 @@
   left: 0;
   right: 0;
   /* transition: 0.5s all; */
-  /* animation: globeAnimation 4s cubic-bezier(0.37, 0, 0.63, 1); */
+  animation: globeAnimation 4s cubic-bezier(0.37, 0, 0.63, 1);
   animation-fill-mode: forwards;
-  will-change: transition;
   /* width: 500px; */
   height: auto;
 
@@ -33,14 +32,11 @@
 }
 
 @keyframes globeAnimation {
-  /* 0% {
-    margin: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  } */
+  0% {
+    transform: translateY(calc(-50vh - 500px)) scale(0.5);
+  }
 
   100% {
-    transform: translateY(-100%);
+    transform: translateY(calc(50vh - 1000px)) scale(1);
   }
 }

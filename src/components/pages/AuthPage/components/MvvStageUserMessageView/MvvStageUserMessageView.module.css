@@ -1,3 +1,20 @@
+.mvv {
+  /* animation-delay: 3s; */
+  animation: globeAnimation 5s cubic-bezier(0.37, 0, 0.63, 1);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes globeAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .mvv_title {
   text-align: center;
   font-size: 80px;
@@ -74,4 +91,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+
+@media only screen and (max-width: 1440px) {
+  .fakeDiv {
+    display: none;
+  }
 }

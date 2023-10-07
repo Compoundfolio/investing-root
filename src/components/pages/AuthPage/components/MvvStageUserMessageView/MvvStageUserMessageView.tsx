@@ -2,18 +2,20 @@ import { ActButton } from "@core"
 import React from "react"
 import { Checkbox } from "src/core/client"
 import styles from "./MvvStageUserMessageView.module.css"
+import clsx from "clsx"
 
 const MvvStageUserMessageView = () => {
   return (
-    <div className="flex flex-col justify-between h-full w-fit">
-      <div />
+    <div
+      className={clsx(styles.mvv, "flex flex-col justify-between h-full w-fit")}
+    >
+      <div className={styles.fakeDiv} />
       <section className="flex flex-col justify-center gap-20">
         <div className="flex flex-col gap-4">
           <h1 className={styles.mvv_title}>We appreciate your interest !</h1>
           <span className={styles.mvv_subtitle}>
-            Kindly inform you, that we are at active stage of the app
-            development. <br />
-            And we need your feedback to help Compoundfolio to grow.
+            Kindly inform you, we are still in development. <br />
+            And we need your feedback to help Compoundfolio grow.
           </span>
         </div>
         <div className="flex flex-col justify-center gap-5">
@@ -26,7 +28,7 @@ const MvvStageUserMessageView = () => {
           </span>
           <div className="flex flex-col items-center justify-center gap-4">
             <span className={styles.mvv_formCta_supportText}>
-              It'll take less then <b>4 minutes</b>
+              It'll take less then <b>5 minutes</b>
             </span>
             <ActButton width="405px" bigActButton>
               Fill The Google Form
