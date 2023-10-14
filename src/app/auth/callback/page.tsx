@@ -37,11 +37,11 @@ const WtfAmI = () => {
       })
   }, [])
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full gap-4">
+    <div className="flex flex-col items-center justify-center w-full h-screen gap-4">
       <Spinner />
       <div className="text-center">
         <h1 className="text-white text-shadow-white">
-          Connecting to your google account
+          Connecting to your Google account
         </h1>
         <small className="text-gray-400">
           It may take from <b>5s</b> to <b>30s</b>

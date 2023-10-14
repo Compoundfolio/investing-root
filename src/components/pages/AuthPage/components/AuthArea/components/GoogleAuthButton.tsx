@@ -4,7 +4,7 @@ import Image from "next/image"
 import React from "react"
 import styles from "./GoogleAuthButton.module.css"
 import { useHandleGoogleAuthSubmit } from "../hooks"
-import clsx from 'clsx';
+import clsx from "clsx"
 
 const GoogleAuthButton = () => {
   const { mutate: authWithGoogle } = useHandleGoogleAuthSubmit()
@@ -21,8 +21,8 @@ const GoogleAuthButton = () => {
       <Image
         width={24}
         height={24}
-        src="https://www.svgrepo.com/show/475656/google-color.svg"
-        loading="lazy"
+        src="/img/authPage/googleAuthIcon.svg"
+        priority={true}
         alt="google logo"
         className={styles.authButton_icon}
       />

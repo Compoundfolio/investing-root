@@ -56,6 +56,7 @@ const EmailAuthForm = ({
         errorMessage={errors.email}
         setErrorMessage={setFieldError}
         onChange={handleChange}
+        inputMode="email"
       />
       <Input
         withShadow
