@@ -9,7 +9,7 @@
 }
 
 .main {
-  min-height: calc(100vh - 32px);
+  min-height: 100vh;
   display: flex;
   justify-content: space-between;
 }
