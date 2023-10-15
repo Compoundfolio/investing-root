@@ -4,7 +4,7 @@ import React from "react"
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Compaundfolio - stocks investment portfolios management helper",
+  description: "Compoundfolio - stocks investment portfolios management helper",
 }
 
 const Home = () => {

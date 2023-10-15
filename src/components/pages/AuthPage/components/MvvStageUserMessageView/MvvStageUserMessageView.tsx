@@ -66,10 +66,11 @@ const MvvStageUserMessageView = () => {
         </div>
         <div>
           <a
-            href="mailto:compaundfolio.support@gmail.com"
+            href="mailto:compoundfolio.support@gmail.com"
             className={styles.mvv_footer_email}
           >
-            compaundfolio.support@gmail.com
+            {/* TODO: Chat with Alexei on our actual support address */}
+            compoundfolio.support@gmail.com
           </a>
         </div>
       </footer>
