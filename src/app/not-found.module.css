@@ -32,7 +32,16 @@
   box-shadow: 0px 0px 40px 25px rgba(0, 0, 0, 0.50) inset;
   height: 50vh;
   width: 50vh;
-  z-index: 0;
+  z-index: 9 !important;
   max-width: 514px;
   max-height: 514px;
+}
+
+.skyBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  z-index: 0;
 }
