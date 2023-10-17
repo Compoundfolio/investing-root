@@ -3,7 +3,6 @@ import restfulApiUrls from "src/api/restful/urls"
 import { Api } from "src/inversions"
 import { HttpRequestErrorResponse } from "../../../../../../inversions/api/types"
 import { AuthWithGooglePreRedirectResponse } from "./types"
-import { ROUTES } from "src/routing"
 
 export const authWithGoogleMutationKey = "useAuthWithGoogle" as const
 

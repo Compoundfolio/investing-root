@@ -1,8 +1,6 @@
 "use client"
 
-import {
-  ActButton,
-} from "@core"
+import { ActButton } from "@core"
 import React from "react"
 import usePortfolioManagerContext from "../../../../../context/PortfolioManagerContextData/hook"
 import { useRouter } from "next/navigation"
@@ -14,7 +12,7 @@ const ActButtonGroup = () => {
 
   const saveAndGoDashboard = () => {
     savePortfolioChanges()
-    router.push(ROUTES.DASHBOARD)
+    router.push(ROUTES.DASHBOARD.path)
   }
 
   return (

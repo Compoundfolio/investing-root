@@ -23,7 +23,7 @@ const BrokerageReportUploadPage = () => {
   }, [selectedBrokerages.length])
 
   const handleReportsUpload = () => {
-    router.push(ROUTES.DASHBOARD)
+    router.push(ROUTES.DASHBOARD.path)
     // Save selected brokerages classes entity list to the storage
     // Save selected report data to the storage
     // Save selected report data to the storage
