@@ -85,17 +85,21 @@
 }
 
 .mvv_footer_email {
-  color: #1290FF;
+  color: var(--color-gold);
   text-align: right;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  transition: opacity 0.25s linear;
 }
 
+.mvv_footer_email,
+.mvv_socialMediaIcon {
+  opacity: 0.5;
+}
 
-@media only screen and (max-width: 1440px) {
-  .fakeDiv {
-    display: none;
-  }
+.mvv_footer_email:hover,
+.mvv_socialMediaIcon:hover {
+  opacity: 1;
 }

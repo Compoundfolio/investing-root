@@ -51,7 +51,7 @@
   }
 }
 
-@media only screen and (max-width: 405px) {
+@media (max-width: 405px) {
   .shadowLeft {
     left: -425px;
   }

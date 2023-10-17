@@ -9,13 +9,15 @@ import Content from "./Content"
 const AuthPage = () => {
   // TODO: Ride of using style
   return (
-    <section className={clsx(styles.authContainer, "flex w-full h-full")}>
-      <div className="relative z-10 flex flex-col items-center flex-1 w-full h-full gap-10">
-        <ShadowLeft />
-        <AppLogo withTitle className="z-20" />
-        <Content />
-        <ShadowRight />
-      </div>
+    <>
+      <section className={clsx(styles.authContainer, "flex w-full h-full")}>
+        <div className="relative z-10 flex flex-col items-center flex-1 w-full h-full gap-10">
+          <ShadowLeft />
+          <AppLogo withTitle className="z-20" />
+          <Content />
+          <ShadowRight />
+        </div>
+      </section>
       <Image
         width={1000}
         height={500}
@@ -23,7 +25,7 @@ const AuthPage = () => {
         alt="Globe image"
         className={clsx(styles.authContainer_globeImg)}
       />
-    </section>
+    </>
   )
 }
 
