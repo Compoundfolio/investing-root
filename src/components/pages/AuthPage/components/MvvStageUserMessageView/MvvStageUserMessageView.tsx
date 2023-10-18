@@ -9,7 +9,12 @@ const MvvStageUserMessageView = () => {
       className={clsx(styles.mvv, "flex flex-col justify-between h-full w-fit")}
     >
       <div className={styles.fakeDiv} />
-      <section className="flex flex-col justify-center gap-20">
+      <section
+        className={clsx(
+          styles.mvv_contentWrap,
+          "flex flex-col justify-center gap-20"
+        )}
+      >
         <div className="flex flex-col gap-4">
           <h1 className={styles.mvv_title}>We appreciate your interest !</h1>
           <span className={styles.mvv_subtitle}>
@@ -19,19 +24,22 @@ const MvvStageUserMessageView = () => {
         </div>
         <div className="flex flex-col justify-center gap-5">
           <span className={styles.mvv_formCta_title}>
-            Feel free to fill the “Know your customer” form bellow. <br />
-            It'll help us to build the product, which will solve <b>
-              your
-            </b>{" "}
-            pain points.
+            {/* Feel free to fill the “Know your customer” form bellow. <br /> */}
+            Help us build the product, which will solve <b>your</b> pain points.
           </span>
           <div className="flex flex-col items-center justify-center gap-4">
             <span className={styles.mvv_formCta_supportText}>
-              It'll take less then <b>5 minutes</b>
+              {/* It'll take less then <b>5 minutes</b> */}
+              Feel free to fill <b>5 minutes long</b> quiz
             </span>
-            <ActButton width="405px" bigActButton>
-              Fill The Google Form
-            </ActButton>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc_jBMYXFLwLIDGP3sfxIHzBHnbVvaSDsCHoMsvwoXIVEPQaw/viewform?usp=sf_link"
+              target="_blank"
+            >
+              <ActButton className={styles.mvv_formCta_button} bigActButton>
+                Fill Quiz
+              </ActButton>
+            </a>
             <span className={styles.mvv_formCta_supportText}>
               And get <b>3 month</b> of Compoundfolio usage <b>for free!</b>
             </span>
@@ -57,7 +65,7 @@ const MvvStageUserMessageView = () => {
             </svg>
           </a>
         </div>
-        <div>
+        <div className={styles.mvv_footer_email_container}>
           <a
             href="mailto:compaundfolio.support@gmail.com"
             className={styles.mvv_footer_email}

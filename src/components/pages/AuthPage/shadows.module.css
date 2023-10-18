@@ -50,13 +50,3 @@
     right: -250px;
   }
 }
-
-@media (max-width: 405px) {
-  .shadowLeft {
-    left: -425px;
-  }
-
-  .shadowRight {
-    right: -425px;
-  }
-}
