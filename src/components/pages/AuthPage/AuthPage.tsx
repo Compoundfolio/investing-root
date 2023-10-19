@@ -7,7 +7,6 @@ import { ShadowLeft, ShadowRight } from "./shadows"
 import Content from "./Content"
 
 const AuthPage = () => {
-  // TODO: Ride of using style
   return (
     <>
       <section className={clsx(styles.authContainer, "flex w-full h-full")}>

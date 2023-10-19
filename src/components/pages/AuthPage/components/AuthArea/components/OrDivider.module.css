@@ -5,3 +5,10 @@
   text-align: center;
   width: 150%;
 }
+
+
+@media ( max-width: 390px ) {
+  .divider_textContent {
+    width: 250%;
+  }
+}

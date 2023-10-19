@@ -65,6 +65,7 @@ const Input = ({
       helpText={helpText}
       withMb={withMb}
       errorMessage={errorMessage}
+      setErrorMessage={setErrorMessage}
       {...restProps}
     >
       <input

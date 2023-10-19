@@ -18,6 +18,7 @@ export const useClearErrorMessage = ({
   setErrorMessage,
 }: IUseClearErrorMessage) => {
   useEffect(() => {
+    console.log(value, setErrorMessage, errorMessage)
     if (value && setErrorMessage && errorMessage) {
       setErrorMessage(name, "")
     }

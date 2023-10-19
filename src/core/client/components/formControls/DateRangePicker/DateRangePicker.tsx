@@ -1,17 +1,21 @@
 "use client"
 
-import React from 'react'
-import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
-import { Control } from 'src/core/types';
-import { FormControlBase } from '../FormControlBase';
+import React from "react"
+import Datepicker, {
+  DateValueType,
+  DatepickerType,
+} from "react-tailwindcss-datepicker"
+import { Control } from "src/core/types"
+import { FormControlBase } from "../FormControlBase"
 
-interface IDateRangePicker extends Omit<Control, "value" | "onChange" | "autofocus"> {
+interface IDateRangePicker
+  extends Omit<Control, "value" | "onChange" | "autofocus"> {
   value: DateValueType
-  disabledDates?: DatepickerType['disabledDates']
-  startFrom?: DatepickerType['startFrom']
-  displayFormat?: DatepickerType['displayFormat']
-  minDate?: DatepickerType['minDate']
-  maxDate?: DatepickerType['maxDate']
+  disabledDates?: DatepickerType["disabledDates"]
+  startFrom?: DatepickerType["startFrom"]
+  displayFormat?: DatepickerType["displayFormat"]
+  minDate?: DatepickerType["minDate"]
+  maxDate?: DatepickerType["maxDate"]
   onChange: (newValue: DateValueType) => void
 }
 
@@ -24,7 +28,7 @@ interface IDateRangePicker extends Omit<Control, "value" | "onChange" | "autofoc
  *  dateRangeValue,
  *  handleDateRangeChange
  * } = useDateRangePickerState()
-*/
+ */
 const DateRangePicker = ({
   value,
   labelText = "Date range",
@@ -41,7 +45,6 @@ const DateRangePicker = ({
   disabledDates,
   onChange,
 }: IDateRangePicker) => {
-
   const inputClassName = ""
   const containerClassName = ""
   const toggleClassName = ""
@@ -55,6 +58,8 @@ const DateRangePicker = ({
       helpText={helpText}
       withMb={withMb}
       errorMessage={errorMessage}
+      // TODO:
+      // setErrorMessage={setErrorMessage}
     >
       <Datepicker
         primaryColor="blue"
@@ -72,7 +77,6 @@ const DateRangePicker = ({
         maxDate={maxDate}
         disabledDates={disabledDates}
         placeholder={placeholder}
-
       />
     </FormControlBase>
   )

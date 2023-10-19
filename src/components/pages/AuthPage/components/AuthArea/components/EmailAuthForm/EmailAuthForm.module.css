@@ -1,3 +1,7 @@
+.emailAuthForm_submitButton {
+  width: 360px;
+}
+
 .emailAuthForm_authModePart {
   color: var(--color-gray4C);
   font-size: 16px;
@@ -11,4 +15,16 @@
   -webkit-text-fill-color: transparent;
   font-size: 16px;
   font-weight: 500;
+}
+
+@media ( max-height: 800px ) {
+  .inputOverride  {
+    margin-bottom: 8px;
+  }
+}
+
+@media ( max-width: 435px ) {
+  .emailAuthForm_submitButton  {
+    width: calc(100vw - 64px);
+  }
 }

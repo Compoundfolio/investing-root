@@ -57,6 +57,7 @@ const EmailAuthForm = ({
         setErrorMessage={setFieldError}
         onChange={handleChange}
         inputMode="email"
+        className={styles.inputOverride}
       />
       <Input
         withShadow
@@ -68,6 +69,7 @@ const EmailAuthForm = ({
         errorMessage={errors.password}
         setErrorMessage={setFieldError}
         onChange={handleChange}
+        className={styles.inputOverride}
       />
       {emailAuthType === "signUp" && (
         <Input
@@ -80,6 +82,7 @@ const EmailAuthForm = ({
           errorMessage={errors.passwordConfirmation}
           setErrorMessage={setFieldError}
           onChange={handleChange}
+          className={styles.inputOverride}
         />
       )}
       <div className="flex items-center gap-2 mb-10">
@@ -89,12 +92,18 @@ const EmailAuthForm = ({
         <button
           className={styles.emailAuthForm_authModeSwitch}
           onClick={handleEmailAuthTypeChange}
+          type="button"
         >
           {emailAuthType === "signIn" ? "Sign up" : "Sign in"}
         </button>
       </div>
-      <ActButton type="submit" bigActButton isLoading={isLoading}>
-        Get Started!
+      <ActButton
+        className={styles.emailAuthForm_submitButton}
+        type="submit"
+        bigActButton
+        isLoading={isLoading}
+      >
+        {authButtonTitle}
       </ActButton>
     </Form>
   )

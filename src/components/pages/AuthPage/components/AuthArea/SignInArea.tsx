@@ -5,7 +5,6 @@ import { EmailAuthForm, GoogleAuthButton, OrDivider } from "./components"
 import { useAuthTypeSwitch } from "./hooks"
 import styles from "./SignInArea.module.css"
 
-// TODO: Make it server component somehow ???
 const SignInArea = () => {
   const {
     authTitle,
@@ -24,7 +23,7 @@ const SignInArea = () => {
     >
       <div className="flex flex-col items-center gap-10">
         <h1 className={styles.auth_title}>{formTitle}</h1>
-        <div>
+        <div className="w-full">
           <div className="flex flex-col justify-center flex-1 min-h-full">
             <div className="flex flex-col">
               <div className="flex justify-center w-full gap-3">

@@ -1,26 +1,34 @@
 "use client"
 
 import { ChangeEvent, memo, useCallback } from "react"
-import { Control, Option, UseFormHookHelpers, IReactChildren } from 'src/core/types';
+import {
+  Control,
+  Option,
+  UseFormHookHelpers,
+  IReactChildren,
+} from "src/core/types"
 import styles from "./Select.module.css"
 import { FormControlBase } from "../FormControlBase"
-import clsx from 'clsx';
-import { useOpen } from 'src/core/hooks';
+import clsx from "clsx"
+import { useOpen } from "src/core/hooks"
 import { CollapseIcon } from "@core/components"
 import { Input } from "../Input"
 import { IUseSearch, useSearch } from "./hooks"
 
-interface SelectType extends Omit<Control, "value" | "onChange" | "placeholder"> {
+interface SelectType
+  extends Omit<Control, "value" | "onChange" | "placeholder"> {
   value: Option
   options: Option[]
   search?: boolean
   setFieldValue: UseFormHookHelpers["setFieldValue"]
 }
 
-interface SearchType extends Omit<Control, "value" | "onChange" | "placeholder">, IReactChildren {
+interface SearchType
+  extends Omit<Control, "value" | "onChange" | "placeholder">,
+    IReactChildren {
   search: boolean
   placeholder: string
-  serverSearchRequest: IUseSearch['serverSearchRequest']
+  serverSearchRequest: IUseSearch["serverSearchRequest"]
   onSearchSelection: (selectedOption: Option) => void
 }
 
@@ -48,7 +56,8 @@ const Select = ({
   onSearchSelection,
   ...restProps
 }: TSelect) => {
-  const [isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened] = useOpen()
+  const [isOptionOpened, handleOptionsOpenedChange, setIsOptionOpened] =
+    useOpen()
 
   const {
     isSearching,
@@ -62,31 +71,33 @@ const Select = ({
     setIsOptionOpened,
   })
 
-  const handleChange = useCallback((option: Option) => {
-    if (search) {
-      setSearchValue(option.label)
-      setFieldValue(name, option.label)
-      onSearchSelection && onSearchSelection(option)
-    } else {
-      setFieldValue(name, option)
-    }
+  const handleChange = useCallback(
+    (option: Option) => {
+      if (search) {
+        setSearchValue(option.label)
+        setFieldValue(name, option.label)
+        onSearchSelection && onSearchSelection(option)
+      } else {
+        setFieldValue(name, option)
+      }
 
-    setIsOptionOpened(false)
-  }, [search, isOptionOpened])
+      setIsOptionOpened(false)
+    },
+    [search, isOptionOpened]
+  )
 
   const handleOpenOptionList = () => {
     setIsOptionOpened(true)
   }
 
-  const optionsList = (searchOptions.length
-    ? searchOptions
-    : options) ?? []
+  const optionsList = (searchOptions.length ? searchOptions : options) ?? []
 
   const showOptions = search
     ? !isSearching && isOptionOpened
     : !!searchValue || isOptionOpened
 
-  const emptyDataMessage = search && !searchValue ? "Start searching 🔍" : "Nothing found 🤔"
+  const emptyDataMessage =
+    search && !searchValue ? "Start searching 🔍" : "Nothing found 🤔"
 
   return (
     <FormControlBase
@@ -97,15 +108,24 @@ const Select = ({
       helpText={helpText}
       withMb={withMb}
       errorMessage={errorMessage}
+      setErrorMessage={setErrorMessage}
       {...restProps}
     >
-      <div className={clsx("relative", !search && styles.select, isOptionOpened && styles.select_active)}>
+      <div
+        className={clsx(
+          "relative",
+          !search && styles.select,
+          isOptionOpened && styles.select_active
+        )}
+      >
         {search ? (
           <Input
             search={search}
             value={searchValue}
             name={name}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchValueChange(e, optionsList.length)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleSearchValueChange(e, optionsList.length)
+            }
             placeholder={placeholder}
             isLoading={isSearching}
             resetInputValue={resetSearch}
@@ -114,7 +134,14 @@ const Select = ({
             onClick={handleOpenOptionList}
           />
         ) : (
-          <button type="button" onClick={handleOptionsOpenedChange} className={clsx("relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default", styles.select_button)}>
+          <button
+            type="button"
+            onClick={handleOptionsOpenedChange}
+            className={clsx(
+              "relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default",
+              styles.select_button
+            )}
+          >
             <span className="flex items-center">
               <span className="block truncate">{value.label}</span>
             </span>
@@ -129,29 +156,35 @@ const Select = ({
               search && styles.select_optionList__search
             )}
           >
-            {!!optionsList?.length ? optionsList?.map((option) => (
-              <li
-                key={option.id}
-              >
-                <button
-                  type="button"
-                  className={clsx(
-                    option.id === value?.id && styles.select_optionList_item__active,
-                    'w-full relative select-none cursor-pointer',
-                    styles.select_optionList_item
-                  )}
-                  onClick={() => handleChange(option)}
-                >
-                  {children ?? (
-                    <span
-                      className={clsx(option.id === value?.id ? 'font-semibold' : 'font-normal', 'block truncate')}
-                    >
-                      {option.label}
-                    </span>
-                  )}
-                </button>
-              </li>
-            )) : (
+            {!!optionsList?.length ? (
+              optionsList?.map((option) => (
+                <li key={option.id}>
+                  <button
+                    type="button"
+                    className={clsx(
+                      option.id === value?.id &&
+                        styles.select_optionList_item__active,
+                      "w-full relative select-none cursor-pointer",
+                      styles.select_optionList_item
+                    )}
+                    onClick={() => handleChange(option)}
+                  >
+                    {children ?? (
+                      <span
+                        className={clsx(
+                          option.id === value?.id
+                            ? "font-semibold"
+                            : "font-normal",
+                          "block truncate"
+                        )}
+                      >
+                        {option.label}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              ))
+            ) : (
               <li className={styles.select_optionList_nothingFoundMessage}>
                 {emptyDataMessage}
               </li>

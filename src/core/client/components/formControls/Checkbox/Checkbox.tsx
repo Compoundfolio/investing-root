@@ -32,6 +32,7 @@ const Checkbox = ({
       labelText={labelText}
       helpText={helpText}
       withMb={withMb}
+      setErrorMessage={setErrorMessage}
       {...restProps}
     >
       <label className="pure-material-checkbox">

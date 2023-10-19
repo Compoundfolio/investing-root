@@ -1,5 +1,7 @@
 import { memo } from "react"
 import { UseFormHookError } from "src/core/types"
+import styles from "./ControlErrorMessage.module.css"
+import clsx from "clsx"
 
 interface IControlErrorMessage {
   errorMessage: UseFormHookError
@@ -10,10 +12,7 @@ const ControlErrorMessage = ({
   ...rest
 }: IControlErrorMessage) => {
   return (
-    <span
-      className="absolute left-0 text-sm font-medium leading-6 color-red -bottom-[20px]"
-      {...rest}
-    >
+    <span className={clsx(styles.controlErrorMessage, "color-red")} {...rest}>
       {errorMessage as string}
     </span>
   )

@@ -11,8 +11,7 @@ interface IForm extends IReactChildren {
 }
 
 const Form = ({ children, className, onSubmit, postSubmitError }: IForm) => {
-
-  const handleSubmit = (e) => {    
+  const handleSubmit = (e) => {
     onSubmit(e)
   }
 
