@@ -41,7 +41,7 @@ export default memo(function DndFileArea({
         addBrokerageEntity(newBrokerageDataEntity)
         setTradeTransactions(newBrokerageDataEntity.getTradeTransactions())
         setNonTradeTransactions(
-          newBrokerageDataEntity.getNonTradeTransactions()
+          newBrokerageDataEntity?.getNonTradeTransactions()
         )
       } else {
         console.error(

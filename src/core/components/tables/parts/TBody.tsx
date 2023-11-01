@@ -9,6 +9,7 @@ interface ITBody extends IReactChildren {
 
 function TBody({ children, height, ...rest }: ITBody) {
   return (
+    // @ts-ignore - TODO: Resolve after MVV stage
     <tbody style={{ height }} className={styles.tbody} {...rest}>
       {children}
     </tbody>

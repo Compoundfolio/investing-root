@@ -6,7 +6,7 @@ const getExanteNonTradeTransactionsList = (
 ): ExanteCsvNonTradeTransaction[] => {
   const parsedCsvTransactionsList =
     getExanteTransactionsList<ExanteCsvNonTradeTransaction[]>(csvString)
-  return parsedCsvTransactionsList.filter(
+  return parsedCsvTransactionsList?.filter(
     (transaction) => transaction["Operation type"] !== "TRADE"
   )
 }

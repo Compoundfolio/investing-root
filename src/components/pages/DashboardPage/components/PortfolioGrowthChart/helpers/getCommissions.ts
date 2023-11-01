@@ -13,7 +13,7 @@ const getCommissions = (
   allNonTradeTransactions: NonTradeTransaction[]
 ): NormalizedValueChartDataSet => {
   const commissionsXyList = allNonTradeTransactions
-    .filter((transaction) => transaction.type === "COMMISSION")
+    ?.filter((transaction) => transaction.type === "COMMISSION")
     .map(({ time, price }) => ({
       x: format(new Date(time), "yyyy-MM-dd"),
       y: price,

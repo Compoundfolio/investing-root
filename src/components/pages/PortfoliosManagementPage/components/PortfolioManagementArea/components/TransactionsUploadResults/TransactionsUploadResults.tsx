@@ -39,14 +39,19 @@ const TransactionsUploadResults = ({
     },
   ]
 
-  const brokeragesWithUploadedReports = selectedBrokerageOptions.filter(({ uploadedTransactionList }) => !!uploadedTransactionList.length)
+  const brokeragesWithUploadedReports = selectedBrokerageOptions?.filter(
+    ({ uploadedTransactionList }) => !!uploadedTransactionList.length
+  )
 
   return (
     <aside className="flex flex-col justify-between h-full">
       <section className="flex flex-col gap-8">
         {brokeragesWithUploadedReports.map(({ title }) => {
-            const brokerage = transactionsStats.find(({ brokerageName }) => brokerageName === title)!
-            return <RatioChart
+          const brokerage = transactionsStats.find(
+            ({ brokerageName }) => brokerageName === title
+          )!
+          return (
+            <RatioChart
               key={brokerage.id}
               title={brokerage.brokerageName}
               totalShortDescription="Defined transactions"
@@ -54,8 +59,8 @@ const TransactionsUploadResults = ({
               hoveredTransactionCategory={hoveredTransactionCategory}
               setHoveredTransactionCategory={setHoveredTransactionCategory}
             />
-        }
-        )}
+          )
+        })}
       </section>
       <ActButtonGroup />
     </aside>

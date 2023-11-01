@@ -6,7 +6,7 @@ const getCurrentPositionPrice = (
   transactionsList: Transaction[],
   marketPricesByTicker: TickerAndPrice
 ) => {
-  return transactionsList.reduce(
+  return transactionsList?.reduce(
     (prevValue: number, currentTransaction: Transaction) => {
       const isTrade = currentTransaction.type === "TRADE"
       const assetMarketPrice =
@@ -15,7 +15,7 @@ const getCurrentPositionPrice = (
       if (isTrade && currentTransaction.operation === OrderOperation.BUY) {
         return (
           prevValue +
-          (currentTransaction.orderPrice *
+          (currentTransaction.orderPrice! *
             Number(currentTransaction.orderAmount) ?? 0)
         )
         // return prevValue + ((assetMarketPrice * Number(currentTransaction.orderAmount)) ?? 0) // <- current market assets price
@@ -27,7 +27,7 @@ const getCurrentPositionPrice = (
       if (isTrade && currentTransaction.operation === OrderOperation.SELL) {
         return (
           prevValue -
-          ((currentTransaction.orderPrice *
+          ((currentTransaction.orderPrice! *
             Number(currentTransaction.orderAmount) ?? 0) -
             currentTransaction.gain)
         )

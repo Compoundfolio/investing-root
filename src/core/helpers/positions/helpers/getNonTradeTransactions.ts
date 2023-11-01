@@ -4,7 +4,7 @@ const getNonTradeTransactions = <T extends NonTradeTransactionTypes>(
   nonTradeTransactions: NonTradeTransaction[],
   nonTradeTransactionType: NonTradeTransactionTypes
 ) => {
-  const foundNonTradeTransactions = nonTradeTransactions.filter(
+  const foundNonTradeTransactions = nonTradeTransactions?.filter(
     (nonTradeTransaction) => {
       return nonTradeTransactionType == nonTradeTransaction.type
     }

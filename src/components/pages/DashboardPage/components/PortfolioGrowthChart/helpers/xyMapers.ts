@@ -8,7 +8,7 @@ import { ValueChartDataSet } from "../types"
 
 export const getValueChartDataEntity = ([xDate, yPrices]) => ({
   x: xDate,
-  y: yPrices.reduce((prev, cur) => prev + cur.y, 0), // Get total value by specific date
+  y: yPrices?.reduce((prev, cur) => prev + cur.y, 0), // Get total value by specific date
 })
 
 export const fromNormalizedToObject = ([xDate, yPrice]) => ({
@@ -23,7 +23,7 @@ export const sumYValues = (xyList: ValueChartDataSet): ValueChartDataSet => {
   xyList.forEach(({ x, y }) => {
     summedXyValues.push({
       x,
-      y: parseNumberToFixed2(y + lastSummedXyYValue), // Get total value by specific date + prev date
+      y: parseNumberToFixed2(y + lastSummedXyYValue)!, // Get total value by specific date + prev date
     })
 
     lastSummedXyYValue = y + lastSummedXyYValue

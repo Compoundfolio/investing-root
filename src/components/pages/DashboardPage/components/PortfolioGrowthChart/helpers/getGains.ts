@@ -12,7 +12,7 @@ const getGains = (
   tradeTransactions: Transaction[]
 ): NormalizedValueChartDataSet => {
   const commissionsXyList = tradeTransactions
-    .filter(
+    ?.filter(
       ({ type, operation }) =>
         type === "TRADE" && operation === OrderOperation.SELL
     )

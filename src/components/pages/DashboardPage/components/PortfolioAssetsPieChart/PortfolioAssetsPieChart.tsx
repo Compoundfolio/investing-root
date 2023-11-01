@@ -15,11 +15,14 @@ type DataItem = {
 type Data = DataItem[]
 
 const getChartDataSet = (openPositions: NormalizedPositions): Data => {
-  return Object.entries(openPositions).map(([ticker, assets]) => ({
-    id: ticker,
-    label: ticker,
-    value: assets.actualPositionPrice,
-  }))
+  // @ts-ignore - TODO: Resolve after MVV stage
+  return openPositions
+    ? Object.entries(openPositions).map(([ticker, assets]) => ({
+        id: ticker,
+        label: ticker,
+        value: assets.actualPositionPrice,
+      }))
+    : []
 }
 
 const { darkLightGreen, lightGreen, darkGreen, gold, grayD9 } = colors
@@ -31,11 +34,11 @@ const PortfolioAssetsPieChart = () => {
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = useMemo(() => {
-    const assets = brokerageEntities[0].getAssets()
-    return getChartDataSet(assets.openPositions)
+    const assets = brokerageEntities[0]?.getAssets()
+    return getChartDataSet(assets?.openPositions)
   }, [brokerageEntities])
 
-  const totalAssetsSum = dataSet.reduce((previousValue, currentValue) => {
+  const totalAssetsSum = dataSet?.reduce((previousValue, currentValue) => {
     return previousValue + currentValue.value
   }, 0)
 

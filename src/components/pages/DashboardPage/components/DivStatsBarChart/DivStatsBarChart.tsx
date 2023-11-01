@@ -19,11 +19,11 @@ const DivStatsBarChart = ({
   const { selectedYear, selectedYearDividendsData, onYearBack, onYearForward } =
     useDividendYearSwitch(dataSet)
 
-  const yearDivs = selectedYearDividendsData.reduce(
+  const yearDivs = selectedYearDividendsData?.reduce(
     (prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount!),
     0
   )
-  const pervYearDivs = dataSet[selectedYear - 1].reduce(
+  const pervYearDivs = dataSet[selectedYear - 1]?.reduce(
     (prev, cur) => parseNumberToFixed2(prev + cur.receivedDividendAmount!),
     0
   )
@@ -35,6 +35,7 @@ const DivStatsBarChart = ({
   const estimatedSelectedYearDivs = 500.01
 
   return (
+    // @ts-ignore - TODO: Resolve after MVV stage
     <section {...restProps} style={barChartContainerStyle({ openedInModal })}>
       {openedInModal ? (
         <DivStats />

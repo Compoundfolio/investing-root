@@ -39,8 +39,8 @@ const AssetsTable = ({ data = [], onRowHover }: IAssetsTable) => {
                 sharesAmount={sharesAmount}
               />
               <NumbersDifferenceCell
-                topNumber={averagePrice}
-                bottomNumber={averagePrice}
+                topNumber={averagePrice!}
+                bottomNumber={averagePrice!}
                 isPercentages
               />
               <GainCell gainPercentage={17.44} />

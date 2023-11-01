@@ -1,4 +1,4 @@
-import { EmailAuthType } from "src/components/pages/AuthPage/components/AuthArea/components/EmailAuthForm"
+import { EmailAuthType } from "src/components/pages/AuthPage/components/AuthArea/types"
 import { EmailAuthData } from "../../../types"
 import { IMutationHookRequestFunctionProps } from "src/inversions/queryMaker"
 

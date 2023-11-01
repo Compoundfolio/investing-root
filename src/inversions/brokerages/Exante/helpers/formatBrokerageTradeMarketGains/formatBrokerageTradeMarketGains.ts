@@ -8,7 +8,7 @@ const getAssetMarketGain = (
 ): Transaction["gain"] => {
   // TODO: Add MarketAPI instead of hard-code
   const marketPrice = currentMarketAssetsPrices[ticker] ?? orderPrice
-  return (marketPrice - orderPrice) * orderAmount
+  return (marketPrice - orderPrice!) * orderAmount!
 }
 
 function formatBrokerageTradeMarketGains(

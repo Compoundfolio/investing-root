@@ -21,7 +21,8 @@ const MultiAutocompleteInput = ({
   ...restProps
 }: IMultiAutocompleteInput) => {
   const [searchValue, setSearchValue] = useState<string>("")
-  const [filteredOptionsBySearch, setFilteredOptionsBySearch] = useState<Option[]>(allPossibleOptions)
+  const [filteredOptionsBySearch, setFilteredOptionsBySearch] =
+    useState<Option[]>(allPossibleOptions)
   const [isOptionsListMayOpen, _, setIsOptionsListMayOpen] = useOpen()
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +36,7 @@ const MultiAutocompleteInput = ({
     }
 
     setFilteredOptionsBySearch((prev) =>
-      prev.filter((option) => {
+      prev?.filter((option) => {
         return option.label
           .toLowerCase()
           .trim()

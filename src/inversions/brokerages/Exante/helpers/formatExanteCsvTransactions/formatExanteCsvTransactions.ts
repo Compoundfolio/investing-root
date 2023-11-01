@@ -52,10 +52,10 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       operation: getOperation(exanteTradeTransaction.Side),
       type: getTransactionType(
         exanteTradeTransaction["Trade type"],
-        exanteTradeTransaction.ISIN,
-        parseNumber(exanteTradeTransaction.Price)
+        exanteTradeTransaction.ISIN!,
+        parseNumber(exanteTradeTransaction.Price)!
       ),
-      gain: parseNumber(exanteTradeTransaction["P&L"]),
+      gain: parseNumber(exanteTradeTransaction["P&L"])!,
     })
   }
 
@@ -66,18 +66,18 @@ const formatExanteCsvTransactions = (reportUnParsedData: string) => {
       parentId: exanteNonTradeTransaction["Parent UUID"],
       comment: exanteNonTradeTransaction["Comment"],
       time: exanteNonTradeTransaction["When"],
-      currency: exanteNonTradeTransaction["Asset"],
+      currency: exanteNonTradeTransaction["Asset"]!,
       ticker:
         getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])?.ticker ??
         null,
       stockExchange:
         getPartsFromSymbolId(exanteNonTradeTransaction["Symbol ID"])
           ?.exchange ?? null,
-      price: parseNumber(exanteNonTradeTransaction["Sum"]),
+      price: parseNumber(exanteNonTradeTransaction["Sum"])!,
       type: getTransactionType(
         exanteNonTradeTransaction["Operation type"],
         exanteNonTradeTransaction.ISIN,
-        parseNumber(exanteNonTradeTransaction["Sum"])
+        parseNumber(exanteNonTradeTransaction["Sum"])!
       ) as NonTradeTransactionTypes,
     })
   }

@@ -29,8 +29,9 @@ const useSelectedBrokeragesStore = () => {
     }) => {
       setValue((prev) =>
         isDelete
-          ? prev.filter(({ brandName }) => brandName !== Brokerage.brandName) ??
-            DEFAULT_VALUE
+          ? prev?.filter(
+              ({ brandName }) => brandName !== Brokerage.brandName
+            ) ?? DEFAULT_VALUE
           : [...prev, Brokerage]
       )
     },

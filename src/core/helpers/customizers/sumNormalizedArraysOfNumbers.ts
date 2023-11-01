@@ -6,7 +6,7 @@ const sumNormalizedArraysOfNumbers =
   (incomingValue: object[] = [], result: object[]) => {
     return (isArray(incomingValue) ? incomingValue : [incomingValue])
       .concat(isArray(result) ? result : [result])
-      .reduce(
+      ?.reduce(
         (prev, cur) =>
           parseNumberToFixed2((prev ?? 0) + (cur?.[customizeBy] ?? cur ?? 0)),
         0

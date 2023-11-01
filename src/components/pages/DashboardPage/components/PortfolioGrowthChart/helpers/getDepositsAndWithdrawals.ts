@@ -16,7 +16,7 @@ const getDepositsAndWithdrawals = (
   allNonTradeTransactions: NonTradeTransaction[]
 ): NormalizedValueChartDataSet => {
   const xyArr = allNonTradeTransactions
-    .filter(
+    ?.filter(
       (transaction) =>
         transaction.type === "DEPOSIT" || transaction.type === "WITHDRAWAL"
     )

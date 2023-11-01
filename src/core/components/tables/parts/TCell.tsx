@@ -26,11 +26,12 @@ function TCell({
     number && "font-chakra",
     bold && "font-semibold",
     styles.tcell,
-    className,
+    className
   )
 
   return th ? (
     <th
+      // @ts-ignore - TODO: Resolve after MVV stage
       title={title}
       className={clsx(commonStyles, "h-14 p-5")}
     >
@@ -38,6 +39,7 @@ function TCell({
     </th>
   ) : (
     <td
+      // @ts-ignore - TODO: Resolve after MVV stage
       title={title}
       className={clsx(commonStyles, "px-5 py-2.5")}
     >

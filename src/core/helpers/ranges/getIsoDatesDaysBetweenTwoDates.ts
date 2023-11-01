@@ -6,7 +6,7 @@ type IsoDateDaysDictionary<TValue = void> = {
 const getIsoDatesDaysBetweenTwoDates = <TValue = void>(
   startDate: Date,
   endDate: Date,
-  valueToFillWith: TValue = null
+  valueToFillWith: TValue | null = null
 ) => {
   let daysDictionary: IsoDateDaysDictionary<TValue> = {}
 
@@ -15,6 +15,7 @@ const getIsoDatesDaysBetweenTwoDates = <TValue = void>(
     dt <= endDate;
     dt.setDate(dt.getDate() + 1)
   ) {
+    // @ts-ignore - TODO: Resolve after MVV stage
     daysDictionary[dt.toISOString().slice(0, 10) as IsoDate] = valueToFillWith
   }
 

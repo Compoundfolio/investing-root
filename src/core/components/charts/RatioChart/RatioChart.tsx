@@ -23,7 +23,7 @@ const RatioChart = ({
 }: IRatioChart) => {
   const total = useMemo(() => {
     return (
-      dataSet.reduce(
+      dataSet?.reduce(
         (prevValue, currentValue) => prevValue + currentValue.value,
         0
       ) || 0

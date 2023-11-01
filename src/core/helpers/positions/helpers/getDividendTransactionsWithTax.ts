@@ -6,7 +6,7 @@ const getDividendTransactionsWithTax = (
   divTransactions: NonTradeTransaction<"DIVIDEND">[],
   taxTransactions: NonTradeTransaction<"TAX">[]
 ) => {
-  const dividendTaxes = taxTransactions.filter(
+  const dividendTaxes = taxTransactions?.filter(
     (taxTransaction) => !!taxTransaction.parentId
   )
   const divTaxesSumByParentId = normalizeArrayOfObjectsBy(
@@ -14,6 +14,7 @@ const getDividendTransactionsWithTax = (
     "parentId"
   ) as { [K: ID]: NonTradeTransaction<"TAX">[] }
 
+  // @ts-ignore - TODO: Resolve after MVV stage
   const dividendTransactionsWithTax: NonTradeTransaction<"DIVIDEND">[] =
     divTransactions.map((divTransaction) => {
       return {
@@ -25,6 +26,7 @@ const getDividendTransactionsWithTax = (
             Math.abs(
               divTaxesSumByParentId?.[divTransaction?.id]?.[0]?.price ??
                 Number(
+                  // @ts-ignore - TODO: Resolve after MVV stage
                   divTransaction.comment.split("tax ").pop().split(" USD")[0]
                 )
             )

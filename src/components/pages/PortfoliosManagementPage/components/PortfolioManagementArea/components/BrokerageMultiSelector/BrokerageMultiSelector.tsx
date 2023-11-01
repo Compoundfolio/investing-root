@@ -69,7 +69,7 @@ const BrokerageMultiSelector = ({
       ...prev!,
       brokerages: prev?.brokerages
         ? isDelete
-          ? prev?.brokerages.filter((brokerage) =>
+          ? prev?.brokerages?.filter((brokerage) =>
               listOfSelectedBrokerageIds.includes(brokerage.id)
             )!
           : [...prev?.brokerages, newBrokerage]
