@@ -1,4 +1,4 @@
-import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage"
+// import { SupportedBrokerage } from "src/components/pages/BrokerageReportUploadPage"
 import AbstractBrokerage from "./AbstractBrokerage"
 import AbstractSideBrokerage from "./AbstractSideBrokerage"
 import {
@@ -21,7 +21,7 @@ export default class Brokerage implements AbstractBrokerage {
 
   private taxedDividends: Dividends = {}
 
-  constructor(SideBrokerageClass: SupportedBrokerage, unparsedReport: string) {
+  constructor(SideBrokerageClass: any, unparsedReport: string) {
     const brokerageEntity = new SideBrokerageClass(unparsedReport)
 
     this.brokerage = brokerageEntity

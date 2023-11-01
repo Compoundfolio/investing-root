@@ -1,9 +1,0 @@
-.selection__container {
-  min-height: inherit;
-  padding: 80px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
