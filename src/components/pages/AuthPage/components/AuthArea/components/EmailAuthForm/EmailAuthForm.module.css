@@ -1,6 +1,4 @@
-.emailAuthForm_submitButton {
-  width: 360px;
-}
+.emailAuthForm_submitButton {}
 
 .emailAuthForm_authModePart {
   color: var(--color-gray4C);

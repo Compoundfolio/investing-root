@@ -10,6 +10,8 @@ import { SideBar } from "@srcComponents"
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "block",
 })
 
 export const metadata = {
