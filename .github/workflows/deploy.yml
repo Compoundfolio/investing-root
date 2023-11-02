@@ -1,0 +1,42 @@
+name: 'Deploy'
+
+# **What it does**: Builds frontend application and deploys it to our VPS
+# **Why we have it**: To automate CI/CD pipeline of our environment
+
+on:
+  workflow_dispatch:
+      
+permissions:
+  contents: read
+  
+env:
+  APP_NAME: investing-root
+  DEPLOY_ENV: prod
+
+jobs:
+  deploy:
+    name: Build and deploy Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Build image
+        run: docker build -t $APP_NAME .
+      - name: Save image
+        run: docker save -o $APP_NAME.tar "${APP_NAME}:latest"
+      - name: Set up SSH keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: Upload image to server
+        run: rsync -avz $APP_NAME.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/${DEPLOY_ENV}/root/
+      - name: Start the container
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<EOF
+              cd ~/${DEPLOY_ENV}/root
+              docker load -i $APP_NAME.tar
+              docker stop $APP_NAME-1 || true
+              docker rm $APP_NAME-1 || true
+              docker run --name $APP_NAME-1 -d -p 4000:4000 $APP_NAME:latest
+          EOF
