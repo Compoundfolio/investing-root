@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Create .env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
       - name: Build image
         run: docker build -t $APP_NAME .
       - name: Save image
@@ -35,8 +38,12 @@ jobs:
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<EOF
               cd ~/${DEPLOY_ENV}/root
+              echo "# Loading new image"
               docker load -i $APP_NAME.tar
+              echo "# Stopping old container"
               docker stop $APP_NAME-1 || true
+              echo "# Removing old container"
               docker rm $APP_NAME-1 || true
+              echo "# Starting new container from new image"
               docker run --name $APP_NAME-1 -d -p 4000:4000 $APP_NAME:latest
           EOF
