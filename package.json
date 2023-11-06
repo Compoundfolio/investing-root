@@ -44,6 +44,9 @@
     "uuid": "^9.0.0",
     "yup": "^1.2.0"
   },
+  "overrides": {
+      "@nivo/core": "^0.83.0"
+  },
   "devDependencies": {
     "@graphql-codegen/cli": "^3.0.0",
     "@graphql-codegen/typescript": "^3.0.0",
