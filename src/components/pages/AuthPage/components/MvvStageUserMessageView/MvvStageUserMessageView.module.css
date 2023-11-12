@@ -97,6 +97,11 @@
   transition: opacity 0.25s linear;
 }
 
+.mvv_socialMediaIcon {
+  width: 24px;
+  height: 24px;
+}
+
 .mvv_footer_email,
 .mvv_socialMediaIcon {
   opacity: 0.5;
@@ -106,6 +111,8 @@
 .mvv_socialMediaIcon:hover {
   opacity: 1;
 }
+
+
 
 @media only screen and (max-width: 1000px) {
   .mvv_title {
