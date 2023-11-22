@@ -51,7 +51,12 @@ export default function NotificationPageContainer({
         <footer className="z-10 flex items-center justify-between w-full">
           {Object.values(MVV_ROUTES).map(({ path, pageName }) => (
             <div className="w-full text-center">
-              <Link href={path} className={styles.notifyPage_footer_pageLink}>
+              <Link
+                href={path}
+                target="_blank"
+                className={styles.notifyPage_footer_pageLink}
+                title="Open in new tab"
+              >
                 {pageName}
               </Link>
             </div>

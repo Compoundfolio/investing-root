@@ -1,11 +1,11 @@
 export const ROUTES_GUEST = {
-  HOME: "/",
+  HOME: "https://compoundfolio.com/",
   AUTH: "/auth",
 } as const
 
 export const ROUTES = {
   HOME: {
-    path: "/",
+    path: "https://compoundfolio.com/",
     pageName: "Web-site",
   },
   DASHBOARD: {
@@ -25,7 +25,7 @@ export const ROUTES = {
 export const MVV_ROUTES = {
   // TODO: Remove after MVV
   HOME: {
-    path: "/",
+    path: "https://compoundfolio.com/",
     pageName: "Web-site",
   },
   AUTH: {
