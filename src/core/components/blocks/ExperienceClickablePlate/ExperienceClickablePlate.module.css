@@ -1,0 +1,25 @@
+.experiencePlate {
+  padding: 27px;
+  display: flex;
+  flex-direction: column;
+  transition: background 1s linear;
+  cursor: pointer;
+  border-left: 2px solid var(--color-gray4C);
+}
+
+.experiencePlate:hover {
+  background: linear-gradient(0deg, rgba(18, 144, 255, 0.00) 0%, rgba(18, 144, 255, 0.03) 31.03%, rgba(18, 144, 255, 0.01) 58.99%);
+}
+
+.experiencePlate__title {
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.experiencePlate__subTitle {
+  color: var(--color-white);
+  opacity: 0.5;
+  font-size: 16px;
+  font-weight: 500;
+}

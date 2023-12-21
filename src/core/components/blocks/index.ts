@@ -6,6 +6,7 @@ export { default as FileUploadArea } from "./FileUploadArea"
 export { default as Asset } from "./Asset"
 export { default as InModalWarning } from "./InModalWarning"
 export { default as NotificationPageContainer } from "./NotificationPageContainer"
+export { default as ExperienceClickablePlate } from "./ExperienceClickablePlate"
 
 export * from "./emptyStates"
 export * from "./cards"

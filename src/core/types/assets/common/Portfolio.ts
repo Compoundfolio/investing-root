@@ -16,4 +16,5 @@ export type Portfolio = {
   totalReturnPercentage: number
   annualIncome: number
   brokerages: PortfolioBrokerage[]
+  transactions: Transaction[] | []
 }

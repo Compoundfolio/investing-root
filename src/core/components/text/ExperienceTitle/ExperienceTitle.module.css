@@ -1,0 +1,17 @@
+.experienceTitle {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 106%;
+  letter-spacing: -0.72px;
+  background: linear-gradient(179deg, #FFF 0.64%, rgba(255, 255, 255, 0.38) 105.75%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.experienceSubTitle {
+  color: var(--color-grayAA);
+  text-align: center;
+  font-size: 18px;
+}
