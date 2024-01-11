@@ -2,16 +2,19 @@
   text-align: center;
   font-size: 36px;
   font-weight: 500;
-  line-height: 106%;
   letter-spacing: -0.72px;
-  background: linear-gradient(179deg, #FFF 0.64%, rgba(255, 255, 255, 0.38) 105.75%);
+  background: linear-gradient(-90deg, #FFF 0.64%, rgba(255, 255, 255, 0.38) 105.75%);
+  background: -webkit-linear-gradient(90deg, #FFF 0.64%, rgba(255, 255, 255, 0.38) 105.75%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+  margin-top: 48px;
 }
 
 .experienceSubTitle {
-  color: var(--color-grayAA);
+  color: #AAABC2;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
+  margin-bottom: 72px;
 }

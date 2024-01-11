@@ -16,6 +16,9 @@ type StepDetails = {
   progressPercentage: number
   breadcrumbTitle: string
   codeName: StepCodeName
+  isActive: boolean
+  isBlockedToBeFilled: boolean
+  blockedReasoning?: string
 }
 
 export type Steps = {
@@ -57,6 +60,8 @@ const BrokerageReportUploadStepper = () => {
       breadcrumbTitle: "Brokerages",
       Component: <>brokeragesSelection</>,
       progressPercentage: 33,
+      isActive: currentStepCodeName === "brokeragesSelection",
+      isBlockedToBeFilled: false,
     },
     reportsUpload: {
       codeName: "reportsUpload",
@@ -65,6 +70,8 @@ const BrokerageReportUploadStepper = () => {
       breadcrumbTitle: "Reports",
       Component: <>reportsUpload</>,
       progressPercentage: 66,
+      isActive: currentStepCodeName === "reportsUpload",
+      isBlockedToBeFilled: false,
     },
     results: {
       codeName: "results",
@@ -73,6 +80,10 @@ const BrokerageReportUploadStepper = () => {
       breadcrumbTitle: "Results",
       Component: <>results</>,
       progressPercentage: 100,
+      isActive: currentStepCodeName === "results",
+      isBlockedToBeFilled: true,
+      blockedReasoning:
+        "Please, fill choose brokerages and upload reports first.",
     },
   }
 
@@ -86,9 +97,13 @@ const BrokerageReportUploadStepper = () => {
         // subTitleLink={}
       />
       {/* {activeStep} */}
-      <div>
+      <div className="flex flex-col items-center">
         {/* <HelpText helpText={} link={} /> */}
-        <ActButton bigActButton onClick={handleContinue}>
+        <ActButton
+          className="min-w-[413px]"
+          color="primary"
+          onClick={handleContinue}
+        >
           Continue
         </ActButton>
         <BreadcrumbsStepperNavigation

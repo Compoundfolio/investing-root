@@ -1,20 +1,45 @@
 .experiencePlate {
-  padding: 27px;
+  height: 230px;
+  min-width: 364px;
+  padding-inline: 36px;
+  padding-block: 28px;
   display: flex;
   flex-direction: column;
   transition: background 1s linear;
   cursor: pointer;
-  border-left: 2px solid var(--color-gray4C);
+  border-left: 1px solid var(--color-gray4C);
+  position: relative;
+  z-index: 2 !important;
+}
+
+.experiencePlate__marker {
+  position: absolute;
+  left: -1px;
+  top: calc(50% - 6px);
+  width: 3px;
+  height: 20px;
+  background: var(--color-primary);
+  z-index: 999 !important;
+}
+
+.experiencePlate_lessVisible .experiencePlate__marker {
+  background: var(--color-gray4C);
 }
 
 .experiencePlate:hover {
   background: linear-gradient(0deg, rgba(18, 144, 255, 0.00) 0%, rgba(18, 144, 255, 0.03) 31.03%, rgba(18, 144, 255, 0.01) 58.99%);
 }
 
+.experiencePlate_lessVisible:hover {
+  background: linear-gradient(0deg, rgba(18, 144, 255, 0.00) 0%, rgba(18, 144, 255, 0.03) 31.03%, rgba(18, 144, 255, 0.01) 99.99%);
+
+}
+
 .experiencePlate__title {
   color: var(--color-white);
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 16px;
 }
 
 .experiencePlate__subTitle {
@@ -22,4 +47,12 @@
   opacity: 0.5;
   font-size: 16px;
   font-weight: 500;
+}
+
+.experiencePlate__iconWrap {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
 }

@@ -13,15 +13,17 @@ export default function InitialTransactionsUploadExperience() {
   } = useTransactionsUploadExperiences()
 
   return (
-    <section>
-      <ExperienceTitle
-        title="Selected portfolio is empty"
-        subTitle="To fill it add “transactions” by choosing any option bellow"
-      />
+    <section className="h-full">
       {!selectedTransactionsUploadExperienceName ? (
-        <TransactionUploadExperienceChoice
-          experiences={transactionsUploadExperiences}
-        />
+        <>
+          <ExperienceTitle
+            title="Selected portfolio is empty"
+            subTitle="To fill it add “transactions” by choosing any option bellow"
+          />
+          <TransactionUploadExperienceChoice
+            experiences={transactionsUploadExperiences}
+          />
+        </>
       ) : (
         ExperienceComponent
       )}

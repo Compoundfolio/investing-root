@@ -11,11 +11,11 @@ const LinearStepperProgressBar = ({
   return (
     <div role="progressbar" className={style.linearProgressBar}>
       <div
-        style={{
-          width: `${progressPercentage}%`,
-        }}
         className={style.linearProgressBar__progress}
-      ></div>
+        style={{
+          transform: `translateX(-${100 - progressPercentage}%)`,
+        }}
+      />
     </div>
   )
 }

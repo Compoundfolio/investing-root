@@ -1,3 +1,37 @@
+.breadcrumbsWrap {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
 .breadcrumbs {
-  
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs__item_button {
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  padding-inline: 4px;
+  border-radius: 4px;
+}
+
+.breadcrumbs__item_button:hover {
+  opacity: 1;
+  background-color: rgba(18, 144, 255, 0.25);
+}
+
+.breadcrumbs__item_button_active {
+  color: var(--color-primary);
+}
+
+.breadcrumbs__item_button_blocked {
+  color: var(--color-gray4C);
+  cursor: default;
+}
+
+.breadcrumbs__item_button_blocked:hover {
+  background-color: rgba(18, 144, 255, 0.05);
 }
