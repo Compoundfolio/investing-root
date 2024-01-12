@@ -4,6 +4,7 @@ import React, { ReactNode, useState } from "react"
 import { ROUTES } from "src/routing"
 import {
   BreadcrumbsStepperNavigation,
+  BrokerageSelectionArea,
   LinearStepperProgressBar,
 } from "./components"
 
@@ -29,6 +30,8 @@ const BrokerageReportUploadStepper = () => {
   const [currentStepCodeName, setCurrentStepCodeName] = useState<StepCodeName>(
     "brokeragesSelection"
   )
+  const [isContinueButtonDisabled, setIsContinueButtonDisabled] =
+    useState<boolean>(true)
 
   const router = useRouter()
 
@@ -56,9 +59,13 @@ const BrokerageReportUploadStepper = () => {
     brokeragesSelection: {
       codeName: "brokeragesSelection",
       title: "Selected your brokerages",
-      subTitle: "You can select several brokerages",
+      subTitle: "You can select several",
       breadcrumbTitle: "Brokerages",
-      Component: <>brokeragesSelection</>,
+      Component: (
+        <BrokerageSelectionArea
+          disableContinueButton={setIsContinueButtonDisabled}
+        />
+      ),
       progressPercentage: 33,
       isActive: currentStepCodeName === "brokeragesSelection",
       isBlockedToBeFilled: false,
@@ -90,19 +97,20 @@ const BrokerageReportUploadStepper = () => {
   const activeStep = steps[currentStepCodeName]
 
   return (
-    <div className="flex flex-col items-center justify-between">
+    <div className="flex flex-col items-center justify-between h-full">
       <ExperienceTitle
         title={activeStep.title}
         subTitle={activeStep.subTitle}
         // subTitleLink={}
       />
-      {/* {activeStep} */}
+      {activeStep.Component}
       <div className="flex flex-col items-center">
         {/* <HelpText helpText={} link={} /> */}
         <ActButton
           className="min-w-[413px]"
           color="primary"
           onClick={handleContinue}
+          disabled={isContinueButtonDisabled}
         >
           Continue
         </ActButton>
