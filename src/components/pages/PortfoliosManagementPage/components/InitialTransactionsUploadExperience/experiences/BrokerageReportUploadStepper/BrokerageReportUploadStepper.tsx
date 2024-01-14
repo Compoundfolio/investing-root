@@ -1,11 +1,12 @@
-import { ActButton, ExperienceTitle } from "@core"
+import { ActButton, ExperienceTitle, Option } from "@core"
 import { useRouter } from "next/navigation"
-import React, { ReactNode, useState } from "react"
+import React, { ReactNode, useCallback, useState } from "react"
 import { ROUTES } from "src/routing"
 import {
   BreadcrumbsStepperNavigation,
   BrokerageSelectionArea,
   LinearStepperProgressBar,
+  ReportsUploadArea,
 } from "./components"
 
 export type StepCodeName = "brokeragesSelection" | "reportsUpload" | "results"
@@ -33,6 +34,8 @@ const BrokerageReportUploadStepper = () => {
   const [isContinueButtonDisabled, setIsContinueButtonDisabled] =
     useState<boolean>(true)
 
+  const [selectedBrokerages, setSelectedBrokerages] = useState<Option[]>([])
+
   const router = useRouter()
 
   const handleContinue = () => {
@@ -55,6 +58,13 @@ const BrokerageReportUploadStepper = () => {
     }
   }
 
+  const createHandleFileUpload = useCallback(
+    (brokerage: Option) => (file: File) => {
+      // TODO: Server req.
+    },
+    []
+  )
+
   const steps: Steps = {
     brokeragesSelection: {
       codeName: "brokeragesSelection",
@@ -63,6 +73,8 @@ const BrokerageReportUploadStepper = () => {
       breadcrumbTitle: "Brokerages",
       Component: (
         <BrokerageSelectionArea
+          selectedBrokerages={selectedBrokerages}
+          setSelectedBrokerages={setSelectedBrokerages}
           disableContinueButton={setIsContinueButtonDisabled}
         />
       ),
@@ -75,7 +87,12 @@ const BrokerageReportUploadStepper = () => {
       title: "Upload brokerage reports",
       subTitle: "Where to get brokerage reports?",
       breadcrumbTitle: "Reports",
-      Component: <>reportsUpload</>,
+      Component: (
+        <ReportsUploadArea
+          selectedBrokerages={selectedBrokerages}
+          createHandleFileUpload={createHandleFileUpload}
+        />
+      ),
       progressPercentage: 66,
       isActive: currentStepCodeName === "reportsUpload",
       isBlockedToBeFilled: false,
@@ -97,7 +114,7 @@ const BrokerageReportUploadStepper = () => {
   const activeStep = steps[currentStepCodeName]
 
   return (
-    <div className="flex flex-col items-center justify-between h-full">
+    <div className="flex flex-col items-center justify-between h-full gap-[72px]">
       <ExperienceTitle
         title={activeStep.title}
         subTitle={activeStep.subTitle}

@@ -18,7 +18,7 @@ import {
   PortfolioNameChanger,
   TransactionsUploadResults,
 } from "./components"
-import TransactionsUploadArea from "./components/TransactionsUploadArea/TransactionsUploadArea"
+import TransactionsUploadArea from "../InitialTransactionsUploadExperience/experiences/BrokerageReportUploadStepper/components/stepContent/ReportsUploadArea/ReportsUploadArea"
 import styles from "./PortfolioManagementArea.module.css"
 import usePortfolioManagerContext from "../../context/PortfolioManagerContextData/hook"
 import clsx from "clsx"

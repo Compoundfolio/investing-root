@@ -1,1 +1,2 @@
-export * from './BrokerageSelectionArea';
+export * from "./BrokerageSelectionArea"
+export * from "./ReportsUploadArea"

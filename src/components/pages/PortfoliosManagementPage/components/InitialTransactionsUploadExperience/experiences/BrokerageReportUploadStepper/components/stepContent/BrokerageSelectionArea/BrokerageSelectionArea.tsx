@@ -1,18 +1,20 @@
-import React, { memo, useCallback, useMemo, useState } from "react"
+import React, { memo, useCallback, useMemo } from "react"
 import styles from "./BrokerageSelectionArea.module.css"
 import clsx from "clsx"
 import { allSupportedBrokerages } from "./consts"
 import { Option, removeObjectFromArrayOfObjects } from "@core"
 
 interface IBrokerageSelectionArea {
+  selectedBrokerages: Option[]
+  setSelectedBrokerages: React.Dispatch<React.SetStateAction<Option[]>>
   disableContinueButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const BrokerageSelectionArea = ({
+  selectedBrokerages,
+  setSelectedBrokerages,
   disableContinueButton,
 }: IBrokerageSelectionArea) => {
-  const [selectedBrokerages, setSelectedBrokerages] = useState<Option[]>([])
-
   const selectedBrokerageIds: Option["id"][] = useMemo(() => {
     return selectedBrokerages?.flatMap(({ id }) => id) ?? []
   }, [selectedBrokerages])

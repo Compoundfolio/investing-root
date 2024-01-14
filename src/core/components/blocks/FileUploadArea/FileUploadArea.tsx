@@ -10,14 +10,16 @@ import { colors } from "src/core/theme"
 
 export interface IFileUploadArea {
   title: string
-  handleFileUpload: (file: File) => void
   acceptFiles?: InputHTMLAttributes<HTMLInputElement>["accept"]
+  index?: number
+  handleFileUpload: (file: File) => void
 }
 
 const FileUploadArea = ({
   title,
-  handleFileUpload,
   acceptFiles,
+  index = 1,
+  handleFileUpload,
 }: IFileUploadArea) => {
   const {
     file,
@@ -56,6 +58,7 @@ const FileUploadArea = ({
             </div>
           ) : (
             <UploadedFileRepresentation
+              index={index}
               fileName={file.name}
               userFriendlyFileSize={userFriendlyFileMbSize}
             />

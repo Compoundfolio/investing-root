@@ -5,16 +5,18 @@ import { FileIcon } from "src/core/components/icons"
 interface IUploadedFileRepresentation {
   userFriendlyFileSize: string
   fileName: string
+  index?: number
 }
 
 const UploadedFileRepresentation = ({
   userFriendlyFileSize,
   fileName,
+  index = 1,
 }: IUploadedFileRepresentation) => {
   return (
     <div className={styles.fileRepresentation__wrapper}>
       <div className="flex items-center justify-between">
-        <span>1 //</span>
+        <span>{index} //</span>
         <span>{userFriendlyFileSize}</span>
       </div>
       <div className="flex items-center justify-center">
