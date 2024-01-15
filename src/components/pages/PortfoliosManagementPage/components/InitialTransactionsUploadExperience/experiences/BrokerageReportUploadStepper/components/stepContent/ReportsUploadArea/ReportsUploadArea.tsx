@@ -1,16 +1,27 @@
 import { FileUploadArea, Option } from "@core"
-import React, { memo } from "react"
+import React, { memo, useEffect } from "react"
 import styles from "./ReportsUploadArea.module.css"
 
 interface IReportsUploadArea {
+  uploadedReports: string[]
   selectedBrokerages: Option[]
   createHandleFileUpload: (brokerage: Option) => (file: File) => void
+  disableContinueButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ReportsUploadArea = ({
+  uploadedReports,
   selectedBrokerages,
   createHandleFileUpload,
+  disableContinueButton,
 }: IReportsUploadArea) => {
+  useEffect(() => {
+    const disableButton = !(
+      uploadedReports.length === selectedBrokerages.length
+    )
+    disableContinueButton(disableButton)
+  }, [uploadedReports, selectedBrokerages])
+
   return (
     <section className="flex gap-9">
       {selectedBrokerages.map((selectedBrokerageOption, index) => (

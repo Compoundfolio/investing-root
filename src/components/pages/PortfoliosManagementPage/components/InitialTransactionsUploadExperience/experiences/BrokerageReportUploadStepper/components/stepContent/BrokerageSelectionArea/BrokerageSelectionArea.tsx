@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from "react"
+import React, { memo, useCallback, useEffect, useMemo } from "react"
 import styles from "./BrokerageSelectionArea.module.css"
 import clsx from "clsx"
 import { allSupportedBrokerages } from "./consts"
@@ -34,6 +34,11 @@ const BrokerageSelectionArea = ({
     },
     [selectedBrokerages]
   )
+
+  useEffect(() => {
+    const isAnyBrokerageSelected = !!selectedBrokerages.length
+    disableContinueButton(!isAnyBrokerageSelected)
+  }, [selectedBrokerages])
 
   return (
     <ul className={styles.optionsList}>

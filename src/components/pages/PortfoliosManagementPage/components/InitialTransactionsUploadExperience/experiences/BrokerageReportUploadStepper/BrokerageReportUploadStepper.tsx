@@ -4,6 +4,7 @@ import React, { ReactNode, useCallback, useState } from "react"
 import { ROUTES } from "src/routing"
 import {
   BreadcrumbsStepperNavigation,
+  BrokerageReportsUploadResults,
   BrokerageSelectionArea,
   LinearStepperProgressBar,
   ReportsUploadArea,
@@ -33,8 +34,8 @@ const BrokerageReportUploadStepper = () => {
   )
   const [isContinueButtonDisabled, setIsContinueButtonDisabled] =
     useState<boolean>(true)
-
   const [selectedBrokerages, setSelectedBrokerages] = useState<Option[]>([])
+  const [uploadedReports, setUploadedReports] = useState<string[]>([])
 
   const router = useRouter()
 
@@ -60,9 +61,13 @@ const BrokerageReportUploadStepper = () => {
 
   const createHandleFileUpload = useCallback(
     (brokerage: Option) => (file: File) => {
+      if (!uploadedReports.includes(brokerage.value) && file) {
+        const newUploadedReports = [...uploadedReports, brokerage.value]
+        setUploadedReports(newUploadedReports)
+      }
       // TODO: Server req.
     },
-    []
+    [uploadedReports, setUploadedReports]
   )
 
   const steps: Steps = {
@@ -89,8 +94,10 @@ const BrokerageReportUploadStepper = () => {
       breadcrumbTitle: "Reports",
       Component: (
         <ReportsUploadArea
+          uploadedReports={uploadedReports}
           selectedBrokerages={selectedBrokerages}
           createHandleFileUpload={createHandleFileUpload}
+          disableContinueButton={setIsContinueButtonDisabled}
         />
       ),
       progressPercentage: 66,
@@ -102,7 +109,11 @@ const BrokerageReportUploadStepper = () => {
       title: "Results",
       subTitle: "Manage transactions manually",
       breadcrumbTitle: "Results",
-      Component: <>results</>,
+      Component: (
+        <BrokerageReportsUploadResults
+          selectedBrokerages={selectedBrokerages}
+        />
+      ),
       progressPercentage: 100,
       isActive: currentStepCodeName === "results",
       isBlockedToBeFilled: true,
@@ -112,6 +123,8 @@ const BrokerageReportUploadStepper = () => {
   }
 
   const activeStep = steps[currentStepCodeName]
+  const continueButtonName =
+    currentStepCodeName === "results" ? "Build dashboard" : "Continue"
 
   return (
     <div className="flex flex-col items-center justify-between h-full gap-[72px]">
@@ -129,7 +142,7 @@ const BrokerageReportUploadStepper = () => {
           onClick={handleContinue}
           disabled={isContinueButtonDisabled}
         >
-          Continue
+          {continueButtonName}
         </ActButton>
         <BreadcrumbsStepperNavigation
           steps={steps}
