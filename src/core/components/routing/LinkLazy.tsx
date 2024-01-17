@@ -7,10 +7,12 @@ import clsx from "clsx"
 import styles from "./LinkLazy.module.css"
 import { usePathname } from "next/navigation"
 
-const LinkLazy = ({ children, to, withoutLiWrapper = false }: ILinkLazy) => {
-  // TODO: Add local env check
-  if (!to.startsWith("/")) throw new Error("Link should starts with `/`")
-
+const LinkLazy = ({
+  children,
+  /** @example "/example-route" */
+  to,
+  withoutLiWrapper = false,
+}: ILinkLazy) => {
   const pathname = usePathname()
 
   const isActive = pathname === to

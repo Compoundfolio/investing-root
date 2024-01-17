@@ -1,10 +1,11 @@
-import React, { memo } from "react"
+import React, { ReactNode, memo } from "react"
 import style from "./ExperienceTitle.module.css"
 
 interface IExperienceTitle {
   title: string
   subTitle?: string
   className?: string
+  subTitleLink?: ReactNode
 }
 
 /**
@@ -15,12 +16,15 @@ interface IExperienceTitle {
 function ExperienceTitle({
   title,
   subTitle,
+  subTitleLink,
   className = "",
 }: IExperienceTitle) {
   return (
     <div className={`flex flex-col items-center ${className}`}>
       <h1 className={style.experienceTitle}>{title}</h1>
-      <span className={style.experienceSubTitle}>{subTitle}</span>
+      {subTitleLink ?? (
+        <span className={style.experienceSubTitle}>{subTitle}</span>
+      )}
     </div>
   )
 }

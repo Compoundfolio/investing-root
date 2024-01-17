@@ -1,9 +1,10 @@
-import { ActButton, ExperienceTitle, Option } from "@core"
+import { ActButton, ExperienceTitle, LinkCustom, Option, useOpen } from "@core"
 import { useRouter } from "next/navigation"
 import React, { ReactNode, useCallback, useState } from "react"
 import { ROUTES } from "src/routing"
 import {
   BreadcrumbsStepperNavigation,
+  BrokerageReportGuideModal,
   BrokerageReportsUploadResults,
   BrokerageSelectionArea,
   LinearStepperProgressBar,
@@ -14,7 +15,8 @@ export type StepCodeName = "brokeragesSelection" | "reportsUpload" | "results"
 
 type StepDetails = {
   title: string
-  subTitle: string
+  subTitle?: string
+  subTitleLink?: ReactNode
   Component: ReactNode
   progressPercentage: number
   breadcrumbTitle: string
@@ -36,6 +38,7 @@ const BrokerageReportUploadStepper = () => {
     useState<boolean>(true)
   const [selectedBrokerages, setSelectedBrokerages] = useState<Option[]>([])
   const [uploadedReports, setUploadedReports] = useState<string[]>([])
+  const [isReportGuideDrawerOpen, _, setIsReportGuideDrawerOpen] = useOpen()
 
   const router = useRouter()
 
@@ -90,7 +93,13 @@ const BrokerageReportUploadStepper = () => {
     reportsUpload: {
       codeName: "reportsUpload",
       title: "Upload brokerage reports",
-      subTitle: "Where to get brokerage reports?",
+      subTitleLink: (
+        <LinkCustom
+          className="text-lg"
+          title="Where to get brokerage reports?"
+          onClick={() => setIsReportGuideDrawerOpen(true)}
+        />
+      ),
       breadcrumbTitle: "Reports",
       Component: (
         <ReportsUploadArea
@@ -127,33 +136,40 @@ const BrokerageReportUploadStepper = () => {
     currentStepCodeName === "results" ? "Build dashboard" : "Continue"
 
   return (
-    <div className="flex flex-col items-center justify-between h-full gap-[72px]">
-      <ExperienceTitle
-        title={activeStep.title}
-        subTitle={activeStep.subTitle}
-        // subTitleLink={}
-      />
-      {activeStep.Component}
-      <div className="flex flex-col items-center">
-        {/* <HelpText helpText={} link={} /> */}
-        <ActButton
-          className="min-w-[413px]"
-          color="primary"
-          onClick={handleContinue}
-          disabled={isContinueButtonDisabled}
-        >
-          {continueButtonName}
-        </ActButton>
-        <BreadcrumbsStepperNavigation
-          steps={steps}
-          currentStepCodeName={currentStepCodeName}
-          handleStepChange={handleStepChange}
+    <>
+      <div className="flex flex-col items-center justify-between h-full gap-[72px]">
+        <ExperienceTitle
+          title={activeStep.title}
+          subTitle={activeStep.subTitle}
+          subTitleLink={activeStep.subTitleLink}
+        />
+        {activeStep.Component}
+        <div className="flex flex-col items-center">
+          {/* <HelpText helpText={} link={} /> */}
+          <ActButton
+            className="min-w-[413px]"
+            color="primary"
+            onClick={handleContinue}
+            disabled={isContinueButtonDisabled}
+          >
+            {continueButtonName}
+          </ActButton>
+          <BreadcrumbsStepperNavigation
+            steps={steps}
+            currentStepCodeName={currentStepCodeName}
+            handleStepChange={handleStepChange}
+          />
+        </div>
+        <LinearStepperProgressBar
+          progressPercentage={activeStep.progressPercentage}
         />
       </div>
-      <LinearStepperProgressBar
-        progressPercentage={activeStep.progressPercentage}
+      <BrokerageReportGuideModal
+        isOpen={isReportGuideDrawerOpen}
+        setIsOpen={setIsReportGuideDrawerOpen}
+        brokerages={selectedBrokerages}
       />
-    </div>
+    </>
   )
 }
 
