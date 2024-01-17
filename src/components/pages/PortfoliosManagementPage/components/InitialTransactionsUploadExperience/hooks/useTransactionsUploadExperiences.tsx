@@ -7,7 +7,10 @@ import {
   TestPortfolioIcon,
   UploadBrokerageReportIcon,
 } from "../components"
-import { BrokerageReportUploadStepper } from "../experiences"
+import {
+  BrokerageReportUploadStepper,
+  ManualTransactionManagement,
+} from "../experiences"
 
 const useTransactionsUploadExperiences = () => {
   const [
@@ -36,7 +39,7 @@ const useTransactionsUploadExperiences = () => {
         setSelectedTransactionsUploadExperienceName("manually")
       },
       icon: <ManualTransactionManagementIcon />,
-      ExperienceComponent: <></>,
+      ExperienceComponent: <ManualTransactionManagement />,
     },
     {
       name: "testPortfolio",

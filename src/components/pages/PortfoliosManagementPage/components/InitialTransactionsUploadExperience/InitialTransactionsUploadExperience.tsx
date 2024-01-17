@@ -19,6 +19,7 @@ export default function InitialTransactionsUploadExperience() {
           <ExperienceTitle
             title="Selected portfolio is empty"
             subTitle="To fill it add “transactions” by choosing any option bellow"
+            className="mb-[72px]"
           />
           <TransactionUploadExperienceChoice
             experiences={transactionsUploadExperiences}
