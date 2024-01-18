@@ -95,7 +95,7 @@ const BrokerageReportUploadStepper = () => {
       title: "Upload brokerage reports",
       subTitleLink: (
         <LinkCustom
-          className="text-lg"
+          className="text-xl"
           title="Where to get brokerage reports?"
           onClick={() => setIsReportGuideDrawerOpen(true)}
         />

@@ -18,7 +18,7 @@ const LinkCustom = ({
   className,
   onClick,
 }: ILinkCustom) => {
-  const styleClasses = clsx([className, styles.link])
+  const styleClasses = clsx([styles.link, className])
 
   return to ? (
     <Link className={styleClasses} href={to}>
