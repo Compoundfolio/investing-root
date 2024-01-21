@@ -13,6 +13,7 @@ const colors = {
   grayAA: "#AAABC2",
   pinkSoft: "#CF6679",
   gray4C: "#4C596B",
+  grayC4: "#4C596B",
   yellow: "#F3BB38",
   primary: "#1290FF",
 } as const

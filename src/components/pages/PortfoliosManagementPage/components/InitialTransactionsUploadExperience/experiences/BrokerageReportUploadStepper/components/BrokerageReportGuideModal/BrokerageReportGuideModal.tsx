@@ -1,5 +1,6 @@
 import { Drawer, IDrawer, Option } from "@core"
-import React, { memo } from "react"
+import React, { memo, useState } from "react"
+import { BrokerageSelector } from "./components"
 
 interface IBrokerageReportGuideModal
   extends Pick<IDrawer, "isOpen" | "setIsOpen"> {
@@ -11,6 +12,10 @@ const BrokerageReportGuideModal = ({
   setIsOpen,
   brokerages,
 }: IBrokerageReportGuideModal) => {
+  const [selectedBrokerage, setSelectedBrokerage] = useState<Option>(
+    brokerages[0]
+  )
+
   const drawerTitle = (
     <>
       {/* Where to get <span className="font-semibold">{brokerages.TODO}</span>{" "} */}
@@ -21,8 +26,13 @@ const BrokerageReportGuideModal = ({
 
   return (
     <Drawer isOpen={isOpen} setIsOpen={setIsOpen} title={drawerTitle}>
-      {/* {brokerages.reportDownloadGuideComponent} */}
-      hi
+      <BrokerageSelector
+        selectedBrokerage={selectedBrokerage}
+        brokerages={brokerages}
+        setSelectedBrokerage={setSelectedBrokerage}
+      />
+      {/* @ts-ignore */}
+      {selectedBrokerage?.data?.reportGuide}
     </Drawer>
   )
 }
