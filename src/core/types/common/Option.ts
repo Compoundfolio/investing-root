@@ -1,11 +1,10 @@
 import { ID } from "../ids"
-import { ReactNode } from "react"
 
 type Option<TData = unknown> = {
   id: ID
   value: string
   label: string
-  icon?: ReactNode
+  icon: (size?: number) => JSX.Element
   data?: TData
 }
 

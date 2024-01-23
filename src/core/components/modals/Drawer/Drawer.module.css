@@ -1,6 +1,6 @@
 .drawer {
   z-index: 5;
-  background-color: rgba(18, 33, 38, 0.925);
+  background-color: rgba(18, 33, 38, 1);
   border-left: 1px var(--color-gray4C) solid;
   width: 500px !important;
   padding-inline: 64px;

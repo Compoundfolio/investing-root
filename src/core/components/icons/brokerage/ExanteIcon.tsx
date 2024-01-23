@@ -10,10 +10,10 @@ const ExanteIcon = ({ size = 32 }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect width={size} height={size} fill="url(#pattern0)" />
+      <rect width={size} height={size} fill="url(#pattern110)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="pattern110"
           patternContentUnits="objectBoundingBox"
           width={1}
           height={1}

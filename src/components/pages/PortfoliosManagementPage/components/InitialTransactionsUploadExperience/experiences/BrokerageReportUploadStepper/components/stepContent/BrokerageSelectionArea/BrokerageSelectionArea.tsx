@@ -54,7 +54,7 @@ const BrokerageSelectionArea = ({
               selectOption(option, selectedBrokerageIds.includes(option.id))
             }
           >
-            {option?.icon}
+            {option.icon()}
             {option.label}
           </button>
         </li>
