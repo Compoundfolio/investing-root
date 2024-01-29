@@ -50,6 +50,7 @@
 .brokerageSelector__item__active {
   opacity: 1;
   border-radius: 4px;
+  outline: 1px var(--color-heavyGreen) solid;
 }
 
 .activeItemMark {
