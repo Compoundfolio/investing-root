@@ -18,8 +18,7 @@ const BrokerageReportGuideModal = ({
 
   const drawerTitle = (
     <>
-      {/* Where to get <span className="font-semibold">{brokerages.TODO}</span>{" "} */}
-      Where to get <span className="font-semibold">Exante</span> brokerage
+      Where to get <span className="font-semibold">{selectedBrokerage.label}</span> brokerage
       report?
     </>
   )

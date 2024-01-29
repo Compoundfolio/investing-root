@@ -2,8 +2,8 @@
   z-index: 5;
   background-color: rgba(18, 33, 38, 1);
   border-left: 1px var(--color-gray4C) solid;
-  width: 500px !important;
-  padding-inline: 64px;
+  width: 430px !important;
+  padding-inline: 32px;
   padding-block: 40px;
   display: flex;
   flex-direction: column;

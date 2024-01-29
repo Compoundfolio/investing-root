@@ -164,11 +164,13 @@ const BrokerageReportUploadStepper = () => {
           progressPercentage={activeStep.progressPercentage}
         />
       </div>
-      <BrokerageReportGuideModal
-        isOpen={isReportGuideDrawerOpen}
-        setIsOpen={setIsReportGuideDrawerOpen}
-        brokerages={selectedBrokerages}
-      />
+      {currentStepCodeName === "reportsUpload" && (
+        <BrokerageReportGuideModal
+          isOpen={isReportGuideDrawerOpen}
+          setIsOpen={setIsReportGuideDrawerOpen}
+          brokerages={selectedBrokerages}
+        />
+      )}
     </>
   )
 }

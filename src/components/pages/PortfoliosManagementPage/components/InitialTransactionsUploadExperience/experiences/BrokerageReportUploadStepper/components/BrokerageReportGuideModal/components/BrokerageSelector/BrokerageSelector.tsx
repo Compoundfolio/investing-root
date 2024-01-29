@@ -61,6 +61,7 @@ const BrokerageSelector = ({
                   />
                 </div>
               )}
+              {isSelected && <div className={styles.activeItemMark_bg} />}
             </ol>
           )
         })}
