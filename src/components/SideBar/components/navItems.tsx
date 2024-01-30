@@ -7,9 +7,14 @@ const navItems = [
     child: <DashboardPageIcon />,
   },
   {
-    pageTitle: "Community",
-    path: "/community",
-    child: <>todo</>,
+    pageTitle: "Goals",
+    path: "/goals",
+    child: <>todo 1</>,
+  },
+  {
+    pageTitle: "Income",
+    path: "/income",
+    child: <>todo 2</>,
   },
 ] as const
 

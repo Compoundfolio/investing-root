@@ -1,0 +1,34 @@
+.dashboard_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: var(--dashboard-visualizations-gap);
+}
+
+.dashboard_column {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dashboard-visualizations-gap);
+}
+
+.dashboard_column_visualizations_wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: calc(100vh - 32px) calc(
+      100vh - 32px - var(--dashboard-visualizations-gap)
+    );
+  gap: var(--dashboard-visualizations-gap);
+}
+
+.dashboard_column_visualizations__item_1 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dashboard-visualizations-gap);
+}
+
+.fitContent {
+  width: fit-content;
+}
