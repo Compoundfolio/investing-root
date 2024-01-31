@@ -42,7 +42,7 @@ select:-webkit-autofill {
 /* TODO: Pass another place */
 @layer components {
   .chartStatsNumber {
-    font-family: "var(--font-chakra)";
+    font-family: var(--font-chakra);
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -109,7 +109,7 @@ select:-webkit-autofill {
   .lineChartMarkersText {
     color: var(--color-gold);
     font-size: 12px;
-    font-family: "var(--font-chakra)";
+    font-family: var(--font-chakra);
     opacity: 0.5;
     position: absolute;
   }
