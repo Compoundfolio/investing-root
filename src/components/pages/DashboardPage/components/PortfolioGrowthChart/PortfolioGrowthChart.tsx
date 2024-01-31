@@ -5,7 +5,7 @@ import { ResponsiveLine } from "@nivo/line"
 import { chartContainerStyled } from "./styled"
 import { linearGradientDef } from "@nivo/core"
 import { colors } from "@core"
-import { ChartTooltip } from "./components"
+import { ChartTooltip, DatePeriodFilters } from "./components"
 import { useValueChartData } from "./hooks"
 
 const POSITIVE_COLOR = colors.darkGreen
@@ -48,6 +48,9 @@ const PortfolioGrowthChart = ({ ...restProps }) => {
 
   return (
     <section {...restProps} style={chartContainerStyled} id="valueChart">
+      <div>
+        <DatePeriodFilters />
+      </div>
       <ResponsiveLine
         {...properties}
         enableGridX={false}
