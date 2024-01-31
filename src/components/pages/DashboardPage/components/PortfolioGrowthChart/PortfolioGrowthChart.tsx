@@ -16,8 +16,24 @@ const properties = {
   animate: true,
 }
 
+const HARD_CODED_DATA = [
+  { x: "2024-01-01", y: 15500 },
+  { x: "2024-01-02", y: 15000 },
+  { x: "2024-01-03", y: 15000.78 },
+  { x: "2024-01-04", y: 14920 },
+  { x: "2024-01-05", y: 15920 },
+  { x: "2024-01-06", y: 15920 },
+  { x: "2024-01-07", y: 16420 },
+  { x: "2024-01-08", y: 16520 },
+  { x: "2024-01-09", y: 16220 },
+  { x: "2024-01-10", y: 16020 },
+  { x: "2024-01-11", y: 17020 },
+  { x: "2024-01-12", y: 17120 },
+]
+
 const PortfolioGrowthChart = ({ ...restProps }) => {
-  const data = useValueChartData()
+  // const data = useValueChartData()
+  const data = HARD_CODED_DATA
 
   const [oldestDateItem, earliestDateItem, minPriceValue, maxPriceValue] =
     useMemo(
