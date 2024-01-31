@@ -7,7 +7,7 @@
 }
 
 .ratioChart__total {
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 24px;
   font-style: normal;
   font-weight: 500;

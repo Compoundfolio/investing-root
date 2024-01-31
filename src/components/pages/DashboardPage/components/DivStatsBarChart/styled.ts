@@ -12,7 +12,7 @@ export const barChartContainerStyle = ({
     justifyContent: "space-between",
     "& text[dominant-baseline=central]": {
       fontSize: `${openedInModal ? "10" : "8"}px !important`,
-      fontFamily: "Chakra Petch !important",
+      fontFamily: "var(--font-chakra)!important",
       fontWeight: openedInModal ? 900 : 300,
       fill: `${openedInModal ? colors.white : colors.whiteEasy} !important`,
     },

@@ -6,6 +6,17 @@ import { DebugObserver } from "src/utils"
 import { ReactQueryProvider, RecoilRootWrapper } from "./rootWrappers"
 import clsx from "clsx"
 import { SideBar } from "@srcComponents"
+//👇 Import Open Sans font
+import { Chakra_Petch } from "next/font/google"
+
+//👇 Configure our font object
+const chakra = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "block",
+  variable: "--font-chakra",
+})
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -25,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={chakra.variable}>
       <head>
         <link rel="icon" href="/fav.png" sizes="any" />
       </head>

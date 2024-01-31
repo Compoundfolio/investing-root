@@ -3,7 +3,7 @@
   height: 135px;
   border-radius: 4px;
   padding: 16px;
-  font-family: "Chakra Petch";
+  font-family: "var(--font-chakra)";
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,7 +24,7 @@
 }
 
 .numberBlock_content__number {
-  font-family: "Chakra Petch";
+  font-family: "var(--font-chakra)";
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -38,7 +38,7 @@
 }
 
 .numberBlock_content__description {
-  font-family: "Chakra Petch";
+  font-family: "var(--font-chakra)";
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
@@ -53,7 +53,7 @@
 }
 
 .numberBlock_head__item_name {
-  font-family: "Chakra Petch";
+  font-family: "var(--font-chakra)";
   font-style: normal;
   font-weight: 300;
   font-size: 12px;

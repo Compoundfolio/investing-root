@@ -13,7 +13,7 @@
   text-align: center;
   color: var(--color-);
   text-align: right;
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

@@ -1,5 +1,5 @@
 .fileRepresentation__wrapper {
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 12px;
   font-style: normal;
   font-weight: 300;

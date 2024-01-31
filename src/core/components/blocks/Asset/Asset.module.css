@@ -11,7 +11,7 @@
 .asset_ticker {
   color: var(--color-blueDark28);
   text-align: center;
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 7px;
   font-style: normal;
   font-weight: 500;

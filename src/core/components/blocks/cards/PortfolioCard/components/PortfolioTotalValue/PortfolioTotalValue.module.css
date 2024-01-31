@@ -6,7 +6,7 @@
   text-align: center;
   color: var(--color-white);
   text-align: center;
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

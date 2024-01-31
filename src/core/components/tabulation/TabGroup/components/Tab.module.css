@@ -21,7 +21,7 @@
 .tabGroup_tab_entityAmount {
   margin-left: 6px;
   text-align: center;
-  font-family: Chakra Petch;
+  font-family: var(--font-chakra);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

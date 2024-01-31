@@ -16,7 +16,7 @@ const ColorizedNumber = ({
   // TODO: Pass in other form
   const styles = {
     color: color ?? getColorByGainNumber(number),
-    fontFamily: "Chakra Petch",
+    fontFamily: "var(--font-chakra)",
     fontWeight: isPercentage ? (isExtraBold ? 700 : 500) : 400,
     fontSize: isPercentage ? 14 : 13,
   }
