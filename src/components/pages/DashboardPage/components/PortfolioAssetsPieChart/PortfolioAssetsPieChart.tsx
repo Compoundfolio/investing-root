@@ -1,29 +1,15 @@
 "use client"
 
+// TODO: Finish Refactor
+
 import { ResponsivePie } from "@nivo/pie"
-import { memo, useMemo, useState, useRef } from "react"
+import { memo, useMemo, useState, useRef, useEffect } from "react"
 import styles from "./PortfolioAssetsPieChart.module.css"
-import { NormalizedPositions, colors } from "@core"
+import { NormalizedPositions, colors, parseNumberToFixed2 } from "@core"
 import { useBrokeragesData } from "src/store"
 import { ChartTypeSwitcher } from "./components"
-
-type DataItem = {
-  id: string
-  label: string
-  value: number
-}
-type Data = DataItem[]
-
-const getChartDataSet = (openPositions: NormalizedPositions): Data => {
-  // @ts-ignore - TODO: Resolve after MVV stage
-  return openPositions
-    ? Object.entries(openPositions).map(([ticker, assets]) => ({
-        id: ticker,
-        label: ticker,
-        value: assets.actualPositionPrice,
-      }))
-    : []
-}
+import clsx from "clsx"
+import { Data, DataItem, PieItem } from "./types"
 
 const HARD_CODED_DATA: DataItem[] = [
   { id: "k34", label: "TSCO", value: 140 },
@@ -42,9 +28,8 @@ const { darkLightGreen, lightGreen, darkGreen, gold, grayD9 } = colors
 const CHART_COLORS_LIST = [darkLightGreen, lightGreen, darkGreen, gold, grayD9]
 
 const PortfolioAssetsPieChart = () => {
-  const [selectedEntityPiePercentage, setSelectedEntityPiePercentage] =
-    useState(0)
-  const [selectedEntityLabel, setSelectedEntityLabel] = useState("")
+  const [selectedPieEntity, setSelectedPieEntityPiePercentage] =
+    useState<PieItem | null>(null)
   const { brokerageEntities } = useBrokeragesData()
 
   const dataSet = HARD_CODED_DATA
@@ -58,52 +43,67 @@ const PortfolioAssetsPieChart = () => {
     return previousValue + currentValue.value
   }, 0)
 
-  const handleHover = (item: DataItem) => {
-    const hoveredEntityPiePercentage = (item.value / totalAssetsSum) * 100
-    setSelectedEntityPiePercentage(hoveredEntityPiePercentage)
-    setSelectedEntityLabel(item.label)
+  const handleHover = (item: PieItem) => {
+    const hoveredEntityPiePercentage = parseNumberToFixed2(
+      (item.value / totalAssetsSum) * 100
+    )!
+
+    setSelectedPieEntityPiePercentage({
+      ...item,
+      value: parseNumberToFixed2(item.value)!,
+      percentage: hoveredEntityPiePercentage,
+    })
   }
 
-  const [activeItem, setActiveItem] = useState<DataItem | null>(null)
-  const [fillItems, setFillItems] = useState([])
+  const [activeItem, setActiveItem] = useState<PieItem | null>(null)
+  const [fillItems, setFillItems] = useState<PieItem[]>([])
 
-  // useEffect(() => {
-  //  if (activeItem && (activeItem as DataItem).id) {
-  //     setFillItems(
-  //       dataSet.map((item) => ({
-  //         match: { id: item.id },
-  //         id: item.id === (activeItem as DataItem).id ? "lines" : "opacity",
-  //       }))
-  //     );
-  //   } else {
-  //     setFillItems([]);
-  //   }
-  // }, [activeItem]);
+  useEffect(() => {
+    if (activeItem && (activeItem as PieItem).id) {
+      setFillItems(
+        // @ts-ignore
+        dataSet.map((item) => ({
+          match: { id: item.id },
+          id: item.id === (activeItem as PieItem).id ? "lines" : "opacity",
+        }))
+      )
+    } else {
+      setFillItems([])
+    }
+  }, [activeItem])
 
   const ref = useRef()
 
   return (
     // <section className={clsx(styles.pieChartContainer, 'relative')} ref={ref}>
     <section className="relative">
-      <div className="absolute flex flex-col items-center justify-center w-full text-white top-1/2 gap-0.5">
-        <span className={styles.pieChart__focusedItem_label}>
-          [ {selectedEntityLabel} ]
-        </span>
-        <span className={styles.pieChart__focusedItem_percentage}>
-          {selectedEntityPiePercentage.toFixed(2)}%
-        </span>
-        <span className={styles.pieChart__focusedItem_label}>
-          [ {selectedEntityLabel} ]
-        </span>
-      </div>
+      {selectedPieEntity?.value && (
+        <div
+          className={clsx([
+            "absolute flex flex-col items-center justify-center w-full text-white gap-0.5",
+            styles.pieChart,
+          ])}
+        >
+          <span className={styles.pieChart__focusedItem_label}>
+            ${selectedPieEntity.value}
+          </span>
+          <span className={styles.pieChart__focusedItem_percentage}>
+            {selectedPieEntity?.percentage}%
+          </span>
+          <span className={styles.pieChart__focusedItem_label}>
+            [ {selectedPieEntity.label} ]
+          </span>
+        </div>
+      )}
       <ChartTypeSwitcher />
       <div className={styles.pieChartContainer}>
         <ResponsivePie
           onClick={(item) => {
-            if ((activeItem as DataItem)?.id === item.id) {
+            if ((activeItem as PieItem)?.id === item.id) {
               setActiveItem(null)
             } else {
-              setActiveItem(item as DataItem)
+              // @ts-ignore
+              setActiveItem(item as PieItem)
             }
           }}
           onMouseLeave={(e) => console.log(e)}
@@ -157,6 +157,7 @@ const PortfolioAssetsPieChart = () => {
               spacing: 10,
             },
           ]}
+          // @ts-ignore
           fill={fillItems}
         />
       </div>

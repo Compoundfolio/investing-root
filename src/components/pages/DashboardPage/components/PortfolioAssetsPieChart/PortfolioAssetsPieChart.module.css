@@ -3,6 +3,14 @@
   width: auto;
 }
 
+.pieChart {
+  top: calc(43%);
+}
+
+.pieChartContainer svg > g > g > path {
+  cursor: pointer !important;
+}
+
 .pieChart__focusedItem_percentage {
   color: var(--color-white);
   text-align: center;
