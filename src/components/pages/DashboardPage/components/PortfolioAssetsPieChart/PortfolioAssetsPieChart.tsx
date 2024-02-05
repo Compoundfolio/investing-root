@@ -106,8 +106,8 @@ const PortfolioAssetsPieChart = () => {
               setActiveItem(item as PieItem)
             }
           }}
-          onMouseLeave={(e) => console.log(e)}
-          onMouseMove={(e) => console.log(e)}
+          // onMouseLeave={(e) => console.log(e)}
+          // onMouseMove={(e) => console.log(e)}
           data={dataSet}
           // @ts-ignore
           onMouseEnter={handleHover}
