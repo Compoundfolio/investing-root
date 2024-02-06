@@ -136,7 +136,7 @@ const TransactionForm = ({
             required
             errorMessage={errors.assetSearchNameOrTicker}
             withMb={false}
-            labelText="Asset type"
+            labelText="Asset"
             name="assetSearchNameOrTicker"
             placeholder="Start to search for ticker or asset name"
             serverSearchRequest={serverSearchRequest}

@@ -26,12 +26,15 @@ const usePortfolioList = (): PortfolioManagerContextData => {
     annualIncome: 0,
   }
 
-  const createNewPortfolioCard = useCallback(() => {
-    // TODO: Server request
-    isNoPortfolios
-      ? causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
-      : addPortfolio(emptyPortfolioTemplate)
-  }, [isNoPortfolios, emptyPortfolioTemplate])
+  const createNewPortfolioCard = useCallback(
+    (e) => {
+      // TODO: Server request
+      isNoPortfolios
+        ? causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
+        : addPortfolio(emptyPortfolioTemplate)
+    },
+    [isNoPortfolios, emptyPortfolioTemplate]
+  )
 
   const addPortfolio = useCallback((portfolio: Portfolio) => {
     setPortfolioList((prev) => [...prev, portfolio])

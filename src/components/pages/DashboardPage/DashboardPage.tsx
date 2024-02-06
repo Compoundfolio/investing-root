@@ -22,8 +22,8 @@ const DashboardPage = () => {
           <PortfolioAssetsPieChart />
         </div>
         <PortfolioAssetsList />
-        <div></div>
-        {/* <DivStatsBarChart /> */}
+        {/* <div></div> */}
+        <DivStatsBarChart />
         <PortfolioGrowthChart />
       </div>
       <NumbersBar />
