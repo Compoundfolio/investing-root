@@ -1,20 +1,32 @@
 "use client"
 
-import { memo } from 'react'
-import { Asset } from 'src/core/components/blocks'
-import { TWrapper, TTable, THead, TRow, TCell, TBody, ActionCell } from 'src/core/components/tables'
-import { TabGroup } from 'src/core/components/tabulation'
-import { ID, PortfolioTransaction } from 'src/core/types'
-import { useCheckTableRows, useTabFilters, useFiltersByTransactionHandleType } from './hooks'
-import { CheckedTransactionsHandlingArea } from './components'
-import { DateRangePicker, useDateRangePickerState } from 'src/core/client'
+import { memo } from "react"
+import { Asset } from "src/core/components/blocks"
+import {
+  TWrapper,
+  TTable,
+  THead,
+  TRow,
+  TCell,
+  TBody,
+  ActionCell,
+} from "src/core/components/tables"
+import { TabGroup } from "src/core/components/tabulation"
+import { ID, PortfolioTransaction } from "src/core/types"
+import {
+  useCheckTableRows,
+  useTabFilters,
+  useFiltersByTransactionHandleType,
+} from "./hooks"
+import { CheckedTransactionsHandlingArea } from "./components"
+import { DateRangePicker, useDateRangePickerState } from "src/core/client"
 
 interface ITransactionTable {
   selectedTransactionId?: ID
   transactionList: PortfolioTransaction[]
   onEdit: (transaction: PortfolioTransaction) => void
   onDelete: (transaction: PortfolioTransaction) => void
-  handleMultipleTransactionsDelete: (ids: PortfolioTransaction['id'][]) => void
+  handleMultipleTransactionsDelete: (ids: PortfolioTransaction["id"][]) => void
 }
 
 const TransactionTable = ({
@@ -24,7 +36,6 @@ const TransactionTable = ({
   onDelete,
   handleMultipleTransactionsDelete,
 }: ITransactionTable) => {
-
   const {
     isAllSelected,
     checkedTransactionIds,
@@ -50,22 +61,23 @@ const TransactionTable = ({
     filterTransactions,
   })
 
-  const {
-    dateRangeValue,
-    handleDateRangeChange
-   } = useDateRangePickerState()
+  const { dateRangeValue, handleDateRangeChange } = useDateRangePickerState()
 
   return (
     <TWrapper title="Transactions">
       <TabGroup tabs={tabs} />
-      <section className='flex items-center justify-between'>
+      <section className="flex items-center justify-between">
         <div>
-          {!!checkedTransactionIds.length && <>
-            <CheckedTransactionsHandlingArea
-              checkedTransactionIds={checkedTransactionIds}
-              handleMultipleTransactionsDelete={handleMultipleTransactionsDelete}
-            />
-          </>}
+          {!!checkedTransactionIds.length && (
+            <>
+              <CheckedTransactionsHandlingArea
+                checkedTransactionIds={checkedTransactionIds}
+                handleMultipleTransactionsDelete={
+                  handleMultipleTransactionsDelete
+                }
+              />
+            </>
+          )}
         </div>
         <div>
           <DateRangePicker
@@ -78,10 +90,7 @@ const TransactionTable = ({
       </section>
       <TTable>
         <THead>
-          <TRow
-            isChecked={isAllSelected}
-            onCheck={checkAll}
-          >
+          <TRow isChecked={isAllSelected} onCheck={checkAll}>
             <TCell th>Asset</TCell>
             <TCell th>Operation Type</TCell>
             <TCell th>Asset Type</TCell>
@@ -111,12 +120,14 @@ const TransactionTable = ({
                 />
               </TCell>
               <TCell>{transaction.operationType}</TCell>
-              <TCell>{transaction.assetType.label}</TCell>
+              <TCell>{transaction.transactionType.label}</TCell>
               <TCell>{transaction.date}</TCell>
               <TCell number>${transaction.price}</TCell>
               <TCell number>{transaction.amount}</TCell>
               <TCell number>${transaction.fee}</TCell>
-              <TCell number bold>${transaction.total}</TCell>
+              <TCell number bold>
+                ${transaction.total}
+              </TCell>
               <ActionCell
                 tableItem={transaction}
                 onEdit={onEdit}

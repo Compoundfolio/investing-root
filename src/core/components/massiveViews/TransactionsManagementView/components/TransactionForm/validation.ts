@@ -1,8 +1,8 @@
-import { object, string, number } from 'yup';
+import { object, string, number } from "yup"
 
 const validation = () =>
   object().shape({
-    assetType: object().required("Please, provide asset type"),
+    transactionType: object().required("Please, provide asset type"),
     assetSearchNameOrTicker: string().required("Please, provide asset name"),
     operationType: string().required("Please, provide operation type"),
     amount: number().required("Please, provide asset amount"),

@@ -59,7 +59,7 @@ const TransactionForm = ({
           ticker: asset?.ticker,
           exchange: asset?.exchange,
           exchangeCountry: asset?.exchangeCountry,
-          assetType: values.assetType,
+          transactionType: values.transactionType,
           operationType: values.operationType as "BUY" | "SELL",
           assetSearchNameOrTicker: values.assetSearchNameOrTicker,
           amount: values.amount,
@@ -109,8 +109,8 @@ const TransactionForm = ({
   }
 
   const formTitle = transactionToEdit
-    ? `Transaction edit`
-    : "Adding new transaction"
+    ? `${values.transactionType.label} edit`
+    : "New transaction"
   const formSubmitButtonTitle = transactionToEdit
     ? "Update transaction"
     : "Add transaction"
@@ -122,14 +122,14 @@ const TransactionForm = ({
         {/* @ts-ignore */}
         <Select
           required
-          labelText="Asset type"
+          labelText="Transaction type"
           withMb={false}
-          value={values.assetType}
+          value={values.transactionType}
           options={assetTypes}
-          name="assetType"
+          name="transactionType"
           setFieldValue={setFieldValue}
         />
-        {values.assetType.value === "PUBLICLY_TRADED" && (
+        {values.transactionType.value === "TRADE" && (
           // @ts-ignore
           <Select
             search

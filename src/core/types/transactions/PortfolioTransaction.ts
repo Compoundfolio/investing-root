@@ -1,8 +1,8 @@
-import { Exchange, Ticker } from "../assets";
-import { Option } from "../common";
-import { Currency } from "../currencies";
-import { ID } from "../ids";
-import TransactionHandlingType from "./TransactionHandlingType";
+import { Exchange, Ticker } from "../assets"
+import { Option } from "../common"
+import { Currency } from "../currencies"
+import { ID } from "../ids"
+import TransactionHandlingType from "./TransactionHandlingType"
 
 type PortfolioTransaction = {
   id: ID
@@ -10,15 +10,15 @@ type PortfolioTransaction = {
   ticker: Ticker
   exchange: Exchange
   exchangeCountry: string
-  assetType: Option;
-  operationType: "BUY" | "SELL";
-  assetSearchNameOrTicker: string;
-  amount: number;
-  price: number;
-  fee: number;
-  total: number;
-  currency: Currency;
-  date: string;
+  transactionType: Option
+  operationType: "BUY" | "SELL"
+  assetSearchNameOrTicker: string
+  amount: number
+  price: number
+  fee: number
+  total: number
+  currency: Currency
+  date: string
   handlingType: TransactionHandlingType
 }
 
