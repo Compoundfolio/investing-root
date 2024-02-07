@@ -3,7 +3,7 @@
 import React, { MouseEvent, useCallback, useState } from "react"
 import { Form, Input, Select, useForm } from "src/core/client"
 import { ActButton } from "src/core/components/buttons"
-import { assetTypes, defaultFormValues } from "./const"
+import { transactionTypeOptions, defaultFormValues } from "./const"
 import validation from "./validation"
 import { TransactionShortPreview } from "../TransactionShortPreview"
 import {
@@ -17,6 +17,7 @@ import { SearchAssetOption, TransactionOperationSwitcher } from "./components"
 import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
+import { TransactionType } from "./types"
 
 interface ITransactionForm {
   transactionToEdit: PortfolioTransaction | null
@@ -115,6 +116,14 @@ const TransactionForm = ({
     ? "Update transaction"
     : "Add transaction"
 
+  const isTransactionTypeOf = (
+    transactionType: TransactionType | TransactionType[]
+  ): boolean => {
+    return transactionType instanceof Array
+      ? transactionType.includes(values.transactionType.value)
+      : values.transactionType.value === transactionType
+  }
+
   return (
     <section>
       <SectionTitle title={formTitle} />
@@ -125,11 +134,11 @@ const TransactionForm = ({
           labelText="Transaction type"
           withMb={false}
           value={values.transactionType}
-          options={assetTypes}
+          options={transactionTypeOptions}
           name="transactionType"
           setFieldValue={setFieldValue}
         />
-        {values.transactionType.value === "TRADE" && (
+        {isTransactionTypeOf(["TRADE", "DIVIDEND"]) && (
           // @ts-ignore
           <Select
             search
@@ -147,50 +156,55 @@ const TransactionForm = ({
             <SearchAssetOption asset={asset!} />
           </Select>
         )}
-        <TransactionOperationSwitcher
-          required
-          name="operationType"
-          operationType={values.operationType as "BUY" | "SELL"}
-          changeOperationType={handleOperationTypeChange}
-        />
-        <div className="flex gap-4">
-          <Input
+        {isTransactionTypeOf(["TRADE", "FUNDING_WITHDRAWAL"]) && (
+          <TransactionOperationSwitcher
             required
-            name="amount"
-            type="number"
-            labelText="Amount"
-            withMb={false}
-            value={values.amount}
-            errorMessage={errors.amount}
-            setErrorMessage={setFieldError}
-            onChange={handleChange}
-            min={0}
+            name="operationType"
+            transactionType={values.transactionType.value}
+            operationType={values.operationType}
+            changeOperationType={handleOperationTypeChange}
           />
-          <Input
-            required
-            name="price"
-            type="number"
-            labelText="Price ($)"
-            withMb={false}
-            value={values.price}
-            errorMessage={errors.price}
-            setErrorMessage={setFieldError}
-            onChange={handleChange}
-            min={0}
-          />
-          <Input
-            required
-            name="fee"
-            type="number"
-            labelText="Fee ($)"
-            withMb={false}
-            value={values.fee}
-            errorMessage={errors.fee}
-            setErrorMessage={setFieldError}
-            onChange={handleChange}
-            min={0}
-          />
-        </div>
+        )}
+        {isTransactionTypeOf("TRADE") && (
+          <div className="flex gap-4">
+            <Input
+              required
+              name="amount"
+              type="number"
+              labelText="Amount"
+              withMb={false}
+              value={values.amount}
+              errorMessage={errors.amount}
+              setErrorMessage={setFieldError}
+              onChange={handleChange}
+              min={0}
+            />
+            <Input
+              required
+              name="price"
+              type="number"
+              labelText="Price ($)"
+              withMb={false}
+              value={values.price}
+              errorMessage={errors.price}
+              setErrorMessage={setFieldError}
+              onChange={handleChange}
+              min={0}
+            />
+            <Input
+              required
+              name="fee"
+              type="number"
+              labelText="Fee ($)"
+              withMb={false}
+              value={values.fee}
+              errorMessage={errors.fee}
+              setErrorMessage={setFieldError}
+              onChange={handleChange}
+              min={0}
+            />
+          </div>
+        )}
         <Input
           required
           name="date"

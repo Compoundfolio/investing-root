@@ -1,9 +1,29 @@
-import { Exchange, Ticker } from "src/core/types";
+import { Exchange, Option, Ticker } from "src/core/types"
 
 export type Asset = {
-  transactionTotal: number,
-  title: string,
-  ticker: Ticker,
-  exchange: Exchange,
-  exchangeCountry: string,
+  transactionTotal: number
+  title: string
+  ticker: Ticker
+  exchange: Exchange
+  exchangeCountry: string
+}
+
+export type TransactionType =
+  | "TRADE"
+  | "DIVIDEND"
+  | "COMMISSION"
+  | "FUNDING_WITHDRAWAL"
+
+export type TransactionTypeOption = Pick<Option, "id" | "label"> & {
+  value: TransactionType
+}
+
+export type TransactionFormValues = {
+  transactionType: TransactionTypeOption
+  assetSearchNameOrTicker: string
+  operationType: ("BUY" | "SELL") | ("FUNDING" | "WITHDRAWAL")
+  amount: number
+  price: number
+  fee: number
+  date: string
 }

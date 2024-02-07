@@ -1,7 +1,6 @@
-import { Option } from "src/core/types"
+import { TransactionFormValues, TransactionTypeOption } from "./types"
 
-// TODO: Get from server
-export const assetTypes: Option[] = [
+export const transactionTypeOptions: TransactionTypeOption[] = [
   {
     id: "341353442",
     value: "TRADE",
@@ -24,8 +23,8 @@ export const assetTypes: Option[] = [
   },
 ]
 
-export const defaultFormValues = {
-  transactionType: assetTypes[0],
+export const defaultFormValues: TransactionFormValues = {
+  transactionType: transactionTypeOptions[0],
   assetSearchNameOrTicker: "",
   operationType: "BUY",
   amount: 0,
