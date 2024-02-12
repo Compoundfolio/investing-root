@@ -12,9 +12,14 @@ export const transactionTypeOptions: TransactionTypeOption[] = [
     label: "Dividend",
   },
   {
-    id: "3413a5434553",
-    value: "COMMISSION",
-    label: "Commission",
+    id: "3413a54345513",
+    value: "FEE",
+    label: "Fee",
+  },
+  {
+    id: "3413a5434322153",
+    value: "DIVIDEND_TAX",
+    label: "Dividend Tax",
   },
   {
     id: "3413a54343253",
@@ -26,6 +31,7 @@ export const transactionTypeOptions: TransactionTypeOption[] = [
 export const defaultFormValues: TransactionFormValues = {
   transactionType: transactionTypeOptions[0],
   assetSearchNameOrTicker: "",
+  assignedBrokerage: null,
   operationType: "BUY",
   amount: 0,
   price: 0,

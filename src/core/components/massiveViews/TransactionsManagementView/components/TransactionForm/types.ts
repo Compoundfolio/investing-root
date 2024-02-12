@@ -11,7 +11,8 @@ export type Asset = {
 export type TransactionType =
   | "TRADE"
   | "DIVIDEND"
-  | "COMMISSION"
+  | "DIVIDEND_TAX"
+  | "FEE"
   | "FUNDING_WITHDRAWAL"
 
 export type TransactionTypeOption = Pick<Option, "id" | "label"> & {
@@ -21,6 +22,7 @@ export type TransactionTypeOption = Pick<Option, "id" | "label"> & {
 export type TransactionFormValues = {
   transactionType: TransactionTypeOption
   assetSearchNameOrTicker: string
+  assignedBrokerage: Option | null
   operationType: ("BUY" | "SELL") | ("FUNDING" | "WITHDRAWAL")
   amount: number
   price: number

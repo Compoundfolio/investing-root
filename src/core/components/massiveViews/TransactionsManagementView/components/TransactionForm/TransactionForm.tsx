@@ -1,6 +1,6 @@
 "use client"
 
-import React, { MouseEvent, useCallback, useState } from "react"
+import React, { MouseEvent, useCallback, useEffect, useState } from "react"
 import { Form, Input, Select, useForm } from "src/core/client"
 import { ActButton } from "src/core/components/buttons"
 import { transactionTypeOptions, defaultFormValues } from "./const"
@@ -9,6 +9,7 @@ import { TransactionShortPreview } from "../TransactionShortPreview"
 import {
   AssetSearchOptionData,
   useAssetSearch,
+  useAssignedBrokerage,
   useFormFetch,
   useTransactionNumbersCalc,
 } from "./hooks"
@@ -18,6 +19,7 @@ import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
 import { TransactionType } from "./types"
+import { allSupportedBrokerages } from "src/components/pages/PortfoliosManagementPage/components/InitialTransactionsUploadExperience/experiences/BrokerageReportUploadStepper/components/stepContent/BrokerageSelectionArea/consts"
 
 interface ITransactionForm {
   transactionToEdit: PortfolioTransaction | null
@@ -96,6 +98,9 @@ const TransactionForm = ({
   })
 
   const { serverSearchRequest } = useAssetSearch()
+  const { selectedPortfolioBrokerages } = useAssignedBrokerage({
+    setFieldValue,
+  })
 
   const onAssetSelectionFromSearch = useCallback(
     (option: Option<AssetSearchOptionData>) => {
@@ -138,23 +143,34 @@ const TransactionForm = ({
           name="transactionType"
           setFieldValue={setFieldValue}
         />
-        {isTransactionTypeOf(["TRADE", "DIVIDEND"]) && (
+        {/* TODO: Should be currency selection for FUNDING_WITHDRAWAL transaction type */}
+        {/* @ts-ignore */}
+        <Select
+          search
+          required
+          labelText="Asset"
+          name="assetSearchNameOrTicker"
+          placeholder="Start to search for ticker or asset name"
+          errorMessage={errors.assetSearchNameOrTicker}
+          withMb={false}
+          serverSearchRequest={serverSearchRequest}
+          onSearchSelection={onAssetSelectionFromSearch}
+          setFieldValue={setFieldValue}
+          setErrorMessage={setFieldError}
+        >
+          <SearchAssetOption asset={asset!} />
+        </Select>
+        {selectedPortfolioBrokerages.length > 1 && (
           // @ts-ignore
           <Select
-            search
             required
-            errorMessage={errors.assetSearchNameOrTicker}
+            labelText="Brokerage"
+            name="assignedBrokerage"
             withMb={false}
-            labelText="Asset"
-            name="assetSearchNameOrTicker"
-            placeholder="Start to search for ticker or asset name"
-            serverSearchRequest={serverSearchRequest}
-            onSearchSelection={onAssetSelectionFromSearch}
+            value={values.assignedBrokerage!}
+            options={selectedPortfolioBrokerages}
             setFieldValue={setFieldValue}
-            setErrorMessage={setFieldError}
-          >
-            <SearchAssetOption asset={asset!} />
-          </Select>
+          />
         )}
         {isTransactionTypeOf(["TRADE", "FUNDING_WITHDRAWAL"]) && (
           <TransactionOperationSwitcher
@@ -164,46 +180,6 @@ const TransactionForm = ({
             operationType={values.operationType}
             changeOperationType={handleOperationTypeChange}
           />
-        )}
-        {isTransactionTypeOf("TRADE") && (
-          <div className="flex gap-4">
-            <Input
-              required
-              name="amount"
-              type="number"
-              labelText="Amount"
-              withMb={false}
-              value={values.amount}
-              errorMessage={errors.amount}
-              setErrorMessage={setFieldError}
-              onChange={handleChange}
-              min={0}
-            />
-            <Input
-              required
-              name="price"
-              type="number"
-              labelText="Price ($)"
-              withMb={false}
-              value={values.price}
-              errorMessage={errors.price}
-              setErrorMessage={setFieldError}
-              onChange={handleChange}
-              min={0}
-            />
-            <Input
-              required
-              name="fee"
-              type="number"
-              labelText="Fee ($)"
-              withMb={false}
-              value={values.fee}
-              errorMessage={errors.fee}
-              setErrorMessage={setFieldError}
-              onChange={handleChange}
-              min={0}
-            />
-          </div>
         )}
         <Input
           required
