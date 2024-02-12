@@ -1,36 +1,35 @@
 import React from "react"
+import { ITypeBasedFIeldsProps } from "../types"
 import { Input } from "src/core/client"
 
-const TransactionNumberFields = ({
+const TradeSpecificFields = ({
   values,
   errors,
   setFieldError,
   handleChange,
-}) => {
+}: ITypeBasedFIeldsProps) => {
   return (
-    <div className="flex gap-4">
-      {/* {values.transactionType.value !== "DIVIDEND" && ( */}
-      <Input
-        required
-        name="amount"
-        type="number"
-        labelText="Amount"
-        withMb={false}
-        value={values.amount}
-        errorMessage={errors.amount}
-        setErrorMessage={setFieldError}
-        onChange={handleChange}
-        min={0}
-      />
-      {/* )} */}
+    <>
       <Input
         required
         name="price"
         type="number"
-        labelText="Price ($)"
+        labelText="Share Price ($)"
         withMb={false}
         value={values.price}
         errorMessage={errors.price}
+        setErrorMessage={setFieldError}
+        onChange={handleChange}
+        min={0}
+      />
+      <Input
+        required
+        name="amount"
+        type="number"
+        labelText="Shares amount"
+        withMb={false}
+        value={values.amount}
+        errorMessage={errors.amount}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
@@ -47,8 +46,8 @@ const TransactionNumberFields = ({
         onChange={handleChange}
         min={0}
       />
-    </div>
+    </>
   )
 }
 
-export default TransactionNumberFields
+export default TradeSpecificFields

@@ -19,7 +19,6 @@ import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
 import { TransactionType } from "./types"
-import { allSupportedBrokerages } from "src/components/pages/PortfoliosManagementPage/components/InitialTransactionsUploadExperience/experiences/BrokerageReportUploadStepper/components/stepContent/BrokerageSelectionArea/consts"
 
 interface ITransactionForm {
   transactionToEdit: PortfolioTransaction | null
@@ -38,8 +37,8 @@ const TransactionForm = ({
     values,
     errors,
     handleChange,
-    setFieldValue,
     handleSubmit,
+    setFieldValue,
     setFieldError,
     isSubmitting,
     setSubmitting,
@@ -121,13 +120,14 @@ const TransactionForm = ({
     ? "Update transaction"
     : "Add transaction"
 
-  const isTransactionTypeOf = (
-    transactionType: TransactionType | TransactionType[]
-  ): boolean => {
-    return transactionType instanceof Array
-      ? transactionType.includes(values.transactionType.value)
-      : values.transactionType.value === transactionType
-  }
+  const isTransactionTypeOf = useCallback(
+    (transactionType: TransactionType | TransactionType[]): boolean => {
+      return transactionType instanceof Array
+        ? transactionType.includes(values.transactionType.value)
+        : values.transactionType.value === transactionType
+    },
+    [values.transactionType.value]
+  )
 
   return (
     <section>
