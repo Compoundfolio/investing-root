@@ -143,7 +143,7 @@ const Select = ({
             )}
           >
             <span className="flex items-center">
-              <span className="block truncate">{value.label}</span>
+              <span className="block truncate">{value?.label}</span>
             </span>
             <CollapseIcon rotate180={showOptions} />
           </button>

@@ -28,13 +28,31 @@ export const transactionTypeOptions: TransactionTypeOption[] = [
   },
 ]
 
+// TODO: Group solution?
 export const defaultFormValues: TransactionFormValues = {
   transactionType: transactionTypeOptions[0],
   assetSearchNameOrTicker: "",
   assignedBrokerage: null,
   operationType: "BUY",
-  amount: 0,
-  price: 0,
+
+  // Shared
+  sharesAmount: 0,
   fee: 0,
+
+  // Trade
+  sharePrice: 0,
+
+  // Div
+  dividendPerShare: 0,
+  taxPercentage: 0,
+
+  // Div tax
+  dividendTaxValue: 0,
+  dividendTaxPercentage: 0,
+
+  // F-W
+  transferValue: 0,
+
+  // Common
   date: "",
 }

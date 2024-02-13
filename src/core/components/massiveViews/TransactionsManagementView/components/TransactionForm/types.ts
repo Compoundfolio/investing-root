@@ -24,8 +24,13 @@ export type TransactionFormValues = {
   assetSearchNameOrTicker: string
   assignedBrokerage: Option | null
   operationType: ("BUY" | "SELL") | ("FUNDING" | "WITHDRAWAL")
-  amount: number
-  price: number
+  sharesAmount: number
+  sharePrice: number
   fee: number
   date: string
+  dividendPerShare: number
+  taxPercentage: number
+  dividendTaxValue: number
+  dividendTaxPercentage: number
+  transferValue: number
 }

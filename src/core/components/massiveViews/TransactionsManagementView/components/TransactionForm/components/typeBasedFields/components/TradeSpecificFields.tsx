@@ -12,24 +12,24 @@ const TradeSpecificFields = ({
     <>
       <Input
         required
-        name="price"
+        name="sharePrice"
         type="number"
         labelText="Share Price ($)"
         withMb={false}
-        value={values.price}
-        errorMessage={errors.price}
+        value={values.sharePrice}
+        errorMessage={errors.sharePrice}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
       />
       <Input
         required
-        name="amount"
+        name="sharesAmount"
         type="number"
         labelText="Shares amount"
         withMb={false}
-        value={values.amount}
-        errorMessage={errors.amount}
+        value={values.sharesAmount}
+        errorMessage={errors.sharesAmount}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { MouseEvent, useCallback, useEffect, useState } from "react"
+import React, { MouseEvent, useCallback, useState } from "react"
 import { Form, Input, Select, useForm } from "src/core/client"
 import { ActButton } from "src/core/components/buttons"
 import { transactionTypeOptions, defaultFormValues } from "./const"
@@ -14,7 +14,11 @@ import {
   useTransactionNumbersCalc,
 } from "./hooks"
 import { Currency, Option, PortfolioTransaction } from "src/core/types"
-import { SearchAssetOption, TransactionOperationSwitcher } from "./components"
+import {
+  SearchAssetOption,
+  TransactionOperationSwitcher,
+  TypeBasedFIelds,
+} from "./components"
 import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
@@ -64,8 +68,8 @@ const TransactionForm = ({
           transactionType: values.transactionType,
           operationType: values.operationType as "BUY" | "SELL",
           assetSearchNameOrTicker: values.assetSearchNameOrTicker,
-          amount: values.amount,
-          price: values.price,
+          amount: values.sharesAmount,
+          price: values.sharePrice,
           fee: values.fee,
           date: values.date,
           currency: Currency.USD, // TODO: Currency support
@@ -79,6 +83,8 @@ const TransactionForm = ({
       setSubmitting(false)
     },
   })
+
+  console.warn(errors)
 
   useFormFetch({
     transactionToEdit,
@@ -113,12 +119,15 @@ const TransactionForm = ({
     setFieldValue("operationType", e.currentTarget.name)
   }
 
+  const transactionTypeLabel = values.transactionType.label
+
   const formTitle = transactionToEdit
-    ? `${values.transactionType.label} edit`
+    ? `${transactionTypeLabel} edit`
     : "New transaction"
+
   const formSubmitButtonTitle = transactionToEdit
-    ? "Update transaction"
-    : "Add transaction"
+    ? `Update ${transactionTypeLabel.toLowerCase()}`
+    : `Add ${transactionTypeLabel.toLowerCase()}`
 
   const isTransactionTypeOf = useCallback(
     (transactionType: TransactionType | TransactionType[]): boolean => {
@@ -181,6 +190,13 @@ const TransactionForm = ({
             changeOperationType={handleOperationTypeChange}
           />
         )}
+        <TypeBasedFIelds
+          values={values}
+          errors={errors}
+          setFieldError={setFieldError}
+          handleChange={handleChange}
+          isTransactionTypeOf={isTransactionTypeOf}
+        />
         <Input
           required
           name="date"
