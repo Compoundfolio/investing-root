@@ -1,33 +1,44 @@
 import { object, string, number } from "yup"
+import { TransactionType } from "./types"
 
-// TODO: Group solution?
-const validation = () =>
+const validation = (transactionType: TransactionType) =>
   object().shape({
     transactionType: object().required("Please, select transaction type"),
     assetSearchNameOrTicker: string().required("Please, select asset"),
     assignedBrokerage: string().required("Please, select brokerage"),
-    operationType: string().required("Please, provide operation type"),
 
-    // Shared
-    sharesAmount: number().when("transactionType", {
-      is: (transactionType) => transactionType === "TRADE",
-      then: () => number().required("Please, provide shares amount"),
+    ...((transactionType === "TRADE" ||
+      transactionType === "FUNDING_WITHDRAWAL") && {
+      operationType: string().required("Please, provide operation type"),
     }),
-    fee: number().required("Please, provide operation fee"),
+
+    ...((transactionType === "TRADE" || transactionType === "FEE") && {
+      fee: number().required("Please, provide operation fee"),
+    }),
 
     // Trade
-    sharePrice: number().required("Please, provide share price"),
+    ...(transactionType === "TRADE" && {
+      sharePrice: number().required("Please, provide share price"),
+    }),
 
     // Div
-    dividendPerShare: number().required("Please, provide dividend per. share"),
-    taxPercentage: number().required("Please, provide tax"),
+    ...(transactionType === "DIVIDEND" && {
+      dividendPerShare: number().required(
+        "Please, provide dividend per. share"
+      ),
+      taxPercentage: number().required("Please, provide tax"),
+    }),
 
     // Div tax
-    dividendTaxValue: number().required("Please, provide tax value"),
-    dividendTaxPercentage: number().required("Please, provide tax rate"),
+    ...(transactionType === "DIVIDEND_TAX" && {
+      dividendTaxValue: number().required("Please, provide tax value"),
+      dividendTaxPercentage: number().required("Please, provide tax rate"),
+    }),
 
     // F-W
-    transferValue: number().required("Please, provide transfer value"),
+    ...(transactionType === "FUNDING_WITHDRAWAL" && {
+      transferValue: number().required("Please, provide transfer value"),
+    }),
 
     // Common
     date: string().required("Please, provide operation date"),

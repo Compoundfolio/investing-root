@@ -10,7 +10,9 @@ import {
   AssetSearchOptionData,
   useAssetSearch,
   useAssignedBrokerage,
+  useErrorHandling,
   useFormFetch,
+  useOperationType,
   useTransactionNumbersCalc,
 } from "./hooks"
 import { Currency, Option, PortfolioTransaction } from "src/core/types"
@@ -40,16 +42,18 @@ const TransactionForm = ({
   const {
     values,
     errors,
+    isSubmitting,
     handleChange,
     handleSubmit,
     setFieldValue,
     setFieldError,
-    isSubmitting,
     setSubmitting,
     setValues,
     resetForm,
+    setErrors,
   } = useForm<typeof defaultFormValues>({
-    validationSchema: validation(),
+    validate: (values) => validation(values.transactionType.value),
+    // validationSchema: validation(),
     initialValues: defaultFormValues,
     onSubmit: (values) => {
       setSubmitting(true)
@@ -68,9 +72,9 @@ const TransactionForm = ({
           transactionType: values.transactionType,
           operationType: values.operationType as "BUY" | "SELL",
           assetSearchNameOrTicker: values.assetSearchNameOrTicker,
-          amount: values.sharesAmount,
-          price: values.sharePrice,
-          fee: values.fee,
+          amount: values.sharesAmount!,
+          price: values.sharePrice!,
+          fee: values.fee!,
           date: values.date,
           currency: Currency.USD, // TODO: Currency support
           total: transactionTotal,
@@ -103,6 +107,7 @@ const TransactionForm = ({
   })
 
   const { serverSearchRequest } = useAssetSearch()
+
   const { selectedPortfolioBrokerages } = useAssignedBrokerage({
     setFieldValue,
   })
@@ -115,11 +120,19 @@ const TransactionForm = ({
     [setAsset, setFieldValue]
   )
 
-  const handleOperationTypeChange = (e: MouseEvent<HTMLButtonElement>) => {
-    setFieldValue("operationType", e.currentTarget.name)
-  }
+  const { label: transactionTypeLabel, value: transactionTypeValue } =
+    values.transactionType
 
-  const transactionTypeLabel = values.transactionType.label
+  useErrorHandling({
+    isEditMode: !!transactionToEdit,
+    transactionType: transactionTypeValue,
+    setErrors,
+  })
+
+  const { handleOperationTypeChange } = useOperationType({
+    transactionType: transactionTypeValue,
+    setFieldValue,
+  })
 
   const formTitle = transactionToEdit
     ? `${transactionTypeLabel} edit`
@@ -132,10 +145,10 @@ const TransactionForm = ({
   const isTransactionTypeOf = useCallback(
     (transactionType: TransactionType | TransactionType[]): boolean => {
       return transactionType instanceof Array
-        ? transactionType.includes(values.transactionType.value)
-        : values.transactionType.value === transactionType
+        ? transactionType.includes(transactionTypeValue)
+        : transactionTypeValue === transactionType
     },
-    [values.transactionType.value]
+    [transactionTypeValue]
   )
 
   return (
@@ -185,7 +198,7 @@ const TransactionForm = ({
           <TransactionOperationSwitcher
             required
             name="operationType"
-            transactionType={values.transactionType.value}
+            transactionType={transactionTypeValue}
             operationType={values.operationType}
             changeOperationType={handleOperationTypeChange}
           />

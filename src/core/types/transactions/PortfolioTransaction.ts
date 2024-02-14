@@ -13,9 +13,9 @@ type PortfolioTransaction = {
   transactionType: Option
   operationType: "BUY" | "SELL"
   assetSearchNameOrTicker: string
-  amount: number
-  price: number
-  fee: number
+  amount: number | ""
+  price: number | ""
+  fee: number | ""
   total: number
   currency: Currency
   date: string

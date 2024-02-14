@@ -36,22 +36,22 @@ export const defaultFormValues: TransactionFormValues = {
   operationType: "BUY",
 
   // Shared
-  sharesAmount: 0,
-  fee: 0,
+  sharesAmount: "",
+  fee: "",
 
   // Trade
-  sharePrice: 0,
+  sharePrice: "",
 
   // Div
-  dividendPerShare: 0,
-  taxPercentage: 0,
+  dividendPerShare: "",
+  taxPercentage: "",
 
   // Div tax
-  dividendTaxValue: 0,
-  dividendTaxPercentage: 0,
+  dividendTaxValue: "",
+  dividendTaxPercentage: "",
 
   // F-W
-  transferValue: 0,
+  transferValue: "",
 
   // Common
   date: "",
