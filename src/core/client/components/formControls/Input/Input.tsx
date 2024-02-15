@@ -10,6 +10,7 @@ import { FormControlBase } from "../FormControlBase"
 import CircleButton from "src/core/components/buttons/CircleButton/CircleButton"
 import { CancelIcon, SearchIcon, Spinner } from "@core/components"
 import { cancelStyle, resetSearchStyle, searchIconStyle } from "./consts"
+import clsx from "clsx"
 
 export interface IInput extends Omit<Control, "value"> {
   value: string | number
@@ -42,6 +43,7 @@ const Input = ({
   min,
   errorMessage,
   inputMode,
+  style = {},
   resetInputValue,
   onChange,
   setErrorMessage,
@@ -93,6 +95,7 @@ const Input = ({
             boxShadow:
               "0px 1px 0px 0px rgba(255, 255, 255, 0.10) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
           }),
+          ...style,
         }}
       />
       {isPassword && (

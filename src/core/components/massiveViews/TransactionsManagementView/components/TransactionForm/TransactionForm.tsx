@@ -52,11 +52,13 @@ const TransactionForm = ({
     resetForm,
     setErrors,
   } = useForm<typeof defaultFormValues>({
-    validate: (values) => validation(values.transactionType.value),
-    // validationSchema: validation(),
+    // validate: (values) => validation(values.transactionType.value),
+    validationSchema: validation(),
     initialValues: defaultFormValues,
-    onSubmit: (values) => {
+    onSubmit: (values, helpers) => {
       setSubmitting(true)
+
+      helpers.validateForm()
 
       const mutateTransactionList = transactionToEdit
         ? handleTransactionEdit
@@ -174,7 +176,6 @@ const TransactionForm = ({
           name="assetSearchNameOrTicker"
           placeholder="Start to search for ticker or asset name"
           errorMessage={errors.assetSearchNameOrTicker}
-          withMb={false}
           serverSearchRequest={serverSearchRequest}
           onSearchSelection={onAssetSelectionFromSearch}
           setFieldValue={setFieldValue}

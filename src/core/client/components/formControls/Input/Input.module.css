@@ -9,7 +9,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
-  color: #ffffff;
+  color: var(--color-white);
   color-scheme: dark;
   cursor: text;
   @apply placeholder:text-gray-400;

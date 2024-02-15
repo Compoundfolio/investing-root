@@ -29,13 +29,14 @@ const FormControlBase = ({
     setErrorMessage,
   })
 
-  const wrapperClassName =
-    erroringField && withMb ? `relative ${withMb ? "mb-10" : ""}` : ""
-
-  const classNames = clsx(wrapperClassName, className)
+  const classNames = clsx([
+    "relative",
+    withMb && "mb-2",
+    className && className,
+  ])
 
   return (
-    <div {...(classNames && { className })} {...(restProps as any)}>
+    <div className={classNames} {...(restProps as any)}>
       {labelText && (
         <Label required={required} htmlFor={name} labelText={labelText} />
       )}
@@ -45,7 +46,7 @@ const FormControlBase = ({
           <ErrorIcon
             width={16}
             height={16}
-            className="absolute mt-1 -right-8 top-1/2"
+            className="absolute right-0 top-1"
           />
           <ControlErrorMessage errorMessage={errorMessage} />
         </>

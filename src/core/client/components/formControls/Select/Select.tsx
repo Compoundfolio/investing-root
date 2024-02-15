@@ -14,6 +14,7 @@ import { useOpen } from "src/core/hooks"
 import { CollapseIcon } from "@core/components"
 import { Input } from "../Input"
 import { IUseSearch, useSearch } from "./hooks"
+import { colors } from "src/core/theme"
 
 interface SelectType
   extends Omit<Control, "value" | "onChange" | "placeholder"> {
@@ -113,24 +114,28 @@ const Select = ({
     >
       <div
         className={clsx(
-          "relative",
+          "relative my-2",
           !search && styles.select,
           isOptionOpened && styles.select_active
         )}
       >
         {search ? (
           <Input
+            // TODO: Make style reusable for all form controls
+            style={{
+              ...(errorMessage && { borderColor: colors.pinkSoft }),
+            }}
             search={search}
             value={searchValue}
             name={name}
+            withMb={withMb}
+            sharpBottomBorderRadius={showOptions}
+            placeholder={placeholder}
+            isLoading={isSearching}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               handleSearchValueChange(e, optionsList.length)
             }
-            placeholder={placeholder}
-            isLoading={isSearching}
             resetInputValue={resetSearch}
-            withMb={withMb}
-            sharpBottomBorderRadius={showOptions}
             onClick={handleOpenOptionList}
           />
         ) : (

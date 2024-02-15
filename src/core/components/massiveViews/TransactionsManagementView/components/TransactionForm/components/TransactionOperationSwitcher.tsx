@@ -24,7 +24,7 @@ const TransactionOperationSwitcher = ({
   const lastOption = isTrade ? "SELL" : "WITHDRAWAL"
 
   return (
-    <div>
+    <div className="mb-4">
       <Label required={required} htmlFor={name} labelText="Operation type" />
       <div id={name} className="mt-2">
         <button

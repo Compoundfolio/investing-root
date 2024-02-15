@@ -16,7 +16,6 @@ const FundingWithdrawalSpecificFields = ({
         type="number"
         labelText="Transfer value ($)"
         className="w-full"
-        withMb={false}
         value={values.transferValue}
         errorMessage={errors.transferValue}
         setErrorMessage={setFieldError}

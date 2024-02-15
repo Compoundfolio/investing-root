@@ -1,47 +1,43 @@
 import { object, string, number } from "yup"
-import { TransactionType } from "./types"
+import { isRequired } from "./helpers"
+import { VALIDATION_MESSAGE } from "src/core/consts"
 
-const validation = (transactionType: TransactionType) =>
+const validation = () =>
   object().shape({
-    transactionType: object().required("Please, select transaction type"),
-    assetSearchNameOrTicker: string().required("Please, select asset"),
-    assignedBrokerage: string().required("Please, select brokerage"),
+    transactionType: object().required(VALIDATION_MESSAGE.REQUIRED),
+    assetSearchNameOrTicker: string().required(VALIDATION_MESSAGE.REQUIRED),
+    assignedBrokerage: string().required(VALIDATION_MESSAGE.REQUIRED),
 
-    ...((transactionType === "TRADE" ||
-      transactionType === "FUNDING_WITHDRAWAL") && {
-      operationType: string().required("Please, provide operation type"),
-    }),
+    operationType: string().when(
+      "transactionType",
+      isRequired(["TRADE", "FUNDING_WITHDRAWAL"], string)
+    ),
+    fee: number().when("transactionType", isRequired(["TRADE", "FEE"])),
 
-    ...((transactionType === "TRADE" || transactionType === "FEE") && {
-      fee: number().required("Please, provide operation fee"),
-    }),
+    sharePrice: number().when("transactionType", isRequired("TRADE")),
+    sharesAmount: number().when(
+      "transactionType",
+      isRequired(["TRADE", "DIVIDEND"])
+    ),
 
-    // Trade
-    ...(transactionType === "TRADE" && {
-      sharePrice: number().required("Please, provide share price"),
-    }),
+    dividendPerShare: number().when("transactionType", isRequired("DIVIDEND")),
+    taxPercentage: number().when("transactionType", isRequired("DIVIDEND")),
 
-    // Div
-    ...(transactionType === "DIVIDEND" && {
-      dividendPerShare: number().required(
-        "Please, provide dividend per. share"
-      ),
-      taxPercentage: number().required("Please, provide tax"),
-    }),
+    dividendTaxValue: number().when(
+      "transactionType",
+      isRequired("DIVIDEND_TAX")
+    ),
+    dividendTaxPercentage: number().when(
+      "transactionType",
+      isRequired("DIVIDEND_TAX")
+    ),
 
-    // Div tax
-    ...(transactionType === "DIVIDEND_TAX" && {
-      dividendTaxValue: number().required("Please, provide tax value"),
-      dividendTaxPercentage: number().required("Please, provide tax rate"),
-    }),
+    transferValue: number().when(
+      "transactionType",
+      isRequired("FUNDING_WITHDRAWAL")
+    ),
 
-    // F-W
-    ...(transactionType === "FUNDING_WITHDRAWAL" && {
-      transferValue: number().required("Please, provide transfer value"),
-    }),
-
-    // Common
-    date: string().required("Please, provide operation date"),
+    date: string().required(VALIDATION_MESSAGE.REQUIRED),
   })
 
 export default validation

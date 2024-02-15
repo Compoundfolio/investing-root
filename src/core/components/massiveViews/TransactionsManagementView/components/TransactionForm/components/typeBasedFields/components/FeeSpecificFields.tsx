@@ -16,7 +16,6 @@ const FeeSpecificFields = ({
         type="number"
         labelText="Fee ($)"
         className="w-full"
-        withMb={false}
         value={values.fee}
         errorMessage={errors.fee}
         setErrorMessage={setFieldError}

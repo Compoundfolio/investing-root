@@ -28,7 +28,12 @@ export const transactionTypeOptions: TransactionTypeOption[] = [
   },
 ]
 
-// TODO: Group solution?
+const getLocalDateAsYyyyMmDd = (): string => {
+  var local = new Date()
+  local.setMinutes(local.getMinutes() - local.getTimezoneOffset())
+  return local.toJSON().slice(0, 10)
+}
+
 export const defaultFormValues: TransactionFormValues = {
   transactionType: transactionTypeOptions[0],
   assetSearchNameOrTicker: "",
@@ -54,5 +59,5 @@ export const defaultFormValues: TransactionFormValues = {
   transferValue: "",
 
   // Common
-  date: "",
+  date: getLocalDateAsYyyyMmDd(),
 }
