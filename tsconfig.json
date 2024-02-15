@@ -49,7 +49,9 @@
     "**/*.ts",
     "**/*.tsx",
     "src/api/auth/[...nextauth].js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/core/components/massiveViews/TransactionsManagementView/components/TransactionForm/x.js",
+    "src/core/components/massiveViews/TransactionsManagementView/components/TransactionForm/x.js"
   ],
   "exclude": [
     "node_modules"

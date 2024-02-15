@@ -32,8 +32,10 @@ const FormControlBase = ({
   const wrapperClassName =
     erroringField && withMb ? `relative ${withMb ? "mb-10" : ""}` : ""
 
+  const classNames = clsx(wrapperClassName, className)
+
   return (
-    <div className={clsx(wrapperClassName, className)} {...(restProps as any)}>
+    <div {...(classNames && { className })} {...(restProps as any)}>
       {labelText && (
         <Label required={required} htmlFor={name} labelText={labelText} />
       )}

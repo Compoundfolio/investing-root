@@ -19,7 +19,7 @@ import { Currency, Option, PortfolioTransaction } from "src/core/types"
 import {
   SearchAssetOption,
   TransactionOperationSwitcher,
-  TypeBasedFIelds,
+  TypeBasedFields,
 } from "./components"
 import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
@@ -203,7 +203,7 @@ const TransactionForm = ({
             changeOperationType={handleOperationTypeChange}
           />
         )}
-        <TypeBasedFIelds
+        <TypeBasedFields
           values={values}
           errors={errors}
           setFieldError={setFieldError}

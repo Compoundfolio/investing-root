@@ -15,6 +15,7 @@ const FeeSpecificFields = ({
         name="fee"
         type="number"
         labelText="Fee ($)"
+        className="w-full"
         withMb={false}
         value={values.fee}
         errorMessage={errors.fee}

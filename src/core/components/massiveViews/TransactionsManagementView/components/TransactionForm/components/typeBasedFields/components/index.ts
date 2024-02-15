@@ -1,5 +1,18 @@
-export { default as DividendSpecificFields } from "./DividendSpecificFields"
-export { default as DividendTaxSpecificFields } from "./DividendTaxSpecificFields"
-export { default as FeeSpecificFields } from "./FeeSpecificFields"
-export { default as FundingWithdrawalSpecificFields } from "./FundingWithdrawalSpecificFields"
-export { default as TradeSpecificFields } from "./TradeSpecificFields"
+import DividendSpecificFields from "./DividendSpecificFields"
+import DividendTaxSpecificFields from "./DividendTaxSpecificFields"
+import FeeSpecificFields from "./FeeSpecificFields"
+import FundingWithdrawalSpecificFields from "./FundingWithdrawalSpecificFields"
+import TradeSpecificFields from "./TradeSpecificFields"
+import { TransactionType } from "../../../types"
+import { ITypeBasedFIeldsProps } from "../types"
+
+export const FieldGroupModule: Record<
+  TransactionType,
+  React.FC<ITypeBasedFIeldsProps>
+> = {
+  TRADE: TradeSpecificFields,
+  DIVIDEND: DividendSpecificFields,
+  DIVIDEND_TAX: DividendTaxSpecificFields,
+  FEE: FeeSpecificFields,
+  FUNDING_WITHDRAWAL: FundingWithdrawalSpecificFields,
+}

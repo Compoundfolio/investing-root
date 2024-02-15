@@ -1,1 +1,1 @@
-export { default as TypeBasedFIelds } from "./TypeBasedFIelds"
+export { default as TypeBasedFields } from "./TypeBasedFIelds"
