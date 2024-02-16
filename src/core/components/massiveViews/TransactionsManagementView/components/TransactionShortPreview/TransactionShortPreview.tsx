@@ -2,6 +2,7 @@ import React from "react"
 import { AssetOperationSummary } from "./components"
 import { Asset } from "src/core/components/blocks"
 import { Exchange, Option, Ticker } from "src/core/types"
+import { TransactionType } from "../TransactionForm/types"
 
 interface ITransactionShortPreview {
   transactionTotal: number
@@ -11,6 +12,7 @@ interface ITransactionShortPreview {
   assetExchangeCountry: string | undefined
   availableBuyingPower: number
   availableBuyingPowerLeft: number
+  transactionTypeValue: TransactionType
   selectedBrokerageIcon: Option["icon"]
 }
 
@@ -22,6 +24,7 @@ const TransactionShortPreview = ({
   assetExchangeCountry,
   availableBuyingPower,
   availableBuyingPowerLeft,
+  transactionTypeValue,
   selectedBrokerageIcon,
 }: ITransactionShortPreview) => {
   return (
@@ -37,6 +40,7 @@ const TransactionShortPreview = ({
         availableBuyingPower={availableBuyingPower}
         transactionTotal={transactionTotal}
         availableBuyingPowerLeft={availableBuyingPowerLeft}
+        transactionTypeValue={transactionTypeValue}
       />
     </div>
   )

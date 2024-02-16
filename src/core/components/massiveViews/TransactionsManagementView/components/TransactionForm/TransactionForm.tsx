@@ -230,6 +230,7 @@ const TransactionForm = ({
           transactionTotal={totalNumber}
           availableBuyingPower={availableBuyingPower}
           availableBuyingPowerLeft={availableBuyingPowerLeft}
+          transactionTypeValue={transactionTypeValue}
           selectedBrokerageIcon={values.assignedBrokerage?.icon}
         />
         {isBuyingPowerLeftNegative && (
