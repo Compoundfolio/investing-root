@@ -4,7 +4,7 @@ type Option<TData = unknown> = {
   id: ID
   value: string
   label: string
-  icon?: (size?: number) => JSX.Element
+  icon?: (size?: number, withShadow?: boolean) => JSX.Element
   data?: TData
 }
 

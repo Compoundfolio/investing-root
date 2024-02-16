@@ -1,6 +1,6 @@
 import React from "react"
 
-const FreedomFinanceIcon = ({ size = 32 }) => {
+const FreedomFinanceIcon = ({ size = 32, style = {} }) => {
   return (
     <svg
       width={size}
@@ -21,6 +21,7 @@ const FreedomFinanceIcon = ({ size = 32 }) => {
           <use xlinkHref="#image0_539_8472" transform="scale(0.0025)" />
         </pattern>
         <image
+          style={style}
           id="image0_539_8472"
           width={400}
           height={400}

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { MouseEvent, useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { Form, Input, Select, useForm } from "src/core/client"
 import { ActButton } from "src/core/components/buttons"
 import { transactionTypeOptions, defaultFormValues } from "./const"
@@ -230,6 +230,7 @@ const TransactionForm = ({
           transactionTotal={totalNumber}
           availableBuyingPower={availableBuyingPower}
           availableBuyingPowerLeft={availableBuyingPowerLeft}
+          selectedBrokerageIcon={values.assignedBrokerage?.icon}
         />
         {isBuyingPowerLeftNegative && (
           <InModalWarning

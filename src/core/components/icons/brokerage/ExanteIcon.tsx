@@ -1,8 +1,9 @@
 import React from "react"
 
-const ExanteIcon = ({ size = 32 }) => {
+const ExanteIcon = ({ size = 32, style = {} }) => {
   return (
     <svg
+      // style={style}
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
@@ -21,6 +22,7 @@ const ExanteIcon = ({ size = 32 }) => {
           <use xlinkHref="#image0_411_12342" transform="scale(0.000976562)" />
         </pattern>
         <image
+          style={style}
           id="image0_411_12342"
           width={1024}
           height={1024}
