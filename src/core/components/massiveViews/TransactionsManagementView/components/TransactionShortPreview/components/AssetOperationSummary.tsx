@@ -3,6 +3,7 @@ import { Divider } from "src/core/components/blocks"
 import styles from "./AssetOperationSummary.module.css"
 import clsx from "clsx"
 import { TransactionType } from "../../TransactionForm/types"
+import { SUMMARIES } from "./const"
 
 interface IAssetOperationSummary {
   availableBuyingPower: number
@@ -17,10 +18,13 @@ const AssetOperationSummary = ({
   availableBuyingPowerLeft,
   transactionTypeValue,
 }: IAssetOperationSummary) => {
+  const summary = SUMMARIES[transactionTypeValue]
   return (
     <div className="flex flex-col gap-2 w-[180px]">
       <p className={styles.summary_item}>
-        <span className={styles.summary_item__title}>Available cash:</span>
+        <span className={styles.summary_item__title}>
+          {summary.initialValueNaming ?? "Available cash:"}
+        </span>
         <span
           className={clsx(
             styles.summary_item__value,
@@ -31,7 +35,9 @@ const AssetOperationSummary = ({
         </span>
       </p>
       <p className={styles.summary_item}>
-        <span className={styles.summary_item__title}>Transaction total:</span>
+        <span className={styles.summary_item__title}>
+          {summary.transactionValueNaming ?? "Transaction value:"}
+        </span>
         <span
           className={clsx(
             styles.summary_item__value,
@@ -43,7 +49,9 @@ const AssetOperationSummary = ({
       </p>
       <Divider />
       <p className={styles.summary_item}>
-        <span className={styles.summary_item__title}>Available cash left:</span>
+        <span className={styles.summary_item__title}>
+          {summary.transactionValueNaming ?? "Available cash left:"}
+        </span>
         <span
           className={clsx(
             styles.summary_item__value,
