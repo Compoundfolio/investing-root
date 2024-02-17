@@ -3,7 +3,7 @@ import { Divider } from "src/core/components/blocks"
 import styles from "./AssetOperationSummary.module.css"
 import clsx from "clsx"
 import { TransactionType } from "../../TransactionForm/types"
-import { SUMMARIES } from "./const"
+import { SUMMARIES_NAMINGS } from "./const"
 
 interface IAssetOperationSummary {
   availableBuyingPower: number
@@ -18,7 +18,8 @@ const AssetOperationSummary = ({
   availableBuyingPowerLeft,
   transactionTypeValue,
 }: IAssetOperationSummary) => {
-  const summary = SUMMARIES[transactionTypeValue]
+  const summary = SUMMARIES_NAMINGS[transactionTypeValue]
+
   return (
     <div className="flex flex-col gap-2 w-[180px]">
       <p className={styles.summary_item}>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { AssetOperationSummary } from "./components"
 import { Asset } from "src/core/components/blocks"
 import { Exchange, Option, Ticker } from "src/core/types"
@@ -16,6 +16,7 @@ interface ITransactionShortPreview {
   selectedBrokerageIcon: Option["icon"]
 }
 
+// TODO: Make sure memo works good after props refactor
 const TransactionShortPreview = ({
   transactionTotal,
   assetTitle,
@@ -46,4 +47,4 @@ const TransactionShortPreview = ({
   )
 }
 
-export default TransactionShortPreview
+export default memo(TransactionShortPreview)
