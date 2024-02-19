@@ -97,7 +97,6 @@ const TransactionForm = ({
 
   const {
     transactionTotal,
-    totalNumber,
     availableBuyingPower,
     availableBuyingPowerLeft,
     transactionSubResult,
@@ -225,7 +224,7 @@ const TransactionForm = ({
           assetTicker={asset?.ticker}
           assetExchange={asset?.exchange}
           assetExchangeCountry={asset?.exchangeCountry}
-          transactionTotal={totalNumber}
+          transactionTotal={transactionTotal}
           availableBuyingPower={availableBuyingPower}
           availableBuyingPowerLeft={availableBuyingPowerLeft}
           transactionSubResult={transactionSubResult}

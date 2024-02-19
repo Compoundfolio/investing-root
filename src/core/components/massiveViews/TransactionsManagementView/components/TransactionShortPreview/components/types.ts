@@ -1,10 +1,13 @@
 import { TransactionType } from "../../TransactionForm/types"
 
+type Naming = `${string}:`
+
 export type TransactionSummary = Record<
   TransactionType,
   {
-    transactionValueNaming?: `${string}:`
-    initialValueNaming?: `${string}:`
-    subResultNaming?: `${string}:`
+    transactionValueNaming?: Naming
+    initialValueNaming?: Naming
+    subResultNaming?: Naming
+    resultNaming?: Naming
   }
 >

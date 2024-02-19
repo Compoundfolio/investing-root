@@ -51,7 +51,7 @@ const AssetOperationSummary = ({
         </span>
       </p>
       <Divider color="rgba(255, 255, 255, 0.10)" />
-      {transactionSubResult && (
+      {!!transactionSubResult && (
         <>
           <p className={styles.summary_item}>
             <span className={styles.summary_item__title}>
@@ -71,7 +71,7 @@ const AssetOperationSummary = ({
       )}
       <p className={styles.summary_item}>
         <span className={styles.summary_item__title}>
-          {summary.transactionValueNaming ?? "Available cash left:"}
+          {summary.resultNaming ?? "Available cash left:"}
         </span>
         <span className={clsx(styles.summary_item__value)}>
           ${availableBuyingPowerLeft}

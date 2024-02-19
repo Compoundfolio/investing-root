@@ -25,7 +25,7 @@ const validation = () =>
 
     dividendTaxValue: number().when(
       "transactionType",
-      isRequired("DIVIDEND_TAX")
+      isRequired(["DIVIDEND_TAX", "DIVIDEND"])
     ),
     dividendTaxPercentage: number().when(
       "transactionType",

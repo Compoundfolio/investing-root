@@ -8,6 +8,7 @@ export const SUMMARIES_NAMINGS: TransactionSummary = {
     initialValueNaming: "Dividend:",
     transactionValueNaming: "Dividend tax (15%):",
     subResultNaming: "Pure dividend:",
+    resultNaming: "New cash value:",
   },
   DIVIDEND_TAX: {
     transactionValueNaming: "Dividend Tax:",
