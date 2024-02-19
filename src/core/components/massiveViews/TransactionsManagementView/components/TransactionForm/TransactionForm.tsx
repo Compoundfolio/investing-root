@@ -52,7 +52,6 @@ const TransactionForm = ({
     resetForm,
     setErrors,
   } = useForm<typeof defaultFormValues>({
-    // validate: (values) => validation(values.transactionType.value),
     validationSchema: validation(),
     initialValues: defaultFormValues,
     onSubmit: (values, helpers) => {
@@ -90,8 +89,6 @@ const TransactionForm = ({
     },
   })
 
-  console.warn(errors)
-
   useFormFetch({
     transactionToEdit,
     setAsset,
@@ -103,6 +100,7 @@ const TransactionForm = ({
     totalNumber,
     availableBuyingPower,
     availableBuyingPowerLeft,
+    transactionSubResult,
     isBuyingPowerLeftNegative,
   } = useTransactionNumbersCalc({
     values,
@@ -230,6 +228,7 @@ const TransactionForm = ({
           transactionTotal={totalNumber}
           availableBuyingPower={availableBuyingPower}
           availableBuyingPowerLeft={availableBuyingPowerLeft}
+          transactionSubResult={transactionSubResult}
           transactionTypeValue={transactionTypeValue}
           selectedBrokerageIcon={values.assignedBrokerage?.icon}
         />

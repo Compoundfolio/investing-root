@@ -1,22 +1,53 @@
-import { parseNumberToFixed2 } from "@core/helpers"
+import { parseNumberToFixed2, percentageOff } from "@core/helpers"
 import { useMemo } from "react"
 import { defaultFormValues } from "../const"
+import { TransactionType } from "../types"
 
 interface IUseTransactionNumbersCalc {
   values: typeof defaultFormValues
 }
 
+const transactionNumbersCalcHooks: Record<TransactionType, IUseCalcHook> = {
+  "TRADE": ,
+  "DIVIDEND": ,
+  "DIVIDEND_TAX": ,
+  "FEE": ,
+  "FUNDING_WITHDRAWAL": ,
+}
+
+const useCalcNumbersForRegularTransaction = () => {
+  return {
+    transactionTotal,
+  }
+}
+
 export const useTransactionNumbersCalc = ({
   values,
 }: IUseTransactionNumbersCalc) => {
-  const isBuy = values.operationType === "BUY"
+  const useCalc = transactionNumbersCalcHooks[values.transactionType]
 
-  const transactionTotal = useMemo(() => {
-    const positionPrice = (Number(values.amount || 0) * Number(values.price || 0))
+  const trade = () => {
+    const isBuy = values.operationType === "BUY"
+    const positionPrice = (Number(values.sharesAmount || 0) * Number(values.sharePrice || 0))
     return isBuy
       ? positionPrice + Number(values.fee || 0)
       : positionPrice - Number(values.fee || 0)
-  }, [values.amount, values.price, values.fee, isBuy])
+  }
+
+  const dividend = () => {
+    const isBuy = values.operationType === "BUY"
+    const dividendBeforeTax = (Number(values.sharesAmount || 0) * Number(values.dividendPerShare || 0))
+    const dividendAfterTax = percentageOff(dividendBeforeTax, values.dividendTaxPercentage || 0)
+    const dividendTaxValue = dividendBeforeTax - dividendAfterTax
+    return {
+      transactionTotal: dividendTaxValue,
+      sub: dividendTaxValue,
+    }
+  }
+
+
+
+  // const transactionTotal = useMemo(, [values.sharesAmount, values.sharesAmount, values.fee, isBuy])
 
   // TODO: server request
   const getAvailableBuyingPower = () => 10000
@@ -34,6 +65,7 @@ export const useTransactionNumbersCalc = ({
     totalNumber,
     availableBuyingPower,
     availableBuyingPowerLeft,
-    isBuyingPowerLeftNegative
+    transactionSubResult,
+    isBuyingPowerLeftNegative,
   }
 }

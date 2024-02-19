@@ -13,6 +13,7 @@ interface ITransactionShortPreview {
   availableBuyingPower: number
   availableBuyingPowerLeft: number
   transactionTypeValue: TransactionType
+  transactionSubResult?: number
   selectedBrokerageIcon: Option["icon"]
 }
 
@@ -26,6 +27,7 @@ const TransactionShortPreview = ({
   availableBuyingPower,
   availableBuyingPowerLeft,
   transactionTypeValue,
+  transactionSubResult,
   selectedBrokerageIcon,
 }: ITransactionShortPreview) => {
   return (
@@ -41,6 +43,7 @@ const TransactionShortPreview = ({
         availableBuyingPower={availableBuyingPower}
         transactionTotal={transactionTotal}
         availableBuyingPowerLeft={availableBuyingPowerLeft}
+        transactionSubResult={transactionSubResult}
         transactionTypeValue={transactionTypeValue}
       />
     </div>
