@@ -20,7 +20,7 @@ const transactionNumbersCalcs: Record<
 
     return {
       transactionTotal: parseNumberToFixed2(
-        isBuy ? positionPriceAfterFees : -positionPriceAfterFees
+        isBuy ? -positionPriceAfterFees : +positionPriceAfterFees
       ),
     }
   },
@@ -45,17 +45,22 @@ const transactionNumbersCalcs: Record<
   },
   DIVIDEND_TAX: ({ dividendTaxValue }: TransactionFormValues) => {
     return {
-      transactionTotal: parseNumberToFixed2(dividendTaxValue || 0),
+      transactionTotal: parseNumberToFixed2(-dividendTaxValue || 0),
     }
   },
   FEE: ({ fee }: TransactionFormValues) => {
     return {
-      transactionTotal: parseNumberToFixed2(fee || 0),
+      transactionTotal: parseNumberToFixed2(-fee || 0),
     }
   },
-  FUNDING_WITHDRAWAL: ({ transferValue }: TransactionFormValues) => {
+  FUNDING_WITHDRAWAL: ({
+    transferValue,
+    operationType,
+  }: TransactionFormValues) => {
+    const total = operationType === "FUNDING" ? transferValue : -transferValue
+
     return {
-      transactionTotal: parseNumberToFixed2(transferValue || 0),
+      transactionTotal: parseNumberToFixed2(total || 0),
     }
   },
 }

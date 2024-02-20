@@ -25,7 +25,9 @@ const AssetOperationSummary = ({
   const isTransactionValueNegative =
     transactionTypeValue !== "FUNDING_WITHDRAWAL"
 
-  const sign = isTransactionValueNegative ? "-" : "+"
+  const isTransactionTotalPositive = transactionTotal >= 0
+  const sign = isTransactionTotalPositive ? "" : "-"
+  const transactionTotalValue = `${transactionTotal}`.replaceAll("-", "")
 
   return (
     <div className="flex flex-col gap-2 w-[180px]">
@@ -47,7 +49,7 @@ const AssetOperationSummary = ({
             isTransactionValueNegative && styles.summary_item__value__gray
           )}
         >
-          {sign} ${transactionTotal}
+          {sign} ${transactionTotalValue}
         </span>
       </p>
       <Divider color="rgba(255, 255, 255, 0.10)" />

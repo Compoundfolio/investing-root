@@ -19,9 +19,7 @@ export const useTransactionNumbersCalc = ({
 
   // TODO: server request
   const availableBuyingPower = 10000
-  const availableBuyingPowerLeft = availableBuyingPower - transactionTotal
-
-  // const totalNumber = transactionType === "TRADE" ? isBuy ? transactionTotal : -transactionTotal :
+  const availableBuyingPowerLeft = availableBuyingPower + transactionTotal
 
   const isBuyingPowerLeftNegative = availableBuyingPowerLeft < 0
 
