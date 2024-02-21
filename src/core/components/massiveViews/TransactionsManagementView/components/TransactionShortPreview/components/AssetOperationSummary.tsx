@@ -4,6 +4,7 @@ import styles from "./AssetOperationSummary.module.css"
 import clsx from "clsx"
 import { TransactionType } from "../../TransactionForm/types"
 import { getSummaryNamings } from "./helpers"
+import { beatify } from "@core/helpers"
 
 interface IAssetOperationSummary {
   initialTransactionSummaryValue: number
@@ -37,8 +38,6 @@ const AssetOperationSummary = ({
   const subValueSign =
     transactionSubResult! >= 0 ? (transactionSubResult === 0 ? "" : "+") : "-"
 
-  const transactionTotalValue = `${transactionTotal}`.replaceAll("-", "")
-
   return (
     <div className="flex flex-col gap-2 w-[205px]">
       <p className={styles.summary_item}>
@@ -46,7 +45,7 @@ const AssetOperationSummary = ({
           {summary.initialValueNaming ?? "Available cash:"}
         </span>
         <span className={clsx(styles.summary_item__value)}>
-          ${initialTransactionSummaryValue}
+          {beatify(initialTransactionSummaryValue, { withSign: false })}
         </span>
       </p>
       <p className={styles.summary_item}>
@@ -62,7 +61,7 @@ const AssetOperationSummary = ({
                 : styles.summary_item__value__green)
           )}
         >
-          {sign} ${transactionTotalValue}
+          {beatify(transactionTotal)}
         </span>
       </p>
       <Divider color="rgba(255, 255, 255, 0.10)" />
@@ -82,7 +81,7 @@ const AssetOperationSummary = ({
                     : styles.summary_item__value__green)
               )}
             >
-              {subValueSign} ${transactionSubResult}
+              {beatify(transactionSubResult!)}
             </span>
           </p>
           <Divider color="rgba(255, 255, 255, 0.25)" />
@@ -93,7 +92,7 @@ const AssetOperationSummary = ({
           {summary.resultNaming ?? "Available cash left:"}
         </span>
         <span className={clsx(styles.summary_item__value, styles.total)}>
-          ${finalTransactionSummaryValue}
+          {beatify(finalTransactionSummaryValue)}
         </span>
       </p>
     </div>

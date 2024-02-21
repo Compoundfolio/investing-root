@@ -18,13 +18,15 @@ import {
 import { Currency, Option, PortfolioTransaction } from "src/core/types"
 import {
   SearchAssetOption,
+  TooBigTransactionWarning,
   TransactionOperationSwitcher,
   TypeBasedFields,
 } from "./components"
-import { InModalWarning } from "src/core/components/blocks"
+import { NoteWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
 import { TransactionType } from "./types"
+
 interface ITransactionForm {
   transactionToEdit: PortfolioTransaction | null
   handleTransactionEdit: (transaction: PortfolioTransaction) => void
@@ -259,11 +261,13 @@ const TransactionForm = ({
           selectedBrokerageIcon={assignedBrokerageIcon}
         />
         {isBuyingPowerLeftNegative && transactionTypeValue !== "DIVIDEND" && (
-          <InModalWarning
-            message={`
-            Transaction's total value ($${transactionTotal}) is bigger then available cash balance ($${initialTransactionSummaryValue}).
-            Please check, does the transaction data is correct or add more cash to obtain this transaction.
-          `}
+          <NoteWarning
+            message={
+              <TooBigTransactionWarning
+                transactionTotal={transactionTotal}
+                availableCash={initialTransactionSummaryValue!}
+              />
+            }
           />
         )}
         <ActButton

@@ -1,6 +1,6 @@
 /**
  * @example
- * outputNumber(1234567.890123) // 1 234 567.890 123
+ * outputNumber(1234567.890123) // 1 234 567.890123
  */
 const outputNumber = (num: number) => {
   let parts = num.toString().split(".")
