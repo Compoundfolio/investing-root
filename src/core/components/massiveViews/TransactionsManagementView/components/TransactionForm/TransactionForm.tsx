@@ -55,10 +55,8 @@ const TransactionForm = ({
   } = useForm<typeof defaultFormValues>({
     validationSchema: validation(),
     initialValues: defaultFormValues,
-    onSubmit: (values, helpers) => {
+    onSubmit: (values) => {
       setSubmitting(true)
-
-      // helpers.validateForm()
 
       const mutateTransactionList = transactionToEdit
         ? handleTransactionEdit
@@ -82,10 +80,10 @@ const TransactionForm = ({
       asset &&
         mutateTransactionList({
           id: transactionToEdit?.id ?? uniqueId(),
-          title: asset?.title,
-          ticker: asset?.ticker,
-          exchange: asset?.exchange,
-          exchangeCountry: asset?.exchangeCountry,
+          title: asset.title,
+          ticker: asset.ticker,
+          exchange: asset.exchange,
+          exchangeCountry: asset.exchangeCountry,
           transactionType: values.transactionType,
           operationType: values.operationType as "BUY" | "SELL",
           assetSearchNameOrTicker: values.assetSearchNameOrTicker,
@@ -93,9 +91,10 @@ const TransactionForm = ({
           price: values.sharePrice!,
           fee: fee,
           date: values.date,
-          currency: Currency.USD, // TODO: Currency support
+          currency: Currency.USD,
           total: transactionTotal,
           handlingType: transactionToEdit ? "HANDLY_EDITED" : "HANDLY_ADDED",
+          assignedBrokerage: values.assignedBrokerage,
         })
 
       resetForm()
@@ -129,8 +128,8 @@ const TransactionForm = ({
 
   const onAssetSelectionFromSearch = useCallback(
     (option: Option<AssetSearchOptionData>) => {
-      setAsset(option.data)
-      setFieldValue("price", option.data?.currentMarketPrice)
+      setAsset({ ...option.data!, icon: option?.icon?.() })
+      setFieldValue("sharePrice", option.data?.currentMarketPrice)
     },
     [setAsset, setFieldValue]
   )
@@ -252,6 +251,7 @@ const TransactionForm = ({
           assetTicker={asset?.ticker}
           assetExchange={asset?.exchange}
           assetExchangeCountry={asset?.exchangeCountry}
+          assetLogo={asset?.icon}
           transactionTotal={transactionTotal}
           initialTransactionSummaryValue={initialTransactionSummaryValue!}
           finalTransactionSummaryValue={finalTransactionSummaryValue}

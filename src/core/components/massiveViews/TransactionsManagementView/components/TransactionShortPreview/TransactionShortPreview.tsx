@@ -15,6 +15,7 @@ interface ITransactionShortPreview {
   transactionTypeValue: TransactionType
   transactionSubResult?: number
   dividendTaxPercentage?: number
+  assetLogo: React.ReactNode
   selectedBrokerageIcon: Option["icon"]
 }
 
@@ -30,6 +31,7 @@ const TransactionShortPreview = ({
   transactionTypeValue,
   transactionSubResult,
   dividendTaxPercentage,
+  assetLogo,
   selectedBrokerageIcon,
 }: ITransactionShortPreview) => {
   return (
@@ -39,6 +41,7 @@ const TransactionShortPreview = ({
         ticker={assetTicker}
         exchange={assetExchange}
         exchangeCountry={assetExchangeCountry}
+        assetLogo={assetLogo}
         selectedBrokerageIcon={selectedBrokerageIcon}
       />
       <AssetOperationSummary

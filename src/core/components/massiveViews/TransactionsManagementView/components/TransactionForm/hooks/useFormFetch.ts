@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 import {
   Currency,
+  Option,
   PortfolioTransaction,
   UseFormHookHelpers,
 } from "src/core/types"
-import { defaultFormValues } from "../const"
 import { AssetSearchOptionData } from "./useAssetSearch"
+import { TransactionFormValues, TransactionTypeOption } from "../types"
 
 interface IUseFormFetch {
   transactionToEdit: PortfolioTransaction | null
@@ -28,18 +29,21 @@ export const useFormFetch = ({
         exchange: transactionToEdit.exchange,
         exchangeCountry: transactionToEdit.exchangeCountry,
         type: transactionToEdit.transactionType,
-        currentMarketPrice: transactionToEdit.price,
+        currentMarketPrice: transactionToEdit.price || 0,
         currency: Currency.USD,
+        icon: transactionToEdit?.icon,
       })
       setValues({
-        transactionType: transactionToEdit.transactionType,
+        assignedBrokerage: transactionToEdit.assignedBrokerage,
+        transactionType:
+          transactionToEdit.transactionType as TransactionTypeOption,
         assetSearchNameOrTicker: transactionToEdit.ticker,
         operationType: transactionToEdit.operationType,
-        amount: transactionToEdit.amount,
-        price: transactionToEdit.price,
+        sharesAmountForTrade: transactionToEdit.amount,
+        sharePrice: transactionToEdit.price,
         fee: transactionToEdit.fee,
         date: transactionToEdit.date,
-      } satisfies typeof defaultFormValues)
+      } satisfies Partial<TransactionFormValues>)
     }
   }, [transactionToEdit])
 }

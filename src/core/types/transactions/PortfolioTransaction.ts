@@ -3,6 +3,7 @@ import { Option } from "../common"
 import { Currency } from "../currencies"
 import { ID } from "../ids"
 import TransactionHandlingType from "./TransactionHandlingType"
+import { ReactNode } from "react"
 
 type PortfolioTransaction = {
   id: ID
@@ -20,6 +21,8 @@ type PortfolioTransaction = {
   currency: Currency
   date: string
   handlingType: TransactionHandlingType
+  assignedBrokerage: any // TODO
+  icon?: ReactNode
 }
 
 export default PortfolioTransaction

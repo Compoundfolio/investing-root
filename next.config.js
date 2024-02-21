@@ -8,6 +8,7 @@ const nextConfig = {
       "ohspets.shelterbuddy.com",
       "upload.wikimedia.org",
       "www.svgrepo.com",
+      "cdn.snowball-analytics.com",
     ],
   },
   webpack: (config) => {

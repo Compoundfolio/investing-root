@@ -15,10 +15,11 @@
   font-size: 7px;
   font-style: normal;
   font-weight: 500;
-  line-height: 8px; 
+  line-height: 8px;
 }
 
 .asset_title {
+  text-align: left;
   color: var(--color-darkLightGreen);
   font-size: 14px;
   font-style: normal;

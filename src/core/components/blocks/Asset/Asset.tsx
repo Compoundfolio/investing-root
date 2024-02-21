@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import React, { ReactNode, memo } from "react"
 import {
   Exchange,
   Option,
@@ -15,20 +15,21 @@ interface IAsset {
   exchange: Exchange | undefined
   exchangeCountry: string | undefined // TODO: add Country -kind type
   handlingType?: TransactionHandlingType
-  assetLogoUrl?: string
-  selectedBrokerageIcon: Option["icon"]
+  assetLogo?: ReactNode
+  selectedBrokerageIcon?: Option["icon"]
 }
 
-// TODO: Skeleton
 const Asset = ({
   title,
   ticker,
   exchange,
   exchangeCountry,
   handlingType,
-  assetLogoUrl,
+  assetLogo,
   selectedBrokerageIcon,
 }: IAsset) => {
+  const isAssetLogoUrl = typeof assetLogo === "string"
+
   return (
     <div
       className={clsx(
@@ -40,13 +41,13 @@ const Asset = ({
       )}
     >
       <div className="relative">
-        {assetLogoUrl ? (
+        {isAssetLogoUrl ? (
           <Image
             width={24}
             height={24}
-            src={assetLogoUrl}
+            src={assetLogo}
             alt={`${title} logo`}
-            className="z-10"
+            className="z-10 rounded"
           />
         ) : (
           <div className={styles.asset_undefinedLogo}>
