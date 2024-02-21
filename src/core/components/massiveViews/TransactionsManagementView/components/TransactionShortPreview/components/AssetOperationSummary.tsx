@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { Divider } from "src/core/components/blocks"
 import styles from "./AssetOperationSummary.module.css"
 import clsx from "clsx"
@@ -40,7 +40,7 @@ const AssetOperationSummary = ({
   const transactionTotalValue = `${transactionTotal}`.replaceAll("-", "")
 
   return (
-    <div className="flex flex-col gap-2 w-[180px]">
+    <div className="flex flex-col gap-2 w-[205px]">
       <p className={styles.summary_item}>
         <span className={styles.summary_item__title}>
           {summary.initialValueNaming ?? "Available cash:"}
@@ -100,4 +100,4 @@ const AssetOperationSummary = ({
   )
 }
 
-export default AssetOperationSummary
+export default memo(AssetOperationSummary)

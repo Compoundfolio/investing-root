@@ -25,7 +25,6 @@ import { InModalWarning } from "src/core/components/blocks"
 import { uniqueId } from "lodash"
 import { SectionTitle } from "src/core/components/text"
 import { TransactionType } from "./types"
-
 interface ITransactionForm {
   transactionToEdit: PortfolioTransaction | null
   handleTransactionEdit: (transaction: PortfolioTransaction) => void
@@ -77,7 +76,7 @@ const TransactionForm = ({
         (values.transactionType.value === "FEE" &&
           values.feeTransactionValue) ||
         0
-      alert(52)
+
       asset &&
         mutateTransactionList({
           id: transactionToEdit?.id ?? uniqueId(),
@@ -119,7 +118,6 @@ const TransactionForm = ({
   } = useTransactionNumbersCalc({
     values,
   })
-  console.warn(errors)
 
   const { serverSearchRequest } = useAssetSearch()
 
@@ -170,6 +168,13 @@ const TransactionForm = ({
     transactionTypeValue === "DIVIDEND"
       ? values?.taxPercentage
       : values.dividendTaxPercentage
+
+  const assignedBrokerageIcon = useCallback(
+    (size?: number, withShadow?: boolean) => {
+      return values.assignedBrokerage?.icon?.(size, withShadow)!
+    },
+    [values.assignedBrokerage]
+  )
 
   return (
     <section>
@@ -251,7 +256,7 @@ const TransactionForm = ({
           transactionSubResult={transactionSubResult}
           dividendTaxPercentage={divTaxPercentage || 0}
           transactionTypeValue={transactionTypeValue}
-          selectedBrokerageIcon={values.assignedBrokerage?.icon}
+          selectedBrokerageIcon={assignedBrokerageIcon}
         />
         {isBuyingPowerLeftNegative && transactionTypeValue !== "DIVIDEND" && (
           <InModalWarning
