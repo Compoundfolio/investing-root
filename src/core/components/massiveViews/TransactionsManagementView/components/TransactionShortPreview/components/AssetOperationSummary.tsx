@@ -3,30 +3,40 @@ import { Divider } from "src/core/components/blocks"
 import styles from "./AssetOperationSummary.module.css"
 import clsx from "clsx"
 import { TransactionType } from "../../TransactionForm/types"
-import { SUMMARIES_NAMINGS } from "./const"
+import { getSummaryNamings } from "./helpers"
 
 interface IAssetOperationSummary {
-  availableBuyingPower: number
+  initialTransactionSummaryValue: number
+  finalTransactionSummaryValue: number
   transactionTotal: number
-  availableBuyingPowerLeft: number
-  transactionSubResult?: number
   transactionTypeValue: TransactionType
+  transactionSubResult?: number
+  dividendTaxPercentage?: number
 }
 
 const AssetOperationSummary = ({
-  availableBuyingPower,
+  initialTransactionSummaryValue,
+  finalTransactionSummaryValue,
   transactionTotal,
-  availableBuyingPowerLeft,
-  transactionSubResult,
   transactionTypeValue,
+  transactionSubResult,
+  dividendTaxPercentage,
 }: IAssetOperationSummary) => {
-  const summary = SUMMARIES_NAMINGS[transactionTypeValue]
-
-  const isTransactionValueNegative =
-    transactionTypeValue !== "FUNDING_WITHDRAWAL"
+  const summary = getSummaryNamings({ dividendTaxPercentage })[
+    transactionTypeValue
+  ]
 
   const isTransactionTotalPositive = transactionTotal >= 0
-  const sign = isTransactionTotalPositive ? "" : "-"
+
+  const sign = isTransactionTotalPositive
+    ? transactionTotal === 0
+      ? ""
+      : "+"
+    : "-"
+
+  const subValueSign =
+    transactionSubResult! >= 0 ? (transactionSubResult === 0 ? "" : "+") : "-"
+
   const transactionTotalValue = `${transactionTotal}`.replaceAll("-", "")
 
   return (
@@ -36,7 +46,7 @@ const AssetOperationSummary = ({
           {summary.initialValueNaming ?? "Available cash:"}
         </span>
         <span className={clsx(styles.summary_item__value)}>
-          ${availableBuyingPower}
+          ${initialTransactionSummaryValue}
         </span>
       </p>
       <p className={styles.summary_item}>
@@ -46,37 +56,44 @@ const AssetOperationSummary = ({
         <span
           className={clsx(
             styles.summary_item__value,
-            isTransactionValueNegative && styles.summary_item__value__gray
+            sign &&
+              (sign === "-"
+                ? styles.summary_item__value__gray
+                : styles.summary_item__value__green)
           )}
         >
           {sign} ${transactionTotalValue}
         </span>
       </p>
       <Divider color="rgba(255, 255, 255, 0.10)" />
-      {!!transactionSubResult && (
+      {transactionTypeValue === "DIVIDEND" && (
         <>
           <p className={styles.summary_item}>
-            <span className={styles.summary_item__title}>
+            <span className={clsx(styles.summary_item__title, styles.total)}>
               {summary.subResultNaming}
             </span>
             <span
               className={clsx(
                 styles.summary_item__value,
-                isTransactionValueNegative && styles.summary_item__value__gray
+                styles.total,
+                subValueSign &&
+                  (subValueSign === "-"
+                    ? styles.summary_item__value__gray
+                    : styles.summary_item__value__green)
               )}
             >
-              {sign} ${transactionSubResult}
+              {subValueSign} ${transactionSubResult}
             </span>
           </p>
           <Divider color="rgba(255, 255, 255, 0.25)" />
         </>
       )}
       <p className={styles.summary_item}>
-        <span className={styles.summary_item__title}>
+        <span className={clsx(styles.summary_item__title, styles.total)}>
           {summary.resultNaming ?? "Available cash left:"}
         </span>
-        <span className={clsx(styles.summary_item__value)}>
-          ${availableBuyingPowerLeft}
+        <span className={clsx(styles.summary_item__value, styles.total)}>
+          ${finalTransactionSummaryValue}
         </span>
       </p>
     </div>

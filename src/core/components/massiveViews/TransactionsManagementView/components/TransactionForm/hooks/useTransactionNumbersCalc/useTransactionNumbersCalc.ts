@@ -19,14 +19,22 @@ export const useTransactionNumbersCalc = ({
 
   // TODO: server request
   const availableBuyingPower = 10000
-  const availableBuyingPowerLeft = availableBuyingPower + transactionTotal
 
+  const availableBuyingPowerLeft = ["DIVIDEND"].includes(transactionType)
+    ? availableBuyingPower + optionalNumbers.transactionSubResult!
+    : availableBuyingPower + transactionTotal
+
+  const initialTransactionSummaryValue = ["DIVIDEND"].includes(transactionType)
+    ? optionalNumbers.initialSummaryValue
+    : availableBuyingPower
+
+  const finalTransactionSummaryValue = availableBuyingPowerLeft
   const isBuyingPowerLeftNegative = availableBuyingPowerLeft < 0
 
   return {
     transactionTotal,
-    availableBuyingPower,
-    availableBuyingPowerLeft,
+    initialTransactionSummaryValue,
+    finalTransactionSummaryValue,
     transactionSubResult: optionalNumbers?.transactionSubResult,
     isBuyingPowerLeftNegative,
   }

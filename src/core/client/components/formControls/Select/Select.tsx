@@ -143,7 +143,7 @@ const Select = ({
             type="button"
             onClick={handleOptionsOpenedChange}
             className={clsx(
-              "relative flex items-center justify-between w-full h-full gap-2 text-gray-900 cursor-default",
+              "relative flex items-center justify-between w-full gap-2 text-gray-900 h-[39px] cursor-default",
               styles.select_button
             )}
           >

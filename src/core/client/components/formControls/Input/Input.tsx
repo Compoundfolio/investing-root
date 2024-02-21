@@ -10,7 +10,6 @@ import { FormControlBase } from "../FormControlBase"
 import CircleButton from "src/core/components/buttons/CircleButton/CircleButton"
 import { CancelIcon, SearchIcon, Spinner } from "@core/components"
 import { cancelStyle, resetSearchStyle, searchIconStyle } from "./consts"
-import clsx from "clsx"
 
 export interface IInput extends Omit<Control, "value"> {
   value: string | number
@@ -20,6 +19,7 @@ export interface IInput extends Omit<Control, "value"> {
   sharpBottomBorderRadius?: boolean
   resetInputValue?: () => void
   min?: number
+  max?: number
   contentCentered?: boolean
   withShadow?: boolean
   inputMode?: HTMLAttributes<HTMLInputElement>["inputMode"]
@@ -41,6 +41,7 @@ const Input = ({
   labelText,
   placeholder,
   min,
+  max,
   errorMessage,
   inputMode,
   style = {},
@@ -80,6 +81,7 @@ const Input = ({
         onChange={onChange}
         className={styles.input}
         {...(min && { min })}
+        {...(max && { max })}
         // TODO: Get rid of style
         style={{
           ...(isPassword && { paddingRight: 46 }),

@@ -31,6 +31,7 @@ const DividendTaxSpecificFields = ({
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
+        max={100}
       />
     </>
   )

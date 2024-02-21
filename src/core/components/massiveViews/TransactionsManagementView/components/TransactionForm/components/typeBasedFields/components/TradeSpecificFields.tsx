@@ -15,7 +15,6 @@ const TradeSpecificFields = ({
         name="sharePrice"
         type="number"
         labelText="Share Price ($)"
-        // withMb={false}
         value={values.sharePrice}
         errorMessage={errors.sharePrice}
         setErrorMessage={setFieldError}
@@ -24,12 +23,11 @@ const TradeSpecificFields = ({
       />
       <Input
         required
-        name="sharesAmount"
+        name="sharesAmountForTrade"
         type="number"
         labelText="Shares amount"
-        // withMb={false}
-        value={values.sharesAmount}
-        errorMessage={errors.sharesAmount}
+        value={values.sharesAmountForTrade}
+        errorMessage={errors.sharesAmountForTrade}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
@@ -39,7 +37,6 @@ const TradeSpecificFields = ({
         name="fee"
         type="number"
         labelText="Fee ($)"
-        // withMb={false}
         value={values.fee}
         errorMessage={errors.fee}
         setErrorMessage={setFieldError}

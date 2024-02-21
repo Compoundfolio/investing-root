@@ -8,12 +8,13 @@ const transactionNumbersCalcs: Record<
 > = {
   TRADE: ({
     operationType,
-    sharesAmount,
+    sharesAmountForTrade,
     sharePrice,
     fee,
   }: TransactionFormValues) => {
     const isBuy = operationType === "BUY"
-    const positionPrice = Number(sharesAmount || 0) * Number(sharePrice || 0)
+    const positionPrice =
+      Number(sharesAmountForTrade || 0) * Number(sharePrice || 0)
     const positionPriceAfterFees = isBuy
       ? positionPrice + Number(fee || 0)
       : positionPrice - Number(fee || 0)
@@ -25,22 +26,24 @@ const transactionNumbersCalcs: Record<
     }
   },
   DIVIDEND: ({
-    sharesAmount,
+    sharesAmountForDividend,
     dividendPerShare,
-    dividendTaxPercentage,
+    taxPercentage,
   }: TransactionFormValues) => {
     const dividendBeforeTax =
-      Number(sharesAmount || 0) * Number(dividendPerShare || 0)
+      Number(sharesAmountForDividend || 0) * Number(dividendPerShare || 0)
 
     const dividendAfterTax = percentageOff(
       dividendBeforeTax,
-      dividendTaxPercentage || 0
+      taxPercentage || 0
     )
-    const dividendTaxValue = dividendBeforeTax - dividendAfterTax
+
+    const dividendTaxValue = -(dividendBeforeTax - dividendAfterTax)
 
     return {
+      initialSummaryValue: parseNumberToFixed2(dividendBeforeTax),
       transactionTotal: parseNumberToFixed2(dividendTaxValue),
-      transactionSubResult: parseNumberToFixed2(dividendTaxValue),
+      transactionSubResult: parseNumberToFixed2(dividendAfterTax),
     }
   },
   DIVIDEND_TAX: ({ dividendTaxValue }: TransactionFormValues) => {
@@ -48,9 +51,9 @@ const transactionNumbersCalcs: Record<
       transactionTotal: parseNumberToFixed2(-dividendTaxValue || 0),
     }
   },
-  FEE: ({ fee }: TransactionFormValues) => {
+  FEE: ({ feeTransactionValue }: TransactionFormValues) => {
     return {
-      transactionTotal: parseNumberToFixed2(-fee || 0),
+      transactionTotal: parseNumberToFixed2(-feeTransactionValue || 0),
     }
   },
   FUNDING_WITHDRAWAL: ({

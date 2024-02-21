@@ -12,12 +12,12 @@ const FeeSpecificFields = ({
     <>
       <Input
         required
-        name="fee"
+        name="feeTransactionValue"
         type="number"
         labelText="Fee ($)"
         className="w-full"
-        value={values.fee}
-        errorMessage={errors.fee}
+        value={values.feeTransactionValue}
+        errorMessage={errors.feeTransactionValue}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}

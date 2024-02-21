@@ -10,14 +10,25 @@
   font-size: 10px;
   font-weight: 400;
 }
+.summary_item__title.total {
+  font-weight: 600;
+}
 
 .summary_item__value {
-  color: var(--color-white);
+  color: var(--color-gray);
   font-size: 14px;
   font-weight: 500;
   font-family: var(--font-chakra);
 }
+.summary_item__value.total {
+  font-weight: 600;
+  color: var(--color-white);
+}
 
 .summary_item__value__gray {
-  color: var(--color-gray4C);
+  color: var(--color-gray4C) !important;
+}
+
+.summary_item__value__green {
+  color: var(--color-darkGreen) !important;
 }

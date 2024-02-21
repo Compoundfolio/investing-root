@@ -23,11 +23,11 @@ const DividendSpecificFields = ({
       />
       <Input
         required
-        name="sharesAmount"
+        name="sharesAmountForDividend"
         type="number"
         labelText="Shares amount"
-        value={values.sharesAmount}
-        errorMessage={errors.sharesAmount}
+        value={values.sharesAmountForDividend}
+        errorMessage={errors.sharesAmountForDividend}
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
@@ -43,6 +43,7 @@ const DividendSpecificFields = ({
         setErrorMessage={setFieldError}
         onChange={handleChange}
         min={0}
+        max={100}
       />
     </>
   )

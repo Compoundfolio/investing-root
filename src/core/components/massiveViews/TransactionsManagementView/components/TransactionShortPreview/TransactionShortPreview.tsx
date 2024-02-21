@@ -10,10 +10,11 @@ interface ITransactionShortPreview {
   assetTicker: Ticker | undefined
   assetExchange: Exchange | undefined
   assetExchangeCountry: string | undefined
-  availableBuyingPower: number
-  availableBuyingPowerLeft: number
+  initialTransactionSummaryValue: number
+  finalTransactionSummaryValue: number
   transactionTypeValue: TransactionType
   transactionSubResult?: number
+  dividendTaxPercentage?: number
   selectedBrokerageIcon: Option["icon"]
 }
 
@@ -24,10 +25,11 @@ const TransactionShortPreview = ({
   assetTicker,
   assetExchange,
   assetExchangeCountry,
-  availableBuyingPower,
-  availableBuyingPowerLeft,
+  initialTransactionSummaryValue,
+  finalTransactionSummaryValue,
   transactionTypeValue,
   transactionSubResult,
+  dividendTaxPercentage,
   selectedBrokerageIcon,
 }: ITransactionShortPreview) => {
   return (
@@ -40,10 +42,11 @@ const TransactionShortPreview = ({
         selectedBrokerageIcon={selectedBrokerageIcon}
       />
       <AssetOperationSummary
-        availableBuyingPower={availableBuyingPower}
+        initialTransactionSummaryValue={initialTransactionSummaryValue}
+        finalTransactionSummaryValue={finalTransactionSummaryValue}
         transactionTotal={transactionTotal}
-        availableBuyingPowerLeft={availableBuyingPowerLeft}
         transactionSubResult={transactionSubResult}
+        dividendTaxPercentage={dividendTaxPercentage}
         transactionTypeValue={transactionTypeValue}
       />
     </div>

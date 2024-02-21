@@ -1,17 +1,23 @@
 import { TransactionSummary } from "./types"
 
-export const SUMMARIES_NAMINGS: TransactionSummary = {
+interface IGetSummaryNamings {
+  dividendTaxPercentage?: number
+}
+
+export const getSummaryNamings = ({
+  dividendTaxPercentage,
+}: IGetSummaryNamings): TransactionSummary => ({
   TRADE: {
     transactionValueNaming: "Trade cost:",
   },
   DIVIDEND: {
     initialValueNaming: "Dividend:",
-    transactionValueNaming: "Dividend tax (15%):",
+    transactionValueNaming: `Dividend tax (${dividendTaxPercentage}%):`,
     subResultNaming: "Pure dividend:",
     resultNaming: "New cash value:",
   },
   DIVIDEND_TAX: {
-    transactionValueNaming: "Dividend Tax:",
+    transactionValueNaming: `Dividend tax (${dividendTaxPercentage}%):`,
   },
   FEE: {
     transactionValueNaming: "Fee:",
@@ -19,4 +25,4 @@ export const SUMMARIES_NAMINGS: TransactionSummary = {
   FUNDING_WITHDRAWAL: {
     transactionValueNaming: "Funding amount:",
   },
-}
+})

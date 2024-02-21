@@ -57,12 +57,27 @@ const TransactionForm = ({
     onSubmit: (values, helpers) => {
       setSubmitting(true)
 
-      helpers.validateForm()
+      // helpers.validateForm()
 
       const mutateTransactionList = transactionToEdit
         ? handleTransactionEdit
         : handleTransactionAdd
 
+      // TODO: Rid of
+      const amount =
+        (values.transactionType.value === "TRADE" &&
+          values.sharesAmountForTrade) ||
+        (values.transactionType.value === "DIVIDEND" &&
+          values.sharesAmountForDividend) ||
+        0
+
+      // TODO: Rid of
+      const fee =
+        (values.transactionType.value === "TRADE" && values.fee) ||
+        (values.transactionType.value === "FEE" &&
+          values.feeTransactionValue) ||
+        0
+      alert(52)
       asset &&
         mutateTransactionList({
           id: transactionToEdit?.id ?? uniqueId(),
@@ -73,9 +88,9 @@ const TransactionForm = ({
           transactionType: values.transactionType,
           operationType: values.operationType as "BUY" | "SELL",
           assetSearchNameOrTicker: values.assetSearchNameOrTicker,
-          amount: values.sharesAmount!,
+          amount: amount,
           price: values.sharePrice!,
-          fee: values.fee!,
+          fee: fee,
           date: values.date,
           currency: Currency.USD, // TODO: Currency support
           total: transactionTotal,
@@ -97,13 +112,14 @@ const TransactionForm = ({
 
   const {
     transactionTotal,
-    availableBuyingPower,
-    availableBuyingPowerLeft,
+    initialTransactionSummaryValue,
+    finalTransactionSummaryValue,
     transactionSubResult,
     isBuyingPowerLeftNegative,
   } = useTransactionNumbersCalc({
     values,
   })
+  console.warn(errors)
 
   const { serverSearchRequest } = useAssetSearch()
 
@@ -149,6 +165,11 @@ const TransactionForm = ({
     },
     [transactionTypeValue]
   )
+
+  const divTaxPercentage =
+    transactionTypeValue === "DIVIDEND"
+      ? values?.taxPercentage
+      : values.dividendTaxPercentage
 
   return (
     <section>
@@ -225,16 +246,17 @@ const TransactionForm = ({
           assetExchange={asset?.exchange}
           assetExchangeCountry={asset?.exchangeCountry}
           transactionTotal={transactionTotal}
-          availableBuyingPower={availableBuyingPower}
-          availableBuyingPowerLeft={availableBuyingPowerLeft}
+          initialTransactionSummaryValue={initialTransactionSummaryValue!}
+          finalTransactionSummaryValue={finalTransactionSummaryValue}
           transactionSubResult={transactionSubResult}
+          dividendTaxPercentage={divTaxPercentage || 0}
           transactionTypeValue={transactionTypeValue}
           selectedBrokerageIcon={values.assignedBrokerage?.icon}
         />
-        {isBuyingPowerLeftNegative && (
+        {isBuyingPowerLeftNegative && transactionTypeValue !== "DIVIDEND" && (
           <InModalWarning
             message={`
-            Transaction's total value ($${transactionTotal}) is bigger then available cash balance ($${availableBuyingPower}).
+            Transaction's total value ($${transactionTotal}) is bigger then available cash balance ($${initialTransactionSummaryValue}).
             Please check, does the transaction data is correct or add more cash to obtain this transaction.
           `}
           />
