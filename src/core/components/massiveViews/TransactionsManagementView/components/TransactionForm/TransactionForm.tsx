@@ -17,7 +17,6 @@ import {
 } from "./hooks"
 import { Currency, Option, PortfolioTransaction } from "src/core/types"
 import {
-  SearchAssetOption,
   TooBigTransactionWarning,
   TransactionOperationSwitcher,
   TypeBasedFields,
@@ -196,6 +195,7 @@ const TransactionForm = ({
         <Select
           search
           required
+          assetAsOption
           labelText="Asset"
           name="assetSearchNameOrTicker"
           placeholder="Start to search for ticker or asset name"
@@ -204,9 +204,7 @@ const TransactionForm = ({
           onSearchSelection={onAssetSelectionFromSearch}
           setFieldValue={setFieldValue}
           setErrorMessage={setFieldError}
-        >
-          <SearchAssetOption asset={asset!} />
-        </Select>
+        />
         {selectedPortfolioBrokerages.length > 1 && (
           // @ts-ignore
           <Select

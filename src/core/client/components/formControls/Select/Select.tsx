@@ -15,12 +15,15 @@ import { CollapseIcon } from "@core/components"
 import { Input } from "../Input"
 import { IUseSearch, useSearch } from "./hooks"
 import { colors } from "src/core/theme"
+import { SearchAssetOption } from "src/core/components/massiveViews/TransactionsManagementView/components/TransactionForm/components"
+import { AssetSearchOptionData } from "src/core/components/massiveViews/TransactionsManagementView/components/TransactionForm/hooks"
 
 interface SelectType
   extends Omit<Control, "value" | "onChange" | "placeholder"> {
   value: Option
   options: Option[]
   search?: boolean
+  assetAsOption?: boolean
   setFieldValue: UseFormHookHelpers["setFieldValue"]
 }
 
@@ -35,8 +38,6 @@ interface SearchType
 
 export type TSelect = SelectType & SearchType
 
-// TODO: Overload
-
 const Select = ({
   /** Makes select into autocomplete field */
   search = false,
@@ -50,6 +51,7 @@ const Select = ({
   withMb = true,
   options,
   placeholder,
+  assetAsOption,
   children,
   setFieldValue,
   setErrorMessage,
@@ -174,7 +176,15 @@ const Select = ({
                     )}
                     onClick={() => handleChange(option)}
                   >
-                    {children ?? (
+                    {/* TODO: Refactor, abstract */}
+                    {children ?? assetAsOption ? (
+                      <SearchAssetOption
+                        asset={{
+                          ...(option.data as AssetSearchOptionData),
+                          icon: option?.icon?.(24),
+                        }}
+                      />
+                    ) : (
                       <span
                         className={clsx(
                           option.id === value?.id
