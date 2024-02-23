@@ -149,7 +149,8 @@ const Select = ({
               styles.select_button
             )}
           >
-            <span className="flex items-center">
+            <span className="flex items-center gap-2">
+              {value?.icon?.()}
               <span className="block truncate">{value?.label}</span>
             </span>
             <CollapseIcon rotate180={showOptions} />
@@ -185,16 +186,19 @@ const Select = ({
                         }}
                       />
                     ) : (
-                      <span
-                        className={clsx(
-                          option.id === value?.id
-                            ? "font-semibold"
-                            : "font-normal",
-                          "block truncate"
-                        )}
-                      >
-                        {option.label}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        {option?.icon?.()}
+                        <span
+                          className={clsx(
+                            option.id === value?.id
+                              ? "font-semibold"
+                              : "font-normal",
+                            "block truncate"
+                          )}
+                        >
+                          {option.label}
+                        </span>
+                      </div>
                     )}
                   </button>
                 </li>

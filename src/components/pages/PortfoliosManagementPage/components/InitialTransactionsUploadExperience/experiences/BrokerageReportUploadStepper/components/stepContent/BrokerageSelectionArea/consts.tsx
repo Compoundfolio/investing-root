@@ -16,7 +16,7 @@ export const allSupportedBrokerages: Option[] = [
     value: "Exante",
     label: "Exante",
     icon: (size = ORIGINAL_ICON_SIZE, withShadow = false) => (
-      <ExanteIcon style={withShadow && style} size={size} />
+      <ExanteIcon style={withShadow ? style : {}} size={size} />
     ),
     data: {
       reportGuide: <>TODO: Exante report guide</>,
@@ -27,7 +27,7 @@ export const allSupportedBrokerages: Option[] = [
     value: "Freedom Finance",
     label: "Freedom Finance",
     icon: (size = ORIGINAL_ICON_SIZE, withShadow = false) => (
-      <FreedomFinanceIcon style={withShadow && style} size={size} />
+      <FreedomFinanceIcon style={withShadow ? style : {}} size={size} />
     ),
     data: {
       reportGuide: <>TODO: Freedom Finance report guide</>,
