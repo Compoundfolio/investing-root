@@ -92,13 +92,13 @@ const TransactionTable = ({
         <THead>
           <TRow isChecked={isAllSelected} onCheck={checkAll}>
             <TCell th>Asset</TCell>
-            <TCell th>Operation Type</TCell>
-            <TCell th>Asset Type</TCell>
-            <TCell th>Date</TCell>
-            <TCell th>Price</TCell>
-            <TCell th>Amount</TCell>
-            <TCell th>Fees</TCell>
+            <TCell th>Brokerage</TCell>
+            <TCell th>Type</TCell>
+            <TCell th>Details</TCell>
             <TCell th>Total</TCell>
+            <TCell th>Unit Price</TCell>
+            <TCell th>Units</TCell>
+            <TCell th>Date</TCell>
             <TCell th>Actions</TCell>
           </TRow>
         </THead>
@@ -117,17 +117,19 @@ const TransactionTable = ({
                   exchange={transaction.exchange}
                   exchangeCountry={transaction.exchangeCountry}
                   handlingType={transaction.handlingType}
+                  assetLogo={transaction?.icon}
                 />
               </TCell>
-              <TCell>{transaction.operationType}</TCell>
+              <TCell>{transaction.assignedBrokerage?.icon?.(16, true)}</TCell>
               <TCell>{transaction.transactionType.label}</TCell>
-              <TCell>{transaction.date}</TCell>
-              <TCell number>${transaction.price}</TCell>
-              <TCell number>{transaction.amount}</TCell>
-              <TCell number>${transaction.fee}</TCell>
+              {/* TODO: Create component according Figma */}
+              <TCell>{transaction.operationType}</TCell>
               <TCell number bold>
                 ${transaction.total}
               </TCell>
+              <TCell number>${transaction.price}</TCell>
+              <TCell number>{transaction.amount}</TCell>
+              <TCell>{transaction.date}</TCell>
               <ActionCell
                 tableItem={transaction}
                 onEdit={onEdit}

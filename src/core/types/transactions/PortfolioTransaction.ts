@@ -1,3 +1,4 @@
+import { TransactionFormValues } from "src/core/components/massiveViews/TransactionsManagementView/components"
 import { Exchange, Ticker } from "../assets"
 import { Option } from "../common"
 import { Currency } from "../currencies"
@@ -12,7 +13,7 @@ type PortfolioTransaction = {
   exchange: Exchange
   exchangeCountry: string
   transactionType: Option
-  operationType: "BUY" | "SELL"
+  operationType: TransactionFormValues["operationType"]
   assetSearchNameOrTicker: string
   amount: number | ""
   price: number | ""
@@ -21,7 +22,7 @@ type PortfolioTransaction = {
   currency: Currency
   date: string
   handlingType: TransactionHandlingType
-  assignedBrokerage: any // TODO
+  assignedBrokerage: TransactionFormValues["assignedBrokerage"]
   icon?: ReactNode
 }
 
