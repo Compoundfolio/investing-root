@@ -13,14 +13,13 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.7",
     "@mui/icons-material": "^5.11.11",
     "@nivo/bar": "^0.83.0",
     "@nivo/core": "^0.83.0",
     "@nivo/line": "^0.83.0",
     "@nivo/pie": "github:theomessin/nivo#pie",
     "@nivo/treemap": "^0.83.0",
-    "@tanstack/react-query": "^4.29.17",
+    "@tanstack/react-query": "^5.24.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "18.0.9",
     "@types/typescript": "^2.0.0",
@@ -29,8 +28,8 @@
     "ehd-js": "^0.0.5",
     "firebase": "^9.21.0",
     "formik": "^2.4.2",
-    "graphql": "15.3.0",
-    "graphql-request": "^5.1.0",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "lodash": "^4.17.21",
     "next": "^13.4.20-canary.16",
     "next-auth": "^4.20.1",
@@ -40,12 +39,11 @@
     "react-firebase-hooks": "^5.1.1",
     "react-tailwindcss-datepicker": "^1.6.6",
     "recoil": "^0.7.6",
-    "reflect-metadata": "^0.1.13",
     "uuid": "^9.0.0",
     "yup": "^1.2.0"
   },
   "overrides": {
-      "@nivo/core": "^0.83.0"
+    "@nivo/core": "^0.83.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^3.0.0",
