@@ -21,9 +21,11 @@ class Api {
   static async POST<TResponse>({
     url,
     data,
+    query,
     withToken = true,
   }: HttpPostRequest): Promise<TResponse> {
-    const response = await fetch(buildUrl(url), {
+    const endpoint = url ? buildUrl(url) : "https://api.spacex.land/graphql/"
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

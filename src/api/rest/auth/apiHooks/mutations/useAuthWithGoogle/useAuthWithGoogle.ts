@@ -1,5 +1,5 @@
 import { MutationHook, createUseMutation } from "src/inversions/queryMaker"
-import restfulApiUrls from "src/api/restful/urls"
+import restfulApiUrls from "src/api/rest/urls"
 import { Api } from "src/inversions"
 import { HttpRequestErrorResponse } from "../../../../../../inversions/api/types"
 import { AuthWithGooglePreRedirectResponse } from "./types"

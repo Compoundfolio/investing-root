@@ -1,4 +1,4 @@
-import { useAuthWithGoogle } from "src/api/restful"
+import { useAuthWithGoogle } from "src/api/rest"
 import useCommonAuthSubmitOptions from "./useCommonAuthSubmitOptions"
 
 const useHandleGoogleAuthSubmit = () => {
