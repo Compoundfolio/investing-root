@@ -1,6 +1,12 @@
-import type { HttpGetRequest, HttpPostRequest } from "./types"
+import type {
+  HttpGetRequest,
+  HttpGraphQlRequest,
+  HttpPostRequest,
+  HttpRestRequest,
+} from "./types"
 import { getHttpRequestResult, withAuthenticationJWT } from "./helpers"
-import { buildUrl } from "./consts"
+import { buildReqUrl } from "./helpers"
+import { print } from "graphql"
 
 /** Abstraction layer for HTTP requests */
 class Api {
@@ -8,7 +14,7 @@ class Api {
     url,
     withToken = true,
   }: HttpGetRequest): Promise<TResponse> {
-    const response = await fetch(buildUrl(url), {
+    const response = await fetch(buildReqUrl(url), {
       method: "GET",
       headers: {
         ...withAuthenticationJWT(withToken),
@@ -17,21 +23,26 @@ class Api {
 
     return await getHttpRequestResult(response)
   }
-
+  /** Able to handle both REST & GraphQL requests */
+  static async POST<TResponse>(props: HttpGraphQlRequest): Promise<TResponse>
+  static async POST<TResponse>(props: HttpRestRequest): Promise<TResponse>
   static async POST<TResponse>({
     url,
     data,
     query,
     withToken = true,
   }: HttpPostRequest): Promise<TResponse> {
-    const endpoint = url ? buildUrl(url) : "https://api.spacex.land/graphql/"
+    const endpoint = buildReqUrl(url, !!query)
+
+    const body = JSON.stringify(query ? { query: print(query) } : data)
+
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         ...withAuthenticationJWT(withToken),
       },
-      body: JSON.stringify(data),
+      body,
     })
 
     return await getHttpRequestResult(response)

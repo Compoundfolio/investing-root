@@ -1,9 +1,4 @@
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-
-export const buildUrl = (path: string) => {
-  if (!path.startsWith("/"))
-    throw new Error(
-      "Wrong usage of `buildUrl` function. Path should starts with '/'"
-    )
-  return `${apiBaseUrl}${path}`
-}
+export const baseApiUrls = {
+  REST: process.env.NEXT_PUBLIC_API_BASE_URL,
+  GRAPHQL: process.env.NEXT_PUBLIC_GRAPHQL_API_BASE_URL,
+} as const

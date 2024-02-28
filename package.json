@@ -13,6 +13,8 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.11",
     "@nivo/bar": "^0.83.0",
     "@nivo/core": "^0.83.0",
