@@ -33,8 +33,8 @@ const PortfoliosManagementPage = () => {
 
   if (data) return "Реакт-квераю кверик ..."
   if (error) {
-    console.warn(error)
-    return "sho"
+    console.warn(123, error)
+    return error.message
   }
 
   if (isLoading)

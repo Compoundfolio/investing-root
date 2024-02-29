@@ -1,5 +1,6 @@
 import { LocalStorageKeysDictionary } from "src/core/consts"
-import { baseApiUrls } from "./consts"
+import { DEFAULT_REQ_ERROR_MESSAGE, baseApiUrls } from "./consts"
+import { toast } from "sonner"
 
 export const buildReqUrl = (
   path: string,
@@ -20,13 +21,22 @@ export const withAuthenticationJWT = (withToken?: boolean): HeadersInit => {
   return withToken ? { Authorization: `Bearer ${authToken}` } : {}
 }
 
-export const getHttpRequestResult = async (response: Response) => {
-  const status = response.status.toString()
-  const res = await response.json()
-
-  if (status.startsWith("4") || status.startsWith("5")) {
-    throw new Error(res) // res will contain error
+export const handleHttpRequestResult = async (
+  response: Response,
+  customErrorMessage?: string
+  // TODO: showErrorWithToast = true
+) => {
+  if (response.status >= 400) {
+    const message = customErrorMessage ?? DEFAULT_REQ_ERROR_MESSAGE
+    toast("Server error", {
+      description: message,
+      action: {
+        label: "Close",
+        onClick: () => console.log("Undo"),
+      },
+    })
+    throw new Error(message)
   }
 
-  return res
+  return await response.json()
 }

@@ -5,13 +5,19 @@ interface HttpRequest {
   withToken?: boolean
 }
 
-export interface HttpGraphQlRequest extends Omit<HttpRequest, "url"> {
-  query: TadaDocumentNode<object, {}, void>
+type Common = {
+  customErrorMessage?: string
 }
 
-export interface HttpRestRequest extends HttpRequest {
-  data: unknown
-}
+export type HttpGraphQlRequest = Omit<HttpRequest, "url"> &
+  Common & {
+    query: TadaDocumentNode<object, {}, void>
+  }
+
+export type HttpRestRequest = HttpRequest &
+  Common & {
+    data: unknown
+  }
 
 export type HttpGetRequest = HttpRequest
 export type HttpPostRequest = HttpGraphQlRequest & HttpRestRequest

@@ -4,16 +4,15 @@ import type {
   HttpPostRequest,
   HttpRestRequest,
 } from "./types"
-import { getHttpRequestResult, withAuthenticationJWT } from "./helpers"
+import { handleHttpRequestResult, withAuthenticationJWT } from "./helpers"
 import { buildReqUrl } from "./helpers"
-import { print } from "graphql"
 
 /** Abstraction layer for HTTP requests */
 class Api {
-  static async GET<TResponse>({
-    url,
-    withToken = true,
-  }: HttpGetRequest): Promise<TResponse> {
+  static async GET<TResponse>(
+    { url, withToken = true }: HttpGetRequest,
+    customErrorMessage?: string
+  ): Promise<TResponse> {
     const response = await fetch(buildReqUrl(url), {
       method: "GET",
       headers: {
@@ -21,7 +20,7 @@ class Api {
       },
     })
 
-    return await getHttpRequestResult(response)
+    return await handleHttpRequestResult(response, customErrorMessage)
   }
   /** Able to handle both REST & GraphQL requests */
   static async POST<TResponse>(props: HttpGraphQlRequest): Promise<TResponse>
@@ -30,11 +29,10 @@ class Api {
     url,
     data,
     query,
+    customErrorMessage,
     withToken = true,
   }: HttpPostRequest): Promise<TResponse> {
     const endpoint = buildReqUrl(url, !!query)
-
-    const body = JSON.stringify(query ? { query: print(query) } : data)
 
     const response = await fetch(endpoint, {
       method: "POST",
@@ -42,10 +40,10 @@ class Api {
         "Content-Type": "application/json",
         ...withAuthenticationJWT(withToken),
       },
-      body,
+      body: JSON.stringify(query ? { query: query } : data),
     })
 
-    return await getHttpRequestResult(response)
+    return await handleHttpRequestResult(response, customErrorMessage)
   }
 }
 

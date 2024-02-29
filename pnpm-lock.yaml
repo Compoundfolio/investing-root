@@ -34,6 +34,9 @@ dependencies:
   '@types/react-dom':
     specifier: 18.0.9
     version: 18.0.9
+  clsx:
+    specifier: ^2.1.0
+    version: 2.1.0
   date-fns:
     specifier: ^2.29.3
     version: 2.29.3
@@ -79,6 +82,9 @@ dependencies:
   recoil:
     specifier: ^0.7.6
     version: 0.7.6(react-dom@18.2.0)(react@18.2.0)
+  sonner:
+    specifier: ^1.4.2
+    version: 1.4.2(react-dom@18.2.0)(react@18.2.0)
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -6293,6 +6299,16 @@ packages:
       dot-case: 3.0.4
       tslib: 2.4.1
     dev: true
+
+  /sonner@1.4.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-x3Kfzfhb56V/ErvUnH5dZcsu6QkZpyIlRAogO4vAbN+AkBsA/8CFqOV+5djqbE5pQCpejtO4JBWL1zRj2sO/Vg==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}

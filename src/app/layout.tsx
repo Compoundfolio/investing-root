@@ -3,13 +3,15 @@ import "./global.css"
 
 import { Montserrat } from "next/font/google"
 import { DebugObserver } from "src/utils"
-import { ReactQueryProvider, RecoilRootWrapper } from "./rootWrappers"
+import {
+  ReactQueryProvider,
+  RecoilRootWrapper,
+  NotificationsRoot,
+} from "./rootWrappers"
 import clsx from "clsx"
 import { SideBar } from "@srcComponents"
-//👇 Import Open Sans font
 import { Chakra_Petch } from "next/font/google"
 
-//👇 Configure our font object
 const chakra = Chakra_Petch({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -44,6 +46,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <RecoilRootWrapper>
             <DebugObserver />
+            <NotificationsRoot />
             <main className={clsx([styles.main, montserrat.className])}>
               <SideBar />
               <div className={styles.container} id="contentArea">

@@ -24,6 +24,7 @@
     "@tanstack/react-query": "^5.24.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "18.0.9",
+    "clsx": "^2.1.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
     "ehd-js": "^0.0.5",
@@ -39,6 +40,7 @@
     "react-dropzone": "^14.2.3",
     "react-tailwindcss-datepicker": "^1.6.6",
     "recoil": "^0.7.6",
+    "sonner": "^1.4.2",
     "uuid": "^9.0.0",
     "yup": "^1.2.0"
   },
