@@ -10,26 +10,12 @@ import {
 } from "./components"
 import { Divider } from "@core"
 import { usePortfolioManagerContext } from "./context/PortfolioManagerContextData"
-import { graphql } from "src/graphql"
-import { useQuery } from "@tanstack/react-query"
-import { Api } from "src/inversions"
-
-const PortfoliosQuery = graphql(`
-  query Portfolios {
-    portfolios {
-      id
-      label
-    }
-  }
-`)
+import { useGetUserPortfolios } from "src/services"
 
 const PortfoliosManagementPage = () => {
   const portfoliosContext = usePortfolioManagerContext()
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["testPortfoliosQuery"],
-    queryFn: () => Api.POST({ query: PortfoliosQuery }),
-  })
+  const { data, isLoading, error } = useGetUserPortfolios()
 
   if (data) return "Реакт-квераю кверик ..."
   if (error) {

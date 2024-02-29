@@ -6,6 +6,7 @@ import type {
 } from "./types"
 import { handleHttpRequestResult, withAuthenticationJWT } from "./helpers"
 import { buildReqUrl } from "./helpers"
+import { print } from "graphql"
 
 /** Abstraction layer for HTTP requests */
 class Api {
@@ -40,7 +41,7 @@ class Api {
         "Content-Type": "application/json",
         ...withAuthenticationJWT(withToken),
       },
-      body: JSON.stringify(query ? { query: query } : data),
+      body: JSON.stringify(query ? { query: print(query) } : data),
     })
 
     return await handleHttpRequestResult(response, customErrorMessage)

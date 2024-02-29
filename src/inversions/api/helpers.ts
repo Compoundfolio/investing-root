@@ -32,7 +32,7 @@ export const handleHttpRequestResult = async (
       description: message,
       action: {
         label: "Close",
-        onClick: () => console.log("Undo"),
+        onClick: () => {},
       },
     })
     throw new Error(message)
