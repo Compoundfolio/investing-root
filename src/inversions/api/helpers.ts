@@ -38,5 +38,7 @@ export const handleHttpRequestResult = async (
     throw new Error(message)
   }
 
-  return await response.json()
+  const res = await response.json()
+
+  return res.data
 }

@@ -1,3 +1,4 @@
+import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
 import { graphql } from "src/graphql"
 import { Api } from "src/inversions"
 import { createUseMutation, createUseQuery } from "src/inversions/queryMaker"
@@ -28,17 +29,24 @@ const DeletePortfolioMutation = graphql(`
 
 type t = (typeof PortfoliosQuery)["__ensureTypesOfVariablesAndResultMatching"]
 
-export const useGetUserPortfolios = () => {
-  return createUseQuery({
-    queryKey: ["testPortfoliosQuery"],
-    queryFn: () => Api.POST<t>({ query: PortfoliosQuery }),
-  })
+export const useGetUserPortfolios = (
+  portfoliosContext: PortfolioManagerContextData
+) => {
+  return createUseQuery(
+    "queryKey",
+    () => Api.POST<any>({ query: PortfoliosQuery }),
+    {
+      onSuccess: (data) => {
+        setLocalData(data)
+      },
+    }
+  )
 }
 
-export const useCreateUserPortfolio = createUseMutation({
-  mutationFn: () => Api.POST({ query: CreatePortfolioMutation }),
-})
+// export const useCreateUserPortfolio = createUseMutation({
+//   mutationFn: () => Api.POST({ query: CreatePortfolioMutation }),
+// })
 
-export const useDeleteUserPortfolio = createUseMutation({
-  mutationFn: () => Api.POST({ query: DeletePortfolioMutation }),
-})
+// export const useDeleteUserPortfolio = createUseMutation({
+//   mutationFn: () => Api.POST({ query: DeletePortfolioMutation }),
+// })

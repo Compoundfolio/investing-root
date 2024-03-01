@@ -36,6 +36,10 @@ const usePortfolioList = (): PortfolioManagerContextData => {
     [isNoPortfolios, emptyPortfolioTemplate]
   )
 
+  const setPortfolios = useCallback((portfolios: Portfolio[]) => {
+    setPortfolioList(portfolios)
+  }, [])
+
   const addPortfolio = useCallback((portfolio: Portfolio) => {
     setPortfolioList((prev) => [...prev, portfolio])
   }, [])
@@ -69,6 +73,7 @@ const usePortfolioList = (): PortfolioManagerContextData => {
     portfolioList,
     isNoPortfolios,
     selectedPortfolioCard,
+    setPortfolios,
     selectPortfolioById,
     addPortfolio,
     savePortfolioChanges,

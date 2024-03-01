@@ -1,6 +1,6 @@
 "use client" // TODO: REMOVE
 
-import React, { memo } from "react"
+import React, { memo, useEffect } from "react"
 import {
   MainAreaWrapper,
   PlateAddButton,
@@ -8,44 +8,47 @@ import {
   PortfoliosMenu,
   InitialTransactionsUploadExperience,
 } from "./components"
-import { Divider } from "@core"
+import { Divider, Spinner } from "@core"
 import { usePortfolioManagerContext } from "./context/PortfolioManagerContextData"
 import { useGetUserPortfolios } from "src/services"
 
 const PortfoliosManagementPage = () => {
   const portfoliosContext = usePortfolioManagerContext()
 
-  const { data, isLoading, error } = useGetUserPortfolios()
+  const { data, isLoading, error } = useGetUserPortfolios(portfoliosContext)
 
-  if (data) return "Реакт-квераю кверик ..."
-  if (error) {
-    console.warn(123, error)
-    return error.message
-  }
+  if (error) return error.message
 
-  if (isLoading)
-    return (
-      <div className="flex flex-col w-full gap-8">
-        {portfoliosContext?.isNoPortfolios ? (
-          <PlateAddButton
-            key="portfolioCreateButton"
-            title="Create Portfolio"
-          />
-        ) : (
-          <>
-            <PortfoliosMenu />
-            <MainAreaWrapper>
-              <Divider />
-              {portfoliosContext?.selectedPortfolioCard?.transactions ? (
-                <PortfolioManagementArea />
-              ) : (
-                <InitialTransactionsUploadExperience />
-              )}
-            </MainAreaWrapper>
-          </>
-        )}
-      </div>
-    )
+  return (
+    <div className="flex flex-col w-full h-full gap-8">
+      {isLoading ? (
+        <div>
+          <Spinner />
+          <div className="text-center">
+            <h1 className="text-white text-shadow-white">Loading portfolios</h1>
+          </div>
+        </div>
+      ) : portfoliosContext?.isNoPortfolios ? (
+        <PlateAddButton
+          key="portfolioCreateButton"
+          title="Create Portfolio"
+          portfolios={data.portfolios}
+        />
+      ) : (
+        <>
+          <PortfoliosMenu />
+          <MainAreaWrapper>
+            <Divider />
+            {portfoliosContext?.selectedPortfolioCard?.transactions ? (
+              <PortfolioManagementArea />
+            ) : (
+              <InitialTransactionsUploadExperience />
+            )}
+          </MainAreaWrapper>
+        </>
+      )}
+    </div>
+  )
 }
 
 export default memo(PortfoliosManagementPage)

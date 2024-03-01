@@ -6,8 +6,9 @@ import useCommonAuthSubmitOptions from "src/components/pages/AuthPage/components
 
 // TODO: Not index the page
 
-const WtfAmI = () => {
+const AuthCallBackPage = () => {
   const { onSuccess } = useCommonAuthSubmitOptions()
+
   useEffect(() => {
     const REDIRECT_URI = window.location.origin + "/auth/callback"
 
@@ -36,6 +37,7 @@ const WtfAmI = () => {
         console.error(error)
       })
   }, [])
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen gap-4">
       <Spinner />
@@ -51,4 +53,4 @@ const WtfAmI = () => {
   )
 }
 
-export default WtfAmI
+export default AuthCallBackPage
