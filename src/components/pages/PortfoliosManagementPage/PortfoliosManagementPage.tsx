@@ -15,7 +15,9 @@ import { useGetUserPortfolios } from "src/services"
 const PortfoliosManagementPage = () => {
   const portfoliosContext = usePortfolioManagerContext()
 
-  const { data, isLoading, error } = useGetUserPortfolios(portfoliosContext)
+  const { isLoading, error } = useGetUserPortfolios(
+    portfoliosContext.setPortfolios
+  )
 
   if (error) return error.message
 
@@ -29,11 +31,7 @@ const PortfoliosManagementPage = () => {
           </div>
         </div>
       ) : portfoliosContext?.isNoPortfolios ? (
-        <PlateAddButton
-          key="portfolioCreateButton"
-          title="Create Portfolio"
-          portfolios={data.portfolios}
-        />
+        <PlateAddButton key="portfolioCreateButton" title="Create Portfolio" />
       ) : (
         <>
           <PortfoliosMenu />

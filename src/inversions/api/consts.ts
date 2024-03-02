@@ -4,4 +4,4 @@ export const baseApiUrls = {
 } as const
 
 export const DEFAULT_REQ_ERROR_MESSAGE =
-  "Sorry. Something went wrong with your request. Our team fork on a fix." as const
+  "Sorry. Something went wrong with your request. Our team work on a fix." as const

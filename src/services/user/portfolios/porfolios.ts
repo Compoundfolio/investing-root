@@ -29,23 +29,32 @@ const DeletePortfolioMutation = graphql(`
 
 type t = (typeof PortfoliosQuery)["__ensureTypesOfVariablesAndResultMatching"]
 
-export const useGetUserPortfolios = (
-  portfoliosContext: PortfolioManagerContextData
+const queryFn = async (
+  setPortfolios: PortfolioManagerContextData["setPortfolios"]
 ) => {
-  return createUseQuery(
-    "queryKey",
-    () => Api.POST<any>({ query: PortfoliosQuery }),
-    {
-      onSuccess: (data) => {
-        setLocalData(data)
-      },
-    }
-  )
+  const data = await Api.POST<any>({ query: PortfoliosQuery })
+  setPortfolios(data.portfolios)
+  return data
 }
 
-// export const useCreateUserPortfolio = createUseMutation({
-//   mutationFn: () => Api.POST({ query: CreatePortfolioMutation }),
-// })
+export const useGetUserPortfolios = (
+  setPortfolios: PortfolioManagerContextData["setPortfolios"]
+) => {
+  return createUseQuery({
+    queryKey: ["testPortfoliosQuery"],
+    queryFn: async () => {
+      const data = await Api.POST<any>({ query: PortfoliosQuery })
+      setPortfolios(data.portfolios)
+      return data
+    },
+  })
+}
+
+export const useCreateUserPortfolio = () => {
+  return createUseMutation({
+    mutationFn: () => Api.POST({ query: CreatePortfolioMutation }),
+  })
+}
 
 // export const useDeleteUserPortfolio = createUseMutation({
 //   mutationFn: () => Api.POST({ query: DeletePortfolioMutation }),
