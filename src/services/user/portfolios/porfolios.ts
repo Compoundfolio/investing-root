@@ -1,6 +1,6 @@
 import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
 import { graphql } from "src/graphql"
-import { Api } from "src/inversions"
+import { Api, optimistic } from "src/inversions"
 import { createUseMutation, createUseQuery } from "src/inversions/queryMaker"
 
 const PortfoliosQuery = graphql(`
@@ -27,21 +27,15 @@ const DeletePortfolioMutation = graphql(`
   }
 `)
 
-type t = (typeof PortfoliosQuery)["__ensureTypesOfVariablesAndResultMatching"]
+// type t = (typeof PortfoliosQuery)["__ensureTypesOfVariablesAndResultMatching"]
 
-const queryFn = async (
-  setPortfolios: PortfolioManagerContextData["setPortfolios"]
-) => {
-  const data = await Api.POST<any>({ query: PortfoliosQuery })
-  setPortfolios(data.portfolios)
-  return data
-}
+const portfoliosQK = "useGetUserPortfoliosQK"
 
 export const useGetUserPortfolios = (
   setPortfolios: PortfolioManagerContextData["setPortfolios"]
 ) => {
   return createUseQuery({
-    queryKey: ["testPortfoliosQuery"],
+    queryKey: [portfoliosQK],
     queryFn: async () => {
       const data = await Api.POST<any>({ query: PortfoliosQuery })
       setPortfolios(data.portfolios)
@@ -53,6 +47,7 @@ export const useGetUserPortfolios = (
 export const useCreateUserPortfolio = () => {
   return createUseMutation({
     mutationFn: () => Api.POST({ query: CreatePortfolioMutation }),
+    ...optimistic.create({ keys: [portfoliosQK] }),
   })
 }
 

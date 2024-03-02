@@ -14,13 +14,13 @@ const optimisticCreate = ({ keys }: Props): OptimisticCreateSetup => ({
   onMutate: async (newTodo) => {
     // Cancel any outgoing refetches
     // (so they don't overwrite our optimistic update)
-    await queryClient.cancelQueries({ queryKey: [keys] })
+    await queryClient.cancelQueries({ queryKey: keys })
 
     // Snapshot the previous value
-    const previousTodos = queryClient.getQueryData([keys])
+    const previousTodos = queryClient.getQueryData(keys)
 
     // Optimistically update to the new value
-    queryClient.setQueryData([keys], (old) => [...old, newTodo])
+    queryClient.setQueryData(keys, (old) => [...old, newTodo])
 
     // Return a context object with the snapshotted value
     return { previousTodos }
@@ -28,11 +28,11 @@ const optimisticCreate = ({ keys }: Props): OptimisticCreateSetup => ({
   // If the mutation fails,
   // use the context returned from onMutate to roll back
   onError: (err, newTodo, context) => {
-    queryClient.setQueryData([keys], context.previousTodos)
+    queryClient.setQueryData(keys, context.previousTodos)
   },
   // Always refetch after error or success:
   onSettled: () => {
-    queryClient.invalidateQueries({ queryKey: [keys] })
+    queryClient.invalidateQueries({ queryKey: keys })
   },
 })
 
