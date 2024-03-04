@@ -11,9 +11,8 @@ interface IPlateAddButton {
 }
 
 // TODO: Fix multi-click
-const PlateAddButton = ({ title }: IPlateAddButton) => {
-  const { isNoPortfolios, createNewPortfolioCard } =
-    usePortfolioManagerContext()
+const PlateAddButton = ({ title, onClick }: IPlateAddButton) => {
+  const { isNoPortfolios } = usePortfolioManagerContext()
 
   return (
     <div className="flex flex-col items-center gap-8 text-center">
@@ -23,7 +22,7 @@ const PlateAddButton = ({ title }: IPlateAddButton) => {
         </span>
       )}
       <button
-        onClick={createNewPortfolioCard}
+        onClick={onClick}
         className={clsx(
           styles.plateButton,
           isNoPortfolios && styles.plateButton__active

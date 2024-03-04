@@ -27,7 +27,7 @@ const usePortfolioList = (): PortfolioManagerContextData => {
   }
 
   const createNewPortfolioCard = useCallback(
-    (e) => {
+    (e?: unknown) => {
       // TODO: Server request
       isNoPortfolios
         ? causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))

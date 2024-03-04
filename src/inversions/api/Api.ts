@@ -30,6 +30,7 @@ class Api {
     url,
     data,
     query,
+    variables = {},
     customErrorMessage,
     withToken = true,
   }: HttpPostRequest): Promise<TResponse> {
@@ -41,7 +42,9 @@ class Api {
         "Content-Type": "application/json",
         ...withAuthenticationJWT(withToken),
       },
-      body: JSON.stringify(query ? { query: print(query) } : data),
+      body: JSON.stringify(
+        query ? { query: print(query), variables: { data: variables } } : data
+      ),
     })
 
     return await handleHttpRequestResult(response, customErrorMessage)
