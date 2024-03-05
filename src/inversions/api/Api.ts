@@ -43,7 +43,8 @@ class Api {
         ...withAuthenticationJWT(withToken),
       },
       body: JSON.stringify(
-        query ? { query: print(query), variables: { data: variables } } : data
+        // TODO: Check, does TResponse is a part of `query` type (fix type safety issue)
+        query ? { query: print(query), variables } : data
       ),
     })
 

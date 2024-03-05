@@ -12,7 +12,7 @@ export interface PortfolioManagerContextData {
   savePortfolioChanges: () => void
   deleteSelectedPortfolio: () => void
   selectPortfolioById: (id: string | null) => void
-  createNewPortfolioCard: () => void
+  createNewPortfolioCard: (portfolio: Portfolio) => void
   updateSelectedPortfolio: Dispatch<SetStateAction<Portfolio | null>>
 }
 
@@ -25,7 +25,7 @@ export const INITIAL_STATE: PortfolioManagerContextData = {
   savePortfolioChanges: () => {},
   deleteSelectedPortfolio: () => {},
   selectPortfolioById: (id: string) => {},
-  createNewPortfolioCard: () => {},
+  createNewPortfolioCard: (portfolio: Portfolio) => {},
   updateSelectedPortfolio: (portfolio: Portfolio | null) => {},
 }
 

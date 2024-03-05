@@ -1,17 +1,21 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { PlateAddButton } from "../PortfoliosMenu"
-import { useCreateUserPortfolio } from "src/services"
-import { usePortfolioManagerContext } from "../../context/PortfolioManagerContextData"
+import { extraAddButtonContent } from "./const"
+import { useCreatePortfolio } from "./hooks"
 
-// TODO: Remove
 const AddPortfolioPlateButton = () => {
-  const { createNewPortfolioCard } = usePortfolioManagerContext()
-  const { mutate } = useCreateUserPortfolio(createNewPortfolioCard)
+  const { isNoPortfolios, createPortfolio } = useCreatePortfolio()
+
+  const extraContent = useMemo(
+    () => (isNoPortfolios ? extraAddButtonContent : null),
+    [isNoPortfolios, extraAddButtonContent]
+  )
 
   return (
     <PlateAddButton
       title="Create Portfolio"
-      onClick={() => mutate({ label: "New Portfolio" })}
+      extraContent={extraContent}
+      onClick={createPortfolio}
     />
   )
 }

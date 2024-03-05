@@ -1,12 +1,12 @@
-"use client" // TODO: REMOVE
+"use client"
 
-import React, { memo, useEffect } from "react"
+import React, { memo } from "react"
 import {
   MainAreaWrapper,
-  PlateAddButton,
   PortfolioManagementArea,
   PortfoliosMenu,
   InitialTransactionsUploadExperience,
+  AddPortfolioPlateButton,
 } from "./components"
 import { Divider, Spinner } from "@core"
 import { usePortfolioManagerContext } from "./context/PortfolioManagerContextData"
@@ -24,14 +24,16 @@ const PortfoliosManagementPage = () => {
   return (
     <div className="flex flex-col w-full h-full gap-8">
       {isLoading ? (
-        <div>
+        <div className="flex items-center justify-center gap-2 w-fit">
           <Spinner />
           <div className="text-center">
-            <h1 className="text-white text-shadow-white">Loading portfolios</h1>
+            <span className="text-white text-shadow-white">
+              Loading portfolios
+            </span>
           </div>
         </div>
       ) : portfoliosContext?.isNoPortfolios ? (
-        <PlateAddButton key="portfolioCreateButton" title="Create Portfolio" />
+        <AddPortfolioPlateButton key="portfolioCreateButton" />
       ) : (
         <>
           <PortfoliosMenu />

@@ -17,23 +17,18 @@ const usePortfolioList = (): PortfolioManagerContextData => {
 
   const isNoPortfolios = portfolioList.length === 0
 
-  const emptyPortfolioTemplate = {
-    id: `${Math.random()}`,
-    title: "New Portfolio",
-    brokerages: [],
-    totalReturnValue: 0,
-    totalReturnPercentage: 0,
-    annualIncome: 0,
+  const handlePortfolioCreate = (newPortfolio: Portfolio) => {
+    addPortfolio(newPortfolio)
+    selectPortfolioById(newPortfolio.id)
   }
 
   const createNewPortfolioCard = useCallback(
-    (e?: unknown) => {
-      // TODO: Server request
+    (newPortfolio: Portfolio) => {
       isNoPortfolios
-        ? causeGentleUiTransition(() => addPortfolio(emptyPortfolioTemplate))
-        : addPortfolio(emptyPortfolioTemplate)
+        ? causeGentleUiTransition(() => handlePortfolioCreate(newPortfolio))
+        : handlePortfolioCreate(newPortfolio)
     },
-    [isNoPortfolios, emptyPortfolioTemplate]
+    [isNoPortfolios, handlePortfolioCreate]
   )
 
   const setPortfolios = useCallback((portfolios: Portfolio[]) => {

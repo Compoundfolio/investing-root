@@ -12,7 +12,7 @@ type Common = {
 export type HttpGraphQlRequest = Omit<HttpRequest, "url"> &
   Common & {
     query: TadaDocumentNode<object, {}, void>
-    variables?: unknown
+    variables?: object
   }
 
 export type HttpRestRequest = HttpRequest &

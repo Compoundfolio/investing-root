@@ -1,8 +1,32 @@
 import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
-import { ResultOf, graphql } from "src/graphql"
+import { ResultOf, VariablesOf, graphql } from "src/graphql"
 import { Api, optimistic } from "src/inversions"
 import { createUseMutation, createUseQuery } from "src/inversions/queryMaker"
+import { emptyPortfolioTemplate } from "../../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
+import { Portfolio } from "@core"
 
+// type QueryKey = "" // TODOD
+// abstract class GqlQueryServiceItem {
+//   private Query: ReturnType<typeof graphql>
+//   private requestResult: VariablesOf<typeof this.Query>
+//   portfoliosQK: QueryKey
+// }
+
+// class CreatePortfolio implements GqlQueryServiceItem {
+//   private Query = graphql(`
+//     query Portfolios {
+//       portfolios {
+//         id
+//         label
+//       }
+//     }
+//   `)
+
+//   private requestResult:
+
+//   portfoliosQK: ""
+// }
+// new CreatePortfolio()
 const PortfoliosQuery = graphql(`
   query Portfolios {
     portfolios {
@@ -27,7 +51,16 @@ const DeletePortfolioMutation = graphql(`
   }
 `)
 
+type CreatePortfolioMutationReqData = VariablesOf<
+  typeof CreatePortfolioMutation
+>
+type DeletePortfolioMutationReqData = VariablesOf<
+  typeof DeletePortfolioMutation
+>
+
 type PortfoliosQueryResult = ResultOf<typeof PortfoliosQuery>
+type CreatePortfolioMutationResult = ResultOf<typeof CreatePortfolioMutation>
+type DeletePortfolioMutationResult = ResultOf<typeof DeletePortfolioMutation>
 
 const portfoliosQK = "useGetUserPortfoliosQK"
 
@@ -41,7 +74,17 @@ export const useGetUserPortfolios = (
         query: PortfoliosQuery,
       })
       // TODO: Call, only if there is no req error
-      setPortfolios(data.portfolios)
+      // TODO: Request API to implement more fields, remove
+      const portfolios: Portfolio[] = data.portfolios.length
+        ? data.portfolios.map(({ id, label }) => ({
+            ...emptyPortfolioTemplate,
+            id,
+            title: label,
+          }))
+        : []
+
+      setPortfolios(portfolios)
+
       return data
     },
   })
@@ -51,21 +94,41 @@ export const useCreateUserPortfolio = (
   createNewPortfolioCard: PortfolioManagerContextData["createNewPortfolioCard"]
 ) => {
   return createUseMutation({
-    // TODO: Type
-    // TODO: data
-    mutationFn: async (newPortfolioDetails: any) => {
-      const res = await Api.POST({
-        query: CreatePortfolioMutation,
-        variables: newPortfolioDetails,
-      })
+    mutationFn: async (newPortfolioDetails: CreatePortfolioMutationReqData) => {
+      const { createPortfolio } = await Api.POST<CreatePortfolioMutationResult>(
+        {
+          query: CreatePortfolioMutation,
+          variables: newPortfolioDetails,
+        }
+      )
+      // TODO: Request API to implement more fields, remove
+      const newPortfolio: Portfolio = {
+        ...emptyPortfolioTemplate,
+        id: createPortfolio.id,
+        title: createPortfolio.label,
+      }
       // TODO: Call, only if there is no req error
-      createNewPortfolioCard()
-      return res
+      createNewPortfolioCard(newPortfolio)
+      return createPortfolio
     },
     // ...optimistic.create({ keys: [portfoliosQK] }),
   })
 }
 
-// export const useDeleteUserPortfolio = createUseMutation({
-//   mutationFn: () => Api.POST({ query: DeletePortfolioMutation }),
-// })
+export const useDeleteUserPortfolio = (
+  deleteSelectedPortfolio: PortfolioManagerContextData["deleteSelectedPortfolio"]
+) => {
+  return createUseMutation({
+    mutationFn: async (portfolioDetails: DeletePortfolioMutationReqData) => {
+      const { deletePortfolio: deletePortfolioId } =
+        await Api.POST<DeletePortfolioMutationResult>({
+          query: DeletePortfolioMutation,
+          variables: portfolioDetails,
+        })
+      // TODO: Call, only if there is no req error
+      deleteSelectedPortfolio()
+      return deletePortfolioId
+    },
+    // ...optimistic.delete({ keys: [portfoliosQK] }),
+  })
+}

@@ -3,7 +3,7 @@
 import React, { memo } from "react"
 import { IReactChildren } from "src/core/types"
 import { usePortfolioManagerContext } from "../../../../context/PortfolioManagerContextData"
-import PlateAddButton from "../PlateAddButton"
+import { AddPortfolioPlateButton } from "../../../AddPortfolioPlateButton"
 
 const MenuWrapper = ({ children }: IReactChildren) => {
   const { portfolioList } = usePortfolioManagerContext()
@@ -14,7 +14,7 @@ const MenuWrapper = ({ children }: IReactChildren) => {
 
   return (
     <section className={containerClasses}>
-      <PlateAddButton key="portfolioCreateButton" title="Create Portfolio" />
+      <AddPortfolioPlateButton key="portfolioCreateButton" />
       {!!portfolioList.length && children}
     </section>
   )
