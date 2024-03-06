@@ -1,4 +1,4 @@
-import { TadaDocumentNode } from "gql.tada"
+import { DocumentNode } from "graphql"
 
 interface HttpRequest {
   url: string
@@ -11,7 +11,7 @@ type Common = {
 
 export type HttpGraphQlRequest = Omit<HttpRequest, "url"> &
   Common & {
-    query: TadaDocumentNode<object, {}, void>
+    query: DocumentNode
     variables?: object
   }
 

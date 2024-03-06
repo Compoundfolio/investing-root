@@ -4,6 +4,8 @@ import { Api, optimistic } from "src/inversions"
 import { createUseMutation, createUseQuery } from "src/inversions/queryMaker"
 import { emptyPortfolioTemplate } from "../../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
 import { Portfolio } from "@core"
+import { TadaDocumentNode } from "gql.tada"
+import { DocumentNode } from "graphql"
 
 // type QueryKey = "" // TODOD
 // abstract class GqlQueryServiceItem {
@@ -27,6 +29,10 @@ import { Portfolio } from "@core"
 //   portfoliosQK: ""
 // }
 // new CreatePortfolio()
+
+// {
+// }
+
 const PortfoliosQuery = graphql(`
   query Portfolios {
     portfolios {
@@ -51,9 +57,9 @@ const DeletePortfolioMutation = graphql(`
   }
 `)
 
-type CreatePortfolioMutationReqData = VariablesOf<
-  typeof CreatePortfolioMutation
->
+// type CreatePortfolioMutationReqData = VariablesOf<
+//   typeof CreatePortfolioMutation
+// >
 type DeletePortfolioMutationReqData = VariablesOf<
   typeof DeletePortfolioMutation
 >
@@ -89,6 +95,37 @@ export const useGetUserPortfolios = (
     },
   })
 }
+
+type Options = {
+  queryKey: string
+  optimisticUpdateType?: keyof typeof optimistic
+}
+/** Creates a `GraphQL`-friendly `react-query` **mutation** */
+export const createGraphQlUseMutation = (
+  query: DocumentNode,
+  { queryKey, optimisticUpdateType }: Options
+) => {
+  return createUseMutation({
+    mutationFn: async (variables: VariablesOf<typeof query>) => {
+      const data = await Api.POST<ResultOf<typeof query>>({
+        query,
+        variables,
+      })
+      return data
+    },
+    // TODO: Better code
+    ...(optimisticUpdateType
+      ? optimistic[optimisticUpdateType]({ keys: [queryKey] })
+      : {
+          onSuccess: queryClient.invalidateQueries({ queryKey: [queryKey] }),
+        }),
+  })
+}
+
+createGraphQlUseMutation(CreatePortfolioMutation, {
+  queryKey: portfoliosQK,
+  // optimisticUpdateType: "create",
+})
 
 export const useCreateUserPortfolio = (
   createNewPortfolioCard: PortfolioManagerContextData["createNewPortfolioCard"]
