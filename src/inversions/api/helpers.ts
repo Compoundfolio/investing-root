@@ -26,7 +26,9 @@ export const handleHttpRequestResult = async (
   customErrorMessage?: string
   // TODO: showErrorWithToast = true
 ) => {
-  if (response.status >= 400) {
+  const res = await response.json()
+
+  if (response.status >= 400 || res?.errors) {
     const message = customErrorMessage ?? DEFAULT_REQ_ERROR_MESSAGE
     toast("Server error", {
       description: message,
@@ -38,7 +40,5 @@ export const handleHttpRequestResult = async (
     throw new Error(message)
   }
 
-  const res = await response.json()
-
-  return res.data
+  return res?.data ?? res
 }

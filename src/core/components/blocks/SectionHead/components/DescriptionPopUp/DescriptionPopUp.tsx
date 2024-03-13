@@ -17,22 +17,22 @@ const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
         className="cursor-pointer group-hover:opacity-50"
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M10.0776 18.5839C14.2624 18.5839 17.6548 14.9006 17.6548 10.357C17.6548 5.81342 14.2624 2.13013 10.0776 2.13013C5.8929 2.13013 2.50049 5.81342 2.50049 10.357C2.50049 14.9006 5.8929 18.5839 10.0776 18.5839Z"
           stroke="#EBEBF5"
-          stroke-opacity="0.3"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.3"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M10.0781 7.06616V10.3569"
           stroke="#EBEBF5"
-          stroke-opacity="0.3"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.3"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <ellipse
           cx="10.078"
@@ -43,9 +43,7 @@ const DescriptionPopUp = ({ description }: IDescriptionPopUp) => {
           fillOpacity="0.3"
         />
       </svg>
-      <PopUp showOnHover>
-        {description}
-      </PopUp>
+      <PopUp showOnHover>{description}</PopUp>
     </div>
   )
 }

@@ -39,11 +39,11 @@ const PortfoliosManagementPage = () => {
           <PortfoliosMenu />
           <MainAreaWrapper>
             <Divider />
-            {portfoliosContext?.selectedPortfolioCard?.transactions ? (
+            {/* {portfoliosContext?.selectedPortfolioCard?.transactions ? (
               <PortfolioManagementArea />
-            ) : (
-              <InitialTransactionsUploadExperience />
-            )}
+            ) : ( */}
+            <InitialTransactionsUploadExperience />
+            {/* )} */}
           </MainAreaWrapper>
         </>
       )}

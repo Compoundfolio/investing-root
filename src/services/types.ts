@@ -12,4 +12,5 @@ export type Service = {
   useUpdate?: ServiceHook<UseMutation>
   useDeleteById?: ServiceHook<UseMutation>
   useDeleteAll?: ServiceHook<UseMutation>
+  useUpload?: ServiceHook<UseMutation>
 }

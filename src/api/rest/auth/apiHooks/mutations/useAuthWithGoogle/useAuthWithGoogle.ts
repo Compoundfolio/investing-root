@@ -9,6 +9,7 @@ export const authWithGoogleMutationKey = "useAuthWithGoogle" as const
 const requestAuthWithGoogle = async () => {
   const resp = await Api.GET<AuthWithGooglePreRedirectResponse>({
     url: restfulApiUrls.auth.AUTH_WITH_GOOGLE_URL,
+    withToken: false,
   })
 
   // const redirectUrl = window.location.origin + ROUTES.BROKERAGES_SELECTION // TODO: Change to dashboard

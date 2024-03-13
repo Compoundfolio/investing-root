@@ -1,10 +1,12 @@
-import { FileUploadArea, Option } from "@core"
-import React, { memo, useEffect } from "react"
+import { FileUploadArea, ID, Option, Spinner } from "@core"
+import React, { memo, useCallback, useEffect } from "react"
 import styles from "./ReportsUploadArea.module.css"
+import Services from "src/services"
 
 interface IReportsUploadArea {
   uploadedReports: string[]
   selectedBrokerages: Option[]
+  selectedPortfolioId: ID
   createHandleFileUpload: (brokerage: Option) => (file: File) => void
   disableContinueButton: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -12,6 +14,7 @@ interface IReportsUploadArea {
 const ReportsUploadArea = ({
   uploadedReports,
   selectedBrokerages,
+  selectedPortfolioId,
   createHandleFileUpload,
   disableContinueButton,
 }: IReportsUploadArea) => {
@@ -21,6 +24,22 @@ const ReportsUploadArea = ({
     )
     disableContinueButton(disableButton)
   }, [uploadedReports, selectedBrokerages])
+
+  const { isIdle, mutate: uploadBrokerageReport } =
+    Services.User.Portfolios.useUpload()
+
+  const handleFileUpload = useCallback(
+    (selectedBrokerageOption: Option) => (file: File) => {
+      const formData = new FormData()
+      // formData.append("brokerage", selectedBrokerageOption.label.toUpperCase())
+      // formData.append("portfolioId", `${selectedPortfolioId}`)
+      formData.append("file", file)
+      // brokerage
+      // @ts-ignore
+      uploadBrokerageReport({ upload: { file: formData } })
+    },
+    [selectedPortfolioId]
+  )
 
   return (
     <section className="flex gap-9">
@@ -33,7 +52,7 @@ const ReportsUploadArea = ({
             className="flex items-center gap-2"
             aria-description={`${selectedBrokerageOption.label} brokerage report upload area`}
           >
-            {selectedBrokerageOption.icon}
+            {selectedBrokerageOption?.icon?.()}
             <span className={styles.reportUpload__item_brokerageName}>
               {selectedBrokerageOption.label}
             </span>
@@ -41,9 +60,10 @@ const ReportsUploadArea = ({
           <FileUploadArea
             title="Upload report"
             index={index + 1}
-            handleFileUpload={createHandleFileUpload(selectedBrokerageOption)}
+            handleFileUpload={handleFileUpload(selectedBrokerageOption)}
           />
           {/* TODO: Upload date */}
+          {isIdle && <Spinner />}
         </article>
       ))}
     </section>

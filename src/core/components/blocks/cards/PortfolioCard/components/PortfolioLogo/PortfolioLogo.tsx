@@ -27,14 +27,14 @@ const PortfolioLogo = ({
       fill="none"
     >
       <g filter="url(#filter0_d_411_12165)">
-        <g clip-path="url(#clip0_411_12165)">
+        <g fillOpacity="url(#clip0_411_12165)">
           <rect
             x="4"
             width="48"
             height="48"
             rx="24"
             fill="url(#paint0_angular_411_12165)"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
           <rect
             x="4"
@@ -42,8 +42,8 @@ const PortfolioLogo = ({
             height="48"
             rx="24"
             fill="#000040"
-            fill-opacity="0.3"
-            shape-rendering="crispEdges"
+            fillOpacity="0.3"
+            shapeRendering="crispEdges"
           />
           <g filter="url(#filter1_d_411_12165)">
             <rect
@@ -85,9 +85,9 @@ const PortfolioLogo = ({
           width="56"
           height="56"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -120,9 +120,9 @@ const PortfolioLogo = ({
           width="93.748"
           height="93.7471"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -155,9 +155,9 @@ const PortfolioLogo = ({
           width="90.3105"
           height="90.3103"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -190,9 +190,9 @@ const PortfolioLogo = ({
           width="86.873"
           height="86.8735"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -226,8 +226,8 @@ const PortfolioLogo = ({
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(27.3667 24.36) rotate(46.8573) scale(27.054 47.4568)"
         >
-          <stop offset="0.00697357" stop-color="#33394C" />
-          <stop offset="0.747806" stop-color="#0F6F72" stop-opacity="0.69" />
+          <stop offset="0.00697357" stopColor="#33394C" />
+          <stop offset="0.747806" stopColor="#0F6F72" stopOpacity="0.69" />
         </radialGradient>
         <clipPath id="clip0_411_12165">
           <rect x="4" width="48" height="48" rx="24" fill="white" />
