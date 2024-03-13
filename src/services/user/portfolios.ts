@@ -1,8 +1,14 @@
 import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
 import { graphql } from "src/graphql"
-import { createGraphQlUseMutation } from "src/inversions/queryMaker"
-import { emptyPortfolioTemplate } from "../../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
+import {
+  createGraphQlUseMutation,
+  createGraphQlUseQuery,
+} from "src/inversions/queryMaker"
+import { emptyPortfolioTemplate } from "../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
 import { Portfolio } from "@core"
+import { Service } from "src/services/types"
+
+const portfoliosQK = "portfoliosQK"
 
 const PortfoliosQuery = graphql(`
   query Portfolios {
@@ -12,28 +18,10 @@ const PortfoliosQuery = graphql(`
     }
   }
 `)
-
-const CreatePortfolioMutation = graphql(`
-  mutation CreatePortfolio($data: CreatePortfolio!) {
-    createPortfolio(data: $data) {
-      id
-      label
-    }
-  }
-`)
-
-const DeletePortfolioMutation = graphql(`
-  mutation DeletePortfolio($id: UUID!) {
-    deletePortfolio(id: $id)
-  }
-`)
-
-const portfoliosQK = "useGetUserPortfoliosQK"
-
-export const useGetUserPortfolios = (
+const useGetAll = (
   setPortfolios: PortfolioManagerContextData["setPortfolios"]
 ) => {
-  return createGraphQlUseMutation(PortfoliosQuery, {
+  return createGraphQlUseQuery(PortfoliosQuery, {
     queryKey: portfoliosQK,
     onSuccess: ({ portfolios }) => {
       // TODO: Request API to implement more fields, remove
@@ -50,7 +38,15 @@ export const useGetUserPortfolios = (
   })
 }
 
-export const useCreateUserPortfolio = (
+const CreatePortfolioMutation = graphql(`
+  mutation CreatePortfolio($data: CreatePortfolio!) {
+    createPortfolio(data: $data) {
+      id
+      label
+    }
+  }
+`)
+const useCreate = (
   createNewPortfolioCard: PortfolioManagerContextData["createNewPortfolioCard"]
 ) => {
   return createGraphQlUseMutation(CreatePortfolioMutation, {
@@ -67,7 +63,12 @@ export const useCreateUserPortfolio = (
   })
 }
 
-export const useDeleteUserPortfolio = (
+const DeletePortfolioMutation = graphql(`
+  mutation DeletePortfolio($id: UUID!) {
+    deletePortfolio(id: $id)
+  }
+`)
+const useDeleteById = (
   deleteSelectedPortfolio: PortfolioManagerContextData["deleteSelectedPortfolio"]
 ) => {
   return createGraphQlUseMutation(DeletePortfolioMutation, {
@@ -76,3 +77,9 @@ export const useDeleteUserPortfolio = (
     // optimisticUpdateType: "delete",
   })
 }
+
+export const Portfolios = {
+  useGetAll,
+  useCreate,
+  useDeleteById,
+} satisfies Service

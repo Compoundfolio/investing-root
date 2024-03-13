@@ -10,12 +10,12 @@ import {
 } from "./components"
 import { Divider, Spinner } from "@core"
 import { usePortfolioManagerContext } from "./context/PortfolioManagerContextData"
-import { useGetUserPortfolios } from "src/services"
+import Services from "src/services"
 
 const PortfoliosManagementPage = () => {
   const portfoliosContext = usePortfolioManagerContext()
 
-  const { isLoading, error } = useGetUserPortfolios(
+  const { isLoading, error } = Services.User.Portfolios.useGetAll(
     portfoliosContext.setPortfolios
   )
 

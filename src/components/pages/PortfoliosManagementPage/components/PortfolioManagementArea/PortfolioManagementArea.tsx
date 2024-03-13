@@ -29,7 +29,7 @@ import {
   uploadResultDescription,
 } from "./consts"
 import { usePortfolioName } from "./hooks"
-import { useDeleteUserPortfolio } from "src/services"
+import Services from "src/services"
 
 const PortfolioManagementArea = () => {
   const {
@@ -41,7 +41,7 @@ const PortfolioManagementArea = () => {
   const { newPortfolioName, handleTitleChange, savePortfolioTitleChange } =
     usePortfolioName(updateSelectedPortfolio, selectedPortfolioCard)
 
-  const { mutate: deletePortfolio } = useDeleteUserPortfolio(
+  const { mutate: deletePortfolio } = Services.User.Portfolios.useDeleteById(
     deleteSelectedPortfolio
   )
 
