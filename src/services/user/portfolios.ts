@@ -1,10 +1,10 @@
 import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
+import { emptyPortfolioTemplate } from "../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
 import { graphql } from "src/graphql"
 import {
   createGraphQlUseMutation,
   createGraphQlUseQuery,
 } from "src/inversions/queryMaker"
-import { emptyPortfolioTemplate } from "../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
 import { Portfolio } from "@core"
 import { Service } from "src/services/types"
 import { toast } from "sonner"
@@ -50,18 +50,21 @@ const CreatePortfolioMutation = graphql(`
 const useCreate = (
   createNewPortfolioCard: PortfolioManagerContextData["createNewPortfolioCard"]
 ) => {
-  return createGraphQlUseMutation(CreatePortfolioMutation, {
-    queryKey: portfoliosQK,
-    onSuccess: ({ createPortfolio }) => {
-      // TODO: Request API to implement more fields, remove
-      createNewPortfolioCard({
-        ...emptyPortfolioTemplate,
-        id: createPortfolio.id,
-        title: createPortfolio.label,
-      })
-    },
-    // optimisticUpdateType: "create",
-  })
+  return createGraphQlUseMutation<typeof CreatePortfolioMutation>(
+    CreatePortfolioMutation,
+    {
+      queryKey: portfoliosQK,
+      onSuccess: ({ createPortfolio }) => {
+        // TODO: Request API to implement more fields, remove
+        createNewPortfolioCard({
+          ...emptyPortfolioTemplate,
+          id: createPortfolio.id,
+          title: createPortfolio.label,
+        })
+      },
+      // optimisticUpdateType: "create",
+    }
+  )
 }
 
 const DeletePortfolioMutation = graphql(`
@@ -72,28 +75,35 @@ const DeletePortfolioMutation = graphql(`
 const useDeleteById = (
   deleteSelectedPortfolio: PortfolioManagerContextData["deleteSelectedPortfolio"]
 ) => {
-  return createGraphQlUseMutation(DeletePortfolioMutation, {
-    queryKey: portfoliosQK,
-    onSuccess: deleteSelectedPortfolio,
-    // optimisticUpdateType: "delete",
-  })
+  return createGraphQlUseMutation<typeof DeletePortfolioMutation>(
+    DeletePortfolioMutation,
+    {
+      queryKey: portfoliosQK,
+      onSuccess: deleteSelectedPortfolio,
+      // optimisticUpdateType: "delete",
+    }
+  )
 }
 
 // ;('operations={"query": "mutation UploadFile($file: Upload!) { uploadReport(brokerage: EXANTE, portfolioId: "d5bd66bb-d8fb-4da2-849e-5af7593a35ba", upload: $file) { id, fiscalTransactions, tradeOperations} }", "variables": { "file": null } }')
-
+export const transactionsUploadQk = "transactionsUploadQk"
 const UploadBrokerageReport = graphql(`
   mutation UploadBrokerageReport($upload: Upload!) {
     uploadFile(upload: $upload)
   }
 `)
 const useUpload = () => {
-  return createGraphQlUseMutation(UploadBrokerageReport, {
-    // TODO: queryKey: "transactions",
-    queryKey: "HARD-CODE",
-    onSuccess: () => {
-      toast.success("Report uploaded. Transactions added to selected portfolio")
-    },
-  })
+  return createGraphQlUseMutation<typeof UploadBrokerageReport>(
+    UploadBrokerageReport,
+    {
+      queryKey: transactionsUploadQk,
+      onSuccess: () => {
+        toast.success(
+          "Report uploaded. Transactions added to selected portfolio"
+        )
+      },
+    }
+  )
 }
 
 export const Portfolios = {

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { ResultOf, VariablesOf } from "gql.tada"
+import { ResultOf, TadaDocumentNode, VariablesOf } from "gql.tada"
 import { DocumentNode } from "graphql"
 import { Api } from "../api"
 import optimistic from "./optimisticStrategies"
@@ -12,14 +12,14 @@ export const createUseMutation = useMutation
 export const createUseQuery = useQuery
 
 /** Creates a `GraphQL`-friendly `react-query` **query** */
-export const createGraphQlUseQuery = (
+export const createGraphQlUseQuery = <TQuery extends TadaDocumentNode>(
   query: DocumentNode,
-  { queryKey, onSuccess }: QueryOptions
+  { queryKey, onSuccess }: QueryOptions<TQuery>
 ) => {
-  return createUseQuery({
+  return createUseQuery<ResultOf<TQuery>, Error, ResultOf<TQuery>>({
     queryKey: [queryKey],
     queryFn: async () => {
-      const data = await Api.POST<ResultOf<typeof query>>({
+      const data = await Api.POST<ResultOf<TQuery>>({
         query,
       })
       // TODO: Call, only if there is no req error
@@ -30,14 +30,14 @@ export const createGraphQlUseQuery = (
 }
 
 /** Creates a `GraphQL`-friendly `react-query` **mutation** */
-export const createGraphQlUseMutation = (
+export const createGraphQlUseMutation = <TQuery extends TadaDocumentNode>(
   query: DocumentNode,
-  { queryKey, optimisticUpdateType, onSuccess }: MutationOptions
+  { queryKey, optimisticUpdateType, onSuccess }: MutationOptions<TQuery>
 ) => {
   const queryClient = useQueryClient()
-  return createUseMutation({
-    mutationFn: async (variables: VariablesOf<typeof query>) => {
-      const data = await Api.POST<ResultOf<typeof query>>({
+  return createUseMutation<ResultOf<TQuery>, Error, VariablesOf<TQuery>>({
+    mutationFn: async (variables: VariablesOf<TQuery>) => {
+      const data = await Api.POST<ResultOf<TQuery>>({
         query,
         variables,
       })
@@ -46,13 +46,13 @@ export const createGraphQlUseMutation = (
       return data
     },
     // TODO: Better code
-    ...(optimisticUpdateType
-      ? optimistic[optimisticUpdateType]({ keys: [queryKey] })
-      : {
-          onSuccess: () => {
-            !onSuccess &&
-              queryClient.invalidateQueries({ queryKey: [queryKey] })
-          },
-        }),
+    // ...(optimisticUpdateType
+    //   ? optimistic[optimisticUpdateType]({ keys: [queryKey] })
+    //   : {
+    //       onSuccess: () => {
+    //         !onSuccess &&
+    //           queryClient.invalidateQueries({ queryKey: [queryKey] })
+    //       },
+    //     }),
   })
 }

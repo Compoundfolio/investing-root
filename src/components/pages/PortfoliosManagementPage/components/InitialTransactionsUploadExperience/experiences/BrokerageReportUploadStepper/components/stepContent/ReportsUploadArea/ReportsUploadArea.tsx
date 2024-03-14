@@ -2,6 +2,8 @@ import { FileUploadArea, ID, Option, Spinner } from "@core"
 import React, { memo, useCallback, useEffect } from "react"
 import styles from "./ReportsUploadArea.module.css"
 import Services from "src/services"
+import { useIsMutating } from "@tanstack/react-query"
+import { transactionsUploadQk } from "src/services/user"
 
 interface IReportsUploadArea {
   uploadedReports: string[]
@@ -25,8 +27,12 @@ const ReportsUploadArea = ({
     disableContinueButton(disableButton)
   }, [uploadedReports, selectedBrokerages])
 
-  const { isIdle, mutate: uploadBrokerageReport } =
-    Services.User.Portfolios.useUpload()
+  const { mutate: uploadBrokerageReport } = Services.User.Portfolios.useUpload()
+
+  const isUploading = useIsMutating({
+    mutationKey: [transactionsUploadQk],
+    exact: true,
+  })
 
   const handleFileUpload = useCallback(
     (selectedBrokerageOption: Option) => (file: File) => {
@@ -63,7 +69,7 @@ const ReportsUploadArea = ({
             handleFileUpload={handleFileUpload(selectedBrokerageOption)}
           />
           {/* TODO: Upload date */}
-          {isIdle && <Spinner />}
+          {!!isUploading && <Spinner />}
         </article>
       ))}
     </section>
