@@ -1,44 +1,50 @@
 "use client"
 
-import React from "react"
+import React, { memo } from "react"
 import styles from "./PlateAddButton.module.css"
 import clsx from "clsx"
 import { AddIcon } from "@core"
-import { usePortfolioManagerContext } from "../../../../context/PortfolioManagerContextData"
 
 interface IPlateAddButton {
   title: string
+  extraContent?: {
+    noItems: string
+    listIsEmpty: string
+    ctaMessage: string
+  } | null
+  onClick: () => void
 }
 
 // TODO: Fix multi-click
-const PlateAddButton = ({ title }: IPlateAddButton) => {
-  const { isNoPortfolios, createNewPortfolioCard } =
-    usePortfolioManagerContext()
-
+const PlateAddButton = ({
+  title,
+  extraContent = null,
+  onClick,
+}: IPlateAddButton) => {
   return (
     <div className="flex flex-col items-center gap-8 text-center">
-      {isNoPortfolios && (
+      {extraContent && (
         <span className={styles.plateButton_subMessageTitle}>
-          No portfolios
+          {extraContent.noItems}
         </span>
       )}
       <button
-        onClick={createNewPortfolioCard}
+        onClick={onClick}
         className={clsx(
           styles.plateButton,
-          isNoPortfolios && styles.plateButton__active
+          extraContent && styles.plateButton__active
         )}
       >
         <AddIcon className={styles.plateButton__icon} />
         <span className={styles.plateButton__title}>{title}</span>
       </button>
-      {isNoPortfolios && (
+      {extraContent && (
         <div>
           <p className={styles.plateButton_messageTitle}>
-            Portfolios List Empty
+            {extraContent.listIsEmpty}
           </p>
           <span className={styles.plateButton_subMessageTitle}>
-            Create your first one above
+            {extraContent.noItems}
           </span>
         </div>
       )}
@@ -46,4 +52,4 @@ const PlateAddButton = ({ title }: IPlateAddButton) => {
   )
 }
 
-export default PlateAddButton
+export default memo(PlateAddButton)

@@ -1,5 +1,5 @@
 import { MutationHook, createUseMutation } from "src/inversions/queryMaker"
-import restfulApiUrls from "src/api/restful/urls"
+import restfulApiUrls from "src/api/rest/urls"
 import { SignInWithEmailResponse } from "../../../types"
 import { Api, HttpRequestErrorResponse } from "src/inversions"
 import { IEmailAuthRequestRequestBody } from "./types"

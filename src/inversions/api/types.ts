@@ -1,13 +1,27 @@
+import { DocumentNode } from "graphql"
+
 interface HttpRequest {
   url: string
   withToken?: boolean
 }
 
-export interface HttpGetRequest extends HttpRequest {}
-
-export interface HttpPostRequest extends HttpRequest {
-  data: object
+type Common = {
+  customErrorMessage?: string
 }
+
+export type HttpGraphQlRequest = Omit<HttpRequest, "url"> &
+  Common & {
+    query: DocumentNode
+    variables?: object
+  }
+
+export type HttpRestRequest = HttpRequest &
+  Common & {
+    data: unknown
+  }
+
+export type HttpGetRequest = HttpRequest
+export type HttpPostRequest = HttpGraphQlRequest & HttpRestRequest
 
 export type HttpRequestErrorResponse = string
 export type PostFormSubmitError = {

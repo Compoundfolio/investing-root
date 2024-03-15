@@ -1,4 +1,6 @@
 import { UseMutationOptions, UseMutationResult } from "@tanstack/react-query"
+import { ResultOf } from "gql.tada"
+import optimistic from "./optimisticStrategies"
 
 interface IMutationHookProps<Response, ErrorResponse, Data = void> {
   onSuccess: UseMutationOptions<Response, ErrorResponse, Data>["onSuccess"]
@@ -17,3 +19,14 @@ export type MutationHook<Response, ErrorResponse, Data = void> = ({
   ErrorResponse,
   Data
 >
+
+type Options<TQuery> = {
+  queryKey: string
+  onSuccess?: (reqResultData: ResultOf<TQuery>) => void
+}
+
+export type QueryOptions<TQuery> = Options<TQuery> & {}
+
+export type MutationOptions<TQuery> = Options<TQuery> & {
+  optimisticUpdateType?: keyof typeof optimistic
+}

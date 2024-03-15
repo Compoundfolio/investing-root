@@ -1,5 +1,5 @@
 import { MutationHook, createUseMutation } from "src/inversions/queryMaker"
-import restfulApiUrls from "src/api/restful/urls"
+import restfulApiUrls from "src/api/rest/urls"
 import { Api } from "src/inversions"
 import { HttpRequestErrorResponse } from "../../../../../../inversions/api/types"
 import { AuthWithGooglePreRedirectResponse } from "./types"
@@ -9,6 +9,7 @@ export const authWithGoogleMutationKey = "useAuthWithGoogle" as const
 const requestAuthWithGoogle = async () => {
   const resp = await Api.GET<AuthWithGooglePreRedirectResponse>({
     url: restfulApiUrls.auth.AUTH_WITH_GOOGLE_URL,
+    withToken: false,
   })
 
   // const redirectUrl = window.location.origin + ROUTES.BROKERAGES_SELECTION // TODO: Change to dashboard

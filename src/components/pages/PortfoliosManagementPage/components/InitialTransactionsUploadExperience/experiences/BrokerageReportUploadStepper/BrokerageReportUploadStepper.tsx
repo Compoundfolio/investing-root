@@ -1,6 +1,6 @@
 import { ActButton, ExperienceTitle, LinkCustom, Option, useOpen } from "@core"
 import { useRouter } from "next/navigation"
-import React, { ReactNode, useCallback, useState } from "react"
+import React, { ReactNode, useCallback, useMemo, useState } from "react"
 import { ROUTES } from "src/routing"
 import {
   BreadcrumbsStepperNavigation,
@@ -10,6 +10,7 @@ import {
   LinearStepperProgressBar,
   ReportsUploadArea,
 } from "./components"
+import { usePortfolioManagerContext } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
 
 export type StepCodeName = "brokeragesSelection" | "reportsUpload" | "results"
 
@@ -41,6 +42,7 @@ const BrokerageReportUploadStepper = () => {
   const [isReportGuideDrawerOpen, _, setIsReportGuideDrawerOpen] = useOpen()
 
   const router = useRouter()
+  const { selectedPortfolioCard } = usePortfolioManagerContext()
 
   const handleContinue = () => {
     if (currentStepCodeName === "brokeragesSelection") {
@@ -73,63 +75,77 @@ const BrokerageReportUploadStepper = () => {
     [uploadedReports, setUploadedReports]
   )
 
-  const steps: Steps = {
-    brokeragesSelection: {
-      codeName: "brokeragesSelection",
-      title: "Selected your brokerages",
-      subTitle: "You can select several",
-      breadcrumbTitle: "Brokerages",
-      Component: (
-        <BrokerageSelectionArea
-          selectedBrokerages={selectedBrokerages}
-          setSelectedBrokerages={setSelectedBrokerages}
-          disableContinueButton={setIsContinueButtonDisabled}
-        />
-      ),
-      progressPercentage: 33,
-      isActive: currentStepCodeName === "brokeragesSelection",
-      isBlockedToBeFilled: false,
-    },
-    reportsUpload: {
-      codeName: "reportsUpload",
-      title: "Upload brokerage reports",
-      subTitleLink: (
-        <LinkCustom
-          className="text-xl"
-          title="Where to get brokerage reports?"
-          onClick={() => setIsReportGuideDrawerOpen(true)}
-        />
-      ),
-      breadcrumbTitle: "Reports",
-      Component: (
-        <ReportsUploadArea
-          uploadedReports={uploadedReports}
-          selectedBrokerages={selectedBrokerages}
-          createHandleFileUpload={createHandleFileUpload}
-          disableContinueButton={setIsContinueButtonDisabled}
-        />
-      ),
-      progressPercentage: 66,
-      isActive: currentStepCodeName === "reportsUpload",
-      isBlockedToBeFilled: false,
-    },
-    results: {
-      codeName: "results",
-      title: "Results",
-      subTitle: "Manage transactions manually",
-      breadcrumbTitle: "Results",
-      Component: (
-        <BrokerageReportsUploadResults
-          selectedBrokerages={selectedBrokerages}
-        />
-      ),
-      progressPercentage: 100,
-      isActive: currentStepCodeName === "results",
-      isBlockedToBeFilled: true,
-      blockedReasoning:
-        "Please, fill choose brokerages and upload reports first.",
-    },
-  }
+  const steps: Steps = useMemo(
+    () => ({
+      brokeragesSelection: {
+        codeName: "brokeragesSelection",
+        title: "Selected your brokerages",
+        subTitle: "You can select several",
+        breadcrumbTitle: "Brokerages",
+        Component: (
+          <BrokerageSelectionArea
+            selectedBrokerages={selectedBrokerages}
+            setSelectedBrokerages={setSelectedBrokerages}
+            disableContinueButton={setIsContinueButtonDisabled}
+          />
+        ),
+        progressPercentage: 33,
+        isActive: currentStepCodeName === "brokeragesSelection",
+        isBlockedToBeFilled: false,
+      },
+      reportsUpload: {
+        codeName: "reportsUpload",
+        title: "Upload brokerage reports",
+        subTitleLink: (
+          <LinkCustom
+            className="text-xl"
+            title="Where to get brokerage reports?"
+            onClick={() => setIsReportGuideDrawerOpen(true)}
+          />
+        ),
+        breadcrumbTitle: "Reports",
+        Component: (
+          <ReportsUploadArea
+            uploadedReports={uploadedReports}
+            selectedBrokerages={selectedBrokerages}
+            selectedPortfolioId={selectedPortfolioCard?.id!}
+            createHandleFileUpload={createHandleFileUpload}
+            disableContinueButton={setIsContinueButtonDisabled}
+          />
+        ),
+        progressPercentage: 66,
+        isActive: currentStepCodeName === "reportsUpload",
+        isBlockedToBeFilled: false,
+      },
+      results: {
+        codeName: "results",
+        title: "Results",
+        subTitle: "Manage transactions manually",
+        breadcrumbTitle: "Results",
+        Component: (
+          <BrokerageReportsUploadResults
+            selectedBrokerages={selectedBrokerages}
+          />
+        ),
+        progressPercentage: 100,
+        isActive: currentStepCodeName === "results",
+        isBlockedToBeFilled: true,
+        blockedReasoning:
+          "Please, fill choose brokerages and upload reports first.",
+      },
+    }),
+    [
+      selectedBrokerages,
+      currentStepCodeName,
+      uploadedReports,
+      selectedPortfolioCard?.id,
+      setSelectedBrokerages,
+      setSelectedBrokerages,
+      setIsContinueButtonDisabled,
+      setIsReportGuideDrawerOpen,
+      createHandleFileUpload,
+    ]
+  )
 
   const activeStep = steps[currentStepCodeName]
   const continueButtonName =

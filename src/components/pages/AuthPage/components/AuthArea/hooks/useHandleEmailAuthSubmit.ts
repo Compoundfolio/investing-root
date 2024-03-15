@@ -1,4 +1,4 @@
-import { useAuthWithEmail } from "src/api/restful"
+import { useAuthWithEmail } from "src/api/rest"
 import useCommonAuthSubmitOptions from "./useCommonAuthSubmitOptions"
 
 const useHandleAuthSubmit = () => {

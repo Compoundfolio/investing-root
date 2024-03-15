@@ -6,7 +6,7 @@ export const UploadBrokerageReportIcon = () => (
     viewBox="0 0 36 36"
     fill="none"
   >
-    <g clip-path="url(#clip0_1315_12764)">
+    <g fillOpacity="url(#clip0_1315_12764)">
       <path
         d="M5.25 27.7351L14.25 18.7201L20.25 24.7201L33 10.3801L30.885 8.26514L20.25 20.2201L14.25 14.2201L3 25.4851L5.25 27.7351Z"
         fill="url(#paint0_radial_1315_12764)"
@@ -21,8 +21,8 @@ export const UploadBrokerageReportIcon = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(18 18.0001) rotate(90) scale(9.735 15)"
       >
-        <stop stop-color="#1290FF" />
-        <stop offset="1" stop-color="#1290FF" stop-opacity="0.35" />
+        <stop stopColor="#1290FF" />
+        <stop offset="1" stopColor="#1290FF" stopOpacity="0.35" />
       </radialGradient>
       <clipPath id="clip0_1315_12764">
         <rect width="36" height="36" fill="white" />
@@ -39,7 +39,7 @@ export const ManualTransactionManagementIcon = () => (
     viewBox="0 0 36 36"
     fill="none"
   >
-    <g clip-path="url(#clip0_1315_12944)">
+    <g fillOpacity="url(#clip0_1315_12944)">
       <path
         d="M6 15.75C4.755 15.75 3.75 16.755 3.75 18C3.75 19.245 4.755 20.25 6 20.25C7.245 20.25 8.25 19.245 8.25 18C8.25 16.755 7.245 15.75 6 15.75ZM6 6.75C4.755 6.75 3.75 7.755 3.75 9C3.75 10.245 4.755 11.25 6 11.25C7.245 11.25 8.25 10.245 8.25 9C8.25 7.755 7.245 6.75 6 6.75ZM6 24.75C4.755 24.75 3.75 25.77 3.75 27C3.75 28.23 4.77 29.25 6 29.25C7.23 29.25 8.25 28.23 8.25 27C8.25 25.77 7.245 24.75 6 24.75ZM10.5 28.5H31.5V25.5H10.5V28.5ZM10.5 19.5H31.5V16.5H10.5V19.5ZM10.5 7.5V10.5H31.5V7.5H10.5Z"
         fill="url(#paint0_radial_1315_12944)"
@@ -54,8 +54,8 @@ export const ManualTransactionManagementIcon = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(17.625 18) rotate(90) scale(11.25 13.875)"
       >
-        <stop stop-color="#1290FF" />
-        <stop offset="1" stop-color="#1290FF" stop-opacity="0.35" />
+        <stop stopColor="#1290FF" />
+        <stop offset="1" stopColor="#1290FF" stopOpacity="0.35" />
       </radialGradient>
       <clipPath id="clip0_1315_12944">
         <rect width="36" height="36" fill="white" />
@@ -85,8 +85,8 @@ export const TestPortfolioIcon = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(15.7519 15.7519) rotate(90) scale(15.7519)"
       >
-        <stop stop-color="#1290FF" />
-        <stop offset="1" stop-color="#1290FF" stop-opacity="0.2" />
+        <stop stopColor="#1290FF" />
+        <stop offset="1" stopColor="#1290FF" stopOpacity="0.2" />
       </radialGradient>
     </defs>
   </svg>

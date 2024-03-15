@@ -29,6 +29,7 @@ import {
   uploadResultDescription,
 } from "./consts"
 import { usePortfolioName } from "./hooks"
+import Services from "src/services"
 
 const PortfolioManagementArea = () => {
   const {
@@ -39,6 +40,10 @@ const PortfolioManagementArea = () => {
 
   const { newPortfolioName, handleTitleChange, savePortfolioTitleChange } =
     usePortfolioName(updateSelectedPortfolio, selectedPortfolioCard)
+
+  const { mutate: deletePortfolio } = Services.User.Portfolios.useDeleteById(
+    deleteSelectedPortfolio
+  )
 
   const isAnyPortfolioSelected = !!selectedPortfolioCard?.id
 
@@ -144,36 +149,36 @@ const PortfolioManagementArea = () => {
         {!isAnyPortfolioSelected && <EmptySelectedPortfolioAreaState />}
       </section>
 
-      {/* <ModalBlur
-      noMaxWidth
-      isOpen={isTransactionsModalOpen && isAnyPortfolioSelected}
-      handleOpenChange={handleTransactionsModalOpen}
-    >
-      <TransactionsManagementView />
-    </ModalBlur>
-    <AreYouSureModal
-      title="Permanently delete this portfolio?"
-      isOpen={isDeletePortfolioModalOpen}
-      selectedPortfolioCard={selectedPortfolioCard}
-      sureAgreement={portfolioDeleteAgreement}
-      handleModalOpenStatus={handleIsDeletePortfolioModalOpen}
-      actionToCall={deleteSelectedPortfolio}
-    />
-    <AreYouSureModal
-      title="Update portfolio name"
-      subTitle="Shouldn't be longer then 30 symbols."
-      portfolioChangedTitle={newPortfolioName}
-      isOpen={isPortfolioNameChangeModalOpen}
-      selectedPortfolioCard={selectedPortfolioCard}
-      handleModalOpenStatus={handleIsPortfolioNameChangeModalOpen}
-      actionToCall={savePortfolioTitleChange}
-    >
-      <PortfolioNameChanger
-        currentPortfolioTitle={selectedPortfolioCard?.title!}
-        newPortfolioName={newPortfolioName}
-        handleTitleChange={handleTitleChange}
+      <ModalBlur
+        noMaxWidth
+        isOpen={isTransactionsModalOpen && isAnyPortfolioSelected}
+        handleOpenChange={handleTransactionsModalOpen}
+      >
+        <TransactionsManagementView />
+      </ModalBlur>
+      <AreYouSureModal
+        title="Permanently delete this portfolio?"
+        isOpen={isDeletePortfolioModalOpen}
+        selectedPortfolioCard={selectedPortfolioCard}
+        sureAgreement={portfolioDeleteAgreement}
+        handleModalOpenStatus={handleIsDeletePortfolioModalOpen}
+        actionToCall={() => deletePortfolio({ id: selectedPortfolioCard?.id! })}
       />
-    </AreYouSureModal> */}
+      <AreYouSureModal
+        title="Update portfolio name"
+        subTitle="Shouldn't be longer then 30 symbols."
+        portfolioChangedTitle={newPortfolioName}
+        isOpen={isPortfolioNameChangeModalOpen}
+        selectedPortfolioCard={selectedPortfolioCard}
+        handleModalOpenStatus={handleIsPortfolioNameChangeModalOpen}
+        actionToCall={savePortfolioTitleChange}
+      >
+        <PortfolioNameChanger
+          currentPortfolioTitle={selectedPortfolioCard?.title!}
+          newPortfolioName={newPortfolioName}
+          handleTitleChange={handleTitleChange}
+        />
+      </AreYouSureModal>
     </>
   )
 }

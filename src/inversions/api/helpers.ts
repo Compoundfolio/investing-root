@@ -1,17 +1,44 @@
 import { LocalStorageKeysDictionary } from "src/core/consts"
+import { DEFAULT_REQ_ERROR_MESSAGE, baseApiUrls } from "./consts"
+import { toast } from "sonner"
+
+export const buildReqUrl = (
+  path: string,
+  isGraphQlRequest: boolean = false
+): string => {
+  if (isGraphQlRequest) return baseApiUrls.GRAPHQL!
+
+  if (!path.startsWith("/"))
+    throw new Error(
+      "Wrong usage of `buildUrl` function. Path should starts with '/'"
+    )
+
+  return `${baseApiUrls.REST}${path}`
+}
 
 export const withAuthenticationJWT = (withToken?: boolean): HeadersInit => {
   const authToken = localStorage.getItem(LocalStorageKeysDictionary.AUTH_TOKEN)
-  return withToken ? { Authentication: `Bearer ${authToken}` } : {}
+  return withToken ? { Authorization: `Bearer ${authToken}` } : {}
 }
 
-export const getHttpRequestResult = async (response: Response) => {
-  const status = response.status.toString()
+export const handleHttpRequestResult = async (
+  response: Response,
+  customErrorMessage?: string
+  // TODO: showErrorWithToast = true
+) => {
   const res = await response.json()
 
-  if (status.startsWith("4") || status.startsWith("5")) {
-    throw new Error(res) // res will contain error
+  if (response.status >= 400 || res?.errors) {
+    const message = customErrorMessage ?? DEFAULT_REQ_ERROR_MESSAGE
+    toast("Server error", {
+      description: message,
+      action: {
+        label: "Close",
+        onClick: () => {},
+      },
+    })
+    throw new Error(message)
   }
 
-  return res
+  return res?.data ?? res
 }

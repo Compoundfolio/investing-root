@@ -32,7 +32,10 @@ const BrokenPieChartSvg = ({ style }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g opacity="0.25">
-        <g clip-path="url(#clip0_1176_5858)" filter="url(#filter0_i_1176_5858)">
+        <g
+          fillOpacity="url(#clip0_1176_5858)"
+          filter="url(#filter0_i_1176_5858)"
+        >
           <path
             d="M338.069 99.6834C336.069 93.6857 329.967 90.1372 323.736 91.2161C318.58 92.1059 313.34 92.584 308.059 92.6321C259.569 93.0744 218.963 57.6092 211.554 11.1005C210.565 4.88738 205.189 0.328094 198.905 0.385403L142.319 0.901433C134.779 0.970188 128.994 7.55888 129.815 15.0556C132.222 37.0621 138.73 58.6278 148.959 78.2588C161.908 103.11 180.809 124.84 203.631 141.102C226.453 157.364 253.161 168.148 280.876 172.279C302.701 175.532 325.134 174.655 346.661 169.788C354.015 168.125 358.357 160.518 355.969 153.359L348.595 131.254L338.069 99.6834Z"
             fill="#3CC8C8"
@@ -63,9 +66,9 @@ const BrokenPieChartSvg = ({ style }) => {
           width="356"
           height="360"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
