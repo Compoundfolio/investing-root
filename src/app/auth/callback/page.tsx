@@ -3,6 +3,7 @@
 import { Spinner } from "@core"
 import React, { useEffect } from "react"
 import useCommonAuthSubmitOptions from "src/components/pages/AuthPage/components/AuthArea/hooks/useCommonAuthSubmitOptions"
+import { baseApiUrls } from "src/inversions/api/consts"
 
 // TODO: Not index the page
 
@@ -16,7 +17,7 @@ const AuthCallBackPage = () => {
     const code = params.get("code")
     const state = params.get("state")
 
-    fetch(process.env.NEXT_PUBLIC_API_BASE_URL + "/auth/google", {
+    fetch(baseApiUrls.REST + "/auth/google", {
       method: "POST",
       body: JSON.stringify({ code, state, redirectUri: REDIRECT_URI }),
       headers: [["Content-Type", "application/json"]],

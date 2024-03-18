@@ -14,9 +14,13 @@ const requestAuthWithGoogle = async () => {
 
   // const redirectUrl = window.location.origin + ROUTES.BROKERAGES_SELECTION // TODO: Change to dashboard
   const redirectUrl = window.location.origin + "/auth/callback" // TODO: Change to dashboard
+  const clientId =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID_PROD
+      : process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID_DEV
 
   const authSrc =
-    `${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID}` +
+    `${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENDPOINT_URL}?client_id=${clientId}` +
     `&response_type=code&scope=${encodeURIComponent("openid email")}` +
     `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
     `&state=${resp.state}`

@@ -7,7 +7,6 @@ import {
 } from "src/inversions/queryMaker"
 import { Portfolio } from "@core"
 import { Service } from "src/services/types"
-import { toast } from "sonner"
 
 const portfoliosQK = "portfoliosQK"
 
@@ -85,30 +84,8 @@ const useDeleteById = (
   )
 }
 
-// ;('operations={"query": "mutation UploadFile($file: Upload!) { uploadReport(brokerage: EXANTE, portfolioId: "d5bd66bb-d8fb-4da2-849e-5af7593a35ba", upload: $file) { id, fiscalTransactions, tradeOperations} }", "variables": { "file": null } }')
-export const transactionsUploadQk = "transactionsUploadQk"
-const UploadBrokerageReport = graphql(`
-  mutation UploadBrokerageReport($upload: Upload!) {
-    uploadFile(upload: $upload)
-  }
-`)
-const useUpload = () => {
-  return createGraphQlUseMutation<typeof UploadBrokerageReport>(
-    UploadBrokerageReport,
-    {
-      queryKey: transactionsUploadQk,
-      onSuccess: () => {
-        toast.success(
-          "Report uploaded. Transactions added to selected portfolio"
-        )
-      },
-    }
-  )
-}
-
 export const Portfolios = {
   useGetAll,
   useCreate,
   useDeleteById,
-  useUpload,
 } satisfies Service

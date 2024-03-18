@@ -1,4 +1,5 @@
 import { Portfolios } from "./user/portfolios"
+import { Transactions } from "./user/transactions"
 
 // TODO Services type
 /**
@@ -7,6 +8,7 @@ import { Portfolios } from "./user/portfolios"
 const Services = {
   User: {
     Portfolios,
+    Transactions,
   },
 }
 

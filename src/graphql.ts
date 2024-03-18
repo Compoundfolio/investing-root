@@ -7,6 +7,7 @@ export const graphql = initGraphQLTada<{
     DateTime: string
     JSON: any
     UUID: string
+    BrokerType: "EXANTE" | "FREEDOMFINANCE"
   }
 }>()
 

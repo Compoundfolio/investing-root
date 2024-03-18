@@ -27,7 +27,8 @@ const ReportsUploadArea = ({
     disableContinueButton(disableButton)
   }, [uploadedReports, selectedBrokerages])
 
-  const { mutate: uploadBrokerageReport } = Services.User.Portfolios.useUpload()
+  const { mutate: uploadBrokerageReport } =
+    Services.User.Transactions.useUpload()
 
   const isUploading = useIsMutating({
     mutationKey: [transactionsUploadQk],
@@ -42,7 +43,11 @@ const ReportsUploadArea = ({
       formData.append("file", file)
       // brokerage
       // @ts-ignore
-      uploadBrokerageReport({ upload: { file: formData } })
+      uploadBrokerageReport({
+        upload: { file: formData },
+        brokerage: "EXANTE",
+        portfolioId: selectedBrokerageOption.id as string,
+      })
     },
     [selectedPortfolioId]
   )
