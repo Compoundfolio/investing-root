@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useState } from "react"
+import React, { memo, useCallback, useState } from "react"
 import { Form, Input, Select, useForm } from "src/core/client"
 import { ActButton } from "src/core/components/buttons"
 import { transactionTypeOptions, defaultFormValues } from "./const"
@@ -282,4 +282,4 @@ const TransactionForm = ({
   )
 }
 
-export default TransactionForm
+export default memo(TransactionForm)

@@ -104,6 +104,7 @@ const TransactionTable = ({
         </THead>
         <TBody>
           {transactionList?.map((transaction) => (
+            // TODO: Separate memo component
             <TRow
               key={transaction.id}
               isSelected={transaction.id == selectedTransactionId}
