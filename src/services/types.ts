@@ -6,6 +6,7 @@ type ServiceHook<T extends UseQuery | UseMutation> = (...args: any[]) => T
 
 export type Service = {
   useGetAll?: ServiceHook<UseQuery>
+  useGetAllBy?: ServiceHook<UseQuery>
   useGetById?: ServiceHook<UseQuery>
 
   useCreate?: ServiceHook<UseMutation>

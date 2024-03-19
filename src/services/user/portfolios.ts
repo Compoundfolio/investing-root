@@ -21,7 +21,7 @@ const PortfoliosQuery = graphql(`
 const useGetAll = (
   setPortfolios: PortfolioManagerContextData["setPortfolios"]
 ) => {
-  return createGraphQlUseQuery(PortfoliosQuery, {
+  return createGraphQlUseQuery<typeof PortfoliosQuery>(PortfoliosQuery, {
     queryKey: portfoliosQK,
     onSuccess: ({ portfolios }) => {
       // TODO: Request API to implement more fields, remove
