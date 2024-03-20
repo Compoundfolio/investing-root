@@ -3,19 +3,22 @@ import {
   updateObjectFromArrayOfObjects,
 } from "@core/helpers"
 import { useState, useCallback } from "react"
-import { ArrayElement, ID, PortfolioTransaction } from "src/core/types"
+import { usePortfolioManagerContext } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
+import { PortfolioTransactionV2, UUID } from "src/core/types"
 import Services from "src/services"
-import { useGetAllByPortfolioId } from "src/services/user"
 
 const { Transactions } = Services.User
 
-type tttt = ReturnType<typeof useGetAllByPortfolioId>["data"]
+const useTransactionsHandler = () => {
+  const { selectedPortfolioCard } = usePortfolioManagerContext()
 
-const useTransactionsHandler = (selectedPortfolioId: ID) => {
+  // Queries
   const {
     data: selectedPortfolioTransactions,
     isLoading: isTransactionsLoading,
-  } = Transactions.useGetAllBy(selectedPortfolioId)
+  } = Transactions.useGetAllBy(selectedPortfolioCard?.id!)
+
+  // Mutations
   const { mutate: createFiscalTransaction } = Transactions.fiscal.useCreate()
   const { mutate: deleteFiscalTransaction } =
     Transactions.fiscal.useDeleteById()
@@ -24,36 +27,39 @@ const useTransactionsHandler = (selectedPortfolioId: ID) => {
 
   const transactionList = selectedPortfolioTransactions?.userTransactions ?? []
 
-  // TODO: Better type source
-  type Transaction = ArrayElement<typeof transactionList>
-
   const [transactionToEdit, setTransactionToEdit] =
-    useState<Transaction | null>(null)
+    useState<PortfolioTransactionV2 | null>(null)
 
-  const handleTransactionAdd = useCallback(async (transaction: Transaction) => {
-    if (transaction.tradeSide) {
-      createTradeTransaction(transaction)
-    } else {
-      createFiscalTransaction(transaction)
-    }
+  const handleTransactionAdd = useCallback(
+    async (transaction: PortfolioTransactionV2) => {
+      if (transaction.tradeSide) {
+        createTradeTransaction(transaction)
+      } else {
+        createFiscalTransaction(transaction)
+      }
 
-    setTransactionToEdit(null)
-  }, [])
+      setTransactionToEdit(null)
+    },
+    []
+  )
 
-  const handleTransactionDelete = useCallback((transaction: Transaction) => {
-    const deleteTrade = !!transaction.tradeSide
-      ? deleteTradeTransaction
-      : deleteFiscalTransaction
+  const handleTransactionDelete = useCallback(
+    (transaction: PortfolioTransactionV2) => {
+      const deleteTrade = !!transaction.tradeSide
+        ? deleteTradeTransaction
+        : deleteFiscalTransaction
 
-    deleteTrade({ id: transaction.id })
-    // // Optimistically removes transactions
-    // setTransactionList((prev) =>
-    //   removeObjectFromArrayOfObjects(prev, transaction, "id")
-    // )
-  }, [])
+      deleteTrade({ id: transaction.id })
+      // // Optimistically removes transactions
+      // setTransactionList((prev) =>
+      //   removeObjectFromArrayOfObjects(prev, transaction, "id")
+      // )
+    },
+    []
+  )
 
   const handleMultipleTransactionsDelete = useCallback(
-    (transactionIdsToDelete: PortfolioTransaction["id"][]) => {
+    (transactionIdsToDelete: UUID) => {
       // Optimistically removes transaction
       // setTransactionList((prev) =>
       //   prev?.filter((transaction: PortfolioTransaction) => {
@@ -65,14 +71,17 @@ const useTransactionsHandler = (selectedPortfolioId: ID) => {
     []
   )
 
-  const handleTransactionEdit = (transaction: PortfolioTransaction) => {
-    // Optimistically updates transaction
-    setTransactionList((prev) =>
-      updateObjectFromArrayOfObjects(prev, transaction, "id")
-    )
-    setTransactionToEdit(null)
-    // TODO: Server request
-  }
+  const handleTransactionEdit = useCallback(
+    (transaction: PortfolioTransactionV2) => {
+      // Optimistically updates transaction
+      // setTransactionList((prev) =>
+      //   updateObjectFromArrayOfObjects(prev, transaction, "id")
+      // )
+      setTransactionToEdit(null)
+      // TODO: Server request
+    },
+    []
+  )
 
   return {
     transactionList,

@@ -14,13 +14,14 @@ export const createUseQuery = useQuery
 /** Creates a `GraphQL`-friendly `react-query` **query** */
 export const createGraphQlUseQuery = <TQuery extends TadaDocumentNode>(
   query: DocumentNode,
-  { queryKey, onSuccess }: QueryOptions<TQuery>
+  { queryKey, onSuccess, variables }: QueryOptions<TQuery>
 ) => {
   return createUseQuery<ResultOf<TQuery>, Error, ResultOf<TQuery>>({
     queryKey: [queryKey],
     queryFn: async () => {
       const data = await Api.POST<ResultOf<TQuery>>({
         query,
+        variables,
       })
       // TODO: Call, only if there is no req error
       onSuccess && onSuccess(data)

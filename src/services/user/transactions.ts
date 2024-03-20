@@ -2,14 +2,13 @@ import { createGraphQlUseMutation, createGraphQlUseQuery } from "src/inversions"
 import { Service } from "../types"
 import { toast } from "sonner"
 import { graphql } from "src/graphql"
-import { ID } from "@core"
+import { UUID } from "@core"
 
 export const transactionsUploadQk = "transactionsUploadQk"
 
-const TransactionsQuery = graphql(`
-  query Transactions {
-    userTransactions(portfolioId: UUID) {
-      id
+export const TransactionsQuery = graphql(`
+  query Transactions($portfolioId: UUID!) {
+    userTransactions(portfolioId: $portfolioId) {
       userTransactionType
       brokerage
       symbol
@@ -26,11 +25,12 @@ const TransactionsQuery = graphql(`
     }
   }
 `)
-export const useGetAllByPortfolioId = (selectedPortfolioId: ID) =>
+export const useGetAllByPortfolioId = (portfolioId: UUID) =>
   // setTransactions: PortfolioTransactionsContextData["setTransactions"]
   {
     return createGraphQlUseQuery<typeof TransactionsQuery>(TransactionsQuery, {
       queryKey: transactionsUploadQk,
+      variables: { portfolioId },
       // onSuccess: ({ userTransactions }) => {
       //   setTransactions(userTransactions)
       // },

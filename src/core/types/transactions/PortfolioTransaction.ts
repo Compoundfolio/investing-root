@@ -6,6 +6,7 @@ import { ID } from "../ids"
 import TransactionHandlingType from "./TransactionHandlingType"
 import { ReactNode } from "react"
 
+// TODO: Rid of it's usage
 type PortfolioTransaction = {
   id: ID
   title: string

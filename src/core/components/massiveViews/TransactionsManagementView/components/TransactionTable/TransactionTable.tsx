@@ -24,6 +24,7 @@ import { DateRangePicker, useDateRangePickerState } from "src/core/client"
 interface ITransactionTable {
   selectedTransactionId?: ID
   transactionList: PortfolioTransaction[]
+  isTransactionsLoading: boolean
   onEdit: (transaction: PortfolioTransaction) => void
   onDelete: (transaction: PortfolioTransaction) => void
   handleMultipleTransactionsDelete: (ids: PortfolioTransaction["id"][]) => void
@@ -32,6 +33,7 @@ interface ITransactionTable {
 const TransactionTable = ({
   selectedTransactionId,
   transactionList,
+  isTransactionsLoading,
   onEdit,
   onDelete,
   handleMultipleTransactionsDelete,
@@ -102,7 +104,7 @@ const TransactionTable = ({
             <TCell th>Actions</TCell>
           </TRow>
         </THead>
-        <TBody>
+        <TBody isLoading={isTransactionsLoading}>
           {transactionList?.map((transaction) => (
             // TODO: Separate memo component
             <TRow
