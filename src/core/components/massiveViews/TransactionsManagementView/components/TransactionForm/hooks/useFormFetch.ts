@@ -2,14 +2,14 @@ import { useEffect } from "react"
 import {
   Currency,
   Option,
-  PortfolioTransaction,
+  PortfolioTransactionV2,
   UseFormHookHelpers,
 } from "src/core/types"
 import { AssetSearchOptionData } from "./useAssetSearch"
 import { TransactionFormValues, TransactionTypeOption } from "../types"
 
 interface IUseFormFetch {
-  transactionToEdit: PortfolioTransaction | null
+  transactionToEdit: PortfolioTransactionV2 | null
   setAsset: (
     value: React.SetStateAction<AssetSearchOptionData | null | undefined>
   ) => void

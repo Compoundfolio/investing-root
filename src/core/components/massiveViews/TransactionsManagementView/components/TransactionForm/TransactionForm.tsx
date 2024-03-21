@@ -15,7 +15,7 @@ import {
   useOperationType,
   useTransactionNumbersCalc,
 } from "./hooks"
-import { Currency, Option, PortfolioTransaction } from "src/core/types"
+import { Currency, Option, PortfolioTransactionV2 } from "src/core/types"
 import {
   TooBigTransactionWarning,
   TransactionOperationSwitcher,
@@ -27,9 +27,9 @@ import { SectionTitle } from "src/core/components/text"
 import { TransactionType } from "./types"
 
 interface ITransactionForm {
-  transactionToEdit: PortfolioTransaction | null
-  handleTransactionEdit: (transaction: PortfolioTransaction) => void
-  handleTransactionAdd: (transaction: PortfolioTransaction) => void
+  transactionToEdit: PortfolioTransactionV2 | null
+  handleTransactionEdit: (transaction: PortfolioTransactionV2) => void
+  handleTransactionAdd: (transaction: PortfolioTransactionV2) => void
 }
 
 const TransactionForm = ({

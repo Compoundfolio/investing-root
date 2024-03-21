@@ -12,7 +12,7 @@ import {
   ActionCell,
 } from "src/core/components/tables"
 import { TabGroup } from "src/core/components/tabulation"
-import { ID, PortfolioTransaction } from "src/core/types"
+import { ID, PortfolioTransactionV2 } from "src/core/types"
 import {
   useCheckTableRows,
   useTabFilters,
@@ -23,11 +23,13 @@ import { DateRangePicker, useDateRangePickerState } from "src/core/client"
 
 interface ITransactionTable {
   selectedTransactionId?: ID
-  transactionList: PortfolioTransaction[]
+  transactionList: PortfolioTransactionV2[]
   isTransactionsLoading: boolean
-  onEdit: (transaction: PortfolioTransaction) => void
-  onDelete: (transaction: PortfolioTransaction) => void
-  handleMultipleTransactionsDelete: (ids: PortfolioTransaction["id"][]) => void
+  onEdit: (transaction: PortfolioTransactionV2) => void
+  onDelete: (transaction: PortfolioTransactionV2) => void
+  handleMultipleTransactionsDelete: (
+    ids: PortfolioTransactionV2["id"][]
+  ) => void
 }
 
 const TransactionTable = ({
