@@ -24,16 +24,18 @@ interface SelectType
   options: Option[]
   search?: boolean
   assetAsOption?: boolean
-  setFieldValue: UseFormHookHelpers["setFieldValue"]
+  setFieldValue:
+    | UseFormHookHelpers["setFieldValue"]
+    | ((field: string, value: any) => void)
 }
 
 interface SearchType
   extends Omit<Control, "value" | "onChange" | "placeholder">,
     IReactChildren {
   search: boolean
-  placeholder: string
-  serverSearchRequest: IUseSearch["serverSearchRequest"]
-  onSearchSelection: (selectedOption: Option) => void
+  placeholder?: string
+  serverSearchRequest?: IUseSearch["serverSearchRequest"]
+  onSearchSelection?: (selectedOption: Option) => void
 }
 
 export type TSelect = SelectType & SearchType
@@ -41,16 +43,16 @@ export type TSelect = SelectType & SearchType
 const Select = ({
   /** Makes select into autocomplete field */
   search = false,
+  required = false,
+  autofocus = false,
+  withMb = true,
+  helpText = "",
+  placeholder = "",
   value,
   name,
   labelText,
   errorMessage,
-  required = false,
-  autofocus = false,
-  helpText = "",
-  withMb = true,
   options,
-  placeholder,
   assetAsOption,
   children,
   setFieldValue,

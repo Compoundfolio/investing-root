@@ -3,7 +3,7 @@ import { Option } from "src/core/types"
 import { debouncedFetchData } from "./helpers"
 
 export interface IUseSearch {
-  serverSearchRequest: (searchValue: string) => Promise<Option[] | []>
+  serverSearchRequest?: (searchValue: string) => Promise<Option[] | []>
   setIsOptionOpened: Dispatch<SetStateAction<boolean>>
 }
 
@@ -11,15 +11,18 @@ export const useSearch = ({
   serverSearchRequest,
   setIsOptionOpened,
 }: IUseSearch) => {
-  const [ searchValue, setSearchValue ] = useState<string>("")
-  const [ options, setOptions ] = useState<Option[]>([])
-  const [ isSearching, setIsSearching ] = useState<boolean>(false)
+  const [searchValue, setSearchValue] = useState<string>("")
+  const [options, setOptions] = useState<Option[]>([])
+  const [isSearching, setIsSearching] = useState<boolean>(false)
 
-  const handleSearchValueChange = (e: ChangeEvent<HTMLInputElement>, optionsListLength: number) => {
+  const handleSearchValueChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    optionsListLength: number
+  ) => {
     // Hide not found message
     !optionsListLength && setIsOptionOpened(false)
 
-    console.warn(1111,optionsListLength)
+    console.warn(1111, optionsListLength)
 
     const value = e.target.value.trimStart()
 
@@ -31,15 +34,17 @@ export const useSearch = ({
       return
     }
 
-    debouncedFetchData(
-      serverSearchRequest,
-      value,
-      res => {
-        setOptions(res)
-        setIsOptionOpened(true)
-      },
-      setIsSearching,
-    )
+    if (serverSearchRequest) {
+      debouncedFetchData(
+        serverSearchRequest,
+        value,
+        (res) => {
+          setOptions(res)
+          setIsOptionOpened(true)
+        },
+        setIsSearching
+      )
+    }
   }
 
   const resetSearch = () => {
@@ -58,4 +63,3 @@ export const useSearch = ({
     setSearchValue,
   }
 }
-

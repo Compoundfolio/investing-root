@@ -16,6 +16,7 @@ function TWrapper({ children, title, size }: ITWrapper) {
       <SectionTitle title={title} size={size} />
       {children}
       {size == 0 && <EmptyTableState />}
+      <Pagination />
     </section>
   )
 }

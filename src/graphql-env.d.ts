@@ -70,7 +70,7 @@ export type introspection = {
             }
           },
           {
-            "name": "instrumentSymbol",
+            "name": "ticker",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -106,7 +106,7 @@ export type introspection = {
         "name": "CreatePortfolio",
         "inputFields": [
           {
-            "name": "label",
+            "name": "title",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -134,7 +134,7 @@ export type introspection = {
             }
           },
           {
-            "name": "instrumentSymbol",
+            "name": "ticker",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
@@ -225,7 +225,7 @@ export type introspection = {
             "name": "TAX"
           },
           {
-            "name": "DIVIDENT"
+            "name": "DIVIDEND"
           },
           {
             "name": "FUNDING_WITHDRAWAL"
@@ -547,12 +547,78 @@ export type introspection = {
             "args": []
           },
           {
-            "name": "label",
+            "name": "title",
             "type": {
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "brokerages",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "BrokerType",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "amountOfUserTransactions",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "totalReturnPercentage",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Decimal",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "totalReturnValue",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Money",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "annualIncome",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Money",
                 "ofType": null
               }
             },
@@ -733,7 +799,7 @@ export type introspection = {
             "args": []
           },
           {
-            "name": "symbol",
+            "name": "ticker",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -836,7 +902,7 @@ export type introspection = {
             "name": "TAX"
           },
           {
-            "name": "DIVIDENT"
+            "name": "DIVIDEND"
           },
           {
             "name": "COMISSION"
@@ -845,7 +911,7 @@ export type introspection = {
             "name": "FUNDING_WITHDRAWAL"
           },
           {
-            "name": "REVERTED_DIVIDENT"
+            "name": "REVERTED_DIVIDEND"
           }
         ]
       }
