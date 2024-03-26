@@ -1,0 +1,16 @@
+.squareButton {
+  border-radius: 4px;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.squareButton:hover {
+  background-color: var(--color-primary), 10%;
+}
+
+.squareButton:hover > svg {
+  fill: var(--color-primary);
+}

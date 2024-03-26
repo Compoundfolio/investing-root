@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { Select } from "src/core/client"
 import { useState } from "react"
 import { ROWS_PER_PAGE_OPTIONS } from "./const"
@@ -7,44 +7,51 @@ import { NavigationControls } from "./NavigationControls"
 
 interface IPagination {
   tableRowsAmount: number
-  defaultRowsPerPage?: number
+  defaultRowsPerPageValue?: number
 }
 
 const defaultRowsPerPageValue = ROWS_PER_PAGE_OPTIONS[0]
 
-const Pagination = ({
-  tableRowsAmount,
-  defaultRowsPerPage = defaultRowsPerPageValue.value as number,
-}: IPagination) => {
-  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage)
-  const [lastVisibleRowNumberOption, setLastVisibleRowNumberOption] =
-    useState<Option>(defaultRowsPerPageValue)
+// TODO: Hide pagination in case rows amount are less then ROWS_PER_PAGE_OPTIONS[0].value
+const Pagination = ({ tableRowsAmount }: IPagination) => {
+  const [rowsPerPageOption, setRowsPerPageOption] = useState<Option>(
+    defaultRowsPerPageValue
+  )
+  const [lastVisibleRowNumber, setLastVisibleRowNumber] = useState<number>(
+    defaultRowsPerPageValue.value as number
+  )
 
-  const firstVisibleRowNumber =
-    (lastVisibleRowNumberOption.value as number) - rowsPerPage + 1
+  const rowsPerPage = rowsPerPageOption.value as number
+  const firstVisibleRowNumber = lastVisibleRowNumber - rowsPerPage + 1
 
-  const locationDetails = `${firstVisibleRowNumber}-${lastVisibleRowNumberOption.value} of ${tableRowsAmount}`
+  const locationDetails = `${firstVisibleRowNumber}-${lastVisibleRowNumber} of ${tableRowsAmount}`
 
-  const handle = (_field: string, value: Option) => {
-    setLastVisibleRowNumberOption(value)
+  const handleTableRowsPerPageChange = (_field: string, value: Option) => {
+    setRowsPerPageOption(value)
   }
 
-  return (
-    <section>
-      <div>
+  return tableRowsAmount > rowsPerPage ? (
+    <section className="flex items-center gap-8 transition duration-150 ease-in-out">
+      <div className="flex items-center gap-4">
         <span>Rows per page</span>
         <Select
-          value={lastVisibleRowNumberOption}
+          value={rowsPerPageOption}
           options={ROWS_PER_PAGE_OPTIONS}
           search={false}
-          setFieldValue={handle}
           name="tableRowsPerPage"
+          setFieldValue={handleTableRowsPerPageChange}
         />
       </div>
       <span>{locationDetails}</span>
-      <NavigationControls setRowsPerPage={setRowsPerPage} />
+      <NavigationControls
+        tableRowsPerPage={rowsPerPage}
+        tableRowsAmount={tableRowsAmount}
+        firstVisibleRowNumber={firstVisibleRowNumber}
+        lastVisibleRowNumber={lastVisibleRowNumber}
+        setLastVisibleRowNumber={setLastVisibleRowNumber}
+      />
     </section>
-  )
+  ) : null
 }
 
-export default Pagination
+export default memo(Pagination)

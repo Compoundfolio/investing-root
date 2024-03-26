@@ -4,10 +4,11 @@ import styles from "./TWrapper.module.css"
 import clsx from "clsx"
 import { EmptyTableState } from "../../blocks"
 import { SectionTitle } from "../../text"
+import { Pagination } from "./pagination"
 
 interface ITWrapper extends IReactChildren {
   title: string
-  size?: number
+  size: number
 }
 
 function TWrapper({ children, title, size }: ITWrapper) {
@@ -16,7 +17,7 @@ function TWrapper({ children, title, size }: ITWrapper) {
       <SectionTitle title={title} size={size} />
       {children}
       {size == 0 && <EmptyTableState />}
-      <Pagination />
+      {size > 0 && <Pagination tableRowsAmount={size} />}
     </section>
   )
 }
