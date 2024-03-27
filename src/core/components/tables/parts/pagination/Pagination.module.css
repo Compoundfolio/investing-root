@@ -1,0 +1,11 @@
+.rowsPerPageText {
+  color: var(--color-gray);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.paginationPositionText {
+  color: var(--color-gray);
+  font-size: 12px;
+  font-weight: 500;
+}

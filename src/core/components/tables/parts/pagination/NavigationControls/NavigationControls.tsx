@@ -58,16 +58,32 @@ const NavigationControls = ({
 
   return (
     <div className="flex items-center">
-      <SquareButton onClick={handleBeginning} disabled={isBeginningDisabled}>
+      <SquareButton
+        onClick={handleBeginning}
+        disabled={isBeginningDisabled}
+        hoverTitle="To the beginning"
+      >
         <PaginationNavigation.GoToBeginningIcon />
       </SquareButton>
-      <SquareButton onClick={handleBack} disabled={isBackDisabled}>
+      <SquareButton
+        onClick={handleBack}
+        disabled={isBackDisabled}
+        hoverTitle="Previous"
+      >
         <PaginationNavigation.GoBackIcon />
       </SquareButton>
-      <SquareButton onClick={handleForward} disabled={isForwardDisabled}>
+      <SquareButton
+        onClick={handleForward}
+        disabled={isForwardDisabled}
+        hoverTitle="Next"
+      >
         <PaginationNavigation.GoForwardIcon />
       </SquareButton>
-      <SquareButton onClick={handleEnd} disabled={isEndDisabled}>
+      <SquareButton
+        onClick={handleEnd}
+        disabled={isEndDisabled}
+        hoverTitle="To the end"
+      >
         <PaginationNavigation.GoToTheEndIcon />
       </SquareButton>
     </div>

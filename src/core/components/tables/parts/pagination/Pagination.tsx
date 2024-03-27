@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ROWS_PER_PAGE_OPTIONS } from "./const"
 import { Option } from "src/core/types"
 import { NavigationControls } from "./NavigationControls"
+import styles from "./Pagination.module.css"
 
 interface IPagination {
   tableRowsAmount: number
@@ -33,7 +34,7 @@ const Pagination = ({ tableRowsAmount }: IPagination) => {
   return tableRowsAmount > rowsPerPage ? (
     <section className="flex items-center gap-8 transition duration-150 ease-in-out">
       <div className="flex items-center gap-4">
-        <span>Rows per page</span>
+        <span className={styles.rowsPerPageText}>Rows per page</span>
         <Select
           value={rowsPerPageOption}
           options={ROWS_PER_PAGE_OPTIONS}
@@ -42,7 +43,7 @@ const Pagination = ({ tableRowsAmount }: IPagination) => {
           setFieldValue={handleTableRowsPerPageChange}
         />
       </div>
-      <span>{locationDetails}</span>
+      <span className={styles.paginationPositionText}>{locationDetails}</span>
       <NavigationControls
         tableRowsPerPage={rowsPerPage}
         tableRowsAmount={tableRowsAmount}
