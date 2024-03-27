@@ -1,12 +1,11 @@
 import { PortfolioManagerContextData } from "src/components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData"
-import { emptyPortfolioTemplate } from "../../components/pages/PortfoliosManagementPage/context/PortfolioManagerContextData/consts"
 import { graphql } from "src/graphql"
 import {
   createGraphQlUseMutation,
   createGraphQlUseQuery,
 } from "src/inversions/queryMaker"
-import { Portfolio } from "@core"
 import { Service } from "src/services/types"
+import { ResultOf } from "gql.tada"
 
 const portfoliosQK = "portfoliosQK"
 
@@ -14,7 +13,18 @@ const PortfoliosQuery = graphql(`
   query Portfolios {
     portfolios {
       id
-      label
+      title
+      brokerages
+      amountOfUserTransactions
+      totalReturnPercentage
+      totalReturnValue {
+        amount
+        currency
+      }
+      annualIncome {
+        amount
+        currency
+      }
     }
   }
 `)
@@ -24,16 +34,7 @@ const useGetAll = (
   return createGraphQlUseQuery<typeof PortfoliosQuery>(PortfoliosQuery, {
     queryKey: portfoliosQK,
     onSuccess: ({ portfolios }) => {
-      // TODO: Request API to implement more fields, remove
-      const updatedPortfolios: Portfolio[] = portfolios.length
-        ? portfolios.map(({ id, label }) => ({
-            ...emptyPortfolioTemplate,
-            id,
-            title: label,
-          }))
-        : []
-
-      setPortfolios(updatedPortfolios)
+      setPortfolios(portfolios)
     },
   })
 }
@@ -42,7 +43,18 @@ const CreatePortfolioMutation = graphql(`
   mutation CreatePortfolio($data: CreatePortfolio!) {
     createPortfolio(data: $data) {
       id
-      label
+      title
+      brokerages
+      amountOfUserTransactions
+      totalReturnPercentage
+      totalReturnValue {
+        amount
+        currency
+      }
+      annualIncome {
+        amount
+        currency
+      }
     }
   }
 `)
@@ -54,12 +66,7 @@ const useCreate = (
     {
       queryKey: portfoliosQK,
       onSuccess: ({ createPortfolio }) => {
-        // TODO: Request API to implement more fields, remove
-        createNewPortfolioCard({
-          ...emptyPortfolioTemplate,
-          id: createPortfolio.id,
-          title: createPortfolio.label,
-        })
+        createNewPortfolioCard(createPortfolio)
       },
       // optimisticUpdateType: "create",
     }
@@ -83,6 +90,10 @@ const useDeleteById = (
     }
   )
 }
+
+export type Portfolio = ResultOf<
+  typeof CreatePortfolioMutation
+>["createPortfolio"]
 
 export const Portfolios = {
   useGetAll,

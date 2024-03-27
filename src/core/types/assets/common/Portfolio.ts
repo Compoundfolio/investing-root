@@ -1,20 +1,11 @@
+import { Portfolio as GqlSchemaPortfolioType } from "src/services/user"
 import { ID } from "../../ids"
-
-type Transaction = object
 
 export type PortfolioBrokerage = {
   id: ID
-  title: string
+  title: Portfolio
   logoSrcLink: string
   uploadedTransactionList: Transaction[]
 }
 
-export type Portfolio = {
-  id: string
-  title: string
-  totalReturnValue: number
-  totalReturnPercentage: number
-  annualIncome: number
-  brokerages: PortfolioBrokerage[]
-  transactions: Transaction[] | []
-}
+export type Portfolio = GqlSchemaPortfolioType
